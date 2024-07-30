@@ -18,34 +18,23 @@ function InventoryDeliveryInfo (props) {
 
         return (
             <>
+            <div class="bg-[#F7F8FC]">
             <RollbackOutlined
           className="BackButton flex justify-start "
           style={{}}
           onClick={() => history.back()}
-        />
-                <FlexContainer style={{justifyContent: "center"}}>
-                <div class="text-lg text-black font-bold"> Shipping Information</div> 
-                <h2>QuotationId : {props.invencartItem.orderPhoneId}</h2>
-                </FlexContainer>
-                <FlexContainer 
-                style={{justifyContent: "center"}}
-                // marginTop="-44px"
-                >
-                    <MainWrapper 
-                        background= "#FFFFFF"
-                        boxShadow= "4px 4px 4px rgba(163, 171, 185, 0.5)"
-                        borderRadius= "20px"
-                        width= "65%"
-                        border="none"
-                    >
-                
+        />           
+               <div class="flex justify-center items-center">
+                    <div class="w-[70%] bg-white shadow-2xl rounded-lg border p-8 h-[85vh]"   >
+                    <div class="text-lg text-black font-bold"> Shipping Information</div> 
+                    <h2>QuotationId : {props.invencartItem.orderPhoneId}</h2>
                         <InventoryDeliveryInfoForm 
                          invencartItem={props.invencartItem}
                          fetchingInventoryCartItems={props.fetchingInventoryCartItems}
                         />
-                    </MainWrapper>
-                    
-                </FlexContainer>
+                    </div>
+                    </div>   
+                    </div> 
             </>
         )
 }

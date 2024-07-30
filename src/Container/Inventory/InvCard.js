@@ -76,11 +76,27 @@ const invencartItem = {
     <div class="text-lg text-black font-bold">Shopping Cart</div>
         <p className="total-items">
           You have <span className="text-orange-600 total-items-count">{props.invencartItemCount.productCount}</span> items in shopping cart</p>
+          <div class="rounded-lg m-2 p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#DFE2F8]">
+          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" md:w-[0rem]"></div>
+        <div className=" md:w-[10.9rem]">Product title</div>
+        <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className=" md:w-[5.11rem] ">SKU</div>
+        <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className=" md:w-[8.2rem]">Available Date</div>
+        <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className="md:w-[8.2rem]">Price</div> 
+        <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className=" md:w-[8rem]">Ship By</div>        
+      </div>
+      </div>
         <div className="cart-items">
+      
         <Scrollbars style={{ width: "-webkit-fill-available", height: "-webkit-fill-available" }}  renderThumbVertical={({style, ...props}) =>
         <div {...props} style={{...style, backgroundColor: 'orange'}}/>
     }
    >
+    
             <div className="cart-items-container">
            {props.invencartItem.cartItems && props.invencartItem.cartItems.length === 0 ? <div class="flex justify-center  text-2xl text-[red]">Your Shopping cart is empty !</div>:
 props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
