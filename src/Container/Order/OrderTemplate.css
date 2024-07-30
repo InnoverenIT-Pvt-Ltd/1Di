@@ -1,0 +1,74 @@
+.oderContainer {
+  border: 0.0625em solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100vh;
+  width: 89%;
+}
+
+.oderContainer .box {
+  border: 0.0625em solid green;
+  height: 50vh;
+  width: 100%;
+}
+
+.oderContainer .box.center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.oderContainer .box .heading {
+  font-size: 1.875em;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  color: #000000;
+}
+
+.oderContainer .box .subHeading {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5625em;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.oderContainer .box .btnTrck {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #3066be;
+}
+
+.oderContainer .box .btnShping {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #ffffff;
+}
+
+.ActionLeft {
+  margin-left: 60em;
+}
+
+/*# sourceMappingURL=OrderTemplate.css.map */

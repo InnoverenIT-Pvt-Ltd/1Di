@@ -1,0 +1,42 @@
+.box {
+  display: flex;
+  justify-content: center;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column-reverse;
+    width: -webkit-fill-available;
+    margin: 10px;
+  }
+}
+.StripePayButton {
+  background-color: #6772e5;
+  height: 40px;
+  width: max-content;
+  line-height: 40px;
+  padding: 0 14px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  transition: all 150ms ease;
+  cursor: pointer;
+  // width: "80px",
+  margin-left: 70%;
+  @media only screen and (max-width: 600px) {
+    margin-left: 0%;
+  }
+}
+.box2 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    
+  }
+}
+.modal {
+  width: 40%;
+}

@@ -1,0 +1,42 @@
+import React, { useState, useEffect } from "react";
+import { IntlProvider } from "react-intl";
+import English from "./Language/en.json";
+import Dutch from "./Language/dutch.json";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { setLanguage } from "../src/Language/LanguageAction";
+
+const Wrapper = (props) => {
+  const [lang, setLang] = useState(English);
+
+  useEffect(() => {
+    if (props.language === "English") {
+      setLang(English);
+    } else if (props.language === "Dutch") {
+      setLang(Dutch);
+    } else {
+      setLang(English);
+    }
+  }, [props.language]);
+
+  console.log("select",props.language)
+
+ 
+
+  return (
+  
+    <IntlProvider locale={props.language} messages={lang}>
+      {props.children}
+    </IntlProvider>
+  );
+};
+
+const mapStateToProps = ({ language,auth }) => ({
+  language: language.language,
+  //preferedLanguage:auth.userDetails.preferedLanguage
+});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ setLanguage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);

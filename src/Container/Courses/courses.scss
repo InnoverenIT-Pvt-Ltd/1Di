@@ -1,0 +1,44 @@
+.MobileViewCard {
+    display: none;
+    @media only screen and (max-width: 600px) {
+      display: block;
+    }
+  }
+  .MobileViewBackbutton {
+    display: none;
+    @media only screen and (max-width: 600px) {
+      display: flex;
+      justify-content: flex-start;
+      color: #080d12;
+    }
+  }
+  .DesktopViewCard {
+    display: block;
+    @media only screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+  .CartIconForPage {
+    display: block;
+    @media only screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+  .CartIconForMobilePage {
+    display: none;
+    height: 50px;
+    @media only screen and (max-width: 600px) {
+      display: block;
+      height: 50px;
+    }
+  }
+  .fruit {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 45px;
+    /* identical to box height */
+    color: #000000;
+  }
+  

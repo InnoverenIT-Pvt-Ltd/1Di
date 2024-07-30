@@ -1,0 +1,96 @@
+.oderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  // width: 99%;
+  .box {
+    // border: 0.0625em solid green;
+    height: 50vh;
+    width: 100%;
+
+    &.center {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    .heading {
+      font-size: 1.875em;
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 500;
+      color: #000000;
+    }
+    .subHeading {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1.5625em;
+      color: rgba(0, 0, 0, 0.5);
+    }
+    .btnTrck {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.5em;
+      color: #3066be;
+    }
+    .btnShping {
+      background: #3066BE;
+      border-radius: "0.5em";
+      box-sizing: border-box;
+      /* or 33px */
+
+     display: flex;
+      align-items: center;
+      text-align: center;
+      margin-top:"2px";
+
+       color: #FFFFFF;
+    }
+  }
+}
+
+.ActionRight {
+  margin-left: 60em;
+  // margin-bottom: ;
+}
+.Ord{
+  margin-left: 1em;
+}
+.ordTab{
+  margin-left: 2em;
+  margin-right: 2em;
+  width: 95%;
+}
+.imgIcons{
+  margin-left: 33em;
+}
+
+.btnTrack{
+  border: 1px solid #3066BE;
+  box-sizing: border-box;
+  border-radius: "0.5em";
+  color: #3066BE;
+  display: flex;
+  background: #E5E5E5;
+  align-items: center;
+  text-align: center
+}
+.srch{
+  height: 10em;
+    width: 30em;
+    margin-left: 1.5em;
+}
+.allorder{
+  margin-left: 1.125em;
+}
+
+.btn1 {
+width: "180px";
+height: "35px";
+background: "#3066BE";
+border-radius: "30px";
+margin-left: 1.5em;
+}

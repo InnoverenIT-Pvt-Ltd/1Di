@@ -1,0 +1,532 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ant-tabs-top>.ant-tabs-nav {
+  margin: 0 0 0px;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 100 !important;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.menu {
+  display: block;
+}
+
+.menuhide {
+  display: none;
+}
+
+nav {
+  display: block;
+}
+
+#mainnav ul {
+  list-style: none;
+  /* margin: 0; */
+  /* padding: 0; */
+}
+
+#mainnav>ul>li {
+  display: inline-block;
+  /* padding: 0 6px; */
+}
+
+#mainnav ul li {
+  position: relative;
+}
+
+.header #mainnav>ul>li>a {
+  line-height: 100px;
+}
+
+#mainnav>ul>li.home>a {
+  /* color: #18ba60; */
+  color: #ddd;
+  padding: 0.2rem 0.6rem;
+  text-decoration: none;
+  margin-right: 10px;
+
+  /* &:hover {
+    color: #ddd;
+    text-shadow: 3px 3px 6px #215ca0;
+    text-decoration: none;
+  } */
+}
+
+#mainnav>ul>li>a {
+  color: #ddd;
+  padding: 0.2rem 0.6rem;
+  text-decoration: none;
+  margin-right: 50px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#mainnav ul.submenu {
+  position: absolute;
+  left: 0;
+  top: 150%;
+  width: 300px;
+  text-align: left;
+  background-color: #222222;
+  z-index: 9999;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#mainnav ul.submenu li:first-child {
+  border-top: none;
+}
+
+#mainnav ul.submenu>li {
+  border-top: 1px solid #333333;
+}
+
+#mainnav ul li ul li {
+  margin-left: 0;
+}
+
+#mainnav ul.submenu>li>a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 0 0 20px;
+  line-height: 45px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#mainnav ul li:hover>ul.submenu {
+  top: 100%;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mega-menu {
+  position: absolute;
+  background: #26292c;
+  color: #fff;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill-available;
+  left: 0;
+  top: 60px;
+  -webkit-transition: max-height 0.5s;
+  transition: max-height 0.5s;
+  overflow: hidden;
+  z-index: 4;
+}
+
+.mega-menu__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 80px;
+  -webkit-column-gap: 80px;
+  -moz-column-gap: 80px;
+  column-gap: 80px;
+  grid-row-gap: 80px;
+  row-gap: 80px;
+  width: 80%;
+  margin: auto;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+li {
+  font-size: 13px;
+  line-height: 1.5em;
+
+  margin-bottom: 0;
+  word-break: break-word;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+h1 {
+
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-family: sans-serif;
+  font-size: 2.5rem;
+}
+
+h2 {
+
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 400;
+  font-family: open-sans;
+  
+}
+
+h3 {
+  /* margin-top: 0;
+  margin-bottom: 0.5em; */
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+
+  font-size: 1em
+}
+
+h4 {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 400;
+  font-family: open-sans;
+}
+
+h5 {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+
+  font-size: 0.7em;
+}
+
+h6 {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+
+  font-size: 0.6em;
+}
+
+p {
+
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-family: open-sans;
+  font-size: 1rem;
+}
+
+.ant-select {
+  box-sizing: border-box;
+  margin: 0;
+  height: 25px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum', "tnum";
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  width: 100%;
+  height: 2.5rem;
+ border-radius: 0.6rem;
+  padding: 0 16px;
+}
+
+/* .profileBtn {
+  margin: 10% 0 0 35%;
+} */
+
+/* .vendorBtn {
+  margin: 10% 0 0 35%;
+} */
+.abtnn{
+  background-color: #438bca;
+}
+.VendorContentContainer {
+  margin-top: 7%;
+  width: 35%;
+}
+
+.TalentContentContainer {
+  margin-top: 7%;
+  width: 35%;
+}
+.ant-btn {
+  line-height: 1.5715;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 0 rgb(0 0 0 / 2%);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  user-select: none;
+  touch-action: manipulation;
+  height: 2.5rem;
+  padding: 4px 15px;
+  font-size: 14px;
+  /* border-radius: 0.6rem; */
+}
+.ant-btn-primary {
+  color: #fff;
+  height: 1.58rem;
+  font-size: 0.8125em;
+  border-color: #fff;
+  padding: 3px 8px; 
+  color: white;
+  border-radius: 0.3rem;
+  box-shadow: grey 1px 2px 0px 0px;
+  background-image: linear-gradient(180deg, tomato, orange);
+  transition: background-image 0.3s ease; /* Add transition for smooth effect */
+}
+.ant-btn-primary:hover {
+  background-image: linear-gradient(to right, tomato, tomato);
+}
+.footer1 {
+  text-align: center;
+  /* font-size: 12x; */
+  font-family: "SFS, Arial, sans-serif";
+  /* position: absolute; */
+  margin-top: auto;
+}
+.verify{
+  width: 100%;
+  height: 2.8rem;
+  border-radius: 0.6rem;
+  width: -webkit-fill-available;
+  font-family: "SFS, Arial, sans-serif";
+}
+
+
+
+.wrapper{
+  display:flex;
+  flex-wrap:wrap;
+  width:100%;
+  margin-top: 6%;
+}
+.main-card{
+ 
+  width: 99%;
+  margin: 0.1em 0.5em 0.5em 0.5em;
+  display: flex;
+  background-color: ghostwhite;
+}
+  .card-part1 {
+      /* display: flex; */
+      width: 20%;
+      justify-content: space-between;
+  }
+  .card-part2 {
+      /* display: flex; */
+      width: 20%;
+      justify-content: space-between;
+  }
+
+  .card-part3 {
+      /* display: flex; */
+      width: 45%;
+      justify-content: space-between;
+  }
+
+  .description {
+      height: 43%;
+      overflow: auto;
+  }
+
+  .aply{
+      margin: 1% 9%;
+  }
+
+  .crd{
+      display: grid;
+  }
+  .loc {
+      display: grid;
+  }
+  .avl {
+      display: grid;
+  }
+  .req {
+      display: grid;
+  }
+  .job {
+      display: grid;
+  }
+
+@media (max-width: 600px) {
+  .verify {
+    height: 2rem;
+  }
+}
+
+:where(.css-dev-only-do-not-override-htwhyh).ant-picker .ant-picker-input >input {
+  font-size: 17px;
+}
+
+.input-container {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 11px;
+  width: 300px; 
+  padding: 3px;
+}
+
+.input-header {
+  flex: 1;
+  font-size: 14px;
+}
+
+.input-field {
+  flex: 1;
+  padding: 4px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  font-family: "Poppins";
+}
+
+.ant-steps .ant-steps-item-process .ant-steps-item-icon {
+  background-color: #88cd4e;
+  border-color: white;
+}
+.ant-btn-secondary {
+  display: flex;
+  color: black;
+  border-color: #fff;
+  background-color: #88cd4e !important;
+  border-radius: 2rem;
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  width: auto;
+  align-items: center;
+}
+.ant-btn-tertiary {
+  display: flex;
+  color: black;
+  border-color: #88cd4e !important;
+  background-color: white !important;
+  border-radius: 2rem;
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  width: auto;
+  align-items: center;
+}
+.ant-popconfirm .ant-popconfirm-buttons button {
+  margin-inline-start: 8px;
+  width: 4rem;
+}
+.adhBtN {
+  align-items: center;
+  color: white;
+  background: #3066be;
+  border-radius: 0.3em;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+}
+
+.cart-icon {
+  display: flex;
+  text-align: end;
+   /* margin-right: 2rem;  */
+  align-items: center;
+  position: relative;
+  justify-content: flex-end;
+}
+
+.cart-icon img {
+  width: 2rem;
+  height: 2rem;
+  color: #2f80ed;
+}
+
+.cart-icon p {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  right: -0.2rem;
+  top: -0.1rem;
+  border-radius: 50%;
+  background: orange;
+  color: #fff;
+  box-sizing: border-box;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.sc-cfxfcM iGbGSy {
+  color: red;
+  font-weight: 600;
+  padding: 0.1rem 0px;
+}
+
+.scroller {
+  scrollbar-width: thin;
+}
+.dheight{
+height: auto;
+}
+
+@media (max-width: 600px) {
+  .dheight {
+    height: 2.5rem;
+  }
+}
