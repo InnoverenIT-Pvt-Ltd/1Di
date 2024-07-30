@@ -61,7 +61,7 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
 </div>
       </div>
        
-        <div className="title">
+        <div className=" flex items-center w-wk justify-center flex-col">
           <div class="text-blue-600 text-base font-bold"
              onClick={() => {
               props.handleProductDetails(true);
@@ -80,14 +80,22 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
         Attribute -  {props.item.productInfo.attribute}
         </div>
       </div>
-      <div className="">
-        <div class="text-sm text-black">
-        {props.item.productInfo.newProductId}
-        </div>
-      </div>
+     
      
         </div>
-        
+        <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div>
+        <div className="flex items-center justify-center">
+        <div class="text-sm text-black w-[13.4rem] flex justify-center">
+        {props.item.productInfo.newProductId}
+        </div>
+      </div>    
+      <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
+      <div className=' flex items-center  justify-center'>
+        <div className='w-[10rem] flex items-center  justify-center'>
+        Avilable date
+        </div>
+        </div>
+      <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
         <div className="price">
         <div class="text-sm text-black">
          USD {props.item.itemSummary.discount}
@@ -131,6 +139,9 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
           </div>
 
         </div>
+        <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
+        <div className=' flex items-center  justify-center'>
+          
         <div className="datefield">
         <input
           type="date"
@@ -140,7 +151,7 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
           min={new Date().toISOString().split('T')[0]}
         />
       </div>
-
+     
         <div className="remove-item">
         <DeleteOutlined
           onClick={() => {
@@ -149,6 +160,7 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
           }} />
 
    
+        </div>
         </div>
       </div>
 

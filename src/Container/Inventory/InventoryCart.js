@@ -9,7 +9,7 @@ function InventoryCart(props) {
       <FlexContainer justifyContent={"space-around"}  >
            {/* <MainWrapper width={"80%"} height={"32em"} */}
            <div
-           className="bg-white shadow-2xl rounded-lg m-2 p-1  h-[-webkit-fill-available] w-wk"
+           className="bg-[#F7F8FC] shadow-2xl rounded-lg m-2 p-1  h-[-webkit-fill-available] w-wk"
            >
           <InvCard/>
            </div>
