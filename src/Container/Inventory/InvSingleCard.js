@@ -48,7 +48,7 @@ import InveProductsDetailsDrawer from './InveProductsDetailsDrawer';
 
     return(
       <>
-        <div className="items-info">
+        <div className="w-wk h-[7rem] bg-white mt-5 flex rounded-lg p-2 ">
         <div className=" sm:h-28 w-28 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
         <div   className=" h-32 w-32 -mt-5 -ml-2 object-cover object-center">
         <img 
@@ -61,7 +61,7 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
 </div>
       </div>
        
-        <div className=" flex items-center w-wk justify-center flex-col">
+        <div className=" flex items-center  justify-center flex-col w-wk">
           <div class="text-blue-600 text-base font-bold"
              onClick={() => {
               props.handleProductDetails(true);
@@ -84,24 +84,25 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
      
         </div>
         <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center w-[w-wk]">
         <div class="text-sm text-black w-[13.4rem] flex justify-center">
         {props.item.productInfo.newProductId}
         </div>
       </div>    
       <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
-      <div className=' flex items-center  justify-center'>
+      <div className=' flex items-center  justify-center w-[w-wk]'>
         <div className='w-[10rem] flex items-center  justify-center'>
         Avilable date
         </div>
         </div>
       <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
-        <div className="price">
-        <div class="text-sm text-black">
+      <div className='flex items-center justify-center w-[w-wk]'>
+        <div className="flex items-center justify-center">
+        <div class="text-sm text-black w-16">
          USD {props.item.itemSummary.discount}
         </div>
       </div>
-      <div className="price2">
+      <div className="flex items-center justify-center">
         <div class="text-sm text-black">
         USD 
         {props.item.itemSummary.unitPrice}
@@ -132,17 +133,18 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
           </span>
 
         </div>
-        <div className="subPrice">
+        <div className="flex items-center justify-center">
           <div class="text-sm text-black">
           USD  
           {props.item.itemSummary.totalPrice} 
           </div>
 
         </div>
+        </div>
         <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
-        <div className=' flex items-center  justify-center'>
+        <div className=' flex items-center  justify-center w-[w-wk]'>
           
-        <div className="datefield">
+        <div className="flex items-center justify-center">
         <input
           type="date"
           value={date}
@@ -152,7 +154,7 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
         />
       </div>
      
-        <div className="remove-item">
+        <div className="flex items-center justify-center">
         <DeleteOutlined
           onClick={() => {
             props.setqn(props.item)

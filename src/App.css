@@ -530,3 +530,8 @@ height: auto;
     height: 2.5rem;
   }
 }
+
+
+.custom-shape {
+  clip-path: circle(50% at 50% 50%);
+}

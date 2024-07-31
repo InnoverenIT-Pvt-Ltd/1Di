@@ -19,6 +19,7 @@ import Carousel from "react-elastic-carousel";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ProductCardListbyCategory from '../Container/Customer/ProductCardListbyCategory';
 import { base_url } from '../Config/Auth';
+import CategoriesListCard from '../Container/Inventory/Child/CategoriesListCard';
 
 const CustomerMainAppLeft =lazy(()=>import("./CustomerMainAppLeft"));
 const MaterialAllCard =lazy(()=>import("../Container/Customer/MaterialAllCard"));
@@ -131,13 +132,32 @@ class CustomerMainApp extends Component {
         
         return (
             <>
+            
  {/* <div style={{ position: "sticky", top: 0, zIndex: 1, boxShadow: "0 0.0625em 0.25em 0.0625em " }}> */}
-<div className='flex flex-col z-0 sticky top-0'>
+   
+<div className='flex flex-col z-10 sticky top-0'>
  
                 <MainHeader shopImgId={shopImgId}/>
-                <CustomerContentHeader/>
-              
-         <BottomContentHeader categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/>
+                {/* <CustomerContentHeader/> */}
+                {/* <BottomContentHeader categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/> */}
+                <div class="flex justify-center w-wk">
+                <div className="relative bg-[#1124AA] text-white w-[87.2rem]">
+                <div className="absolute inset-0 h-full w-full clip-path-curve bg-[#1124AA]"></div>
+                <div className="relative z-10 max-w-7xl mx-auto p-8">                 
+                    <div className="text-center flex  flex-col items-start">
+                        <h1 className="text-4xl font-bold text-white">Generate your wholesale order.</h1>
+                        <p className="mt-4 text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                       
+                        <button className="mt-8 bg-[#1124AA] text-white font-bold py-2 px-4 rounded ">Order Products</button>
+                        
+                    </div>
+                   
+                </div>
+                </div>
+                </div>
+                <div className="relative   bg-white h-[7rem] w-[33.2rem] -mt-[5.1rem] rounded-[2rem] -ml-4"></div>
+                <CategoriesListCard/>
+                {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
          </div>          
 
          <div class=" flex flex-nowrap w-full mt-6"> 
@@ -147,7 +167,7 @@ class CustomerMainApp extends Component {
                       
                       />
                     </div> */}
-                    <div class="w-wk max-sm:h-[60vh] overflow-x-auto ">
+                    <div class="w-wk max-sm:h-[60vh] md:h-[20vh] overflow-x-auto ">
                 <MainWrapper>
                 {/* <Carousel
                      breakPoints={breakPoints}
