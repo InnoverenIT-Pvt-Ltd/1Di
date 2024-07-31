@@ -14,7 +14,7 @@ function MainHeaderLeft (props) {
       <img 
         //   src={NuboxLogo}
            src={KoreroLogo}
-      style={{ width: "10em" }} alt="img" />
+      style={{ width: "4rem",height:"2rem" }} alt="img" />
       </div>
       </Link>
             {/* <div>

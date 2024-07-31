@@ -65,7 +65,8 @@ function JobTalent(props) {
       </div> */}
       <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
       <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
-        Copyright © {new Date().getFullYear()} {` `} INNOVERENIT B.V.. All Rights Reserved.
+         © {new Date().getFullYear()} {` `}, 1Di inc.
+        
       </div>
     </React.Fragment>
   )

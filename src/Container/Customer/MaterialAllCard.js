@@ -39,7 +39,7 @@ function MaterialAllCard (props) {
       { width: 1, itemsToShow: 1 },
       { width: 500, itemsToShow: 2 },
       { width: 768, itemsToShow: 4, itemToScroll: 4 },
-      { width: 1100, itemsToShow: 4, itemToScroll: 4 },
+      { width: 1100, itemsToShow: 6, itemToScroll: 6 },
     ];
 
     const handleInfiniteScroll = () => {
@@ -64,7 +64,7 @@ function MaterialAllCard (props) {
         pagination={false}
                          breakPoints={breakPoints}
                         style={{ minHeight: "6em", justifyContent:"center" }}
-                          class=" w-2/12  mt-8 ml-margin10"
+                          class=" w-2/12  mt-8 ml-10"
                         >
 
                       {props.purchaseListC.map((item) => {

@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import { Select } from "../../../Components/UI/Elements";
 import Tooltip from '@mui/material/Tooltip';
+import { Button } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import "../Inventory.scss";
 import {getSuppliesList,LinkInventoryItem} from "../InventoryAction";
@@ -107,7 +108,7 @@ function MaterialsItemCard(props) {
     { width: 1, itemsToShow: 1 },
     { width: 500, itemsToShow: 2 },
     { width: 768, itemsToShow: 4, itemToScroll: 4 },
-    { width: 1100, itemsToShow: 5, itemToScroll: 5 },
+    { width: 1100, itemsToShow: 6, itemToScroll: 6 },
   ];
 
   const handleAddToCart = (suppliesId) => { 
@@ -130,14 +131,14 @@ function MaterialsItemCard(props) {
   return (
     <>
 
-    <div class="h-[24rem] overflow-auto">
+    <div class="h-[50vh] overflow-auto">
 
     <CardWrapper>
     <Carousel
     pagination={false}
                      breakPoints={breakPoints}
                     style={{ minHeight: "6em", justifyContent:"center" }}
-                      class=" w-2/12  mt-8 ml-margin10"
+                      class=" w-2/12  mt-8 ml-10"
                       onNextEnd={next}
                       onPrevEnd={previous}
                     >
@@ -150,63 +151,88 @@ function MaterialsItemCard(props) {
                         <div 
                         // ref={isLastElement ? lastProductElementRef : null} 
                         key={item.suppliesId} className="card-element">
-                      <div class=" h-[18rem] flex-col flex bg-stone-100 items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[18rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
-                      <div class="mt-1"> 
-                      <Tooltip title={item.suppliesName} placement="top" arrow>
-                                                   
-                                                   <Header>{item.suppliesName || ""}</Header>
-                                                 </Tooltip>
-                      </div>
-                      <div class="max-sm:mr-0 md:flex  my-2 h-hwk">
+                      <div class=" h-[18rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[13rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                     
+                      <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
+                                              {item.imageId ? (
                                                     <div class="object-cover object-center  flex items-center">
-                                                      <div>
-                                                  <img
-                                                              src={`${base_url}/image/${item.imageId}`} alt=""
-                                                              style={{ height: "7rem", width: "7rem" }}
+                                                     <img
+                                                              src={`${base_url}/image/${item.imageId}`} 
+                                                              style={{ height: "12.5rem", width: "13rem" }}
                                                           />
-                                                           <h3>{item.newSuppliesNo} </h3>  
-                                                           </div>
-                                                                            </div>  
+                                                         </div>  
+                                                        ) : (
+                           
+                                                        <div className=" text-base h-[12.5rem]  w-[13rem] flex justify-center items-center">Image Not Available</div>
+                                                      
+                                                    )}
+                                                            <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-evenly "> 
+                                                             
+                                                                  <div> {item.newSuppliesNo}  </div>
+                                                                  <div > 
+                                                                  <Tooltip title={item.suppliesName} placement="top" arrow>
+                                                                                              
+                                                                                              <div>{item.suppliesName || ""}</div>
+                                                                                            </Tooltip>
+                                                                     </div>
+                                                                     
+                                                                  </div>
+                                                                  <div className=" flex flex-row justify-evenly"> 
+                                                                        <div class=" mt-1 text-xs text-[#1124AA] ">
+                                                                              {item.categoryName}
+                                                                            </div>
+                                                                            <div class=" mt-1 text-xs text-[#1124AA]">
+                                                                              {item.subCategoryName}
+                                                                            </div> 
+                                                                  </div>
+                                                              
+                                                      
                                                                                                                          
-                                                                            <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">
+                                                                            <div class="w-40 mt-1 flex  justify-between max-sm:flex items-center">
                                                                             <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
                                                                             <div className="add-minus-quantity">
-          <span
+                                                                          <span
 
-          >
-                 <MinusOutlined onClick={() => handleDecrement(item.suppliesId)}/>
-          </span>
-        
-          <input  type="number"  
-           value={units[item.suppliesId] || 1}
-           onChange={(event) => handleQuantityChange(event, item.suppliesId)}
-          min="1" 
-          step="1"  />
-         
-          <span
+                                                                          >
+                                                                                <MinusOutlined onClick={() => handleDecrement(item.suppliesId)}/>
+                                                                          </span>
+                                                                        
+                                                                          <input  type="number"  
+                                                                          value={units[item.suppliesId] || 1}
+                                                                          onChange={(event) => handleQuantityChange(event, item.suppliesId)}
+                                                                          min="1" 
+                                                                          step="1"  />
+                                                                        
+                                                                          <span
 
-          >
-          <PlusOutlined onClick={() => handleIncrement(item.suppliesId)}/>
-          </span>
+                                                                          >
+                                                                            <PlusOutlined onClick={() => handleIncrement(item.suppliesId)}/>
+                                                                            </span>
 
-        </div>
+                                                                          </div>
            
                           
                                              
-                                                                                  </div>
-                                                                            <h3 class=" mt-2 h-4 font-bold text-xs ">
-                                                                              {item.categoryName}
-                                                                            </h3>
-                                                                            <h3 class=" mt-2 h-4 font-bold text-xs ">
-                                                                              {item.subCategoryName}
-                                                                            </h3> 
+                                                                           </div>
+                                                                           <div className="  cursor-pointer ml-2"
+                                                                                 onClick={() =>
+                                                                                    handleAddToCart(
+                                                                                      item.suppliesId
+                                                                    
+                                                                                    )
+                                                                                  }
+                                                                                >
+                                                                                    <Button type="primary" >
+                                                                                     Add
+                                                                                </Button>
+                                                                                </div>
                                                                           </div>
                   
                                                                           </div>
                                                                           
-                                                                          <div class="flex justify-between m-2 w-wk max-sm:w-40 items-baseline md: " >
+                                                                          {/* <div class="flex justify-between m-2 w-wk max-sm:w-40 items-baseline md: " >
                                                                               <Desc>{item.description === "null" ? "No Description" : `${item.description}`}</Desc>
-                                                                              {item.description === "<h3></h3>\n" ? null : (
+                                                                              {item.description === "<div></div>\n" ? null : (
                                                                                 <Tooltip
                                                                                   style={{ backgroundColor: "red" }}
                                                                                   title={
@@ -225,23 +251,10 @@ function MaterialsItemCard(props) {
                                                                                   </span>
                                                                                 </Tooltip>
                                                                               )}
-                                                                            </div>
-                                                                            <div class="mt-px flex  justify-end w-wk m-1">
-                                         <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue cursor-pointer"
-                                                                                  
-                                                            
-                                                                                  onClick={() =>
-                                                                                    handleAddToCart(
-                                                                                      item.suppliesId
-                                                                    
-                                                                                    )
-                                                                                  }
-                                                                                >
-                                                                                    <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white cursor-pointer">
-                                                                              Add +
-                                                                                </label>
-                                                                                </div>
-                  </div>
+                                                                            </div> */}
+                                                                            
+                                                                             
+                  
                                          </div>
                                          </div>
                                        </CardElement>
