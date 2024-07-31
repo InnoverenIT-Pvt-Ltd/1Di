@@ -19,15 +19,21 @@ function InventoryDeliveryInfo (props) {
         return (
             <>
             <div class="bg-[#F7F8FC]">
+            <div className="relative bg-[#1124AA] h-20 text-white w-wk flex flex-col justify-center">
+            <div class="flex">
             <RollbackOutlined
           className="BackButton flex justify-start "
-          style={{}}
+          style={{color:"white"}}
           onClick={() => history.back()}
-        />           
-               <div class="flex justify-center items-center">
-                    <div class="w-[70%] bg-white shadow-2xl rounded-lg border p-8 h-[85vh]"   >
-                    <div class="text-lg text-black font-bold"> Shipping Information</div> 
-                    <h2>QuotationId : {props.invencartItem.orderPhoneId}</h2>
+        /> 
+          <div class="text-lg text-white font-semibold"> Shipping Information</div> 
+          </div>
+          <div className="text-white font-normal">QuotationId : {props.invencartItem.orderPhoneId}</div>
+              </div>
+                     
+               <div class="flex justify-center items-center mt-4">
+                    <div class="w-[70%] bg-white shadow-2xl rounded-lg border p-8 h-[79vh]"   >
+                  
                         <InventoryDeliveryInfoForm 
                          invencartItem={props.invencartItem}
                          fetchingInventoryCartItems={props.fetchingInventoryCartItems}

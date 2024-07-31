@@ -67,15 +67,20 @@ const invencartItem = {
 }
   return (
     <>
-<RollbackOutlined
+
+    <section className="main-cart-section">
+    <div className="relative bg-[#1124AA] h-20 text-white w-wk flex flex-col justify-center">
+      <div class="flex">
+    <RollbackOutlined
           className="BackButton flex justify-start "
-          style={{}}
+          style={{color:"white"}}
           onClick={() => history.back()}
         />
-    <section className="main-cart-section">
-    <div class="text-lg text-black font-bold">Shopping Cart</div>
-        <p className="total-items">
+    <div class="text-lg text-white font-semibold">Shopping Cart</div>
+    </div>
+        <p className="text-white font-normal">
           You have <span className="text-orange-600 total-items-count">{props.invencartItemCount.productCount}</span> items in shopping cart</p>
+          </div>
           <div class="rounded-lg m-2 p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#DFE2F8]">
           <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[0rem]"></div>

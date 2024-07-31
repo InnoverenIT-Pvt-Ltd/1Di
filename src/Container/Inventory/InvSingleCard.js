@@ -167,7 +167,11 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
       </div>
 
       <InveProductsDetailsDrawer
+       setqn={props.setqn}
+       qn={props.qn}
       item={props.item}
+      handleDec={props.handleDec}
+      handleInc={props.handleInc}
       productDetailsDrawr={props.productDetailsDrawr}
       handleProductDetails={props.handleProductDetails}
       />
