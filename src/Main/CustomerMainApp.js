@@ -355,9 +355,6 @@ const mapDispatchToProps = (dispatch) =>
         },
         dispatch
     );
-
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerMainApp);
 
 const MainWrapper = styled.div`
