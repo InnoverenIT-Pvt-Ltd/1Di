@@ -9,25 +9,14 @@ class BottomContentHeader extends Component {
        
         return (
             <div>
-                <CustomerHeader
-                flexdirection={"column"}
-                // boxShadowColor= {"null"}
-                    leftComponent={
+                <div className=" bg-white h-8 m-1 p-1 flex justify-center items-center ">
                       <BottomContentHeaderActionLeft 
                       handleActiveClick={this.props.handleActiveClick} 
                       activeClick={this.props.activeClick}
                       categoriesPrds={this.props.categoriesPrds}
                       fetchingCategories={this.props.fetchingCategories}
                       />
-                    }
-                    // centerComponent={<CustomerContentHeaderActionCenter/>}
-                    // rightComponent={
-                    //     <CustomerContentHeaderActionRight/>
-                    // }
-                    // rightComponent={
-                    // <p>jhfhjughj</p>
-                    // }
-                />
+                </div>
             </div>
         );
     }
