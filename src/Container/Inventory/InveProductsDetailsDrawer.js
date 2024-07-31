@@ -24,6 +24,10 @@ const InveProductsDetailsDrawer = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
                 <InveProductsDetails
+                    setqn={props.setqn}
+                    qn={props.qn}
+                    handleDec={props.handleDec}
+      handleInc={props.handleInc}
                 item={props.item}
                 />
                 </Suspense>
