@@ -107,7 +107,7 @@ function MaterialsItemCard(props) {
     { width: 1, itemsToShow: 1 },
     { width: 500, itemsToShow: 2 },
     { width: 768, itemsToShow: 4, itemToScroll: 4 },
-    { width: 1100, itemsToShow: 5, itemToScroll: 5 },
+    { width: 1100, itemsToShow: 6, itemToScroll: 6 },
   ];
 
   const handleAddToCart = (suppliesId) => { 
@@ -130,14 +130,14 @@ function MaterialsItemCard(props) {
   return (
     <>
 
-    <div class="h-[24rem] overflow-auto">
+    <div class="h-[50vh] overflow-auto">
 
     <CardWrapper>
     <Carousel
     pagination={false}
                      breakPoints={breakPoints}
                     style={{ minHeight: "6em", justifyContent:"center" }}
-                      class=" w-2/12  mt-8 ml-margin10"
+                      class=" w-2/12  mt-8 ml-10"
                       onNextEnd={next}
                       onPrevEnd={previous}
                     >
@@ -157,7 +157,7 @@ function MaterialsItemCard(props) {
                                                    <Header>{item.suppliesName || ""}</Header>
                                                  </Tooltip>
                       </div>
-                      <div class="max-sm:mr-0 md:flex  my-2 h-hwk">
+                      <div class=" flex flex-col max-sm:mr-0 md:flex  my-2 h-hwk">
                                                     <div class="object-cover object-center  flex items-center">
                                                       <div>
                                                   <img
@@ -237,7 +237,7 @@ function MaterialsItemCard(props) {
                                                                                     )
                                                                                   }
                                                                                 >
-                                                                                    <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white cursor-pointer">
+                                                                                    <label class="text-red-600  font-light text-base  flex  justify-center items-center hover:text-white cursor-pointer">
                                                                               Add +
                                                                                 </label>
                                                                                 </div>
