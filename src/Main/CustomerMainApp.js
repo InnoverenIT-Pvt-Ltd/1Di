@@ -164,14 +164,14 @@ class CustomerMainApp extends Component {
                     style={{ minHeight: "6em", justifyContent:"center" }}
                       // class=" w-2/12  mt-8 ml-margin10"
                     >  */}
-                    <div>
+                    {/* <div>
                     <div>
                       Products by Category
                     </div>
                
                         <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
                   
-                        </div>
+                        </div> */}
                      <div>
                     <div class="overflow-auto">
                      Products
@@ -315,10 +315,10 @@ class CustomerMainApp extends Component {
                                                 <p class="mt-3"> Materials and Spares </p>
                                              <MaterialAllCard/> 
                                               </div>
-                                              <div class="mt-3">
+                                              {/* <div class="mt-3">
                                                 <p>Products from our Suppliers </p>
                                                 <OuterAllInventoryCard/>
-                                                </div>
+                                                </div> */}
                                                 {/* <div>
                                                 <p>All Supplies </p>
                                                 <OuterAllSuppliesCard/>

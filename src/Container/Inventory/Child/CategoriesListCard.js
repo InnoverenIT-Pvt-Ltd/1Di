@@ -46,47 +46,46 @@ function CategoriesListCard (props) {
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 500, itemsToShow: 2 },
-    { width: 768, itemsToShow: 4, itemToScroll: 4 },
-    { width: 1100, itemsToShow: 5, itemToScroll: 5 },
+    { width: 768, itemsToShow: 5, itemToScroll: 5 },
+    { width: 1100, itemsToShow: 8, itemToScroll: 8 },
   ];
   return (
 
   <div class="mt-3">
 <div class="text-black font-semibold">Categories</div> 
-<div class="h-80 border-[0.5rem] rounded overflow-auto">
+<div class="h-48 border-[0.5rem] rounded overflow-auto">
 
 <CardWrapper>
 <Carousel
                      breakPoints={breakPoints}
                     style={{ minHeight: "6em", justifyContent:"center" }}
-                      class=" w-2/12  mt-8 ml-margin10"
+                      class=" w-2/12  mt-8 ml-10"
                     >
                   {props.allproductsCategory.map((item) => {
                     return (
                       <CardElement >
 
-                        <div className="w-60 h-[14rem]  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 object-cover object-center  ">
-                          <div class="md:w-60 mx-2 my-2">
-                        <CardImage >
+                        <div className="flex  w-44 h-28  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 object-cover object-center  ">
+                          <div class="flex  flex-col items-center md:w-60 mx-2 my-2">
+                        <div class=" w-20 h-20" >
                           {item.imageId ? (
                             <div className=" sm:h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 md:h-20 max-w-screen-md ">
-                            <div   className=" h-20 w-20 -mt-5 -ml-2 object-cover object-center hover:shadow-lg">
-                            <img
-                                            src={`${base_url}/image/${item.imageId}`} alt=""
+                            <div   className=" h-20 w-20  object-cover object-center hover:shadow-lg">
+                            <img  src={`${base_url}/image/${item.imageId}`} alt=""
                                             />
                             </div>
                             </div>
                           ) : (
-                            <WithOutImage>
-                              <div className="imgc">Image Not Available</div>
-                            </WithOutImage>
+                           
+                              <div className=" text-base">Image Not Available</div>
+                           
                           )}
-                        </CardImage>
+                        </div>
 
                         <CardDescription>
                         
                           <Tooltip title={item.categoryName} placement="top" arrow>
-                            <Header>{item.categoryName || ""}</Header>
+                            <div class="text-base font-bold ">{item.categoryName || ""}</div>
                           </Tooltip>
 
                         </CardDescription>
@@ -169,17 +168,7 @@ const CardDescription = styled.div`
     flex-direction: column;
   }
 `;
-const CardImage = styled.div`
-  margin: auto;
-  width: 5rem;
-  height: 5rem;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
+
 const WithOutImage = styled.div`
   margin: auto;
   width: 10em;

@@ -243,7 +243,7 @@ function MainApp(props) {
                 }}
                 onClick={() => { handleClick("dashboard"); }}
               >
-                <label class=" font-bold font-poppins text-base cursor-pointer"> Refurbish</label>
+                {/* <label class=" font-bold font-poppins text-base cursor-pointer"> Refurbish</label> */}
               </span>
             </Link> }
             </>
@@ -368,10 +368,10 @@ function MainApp(props) {
                 }}
                 onClick={() => { handleClick("planner") }}
               >
-                <label class="font-poppins font-bold text-base cursor-pointer"> <FormattedMessage
+                {/* <label class="font-poppins font-bold text-base cursor-pointer"> <FormattedMessage
                                    id="app.appointments"
                                   defaultMessage="Appointments"
-                                 /></label>
+                                 /></label> */}
               </span>
             </Link>:null}
 
