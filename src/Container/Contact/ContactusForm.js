@@ -236,7 +236,7 @@ function ContactusForm (props) {
                   
                     </div>
                     <div class=" w-8/12">
-                    <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                    <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex  font-bold ">
                       <FastField
                       placeholder="Phone number"
                         type="text"
@@ -258,6 +258,17 @@ function ContactusForm (props) {
                      placeholder="Message"
                     ></textarea>
                   </div>
+                  <div class="flex  bottom- md:absolute">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={addingContact}
+                >
+                  <FormattedMessage id="app.send" defaultMessage="Send" />
+                  {/*                     
+                    Create */}
+                </Button>
+              </div>
                   {/* <div class=" mt-3">
                   <Field
                   
@@ -306,24 +317,21 @@ function ContactusForm (props) {
                
                    
                    
-                <div class="flex  w-wk bottom- md:absolute">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  loading={addingContact}
-                >
-                  <FormattedMessage id="app.send" defaultMessage="Send" />
-                  {/*                     
-                    Create */}
-                </Button>
-              </div>
+               
               </div>
             
               
               </MainWrapper>
             </Form>
+            <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
+      <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
+         © {new Date().getFullYear()} {` `}, 1Di inc.
+        
+      </div>
             </div>
+            
           )}
+          
         </Formik>
       </>
     );
