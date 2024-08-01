@@ -11,17 +11,19 @@ import {getSuppliesList,LinkInventoryItem} from "../InventoryAction";
 import { InfoCircleTwoTone,  MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import Carousel from "react-elastic-carousel";
-import { base_url } from "../../../Config/Auth";
-
+import { base_url,base_url2 } from "../../../Config/Auth";
+import axios from 'axios';
 const { Option } = Select;
 
 function MaterialsItemCard(props) {
     const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
-    
   const carouselRef = useRef(null);
   const observer = useRef();
+
+  const [error, setError] = useState(null);
+  const [data, setData] = useState({});
 
   useEffect(() => {
      props.getSuppliesList(page);    
@@ -43,6 +45,23 @@ function MaterialsItemCard(props) {
   //   };
   //   fetchList(page);
   // }, [page]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/supplies/publish/count`);
+        setData(response.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
   const lastProductElementRef = useCallback(node => {
     if (loading) return;
@@ -131,7 +150,7 @@ function MaterialsItemCard(props) {
   return (
     <>
     <div class="flex justify-between"><div class="text-base text-black font-bold font-poppins">Materials and Spares</div>
-    <div class="text-base text-black font-bold font-poppins w-32">Items: 20</div>
+    <div class="text-base text-black font-bold font-poppins w-32">Items: {data.count}</div>
     </div>
 
     <div class="h-[50vh] overflow-auto">
