@@ -261,6 +261,7 @@ function MaterialsItemCard(props) {
                     );
                   })}
                   </Carousel>
+                  
                   {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
             </CardWrapper>    
   

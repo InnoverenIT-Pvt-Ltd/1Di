@@ -28,6 +28,11 @@ export default function Contact() {
           <ContactInformationForm />
         </div>
       </div>
+      <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
+      <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
+         © {new Date().getFullYear()} {` `}, 1Di inc.
+        
+      </div>
     </>
   );
 }

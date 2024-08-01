@@ -192,7 +192,7 @@ class CustomerMainApp extends Component {
                         <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
                   
                         </div> */}
-                     <div>
+                     {/* <div>
                     <div class="overflow-auto">
                      Products
                     </div>
@@ -240,7 +240,7 @@ class CustomerMainApp extends Component {
                                                        
                                                           <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">
                                                             <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
-                                                            {/* <div class="flex-col w-wk flex max-sm:flex items-center mb-[0.7rem]">
+                                                            <div class="flex-col w-wk flex max-sm:flex items-center mb-[0.7rem]">
                                                               Color{" "}
                                                               {item.colourDTO &&
                                                               item.colourDTO.length &&
@@ -271,7 +271,7 @@ class CustomerMainApp extends Component {
                                 defaultValue="No Option"
                                 disabled
                               ></Select>
-                            </div>            */}
+                            </div>           
                                                                   </div>
                                                             <h3 class=" mt-2 h-4 font-bold text-xs ">
                                                               {item.categoryName}
@@ -306,20 +306,20 @@ class CustomerMainApp extends Component {
                                                             </div>
                                                           <div class="mt-px flex  justify-end w-wk m-1">
                                                       
-                                                              {/* <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue "
+                                                              <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue "
                                                                 
                                           
-                                                                // onClick={() =>
-                                                                //   this.handleAddPlusClick(
-                                                                //     item.productId,
-                                                                //     item.merchantDetailsId
-                                                                //   )
-                                                                // }
+                                                                onClick={() =>
+                                                                  this.handleAddPlusClick(
+                                                                    item.productId,
+                                                                    item.merchantDetailsId
+                                                                  )
+                                                                }
                                                               >
                                                                   <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white">
                                                             Add +
                                                               </label>
-                                                              </div> */}
+                                                              </div>
                                                          
                                                             </div>
                                                           </div>
@@ -330,7 +330,7 @@ class CustomerMainApp extends Component {
                                                   </CardWrapper>
                                                
                                                   </InfiniteScroll>
-                                                  </div>
+                                                  </div> */}
                                               <div>
                                                 <p class="mt-3"> Materials and Spares </p>
                                              <MaterialAllCard/> 
@@ -344,8 +344,15 @@ class CustomerMainApp extends Component {
                                                 <OuterAllSuppliesCard/>
                                                 </div> */}
                                           </MainWrapper>
+                                          
 </div>
                                           </div>
+                                          <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
+      <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
+         © {new Date().getFullYear()} {` `}, 1Di inc.
+        
+      </div>
+              
                                         </>
                                       );
     }
