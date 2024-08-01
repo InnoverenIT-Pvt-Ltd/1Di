@@ -40,9 +40,9 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
     });
     axios
       .get(`${base_url2}/product/allProductCatagory`, {
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-        },
+        // headers: {
+        //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        // },
       })
       .then((res) => {
         console.log(res);
@@ -55,6 +55,32 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
         console.log(err.response);
         dispatch({
           type: types.GET_ALL_PRODUCT_CATEGORY_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getAllSuppliesCatagory = () => (dispatch) => {
+    dispatch({
+      type: types.GET_ALL_SUPPLIES_CATEGORY_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/supplies/allSuppliesCatagory`, {
+        // headers: {
+        //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        // },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ALL_SUPPLIES_CATEGORY_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_ALL_SUPPLIES_CATEGORY_FAILURE,
           payload: err,
         });
       });

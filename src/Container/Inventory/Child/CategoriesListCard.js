@@ -11,7 +11,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import {Button} from "antd";
 import Image from '../../../Components/UI/Elements/Image';
 import "../Inventory.scss";
-import {getAllProductCatagory} from "../InventoryAction";
+import {getAllSuppliesCatagory} from "../InventoryAction";
 import { InfoCircleTwoTone,  DeleteOutlined,
   MinusOutlined,
   PlusOutlined } from "@ant-design/icons";
@@ -26,7 +26,7 @@ function CategoriesListCard (props) {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-   props.getAllProductCatagory();
+   props.getAllSuppliesCatagory();
   }, []);
 
   const carouselRef = useRef(null);
@@ -39,7 +39,7 @@ function CategoriesListCard (props) {
     carouselRef.current.prev();
   };
 
-  if (props.fetchingAllProductsCategory) {
+  if (props.fetchingAllSuppliesCategory) {
     return <BundleLoader />;
   }
 
@@ -61,7 +61,7 @@ function CategoriesListCard (props) {
                     style={{ minHeight: "6em", justifyContent:"center" }}
                       class=" w-2/12  mt-8 ml-10"
                     >
-                  {props.allproductsCategory.map((item) => {
+                  {props.allSuppliesCategory.map((item) => {
                     return (
                       <CardElement >
 
@@ -104,8 +104,8 @@ function CategoriesListCard (props) {
 }
 const mapStateToProps = ({ inventory,auth }) => ({
 
-  fetchingAllProductsCategory:inventory.fetchingAllProductsCategory,
-  allproductsCategory: inventory.allproductsCategory,
+  fetchingAllSuppliesCategory:inventory.fetchingAllSuppliesCategory,
+  allSuppliesCategory: inventory.allSuppliesCategory,
   userId: auth.userDetails.userId,
   organizationId: auth.userDetails.organizationId,
 });
@@ -114,7 +114,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
 
-      getAllProductCatagory,
+      getAllSuppliesCatagory,
 
 
     },

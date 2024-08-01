@@ -399,7 +399,7 @@ const InvoPaymentLeft = ({ userId, invencartItem, addiNVEStripeModal, handleInve
         </FlexContainer>
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           <Radio value={"pay by check"}>
-            <div style={{ alignItems: "baseline", justifyContent: "space-evenly" }}>
+            <div className="mt-4" style={{ alignItems: "baseline", justifyContent: "space-evenly" }}>
               {/* <img style={{ width: "4.25em" }} alt="pay" src={pay} /> */}
               Pay by Check
               <Button

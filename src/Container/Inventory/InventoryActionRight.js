@@ -10,6 +10,7 @@ import {
 import { FileExcelOutlined } from "@ant-design/icons";
 import UploadInventoryDrawer from "./UploadInventory/UploadInventoryDrawer";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import cart1 from "../../Assests/Images/cart1.png";
 
 function InventoryActionRight (props) {
@@ -27,8 +28,8 @@ console.log("fffff",props.employee_type)
         {props.employee_type === "Customer"  && 
         <div>
         <Link to="/shopName/inventorycart">
-              <div className="cart-icon">
-                <img src={cart1} alt="cart" class="w-8 h-8"/>
+              <div className="cart-icon ">
+                <ShoppingCartIcon style={{color:"white"}} class="w-8 h-8 text-white"/>
                 <p>
                   {props.invencartItemCount.productCount}
                   {/* {props.linkInvntoryItems.productCount ? `${props.invencartItemCount.productCount}` : 
