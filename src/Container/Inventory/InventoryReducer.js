@@ -16,6 +16,10 @@ const initialState = {
     fetchingAllProductsCategoryError: false,
     allproductsCategory:[],
 
+    fetchingAllSuppliesCategory: false, 
+    fetchingAllSuppliesCategoryError: false,
+    allSuppliesCategory:[],
+
     uploadInvodrwr:false,
 
     uploadingInventoryDocs: false,
@@ -123,6 +127,14 @@ const initialState = {
               return { ...state, fetchingAllProductsCategory: false, allproductsCategory: action.payload };
             case types.GET_ALL_PRODUCT_CATEGORY_FAILURE:
               return { ...state, fetchingAllProductsCategory: false, fetchingAllProductsCategoryError: true };
+
+              case types.GET_ALL_SUPPLIES_CATEGORY_REQUEST:
+                return { ...state, fetchingAllSuppliesCategory: true, fetchingAllSuppliesCategoryError: false };
+              case types.GET_ALL_SUPPLIES_CATEGORY_SUCCESS:
+                return { ...state, fetchingAllSuppliesCategory: false, allSuppliesCategory: action.payload };
+              case types.GET_ALL_SUPPLIES_CATEGORY_FAILURE:
+                return { ...state, fetchingAllSuppliesCategory: false, 
+                  fetchingAllSuppliesCategoryError: true };
         
               case types.HANDLE_UPLOAD_INVENTORY_DRAWER:
                 return { ...state, uploadInvodrwr: action.payload };

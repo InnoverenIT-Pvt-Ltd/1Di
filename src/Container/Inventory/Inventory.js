@@ -23,7 +23,9 @@ function Inventory (props) {
   return (
     <React.Fragment>
     <div className="overflow-x-auto h-[38rem] md:h-[42rem] scroller">
+    <div className="relative bg-[#1124AA] text-white w-wk">
      <InventoryHeader/>
+     </div>
         <Suspense fallback={<BundleLoader />}>
         <CategoriesListCard/>
         {/* <div class="mt-5">

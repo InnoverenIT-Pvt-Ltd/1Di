@@ -277,10 +277,7 @@ function MainApp(props) {
                 }}
                 onClick={() => { handleClick("orderinprogree") }}
               >
-                <label class="font-poppins font-bold text-base cursor-pointer"><FormattedMessage
-                                   id="app.procure"
-                                  defaultMessage="Procure"
-                                 /></label>
+                <label class="font-poppins font-bold text-base cursor-pointer">Orders</label>
               </span>
             </Link>:null}
             {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 

@@ -27,7 +27,7 @@ const StyledDrawer = styled(Drawer)`
     }
     .ant-drawer-header {
        // background-image: linear-gradient(-90deg,#001529,#1890ff);
-        background-image: linear-gradient(-90deg, rgb(0, 21, 41), rgb(148, 179, 228));
+        background-image: linear-gradient(-90deg, rgb(17 36 170), rgb(17 36 170));
         /* color: ${props => props.theme.color}; */
          color: #fff; 
         

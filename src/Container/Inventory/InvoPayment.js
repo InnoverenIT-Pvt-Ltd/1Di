@@ -38,10 +38,13 @@ function InvoPayment (props) {
   };
         return (
             <>
-                 <FlexContainer style={{justifyContent: "center"}}>
-                <h1><b>Checkout</b></h1>
-                </FlexContainer>
-                <div class="flex justify-center">
+              <div className="relative bg-[#1124AA] text-white w-wk h-16 flex items-center justify-center">
+                
+                <div class="text-white font-semibold text-2xl">Checkout</div>
+               
+                
+                </div>
+                <div class="flex  justify-start mt-4">
                 <Input  className='rounded border-black w-48'
         type="text"
         value={promocode}
