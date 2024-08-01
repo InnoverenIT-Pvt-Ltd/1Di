@@ -326,24 +326,66 @@
 //     }
 // `;
 import React from 'react';
-const CartTable = ({  }) => {
-    const data = {
+function CartTable (props) {
+    
+  const data = {
         "Completed puzzle dimension": '24x18 inch / 60x45 cm',
         "Piece count": "500pc",
         "Packaging":"Set-Up Box",
         "Age group": '6+',
         "Package dimension": '12x8x2 inch / 30x20x5 cm',
         "Weight": '0.56lb'
-      };
+    }
+console.log("ddddr",props.productsById)
   return (
     <table className="min-w-full border-collapse border border-gray-200">
       <tbody>
-        {Object.keys(data).map((key) => (
+        {/* {Object.keys(props.productsById).map((key) => (
           <tr key={key} className="bg-gray-50 odd:bg-white">
             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">{key}</th>
             <td className="p-2 border border-gray-200">{data[key]}</td>
           </tr>
-        ))}
+        ))} */}
+         <tr  className="bg-gray-50 odd:bg-white">
+            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Completed puzzle dimension</th>
+            <td className="p-2 border border-gray-200">
+              {/* {props.productsById.hsn} */}
+              24x18 inch / 60x45 cm
+            </td>
+          </tr>
+          <tr  className="bg-gray-50 odd:bg-white">
+            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Piece count</th>
+            <td className="p-2 border border-gray-200">
+              {/* {props.productsById.hsn} */}
+              500pc
+            </td>
+          </tr>
+          <tr  className="bg-gray-50 odd:bg-white">
+            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Age group</th>
+            <td className="p-2 border border-gray-200">
+              {/* {props.productsById.hsn}  */} 6+
+              </td>
+          </tr>
+          <tr  className="bg-gray-50 odd:bg-white">
+            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Package dimension</th>
+            <td className="p-2 border border-gray-200">{props.productsById.hsn}</td>
+          </tr>
+<tr  className="bg-gray-50 odd:bg-white">
+            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Hsn</th>
+            <td className="p-2 border border-gray-200">{props.productsById.hsn}</td>
+          </tr>
+          <tr  className="bg-gray-50 odd:bg-white">
+            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Weight</th>
+            <td className="p-2 border border-gray-200">{props.productsById.netWeight}</td>
+          </tr>
+          <tr  className="bg-gray-50 odd:bg-white">
+            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Attribute</th>
+            <td className="p-2 border border-gray-200">{props.productsById.attributeName} {props.productsById.subAttributeName}</td>
+          </tr>
+          <tr  className="bg-gray-50 odd:bg-white">
+            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Category</th>
+            <td className="p-2 border border-gray-200">{props.productsById.categoryName} {props.productsById.subCategoryName}</td>
+          </tr>
       </tbody>
     </table>
   );

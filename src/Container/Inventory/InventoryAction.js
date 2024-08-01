@@ -723,12 +723,12 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           });
         };
 
-        export const getProductsById = (id) => (dispatch) => {
+        export const getProductsById = (productId) => (dispatch) => {
           dispatch({
             type: types.GET_PRODUCT_BY_ID_REQUEST,
           });
           axios
-            .get(`${base_url2}/product/${id}`, {
+            .get(`${base_url2}/product/bothSuppliesAndProduct/${productId}`, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -744,6 +744,33 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
               console.log(err.response);
               dispatch({
                 type: types.GET_PRODUCT_BY_ID_FAILURE,
+                payload: err,
+              });
+            });
+        };
+
+        export const getFeaturedMaterials = (pageNo) => (dispatch) => {
+          dispatch({
+            type: types.GET_FEATURED_MATERIALS_REQUEST,
+          });
+          axios
+            .get(`${base_url2}/supplies/featuredSupplies/${pageNo}`,
+              {
+                headers: {
+                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                },
+              })
+            .then((res) => {
+              console.log(res);
+              dispatch({
+                type: types.GET_FEATURED_MATERIALS_SUCCESS,
+                payload: res.data,
+              });
+            })
+            .catch((err) => {
+              console.log(err.response);
+              dispatch({
+                type: types.GET_FEATURED_MATERIALS_FAILURE,
                 payload: err,
               });
             });

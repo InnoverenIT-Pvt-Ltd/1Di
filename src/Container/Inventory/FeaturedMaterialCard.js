@@ -2,16 +2,16 @@ import React, { useEffect,useState,useRef,useCallback } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from "styled-components";
-import { Select } from "../../../Components/UI/Elements";
+import { Select } from "../../Components/UI/Elements";
 import Tooltip from '@mui/material/Tooltip';
 import { Button } from "antd";
-import { BundleLoader } from "../../../Components/Placeholder";
-import "../Inventory.scss";
-import {getSuppliesList,LinkInventoryItem} from "../InventoryAction";
+import { BundleLoader } from "../../Components/Placeholder";
+import "./Inventory.scss";
+import {getFeaturedMaterials,LinkInventoryItem} from "./InventoryAction";
 import { InfoCircleTwoTone,  MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import Carousel from "react-elastic-carousel";
-import { base_url } from "../../../Config/Auth";
+import { base_url } from "../../Config/Auth";
 
 const { Option } = Select;
 
@@ -24,16 +24,16 @@ function MaterialsItemCard(props) {
   const observer = useRef();
 
   useEffect(() => {
-     props.getSuppliesList(page);    
+     props.getFeaturedMaterials(page);    
   }, [page]);
 
   // useEffect(() => {
   //   const fetchList = async (pageNumber) => {
   //     setLoading(true);
   //     try {
-  //       await props.getSuppliesList(pageNumber);
+  //       await props.getFeaturedMaterials(pageNumber);
   //       setLoading(false);
-  //       if (pageNumber + 1 >= props.purchaseList[0]?.pageCount) {
+  //       if (pageNumber + 1 >= props.featuredMaterials[0]?.pageCount) {
   //         setHasMore(false);
   //       }
   //     } catch (error) {
@@ -100,7 +100,7 @@ function MaterialsItemCard(props) {
         }
       };
 
-  if (props.fetchingPurchaseList) {
+  if (props.fetchingFeaturedMaterials) {
     return <BundleLoader />;
   }
 
@@ -128,13 +128,204 @@ function MaterialsItemCard(props) {
   
         props.LinkInventoryItem(data);
       }
+
+const drb = [
+    {
+        "suppliesId": "SUP57727089906232024",
+        "categoryName": "microwave",
+        "subCategoryName": "battery",
+        "suppliesName": "Microwave",
+        "attributeName": "10",
+        "subAttributeName": "watt",
+        "price": 0.0,
+        "tax": 0.0,
+        "quantity": 0,
+        "creationDate": "2024-07-23T05:38:45.737Z",
+        "active": true,
+        "hsn": "4444",
+        "catalogInd": false,
+        "mainInd": false,
+        "cost": 0.0,
+        "suppliesPrice": 0.0,
+        "suppliesSearchName": "null Microwave microwave battery 10 watt",
+        "manufactureId": "MFG376257492305232024",
+        "supplierSuppliesPrice": 0.0,
+        "supplierSuppliesInd": false,
+        "purchaseValue": 0.0,
+        "unitsReceived": 0,
+        "unitsDamaged": 0,
+        "transferInd": false,
+        "poConvertInd": false,
+        "totalUnits": 0,
+        "openingUnits": 0,
+        "units": 0,
+        "amount": 0.0,
+        "pageCount": 1,
+        "listCount": 4,
+        "dataCount": 50,
+        "uniqueIdInd": false,
+        "fifoInd": false,
+        "newSuppliesNo": "000023072024",
+        "modifiedAt": "2024-08-01T07:44:57.823Z",
+        "publishInd": true,
+        "suppliesPriceB2C": 0.0,
+        "height": 0.0,
+        "weight": 0.0,
+        "length": 0.0,
+        "width": 0.0,
+        "featureInd": false
+    },
+    {
+        "suppliesId": "SUP4815964312232024",
+        "imageId": "IMG46061257835232024",
+        "categoryName": "Generator",
+        "subCategoryName": "Disel",
+        "suppliesName": "Generator",
+        "attributeName": "100",
+        "subAttributeName": "ml",
+        "price": 0.0,
+        "tax": 0.0,
+        "quantity": 0,
+        "creationDate": "2024-07-23T05:25:17.811Z",
+        "active": true,
+        "hsn": "666",
+        "catalogInd": false,
+        "mainInd": false,
+        "cost": 0.0,
+        "suppliesPrice": 0.0,
+        "netWeight": "1000",
+        "suppliesSearchName": "null Generator Generator Disel 100 ml",
+        "manufactureId": "MFG528274896156232024",
+        "supplierSuppliesPrice": 0.0,
+        "supplierSuppliesInd": false,
+        "purchaseValue": 0.0,
+        "unitsReceived": 0,
+        "unitsDamaged": 0,
+        "transferInd": false,
+        "poConvertInd": false,
+        "totalUnits": 0,
+        "openingUnits": 0,
+        "units": 0,
+        "amount": 0.0,
+        "pageCount": 1,
+        "listCount": 4,
+        "dataCount": 50,
+        "uniqueIdInd": false,
+        "fifoInd": false,
+        "newSuppliesNo": "000023072024",
+        "publishInd": true,
+        "suppliesPriceB2C": 0.0,
+        "height": 0.0,
+        "weight": 0.0,
+        "length": 0.0,
+        "width": 0.0,
+        "featureInd": false
+    },
+    {
+        "suppliesId": "SUP28005149390242024",
+        "categoryName": "Invertor",
+        "subCategoryName": "invertor",
+        "suppliesName": "invertor",
+        "attributeName": "100mah",
+        "subAttributeName": "MAH",
+        "price": 0.0,
+        "tax": 0.0,
+        "quantity": 0,
+        "creationDate": "2024-06-24T09:14:04.622Z",
+        "active": true,
+        "hsn": "887",
+        "catalogInd": false,
+        "mainInd": false,
+        "cost": 0.0,
+        "suppliesPrice": 0.0,
+        "netWeight": "10000",
+        "netUnit": "kg",
+        "suppliesSearchName": "null invertor Invertor invertor 100mah MAH",
+        "manufactureId": "MFG914540174153242024",
+        "supplierSuppliesPrice": 0.0,
+        "supplierSuppliesInd": false,
+        "purchaseValue": 0.0,
+        "unitsReceived": 0,
+        "unitsDamaged": 0,
+        "transferInd": false,
+        "poConvertInd": false,
+        "totalUnits": 0,
+        "openingUnits": 0,
+        "units": 0,
+        "amount": 0.0,
+        "pageCount": 1,
+        "listCount": 4,
+        "dataCount": 50,
+        "uniqueIdInd": false,
+        "fifoInd": true,
+        "newSuppliesNo": "000024062024",
+        "modifiedAt": "2024-06-25T10:34:49.579Z",
+        "publishInd": true,
+        "suppliesPriceB2C": 0.0,
+        "height": 0.0,
+        "weight": 0.0,
+        "length": 0.0,
+        "width": 0.0,
+        "featureInd": false
+    },
+    {
+        "suppliesId": "SUP84617134139152024",
+        "categoryName": "sssss",
+        "subCategoryName": "ssds",
+        "suppliesName": "ddddf",
+        "attributeName": "dd",
+        "subAttributeName": "ddd",
+        "price": 0.0,
+        "tax": 0.0,
+        "description": "iuuhgfds",
+        "quantity": 0,
+        "creationDate": "2024-04-15T04:19:47.353Z",
+        "active": true,
+        "hsn": "1255",
+        "catalogInd": false,
+        "mainInd": false,
+        "cost": 0.0,
+        "currency": "CU33",
+        "suppliesPrice": 0.0,
+        "netWeight": "222",
+        "grossWeight": "222",
+        "grossUnit": "kg",
+        "netUnit": "g",
+        "suppliesSearchName": "null ddddf sssss ssds dd ddd",
+        "manufactureId": "MFG364333187336152024",
+        "supplierSuppliesPrice": 0.0,
+        "supplierSuppliesInd": false,
+        "purchaseValue": 0.0,
+        "unitsReceived": 0,
+        "unitsDamaged": 0,
+        "transferInd": false,
+        "poConvertInd": false,
+        "totalUnits": 0,
+        "openingUnits": 0,
+        "units": 0,
+        "amount": 0.0,
+        "reorder": "236",
+        "pageCount": 1,
+        "listCount": 4,
+        "dataCount": 50,
+        "uniqueIdInd": true,
+        "fifoInd": true,
+        "publishInd": true,
+        "suppliesPriceB2C": 0.0,
+        "height": 0.0,
+        "weight": 0.0,
+        "length": 0.0,
+        "width": 0.0,
+        "featureInd": false
+    }
+]
+console.log("drbbb")
   return (
     <>
-    <div class="flex justify-between"><div class="text-base text-black font-bold font-poppins">Materials and Spares</div>
-    <div class="text-base text-black font-bold font-poppins w-32">Items: 20</div>
-    </div>
+   
+  
 
-    <div class="h-[50vh] overflow-auto">
+    <div class="h-[24vh] border-[0.5rem] rounded overflow-auto w-wk">
 
     <CardWrapper>
     <Carousel
@@ -145,10 +336,10 @@ function MaterialsItemCard(props) {
                       onNextEnd={next}
                       onPrevEnd={previous}
                     >
-                  {props.purchaseList.map((item,index) => {
+                  {drb.map((item,index) => {
                      const currentdate = dayjs().format("YYYY/MM/DD");
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
-                     const isLastElement = index === props.purchaseList.length - 1;
+                     const isLastElement = index === props.featuredMaterials.length - 1;
                      return (
                       <CardElement >
                         <div 
@@ -279,8 +470,8 @@ function MaterialsItemCard(props) {
   );
 }
 const mapStateToProps = ({ inventory,auth }) => ({
-  purchaseList: inventory.purchaseList,
-  fetchingPurchaseList:inventory.fetchingPurchaseList,
+  featuredMaterials: inventory.featuredMaterials,
+  fetchingFeaturedMaterials:inventory.fetchingFeaturedMaterials,
   userId: auth.userDetails.userId,
   organizationId: auth.userDetails.organizationId,
 });
@@ -288,7 +479,7 @@ const mapStateToProps = ({ inventory,auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getSuppliesList,
+      getFeaturedMaterials,
       LinkInventoryItem
 
     },

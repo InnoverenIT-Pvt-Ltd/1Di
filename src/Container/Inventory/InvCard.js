@@ -12,6 +12,7 @@ import { Scrollbars } from "react-custom-scrollbars-2";
 import { BundleLoader } from "../../Components/Placeholder";
 import { createBrowserHistory } from "history";
 import { RollbackOutlined } from "@ant-design/icons";
+import FeaturedMaterialCard from "./FeaturedMaterialCard";
 
 const history = createBrowserHistory();
 
@@ -122,6 +123,9 @@ props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
                )})} 
             </div>
             </Scrollbars>
+
+            <FeaturedMaterialCard/>
+
         </div>
         
         <div style={{ textAlign: "right" }}>
@@ -133,6 +137,7 @@ props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
           </Link>
   :null}
         </div>
+        
         <hr class=" mt-4 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
       <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
          © {new Date().getFullYear()} {` `}  1Di inc
