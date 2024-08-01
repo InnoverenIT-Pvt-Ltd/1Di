@@ -56,8 +56,8 @@ const breakPoints = [
     <div className="bg-[#F7F8FC]">
  <div className="flex justify-between items-center w-[44rem]">
       <div >
-        <div>{props.item.productInfo.productFullName}</div>
-        <div>{props.item.productInfo.newProductId}</div>
+        <div>{props.productsById.suppliesName}</div>
+        <div>{props.productsById.newSuppliesNo}</div>
         {/* <p><strong>Price:</strong>{props.productsById.price}</p>
         <p><strong>Category:</strong>{props.productsById.categoryName}</p>
         <p><strong>Attribute:</strong> {props.productsById.attributeName}</p>
@@ -65,13 +65,13 @@ const breakPoints = [
         <div className='flex items-center justify-center w-[w-wk]'>
         <div className="flex items-center justify-center">
         <div class="text-sm text-black w-16">
-         USD {props.item.itemSummary.discount}
+         USD {props.productsById.allowedDiscount}
         </div>
       </div>
       <div className="flex items-center justify-center">
         <div class="text-sm text-black">
         USD 
-        {props.item.itemSummary.unitPrice}
+        {props.productsById.price}
         </div>
       </div>
         <div className="add-minus-quantity">
@@ -102,7 +102,7 @@ const breakPoints = [
         <div className="flex items-center justify-center">
           <div class="text-sm text-black">
           USD  
-          {props.item.itemSummary.totalPrice} 
+          {props.productsById.cost} 
           </div>
 
         </div>
@@ -126,7 +126,7 @@ const breakPoints = [
                   </div>
       </div>
       <div >
-      <img  src={`${base_url}/image/${props.item.productInfo.imageId}`}  className="w-[20rem]" />
+      <img  src={`${base_url}/image/${props.productsById.imageId}`}  className="w-[20rem]" />
       {/* <img 
         //   src={NuboxLogo}
            src={KoreroLogo}
@@ -147,7 +147,7 @@ const breakPoints = [
     <div dangerouslySetInnerHTML={{ __html: `<p>${puzzleDescription}</p>` }} />
     
     <div className="cardDs-bottom">
-      <CartTable/>
+      <CartTable productsById={props.productsById}/>
     {/* <div class="border-[0.5rem] rounded overflow-auto">
       <Carousel
     // ref={carouselRef}

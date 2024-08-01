@@ -10,6 +10,7 @@ import "../Customer/Customer.scss";
 import { base_url } from "../../Config/Auth";
 import {updateCartItemDate,handleProductDetails} from "./InventoryAction";
 import InveProductsDetailsDrawer from './InveProductsDetailsDrawer';
+import FeaturedMaterialCard from './FeaturedMaterialCard';
 
  function InvSingleCard (props){
 
@@ -164,8 +165,9 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
    
         </div>
         </div>
+        {/* <FeaturedMaterialCard/> */}
       </div>
-
+      
       <InveProductsDetailsDrawer
        setqn={props.setqn}
        qn={props.qn}

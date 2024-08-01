@@ -33,7 +33,7 @@ function Inventory (props) {
            <InventoryItemsCard invencartItem={props.invencartItem}/> 
            </div> */}
            <div class="mt-5">
-           <div class="text-base text-black font-bold font-poppins">Materials and Spares</div>
+           {/* <div class="text-base text-black font-bold font-poppins">Materials and Spares</div> */}
 <MaterialsItemCard invencartItem={props.invencartItem}/>
 </div>
 {/* <div class="mt-5">

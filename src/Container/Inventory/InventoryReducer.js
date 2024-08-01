@@ -107,6 +107,9 @@ const initialState = {
   fetchingProductsById: false,
   fetchingProductsByIdError: false,
   productsById: {},
+
+  fetchingFeaturedMaterials: true, fetchingFeaturedMaterialsError: false,
+  featuredMaterials:[]
   
 };
 
@@ -477,6 +480,12 @@ const initialState = {
                 fetchingProductsByIdError: true,
               };
 
+              case types.GET_FEATURED_MATERIALS_REQUEST:
+                return { ...state, fetchingFeaturedMaterials: true, fetchingFeaturedMaterialsError: false };
+              case types.GET_FEATURED_MATERIALS_SUCCESS:
+                return { ...state, fetchingFeaturedMaterials: false, featuredMaterials: action.payload };
+              case types.GET_FEATURED_MATERIALS_FAILURE:
+                return { ...state, fetchingFeaturedMaterials: false, fetchingFeaturedMaterialsError: true };
 
                           default:
             return state;
