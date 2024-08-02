@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StyledCustomerHeader = styled.div`
 font-weight:${props => props ? props.fontWeight : null};
 background:white;
-height: 5rem;
+height: 3rem;
 margin: 0 1%;    
 padding: 0.3rem 1rem;
 display: flex;

@@ -101,7 +101,7 @@ function MaterialAllCard (props) {
         dataLength={props.purchaseListC.length}
         next={handleInfiniteScroll}
         hasMore={hasMore}
-        height={"50vh"}
+        height={"40vh"}
         style={{ width: "-webkit-fill-available" }}
         loader={props.fetchingPurchaseListC ? <div className="flex justify-center">Loading...</div> : null}
         initialLoad={true}
@@ -110,7 +110,7 @@ function MaterialAllCard (props) {
             <Carousel
         pagination={false}
                          breakPoints={breakPoints}
-                        style={{ minHeight: "6em", justifyContent:"center" }}
+                        style={{ justifyContent:"center" }}
                           class=" w-2/12  mt-8 ml-10"
                         >
 
@@ -124,12 +124,12 @@ function MaterialAllCard (props) {
                                                     <div class="object-cover object-center  flex items-center">
                                                      <img
                                                               src={`${base_url}/image/${item.imageId}`} 
-                                                              style={{ height: "12.5rem", width: "13rem" }}
+                                                              style={{ height: "6.5rem", width: "7rem" }}
                                                           />
                                                          </div>  
                                                         ) : (
                            
-                                                        <div className=" text-base h-[12.5rem]  w-[13rem] flex justify-center items-center">Image Not Available</div>
+                                                        <div className=" text-xs h-[6.5rem]  w-[7rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
                                                             <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-evenly "> 
@@ -143,11 +143,11 @@ function MaterialAllCard (props) {
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-evenly"> 
-                                                                        <div class=" mt-1 text-xs text-[#1124AA] ">
+                                                                  <div className=" flex flex-row justify-evenly mt-1"> 
+                                                                        <div class="  text-xs text-[#1124AA] ">
                                                                               {item.categoryName}
                                                                             </div>
-                                                                            <div class=" mt-1 text-xs text-[#1124AA]">
+                                                                            <div class=" text-xs text-[#1124AA]">
                                                                               {item.subCategoryName}
                                                                             </div> 
                                                                   </div>
