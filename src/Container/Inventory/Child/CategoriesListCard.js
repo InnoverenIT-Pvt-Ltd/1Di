@@ -65,7 +65,11 @@ function CategoriesListCard (props) {
                     return (
                       <CardElement >
 
-                        <div className="flex  w-44 h-28  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 object-cover object-center  ">
+                        <div onClick={() => props.handleActiveClick(item.categoryId)} 
+        style={{
+          color:props.activeClick === item.categoryId && "Blue",
+          cursor:"pointer"
+        }} className="flex  w-44 h-28  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 object-cover object-center  ">
                           <div class="flex  flex-col items-center md:w-60 mx-2 my-2">
                         <div class=" w-20 h-20" >
                           {item.imageId ? (

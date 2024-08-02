@@ -326,7 +326,7 @@ console.log("drbbb")
   
 
     <div class="h-[24vh] border-[0.5rem] rounded overflow-auto w-wk">
-
+    <div class="text-base text-black font-bold font-poppins">Featured</div>
     <CardWrapper>
     <Carousel
     pagination={false}
@@ -336,7 +336,7 @@ console.log("drbbb")
                       onNextEnd={next}
                       onPrevEnd={previous}
                     >
-                  {drb.map((item,index) => {
+                  {props.featuredMaterials.map((item,index) => {
                      const currentdate = dayjs().format("YYYY/MM/DD");
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
                      const isLastElement = index === props.featuredMaterials.length - 1;

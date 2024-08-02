@@ -79,12 +79,12 @@ export const login = ({ email, password }, history, cb) => (dispatch) => {
       // history.push("/dashboard");
 
       if (res.data.userType === "Customer" || res.data.userType === "external" || res.data.userType ===  null || res.data.userType==="Distributor") {
-        history.push("/dashboard");
+        history.push("/inventory");
       } else if (res.data.userType === "Supplier") {
         history.push("/orderSupplier");
       }
      else if (res.data.userType === "employee") {
-      history.push("/dashboard");
+      history.push("/inventory");
     }
       
       dispatch({

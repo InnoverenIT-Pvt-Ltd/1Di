@@ -131,7 +131,7 @@ function MainApp(props) {
 
   const [collapsed, setCollapsed] = useState(false);
   const [theme, setTheme] = useState("light");
-  const [click, setClick] = useState("dashboard");
+  const [click, setClick] = useState("inventory");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const myDate = date => `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getYear()}`;
   function toggle() {

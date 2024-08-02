@@ -156,7 +156,7 @@ class CustomerMainApp extends Component {
                 </div>
                 </div>
                 <div className="relative   bg-white h-[7rem] w-[33.2rem] -mt-[5.1rem] rounded-[2rem] -ml-4"></div>
-                <CategoriesListCard/>
+                <CategoriesListCard categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/>
                 {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
          </div>          
 
@@ -168,6 +168,14 @@ class CustomerMainApp extends Component {
                       />
                     </div> */}
             <div class="w-wk h-[40vh] max-sm:h-[60vh] md:h-[20vh] overflow-x-auto ">
+            <div>
+                    <div>
+                      Products by Category
+                    </div>
+               
+                        <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
+                  
+                        </div> 
                 <MainWrapper>
                 {/* <Carousel
                      breakPoints={breakPoints}
@@ -184,14 +192,7 @@ class CustomerMainApp extends Component {
                     style={{ minHeight: "6em", justifyContent:"center" }}
                       // class=" w-2/12  mt-8 ml-margin10"
                     >  */}
-                    {/* <div>
-                    <div>
-                      Products by Category
-                    </div>
-               
-                        <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
-                  
-                        </div> */}
+                    {/* */}
                      {/* <div>
                     <div class="overflow-auto">
                      Products
@@ -331,8 +332,9 @@ class CustomerMainApp extends Component {
                                                
                                                   </InfiniteScroll>
                                                   </div> */}
+                                                 
                                               <div>
-                                                <div class="mt-1"> Materials and Spares </div>
+                                                
                                              <MaterialAllCard/> 
                                               </div>
                                               {/* <div class="mt-3">
