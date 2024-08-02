@@ -135,7 +135,7 @@ class CustomerMainApp extends Component {
             
  {/* <div style={{ position: "sticky", top: 0, zIndex: 1, boxShadow: "0 0.0625em 0.25em 0.0625em " }}> */}
    
-<div className='flex flex-col z-10 sticky top-0'>
+<div className='flex flex-col z-10 sticky top-0 overflow-y-hidden'>
  
                 <MainHeader shopImgId={shopImgId}/>
                 {/* <CustomerContentHeader/> */}
@@ -160,14 +160,14 @@ class CustomerMainApp extends Component {
                 {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
          </div>          
 
-         <div class=" flex flex-nowrap w-full mt-6"> 
+         <div class=" self-center  w-[90%] mt-3"> 
          {/* <div class=" w-1/4">
                       <CustomerMainAppLeft categoriesPrds={this.props.categoriesPrds} 
                       handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick}
                       
                       />
                     </div> */}
-                    <div class="w-wk max-sm:h-[60vh] md:h-[20vh] overflow-x-auto ">
+            <div class="w-wk h-[40vh] max-sm:h-[60vh] md:h-[20vh] overflow-x-auto ">
                 <MainWrapper>
                 {/* <Carousel
                      breakPoints={breakPoints}
@@ -332,7 +332,7 @@ class CustomerMainApp extends Component {
                                                   </InfiniteScroll>
                                                   </div> */}
                                               <div>
-                                                <p class="mt-3"> Materials and Spares </p>
+                                                <div class="mt-1"> Materials and Spares </div>
                                              <MaterialAllCard/> 
                                               </div>
                                               {/* <div class="mt-3">
@@ -347,7 +347,7 @@ class CustomerMainApp extends Component {
                                           
 </div>
                                           </div>
-                                          <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
+        <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
       <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
          © {new Date().getFullYear()} {` `}, 1Di inc.
         

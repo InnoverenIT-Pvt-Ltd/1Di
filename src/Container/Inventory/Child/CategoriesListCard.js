@@ -51,14 +51,14 @@ function CategoriesListCard (props) {
   ];
   return (
 
-  <div class="mt-3">
+  <div class="w-[90%]   self-center">
 <div class="text-black font-semibold">Categories</div> 
-<div class="h-48 border-[0.5rem] rounded overflow-auto">
+<div class="  items-center  h-34  rounded overflow-auto">
 
 <CardWrapper>
 <Carousel
                      breakPoints={breakPoints}
-                    style={{ minHeight: "6em", justifyContent:"center" }}
+                    style={{ minHeight: "5rem", justifyContent:"center" }}
                       class=" w-2/12  mt-8 ml-10"
                     >
                   {props.allSuppliesCategory.map((item) => {
@@ -77,7 +77,7 @@ function CategoriesListCard (props) {
                             </div>
                           ) : (
                            
-                              <div className=" text-base">Image Not Available</div>
+                              <div className=" text-[0.65rem] text-center">Image Not Available</div>
                            
                           )}
                         </div>
@@ -85,7 +85,7 @@ function CategoriesListCard (props) {
                         <CardDescription>
                         
                           <Tooltip title={item.categoryName} placement="top" arrow>
-                            <div class="text-base font-bold ">{item.categoryName || ""}</div>
+                            <div class="text-xs font-bold ">{item.categoryName || ""}</div>
                           </Tooltip>
 
                         </CardDescription>
