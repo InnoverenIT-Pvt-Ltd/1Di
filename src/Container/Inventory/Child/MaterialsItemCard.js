@@ -149,7 +149,7 @@ function MaterialsItemCard(props) {
       }
   return (
     <>
-    <div class="flex justify-between"><div class="text-base text-black font-bold font-poppins">Materials and Spares</div>
+    <div class="flex justify-end">
     <div class="text-base text-black font-bold font-poppins w-32">Items: {data.count}</div>
     </div>
 
