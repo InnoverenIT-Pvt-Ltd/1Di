@@ -428,7 +428,7 @@ export const getProductByCategoryId = (categoryId) => (dispatch) => {
     type: types.GET_PRODUCT_BY_CATEGORY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/product/search/category/${categoryId}`)
+    .get(`${base_url2}/supplies/search/category/${categoryId}`)
     .then((res) => {
       dispatch({
         type: types.GET_PRODUCT_BY_CATEGORY_ID_SUCCESS,
@@ -510,4 +510,66 @@ export const getAllSupplierItemCs =()=>(dispatch)=>{
         payload: err,
       });
     });
+};
+
+export const getWitoutPrice =(productId)=>(dispatch)=>{
+  dispatch({
+    type: types.GET_WITHOUT_PRICE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/WOPR/bothSuppliesAndProduct/${productId}`)
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_WITHOUT_PRICE_SUCCESS,
+        payload: res.data,
+      });
+     
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_WITHOUT_PRICE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const handleCatagoryDetails = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CATAGORY_DETAILS_DRAWER,
+    payload: modalProps,
+  });
+};
+
+export const searchInvestorName = (name) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVESTOR_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/suppliesName/${name}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+    
+      dispatch({
+        type: types.GET_INVESTOR_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_INVESTOR_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+}; 
+
+export const ClearReducerDataOfInvestor = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_DATA_INVESTOR,
+  });
 };

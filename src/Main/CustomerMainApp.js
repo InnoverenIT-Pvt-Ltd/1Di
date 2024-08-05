@@ -20,6 +20,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import ProductCardListbyCategory from '../Container/Customer/ProductCardListbyCategory';
 import { base_url } from '../Config/Auth';
 import CategoriesListCard from '../Container/Inventory/Child/CategoriesListCard';
+import MainSearchedData from './MainSearchedData';
 
 const CustomerMainAppLeft =lazy(()=>import("./CustomerMainAppLeft"));
 const MaterialAllCard =lazy(()=>import("../Container/Customer/MaterialAllCard"));
@@ -140,6 +141,12 @@ class CustomerMainApp extends Component {
                 <MainHeader shopImgId={shopImgId}/>
                 {/* <CustomerContentHeader/> */}
                 {/* <BottomContentHeader categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/> */}
+                {this.props.investorSerachedData.length > 0 ? (
+    <MainSearchedData
+    investorSerachedData={this.props.investorSerachedData}
+    />
+  ) : (  
+  <div>
                 <div class="flex justify-center w-wk">
                 <div className="relative bg-[#1124AA] text-white w-[87.2rem]">
                 <div className="absolute inset-0 h-full w-full clip-path-curve bg-[#1124AA]"></div>
@@ -147,35 +154,38 @@ class CustomerMainApp extends Component {
                     <div className="text-center flex  flex-col items-start">
                         <h1 className="text-4xl font-bold text-white">Generate your wholesale order.</h1>
                         <p className="mt-4 text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                       
+                       <Link to="/login">
                         <button className="mt-8 bg-[#1124AA] text-white font-bold py-2 px-4 rounded ">Order Products</button>
-                        
+                        </Link>
                     </div>
                    
                 </div>
                 </div>
                 </div>
                 <div className="relative   bg-white h-[7rem] w-[33.2rem] -mt-[5.1rem] rounded-[2rem] -ml-4"></div>
+<div className='flex justify-center'>
+                <div className='w-[90%] flex flex-col justify-center items-center overflow-x-auto p-4 h-[-webkit-fill-available]'>
                 <CategoriesListCard categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/>
                 {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
-         </div>          
+                <div className='w-wk flex  '>
+                    <div>
+                      Products by Catalog
+                    </div>
+                    <div className='flex  justify-center'>
+                        <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
+                  </div>
+                        </div> 
+                 
 
-         <div class=" self-center  w-[90%] mt-3"> 
+         <div class=" self-center  w-wk mt-3"> 
          {/* <div class=" w-1/4">
                       <CustomerMainAppLeft categoriesPrds={this.props.categoriesPrds} 
                       handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick}
                       
                       />
                     </div> */}
-            <div class="w-wk h-[40vh] max-sm:h-[60vh] md:h-[20vh] overflow-x-auto ">
-            <div>
-                    <div>
-                      Products by Category
-                    </div>
-               
-                        <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
-                  
-                        </div> 
+            <div class="w-wk h-[100vh] max-sm:h-[60vh] md:h-[100vh] overflow-x-auto ">
+           
                 <MainWrapper>
                 {/* <Carousel
                      breakPoints={breakPoints}
@@ -349,8 +359,13 @@ class CustomerMainApp extends Component {
                                           
 </div>
                                           </div>
+                                          </div> 
+                                          </div>
+                                          </div>
+                                           )}  
+                                          </div>
         <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
-      <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
+      <div class="text-sm flex justify-center  text-gray-700 bottom-0 sticky w-wk items-center" >
          © {new Date().getFullYear()} {` `}, 1Di inc.
         
       </div>
@@ -370,7 +385,8 @@ const mapStateToProps = ({ customer, auth }) => ({
     categoriesPrds:customer.categoriesPrds,
     fetchingCustomerList:customer.fetchingCustomerList,
     productsbyCategoryId:customer.productsbyCategoryId,
-    fetchingCategories:customer.fetchingCategories
+    fetchingCategories:customer.fetchingCategories,
+    investorSerachedData: customer.investorSerachedData
 });
 
 const mapDispatchToProps = (dispatch) =>

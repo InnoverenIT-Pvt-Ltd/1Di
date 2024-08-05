@@ -156,14 +156,14 @@ function MaterialsItemCard(props) {
     <div class="h-[50vh] overflow-auto">
 
     <CardWrapper>
-    <Carousel
+    {/* <Carousel
     pagination={false}
                      breakPoints={breakPoints}
                     style={{ minHeight: "6em", justifyContent:"center" }}
                       class=" w-2/12  mt-8 ml-10"
                       onNextEnd={next}
                       onPrevEnd={previous}
-                    >
+                    > */}
                   {props.purchaseList.map((item,index) => {
                      const currentdate = dayjs().format("YYYY/MM/DD");
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
@@ -282,7 +282,7 @@ function MaterialsItemCard(props) {
                                        </CardElement>
                     );
                   })}
-                  </Carousel>
+                  {/* </Carousel> */}
                   
                   {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
             </CardWrapper> 

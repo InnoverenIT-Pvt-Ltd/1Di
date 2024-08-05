@@ -85,7 +85,7 @@ class Login extends Component {
               alt="Tekorero logo"
             /> */}
             <br />
-            <MainWrapper style={{ width: "100%" }}>
+            <div className="w-full border shadow-2xl" >
               <Formik
                 enableReinitialize
                 initialValues={{
@@ -99,12 +99,14 @@ class Login extends Component {
                 }}
               >
                 {({ errors, touched, isSubmitting, values }) => (
-                  <Form className="form-background">
+                  <Form className="form-background p-10">
                     <div
 
                       style={{ alignItems: "center", display: "flex", flexDirection: "column" }}
                     >
-                      <div style={{ width: "100%", padding: "15px" }}>
+                      <div className="text-2xl font-semibold">Sign in or create an account</div>
+                      <div className="text-xl font-semibold mt-2">Enter your email to sign in or create an account</div>
+                      <div className="w-full mt-4">
                         <Field
                           name="email"
                           type="email"
@@ -113,7 +115,7 @@ class Login extends Component {
                           component={this.InputComponent}
                         />
                       </div>
-                      <div style={{ width: "100%", padding: "15px" }}>
+                      <div className="w-full mt-2">
                         <Field
                           name="password"
                           type="password"
@@ -123,15 +125,24 @@ class Login extends Component {
 
                         />
                       </div>
-                      <div style={{ width: "35%" }}>
+                      <div className="w-full mt-4">
                         <Button
                           type="primary"
                           htmlType="submit"
                           Loading={isSubmitting}
-                          style={{ width: "100%", height: "2.5em" }}
+                          style={{ width: "100%", height: "2.5em",color:"#1124AA" }}
                         >
-                          Log In
+                          <label className="text-white">Log In</label>
                         </Button>
+                      </div>
+                      <div className="w-full mt-4">By using Shop Pay, you agree to the  
+                     <label className="text-[#1075D3]">terms of service</label>  
+                      and 
+                      <label className="text-[#1075D3]">privacy policy.</label> 
+                      </div>
+                      <div className="flex justify-between w-wk mt-4">
+                      <div className="text-[#1075D3] font-medium">Forgot Password</div>
+                      <div className="text-[#1075D3] font-medium">Register</div>
                       </div>
                     </div>
 
@@ -142,7 +153,7 @@ class Login extends Component {
                 addCandidateApply={this.props.addCandidateApply}
                 handleCandidateApplyModal={this.props.handleCandidateApplyModal}
               />
-            </MainWrapper>
+            </div>
             <Spacer />
 
             {/* <div

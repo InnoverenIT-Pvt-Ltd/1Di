@@ -15,7 +15,8 @@ import FeaturedMaterialCard from './FeaturedMaterialCard';
  function InvSingleCard (props){
 
   const [date, setDate] = useState('');
-
+  const [rowDatas, setrowDatas] = useState("");
+ 
   useEffect(() => {
     
     // const today = new Date().toISOString().split('T')[0];
@@ -24,7 +25,9 @@ import FeaturedMaterialCard from './FeaturedMaterialCard';
     tomorrow.setDate(tomorrow.getDate() + 1);
     setDate(tomorrow.toISOString().split('T')[0]);
   }, []);
-
+  function handleRowData(item) {
+    setrowDatas(item)
+}
   const handleDateChange = (e,item) => {
     const selectedDate = e.target.value;
 
@@ -46,7 +49,7 @@ import FeaturedMaterialCard from './FeaturedMaterialCard';
     }
     props.updateCartItemDate(data);
   };
-
+console.log(props.item.productInfo)
     return(
       <>
         <div className="w-wk h-[7rem] bg-white mt-5 flex rounded-lg p-2 ">
@@ -63,9 +66,10 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
       </div>
        
         <div className=" flex items-center  justify-center flex-col w-wk">
-          <div class="text-blue-600 text-base font-bold"
+          <div class="text-blue-600 text-base font-bold cursor-pointer"
              onClick={() => {
               props.handleProductDetails(true);
+              handleRowData(props.item);
             }} 
             >
             {props.item.productInfo.productFullName}
@@ -176,12 +180,13 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
       handleInc={props.handleInc}
       productDetailsDrawr={props.productDetailsDrawr}
       handleProductDetails={props.handleProductDetails}
+      rowDatas={rowDatas}
       />
 </>
     )
 }
 const mapStateToProps = ({ inventory }) => ({
-  productDetailsDrawr:inventory.productDetailsDrawr
+  productDetailsDrawr:inventory.productDetailsDrawr,
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -328,14 +328,14 @@ console.log("drbbb")
     <div class="h-[24vh] border-[0.5rem] rounded overflow-auto w-wk">
     <div class="text-base text-black font-bold font-poppins">Featured</div>
     <CardWrapper>
-    <Carousel
+    {/* <Carousel
     pagination={false}
                      breakPoints={breakPoints}
                     style={{ minHeight: "6em", justifyContent:"center" }}
                       class=" w-2/12  mt-8 ml-10"
                       onNextEnd={next}
                       onPrevEnd={previous}
-                    >
+                    > */}
                   {props.featuredMaterials.map((item,index) => {
                      const currentdate = dayjs().format("YYYY/MM/DD");
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
@@ -454,7 +454,7 @@ console.log("drbbb")
                                        </CardElement>
                     );
                   })}
-                  </Carousel>
+                  {/* </Carousel> */}
                   
                   {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
             </CardWrapper> 

@@ -10,6 +10,14 @@ const initialState = {
     fetchingCountryNameError:false,
     countriesname:[],
 
+    fetchingWitoutPrice: false,
+    fetchingWitoutPriceError: false,
+    witoutPrice:[],
+
+    fetchingInvestorSearchData: false,
+    fetchingInvestorSearchDataError: false,
+    investorSerachedData:[],
+
     fetchingCustomerProductInputSearchData: false,
     fetchingCustomerProductInputSearchDataError: false,
     inputData: [],
@@ -73,6 +81,8 @@ const initialState = {
     fetchingCartItems: false,
     fetchingCartItemsError: false,
     cart:[],
+
+    catagoryDetailsDrawr:false,
 
     fetchingShopImage: false,
     fetchingShopImageError: false,
@@ -436,6 +446,40 @@ export const customerReducer = (state = initialState, action) => {
               fetchingSupplierItemsC: false,
               fetchingSupplierItemsCError: true,
             };  
+
+            case types.GET_WITHOUT_PRICE_REQUEST:
+              return { ...state, fetchingWitoutPrice: true };
+            case types.GET_WITHOUT_PRICE_SUCCESS:
+              return {
+                ...state,
+                fetchingWitoutPrice: false,
+                witoutPrice: action.payload,
+              };
+            case types.GET_WITHOUT_PRICE_FAILURE:
+              return {
+                ...state,
+                fetchingWitoutPrice: false,
+                fetchingWitoutPriceError: true,
+              };  
+
+            case types.HANDLE_CATAGORY_DETAILS_DRAWER:
+            return { ...state, catagoryDetailsDrawr: action.payload };
+
+            case types.HANDLE_CLAER_REDUCER_DATA_INVESTOR:
+              return { ...state, 
+                investorSerachedData: [], 
+              };
+
+              case types.GET_INVESTOR_SEARCH_REQUEST:
+                return { ...state, fetchingInvestorSearchData: true };
+              case types.GET_INVESTOR_SEARCH_SUCCESS:
+                return {
+                  ...state,
+                  fetchingInvestorSearchData: false,              
+                   investorSerachedData: action.payload,
+                };
+              case types.GET_INVESTOR_SEARCH_FAILURE:
+                return { ...state, fetchingInvestorSearchDataError: true };
             
     default:
         return state;
