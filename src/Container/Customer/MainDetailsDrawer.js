@@ -3,35 +3,28 @@ import { StyledDrawer } from "../../Components/UI/Antd";
 import { BundleLoader } from "../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import MainCatDetails from "./MainCatDetails";
 
-const InveProductsDetails = lazy(() => import("./InveProductsDetails"));
-// const OrderSupplierStatuShower = lazy(() => import("../OrderSupplier/OrderSupplierStatuShower"));
-
-const InveProductsDetailsDrawer = (props) => {
+const MainDetailsDrawer = (props) => {
     const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "70%";
-    console.log(props.rowDatas && props.rowDatas.productInfo.productId)
+   // console.log(props.rowDatas && props.rowDatas.productInfo.productId)
     // console.log(props.newData && props.newData.phoneTaskId)
     return (
         <>
             <StyledDrawer
-                title={props.item.productInfo.productFullName}
+                title={props.rowDatas.categoryName}
                 width={drawerWidth}
-                visible={props.productDetailsDrawr}
+                visible={props.catagoryDetailsDrawr}
                 closable
                 destroyOnClose
                 maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-                onClose={() => props.handleProductDetails(false)}
+                onClose={() => props.handleCatagoryDetails(false)}
                 placement="right"
             >
                 <Suspense fallback={<BundleLoader />}>
-                <InveProductsDetails
-                    setqn={props.setqn}
-                    qn={props.qn}
-                    handleDec={props.handleDec}
-      handleInc={props.handleInc}
-                item={props.item}
-                productId={props.rowDatas && props.rowDatas.productInfo.productId}
+                <MainCatDetails
+                     rowDatas={props.rowDatas}
                 />
                 </Suspense>
             </StyledDrawer>
@@ -47,4 +40,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(InveProductsDetailsDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(MainDetailsDrawer);

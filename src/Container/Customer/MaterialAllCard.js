@@ -10,19 +10,22 @@ import { InfoCircleTwoTone,
     MinusOutlined,
     PlusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import {getSuppliesCList} from "./CustomerAction";
+import {getSuppliesCList,handleCatagoryDetails} from "./CustomerAction";
 import { BundleLoader } from '../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import MainDetailsDrawer from './MainDetailsDrawer';
 
 function MaterialAllCard (props) {
   const [units, setUnits] = useState({});
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
-  
+    const [rowDatas, setrowDatas] = useState("");
     useEffect(() => {
      props.getSuppliesCList(page);
     }, []);
-  
+    function handleRowData(item) {
+      setrowDatas(item)
+  }
     const carouselRef = useRef(null);
   
     const next = () => {
@@ -107,12 +110,12 @@ function MaterialAllCard (props) {
         initialLoad={true}
       >
         <CardWrapper>
-            <Carousel
+            {/* <Carousel
         pagination={false}
                          breakPoints={breakPoints}
                         style={{ justifyContent:"center" }}
                           class=" w-2/12  mt-8 ml-10"
-                        >
+                        > */}
 
                       {props.purchaseListC.map((item) => {
                          const currentdate = dayjs().format("YYYY/MM/DD");
@@ -132,13 +135,17 @@ function MaterialAllCard (props) {
                                                         <div className=" text-xs h-[6.5rem]  w-[7rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
-                                                            <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-evenly "> 
+                                                            <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
                                                                   <div> {item.newSuppliesNo}  </div>
                                                                   <div > 
                                                                   <Tooltip title={item.suppliesName} placement="top" arrow>
                                                                                               
-                                                                                              <div>{item.suppliesName || ""}</div>
+                                                                                              <div 
+                                                                                               onClick={() => {
+              props.handleCatagoryDetails(true);
+              handleRowData(item);
+            }} >{item.suppliesName || ""}</div>
                                                                                             </Tooltip>
                                                                      </div>
                                                                      
@@ -155,7 +162,7 @@ function MaterialAllCard (props) {
                                                       
                                                                                                                          
                                                                             <div class="w-40 mt-1 flex  justify-between max-sm:flex items-center">
-                                                                            <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
+                                                                            {/* <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
                                                                             <div className="add-minus-quantity">
                                                                           <span
 
@@ -191,25 +198,30 @@ function MaterialAllCard (props) {
                                                                                     <Button type="primary" >
                                                                                      Add
                                                                                 </Button>
-                                                                                </div>
+                                                                                </div> */}
                                                                           </div>
                   
                                                                           </div>
                                            </CardElement>
                         );
                       })}
-                      </Carousel>
+                      {/* </Carousel> */}
                     
                 </CardWrapper>    
                 </InfiniteScroll>
        </div>
-    
+       <MainDetailsDrawer
+       rowDatas={rowDatas}
+       handleCatagoryDetails={props.handleCatagoryDetails}
+       catagoryDetailsDrawr={props.catagoryDetailsDrawr}
+      />
        </>
       );
     }
     const mapStateToProps = ({ customer,auth }) => ({
       purchaseListC: customer.purchaseListC,
       fetchingPurchaseListC:customer.fetchingPurchaseListC,
+      catagoryDetailsDrawr: customer.catagoryDetailsDrawr
     //   userId: auth.userDetails.userId,
     //   organizationId: auth.userDetails.organizationId,
     });
@@ -218,7 +230,7 @@ function MaterialAllCard (props) {
       bindActionCreators(
         {
           getSuppliesCList,
-    
+          handleCatagoryDetails
         },
         dispatch
       );

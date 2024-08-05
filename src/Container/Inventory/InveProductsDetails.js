@@ -29,7 +29,7 @@ const { Option } = Select;
 
 function InveProductsDetails(props) {
   useEffect(() => {
-    props.getProductsById(props.item.productInfo.productId);
+    props.getProductsById(props.productId);
   }, []);
 
 //   if (props.fetchingProductsList) {
@@ -51,6 +51,7 @@ const breakPoints = [
   { width: 768, itemsToShow: 2, itemToScroll: 2 },
   { width: 1100, itemsToShow: 4, itemToScroll: 4 },
 ];
+console.log(props.productsById)
   return (
     
     <div className="bg-[#F7F8FC]">
@@ -74,7 +75,7 @@ const breakPoints = [
         {props.productsById.price}
         </div>
       </div>
-        <div className="add-minus-quantity">
+        {/* <div className="add-minus-quantity">
           <span
            onClick={()=>{
                props.setqn(props.item)
@@ -98,7 +99,7 @@ const breakPoints = [
           <PlusOutlined  style={{color:"black"}}/>
           </span>
 
-        </div>
+        </div> */}
         <div className="flex items-center justify-center">
           <div class="text-sm text-black">
           USD  
@@ -108,7 +109,7 @@ const breakPoints = [
         </div>
        
         </div>
-        <div class="mt-2 flex  justify-end w-wk m-1">
+        {/* <div class="mt-2 flex  justify-end w-wk m-1">
                                          <div className=" py-1 rounded-lg px-24 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue cursor-pointer"
                                                                                   
                                                             
@@ -123,7 +124,7 @@ const breakPoints = [
                                                                                     Add to cart 
                                                                                 </label>
                                                                                 </div>
-                  </div>
+                  </div> */}
       </div>
       <div >
       <img  src={`${base_url}/image/${props.productsById.imageId}`}  className="w-[20rem]" />
@@ -144,7 +145,7 @@ const breakPoints = [
         </Carousel> 
       </div> */}
     </div>
-    <div dangerouslySetInnerHTML={{ __html: `<p>${puzzleDescription}</p>` }} />
+    <div dangerouslySetInnerHTML={{ __html: `<p>${props.productsById.description}</p>` }} />
     
     <div className="cardDs-bottom">
       <CartTable productsById={props.productsById}/>
