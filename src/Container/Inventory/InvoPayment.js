@@ -7,6 +7,7 @@ import InvoPaymentRight from './InvoPaymentRight'
 import { getInventoryCartItems,} from "./InventoryAction";
 import {Input} from "antd";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { base_url,base_url2 } from '../../Config/Auth'; 
 function InvoPayment (props) {
 
@@ -31,6 +32,10 @@ function InvoPayment (props) {
 
         );
         console.log("API Response:", response.data);  
+        Swal.fire({
+          icon: 'success',
+          title: response.data.cartSummary.message,
+        })
       } catch (error) {
         console.error("Error verifying promo code:", error);
       }
