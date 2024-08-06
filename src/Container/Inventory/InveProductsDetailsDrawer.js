@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 const InveProductsDetails = lazy(() => import("./InveProductsDetails"));
 // const OrderSupplierStatuShower = lazy(() => import("../OrderSupplier/OrderSupplierStatuShower"));
 
-const InveProductsDetailsDrawer = (props) => {
+function InveProductsDetailsDrawer  (props) {
     const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "70%";
     console.log(props.rowDatas && props.rowDatas.productInfo.productId)
@@ -15,22 +15,21 @@ const InveProductsDetailsDrawer = (props) => {
     return (
         <>
             <StyledDrawer
-                title={props.item.productInfo.productFullName}
-                width={drawerWidth}
-                visible={props.productDetailsDrawr}
+                title={props.productsByproductId.suppliesName}
                 closable
                 destroyOnClose
-                maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
+                width={drawerWidth}
+                visible={props.productDetailsDrawr}
                 onClose={() => props.handleProductDetails(false)}
-                placement="right"
+                footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
                 <InveProductsDetails
-                    setqn={props.setqn}
-                    qn={props.qn}
-                    handleDec={props.handleDec}
-      handleInc={props.handleInc}
-                item={props.item}
+    //                 setqn={props.setqn}
+    //                 qn={props.qn}
+    //                 handleDec={props.handleDec}
+    //   handleInc={props.handleInc}
+    //             item={props.item}
                 productId={props.rowDatas && props.rowDatas.productInfo.productId}
                 />
                 </Suspense>
@@ -39,8 +38,9 @@ const InveProductsDetailsDrawer = (props) => {
     );
 };
 
-const mapStateToProps = ({ myorder, auth }) => ({
-    employee_type:auth.userDetails.employee_type
+const mapStateToProps = ({ inventory, auth }) => ({
+    employee_type:auth.userDetails.employee_type,
+    productsByproductId:inventory.productsByproductId
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
