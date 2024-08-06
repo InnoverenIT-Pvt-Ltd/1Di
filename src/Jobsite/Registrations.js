@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { BundleLoader } from '../Components/Placeholder';
 import RegistrationStepper from "./RegistrationStepper";
+import MainHeader from "../Container/Customer/Header/MainHeader";
+import JobHeader from "./JobHeader";
 
 
 function Registrations(props) {
@@ -16,7 +18,8 @@ function Registrations(props) {
 
   return (
     <React.Fragment>
-<div class="flex justify-center mt-16">
+      <JobHeader/>
+<div class="flex justify-center mt-4">
 <div class="bg-[#DFDFDF] rounded-[2rem] shadow-2xl m-2 p-2 w-[50rem] mt-4 ">
 <RegistrationStepper/> 
 </div>

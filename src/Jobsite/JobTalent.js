@@ -39,7 +39,7 @@ function JobTalent(props) {
         />
       </div> */}
       
-<div class="w-2/4 flex flex-col justify-center max-sm:w-wk max-sm:m-4">
+<div class="w-2/5 flex flex-col justify-center max-sm:w-wk max-sm:m-4">
   <Login/>
 </div>
 </div>

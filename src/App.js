@@ -76,6 +76,7 @@ import Stepper from "./Jobsite/Stepper";
 // import AppErrorBoundary from "./Helpers/ErrorBoundary/AppErrorBoundary"; 
 import Contact from "./Container/Contact/Contact";
 import Registration from "./Jobsite/Registrations";
+import ForgotPassword from "./Container/Auth/ForgotPassword";
 
 // const ProductDetails=lazy(()=>import("./Main/ProductDetails"));
 const CustomerMainApp = lazy(() => import("./Main/CustomerMainApp"));
@@ -100,6 +101,7 @@ class App extends Component {
             {/* <Route exact path="/" component={BeforeLogin} /> */}
             <Route exact path="/stepper" component={Stepper} />
             <Route exact path="/login" component={Job} />
+            <Route exact path="/forgotPassword" component={ForgotPassword} />
             <Route exact path="/jobCard" component={JobCard} />
             <Route exact path="/partnerSuccess" component={PartnerSuccessTemplate} />
             <Route exact path="/success" component={SuccessTemplate} />
