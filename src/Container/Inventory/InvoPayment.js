@@ -21,11 +21,31 @@ function InvoPayment (props) {
     setPromocode(e.target.value);
   };
 
+  // const handlePromoCodeBlur = async () => {
+  //   const promo = promocode.trim();
+  //   if (promo !== "") {
+  //     try {
+  //       const response = await axios.put(`${base_url2}/quotation/protal/order/applyPromo`, { promoCode: promo, orderPhoneId:props.invencartItem.orderPhoneId },
+  //         { headers: {
+  //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+  //       }},
+
+  //       );
+  //       console.log("API Response:", response.data);  
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: response.data.cartSummary.message,
+  //       })
+  //     } catch (error) {
+  //       console.error("Error verifying promo code:", error);
+  //     }
+  //   }
+  // };
   const handlePromoCodeBlur = async () => {
     const promo = promocode.trim();
     if (promo !== "") {
       try {
-        const response = await axios.put(`${base_url2}/quotation/protal/order/applyPromo`, { promoCode: promo, orderPhoneId:props.invencartItem.orderPhoneId },
+        const response = await axios.put(`${base_url2}/quotation/portal/order/validatePromo`, { promoCode: promo, orderPhoneId:props.invencartItem.orderPhoneId },
           { headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         }},
@@ -34,7 +54,7 @@ function InvoPayment (props) {
         console.log("API Response:", response.data);  
         Swal.fire({
           icon: 'success',
-          title: response.data.cartSummary.message,
+          title: response.data.msg,
         })
       } catch (error) {
         console.error("Error verifying promo code:", error);

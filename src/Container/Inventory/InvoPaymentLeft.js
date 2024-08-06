@@ -2,8 +2,9 @@ import React, {Component,useState,useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { Link,withRouter } from "react-router-dom";
-import { Radio, Input, Space, Button } from "antd";
+import { Radio, Input, Space, Button,message } from "antd";
 import { connect } from 'react-redux';
+import Swal from 'sweetalert2';
 import { bindActionCreators } from 'redux';
 import stripe from "../../Assests/Images/Stripe-Emblem.png";
 import Razorpay from "../../Assests/Images/razorpay.png";
@@ -13,6 +14,8 @@ import { handleInventoryStripeModal,codInventoryOrder,getInventoryCartItems} fro
 import axios from 'axios';
 import PaymentInventoryModal from "./PaymentInventoryModal";
 import PayChecktInventoryModal from "./PayChecktInventoryModal";
+import { base_url2 } from "../../Config/Auth";
+import InventoryOrdersuccess from "./InventoryOrdersuccess";
 
 const InvoPaymentLeft = ({ userId, invencartItem, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
   const [value, setValue] = useState(1);
@@ -329,6 +332,47 @@ const InvoPaymentLeft = ({ userId, invencartItem, addiNVEStripeModal, handleInve
     console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const handlePaymentChange = (e) => {
+    setPaymentMethod(e.target.value);
+  };
+  const [checkNo, setcheckNo] = useState("");
+
+  const handlecashByCheck = (e) => {
+    setcheckNo(e.target.value);
+  };
+
+  const handleInputChange = (e) => {
+    setcheckNo(e.target.value);
+  };
+  const handlePayByBlur = async () => {
+    const check = checkNo.trim();
+    if (check === "") {
+      message.error("Check number is required!");
+      return;
+    } {
+      try {
+        const response = await axios.post(`${base_url2}/payment/protal/prosess`, { paymentNo: check, quotationId:invencartItem.orderPhoneId,type:"Cheque",
+           amount:invencartItem.cartSummary.grandTotal
+        },
+          { headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        }},
+
+        );
+        console.log("API Response:", response.data);  
+        history.push("/shopName/chequeOrdersuccess", { responseData: response.data }); 
+        // Clear input box
+        setcheckNo('');
+        closeModal();
+      } catch (error) {
+        console.error("Error verifying :", error);
+        message.error("Failed to process Check. Please try again.");
+        closeModal();
+      }
+    }
+  };
+
 
   const handleAddPlaceOrder = (status) => {
     history.push("/shopName/invOrdersuccess");
@@ -339,7 +383,7 @@ const InvoPaymentLeft = ({ userId, invencartItem, addiNVEStripeModal, handleInve
     };
     codInventoryOrder(data);
   };
-
+console.log(invencartItem)
   return (
     <>
       <br />
@@ -398,9 +442,8 @@ const InvoPaymentLeft = ({ userId, invencartItem, addiNVEStripeModal, handleInve
           </Radio>
         </FlexContainer>
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
-          <Radio value={"pay by check"}>
-            <div className="mt-4" style={{ alignItems: "baseline", justifyContent: "space-evenly" }}>
-              {/* <img style={{ width: "4.25em" }} alt="pay" src={pay} /> */}
+          {/* <Radio value={"pay by check"}>
+            <div className="mt-4 flex" >  
               Pay by Check
               <Button
                 type="primary"
@@ -409,9 +452,39 @@ const InvoPaymentLeft = ({ userId, invencartItem, addiNVEStripeModal, handleInve
               >
                 Pay by Check
               </Button>
-              
+               <div class="flex justify-center">
+                <Input  className='rounded border-black w-48'
+        type="text"
+        value={checkNo}
+        onChange={handlecashByCheck}
+        onBlur={handlePayByBlur}
+        placeholder="Enter check No"
+                /></div>
             </div>
-          </Radio>
+          </Radio> */}
+          <Radio.Group onChange={handlePaymentChange} value={paymentMethod}>
+      <Radio value="pay by check">
+        <div className="mt-4 flex">      
+          Pay by Check
+          {paymentMethod === "pay by check" && (
+            <div className="flex justify-center">
+              <Input
+                className="rounded border-black w-48"
+                type="text"
+                value={checkNo}
+                onChange={handleInputChange}
+                //onBlur={handlePayByBlur}
+                placeholder="Enter check No"
+              />
+               <Button type="primary" onClick={handlePayByBlur}>
+                Pay by Check
+              </Button>
+            </div>
+          )}
+        </div>
+      </Radio>
+      
+    </Radio.Group>
         </FlexContainer>
         <br />
         <br />

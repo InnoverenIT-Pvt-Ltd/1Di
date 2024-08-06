@@ -28,22 +28,16 @@ function ProductCardListbyCategory (props) {
           { width: 768, itemsToShow: 3, itemToScroll: 3 },
           { width: 1100, itemsToShow: 4, itemToScroll: 4 },
       ];
-    
+    console.log(props.productsbyCategoryId)
       return (
         <>
     
-        <div class="h-[22rem] overflow-auto">
+        {/* <div class="h-[22rem] overflow-auto">
     
         <CardWrapper>
-        <Carousel
-        pagination={false}
-                         breakPoints={breakPoints}
-                        style={{ minHeight: "6em", justifyContent:"center" }}
-                          class=" w-2/12  mt-8 ml-margin10"
-                        >
+       
                       {props.productsbyCategoryId.filter((dc) => props.activeClick === dc.category).map((item) => {
-                        //  const currentdate = dayjs().format("YYYY/MM/DD");
-                        //  const date = dayjs(item.creationDate).format("YYYY/MM/DD");
+                        
                         return (
                           <CardElement >
         
@@ -67,38 +61,7 @@ function ProductCardListbyCategory (props) {
                                                                                                        
                                                           <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">
                                                           <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
-                                                          {/* <div class="flex-col w-wk flex max-sm:flex items-center mb-[0.7rem]">
-                                                            Color{" "}
-                                                          {item.colourDTO &&
-                                                            item.colourDTO.length &&
-                                                            item.colourDTO[0].colour ? (
-                                                              <Select placeholder="Select"
-                                                              onChange={this.handleColor}>
-                                                                {item.colourDTO &&
-                                                                  item.colourDTO.length &&
-                                                                  item.colourDTO.map((item) => {
-                                                                    return (
-                                                                      <Option value={item.colour}
-                                                                      >
-                                                                        {item.colour}{" "}
-                                                                      </Option>
-                                                                    );
-                                                                  })}
-                                                              </Select>
-                                                            ) : ( 
-                                                              <Select
-                                                                defaultValue="No Option"
-                                                                disabled
-                                                              ></Select>
-                                                             )} 
-                                                          </div>
-                                                          <div class="flex-col w-wk flex max-sm:flex items-center mb-[0.7rem]">
-                        Size
-                        <Select
-                              defaultValue="No Option"
-                              disabled
-                            ></Select>
-                          </div>            */}
+                                                         
                                                                 </div>
                                                           <h3 class=" mt-2 h-4 font-bold text-xs ">
                                                             {item.categoryName}
@@ -142,30 +105,64 @@ function ProductCardListbyCategory (props) {
                                                           </div>
                                                         <div class="mt-px flex  justify-end w-wk m-1">
                                                       
-                                                            {/* <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue "
-                                                              
-                                        
-                                                              // onClick={() =>
-                                                              //   this.handleAddPlusClick(
-                                                              //     item.productId,
-                                                              //     item.merchantDetailsId
-                                                              //   )
-                                                              // }
-                                                            >
-                                                                <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white">
-                                                          Add +
-                                                            </label>
-                                                            </div> */}
+                                                            
                                                       
                                                           </div>
                                                         </div>
                          </CardElement>
                         );
                       })}
-                      </Carousel>
+                   
                 </CardWrapper>    
       
-       </div>
+       </div> */}
+        <div class="  items-center  h-34  rounded overflow-auto">
+      
+      <CardWrapper>
+    
+                        {props.productsbyCategoryId.map((item) => {
+                          return (
+                            <CardElement >
+      
+                              <div 
+                              //onClick={() => props.handleActiveClick(item.categoryId)} 
+              style={{
+                color:props.activeClick === item.categoryId && "Blue",
+                cursor:"pointer"
+              }} className="flex  w-44 h-28  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 object-cover object-center  ">
+                                <div class="flex  flex-col items-center md:w-60 mx-2 my-2">
+                              <div class=" w-20 h-20" >
+                                {item.imageId ? (
+                                  <div className=" sm:h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 md:h-20 max-w-screen-md ">
+                                  <div   className=" h-20 w-20  object-cover object-center hover:shadow-lg">
+                                  <img  src={`${base_url}/image/${item.imageId}`} alt=""
+                                                  />
+                                  </div>
+                                  </div>
+                                ) : (
+                                 
+                                    <div className=" text-[0.65rem] text-center">Image Not Available</div>
+                                 
+                                )}
+                              </div>
+      
+                              <CardDescription>
+                              
+                                <Tooltip title={item.categoryName} placement="top" arrow>
+                                  <div class="text-xs font-bold ">{item.categoryName || ""}</div>
+                                </Tooltip>
+      
+                              </CardDescription>
+      
+                              </div>
+                              </div>
+                            </CardElement>
+                          );
+                        })}
+                       
+                      </CardWrapper>
+        
+         </div>
        </>
   );
 }
