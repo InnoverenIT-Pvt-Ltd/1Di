@@ -77,7 +77,7 @@ return (
       
       );
  })}
-  <div className="cardDs-bottom">
+  <div className=" flex items-center cardDs-bottom">
           <MainTable witoutPrice={props.witoutPrice}/>
         
           </div>

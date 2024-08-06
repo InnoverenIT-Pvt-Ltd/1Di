@@ -214,7 +214,7 @@ function OrderInProgressCard(props) {
                                         </div>
                                    
                                       
-                                            <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
+                                            <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5  ml-2 cursor-pointer">
                                             <Tooltip title={<FormattedMessage
                                                                 id="app.status"
                                                                 defaultMessage="Status"

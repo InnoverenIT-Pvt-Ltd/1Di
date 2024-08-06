@@ -55,7 +55,7 @@ function Track(props) {
 
             <Form>
 
-<FlexContainer justifyContent="center">
+<div className="flex flex-col  items-center justify-center h-[50vh] ">
               <MainWrapper style={{width:"100%"}}>
 
                 <h1>Track Order</h1>
@@ -99,7 +99,7 @@ function Track(props) {
 
 
               </MainWrapper>
-              </FlexContainer>
+              </div>
             
             </Form>
           )}

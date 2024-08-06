@@ -56,7 +56,7 @@ function InvoiceJumstartBox (props) {
             />}
             jumpstartClick={()=> props.handleOrderOpenDrawer('open')}
             cursorData={"pointer"}
-            borderD={props.activeTable ==='open' ? "4px solid red":""}
+            borderD={props.activeTable ==='open' ? "2px solid orange":""}
             // value={ props.orderListCount.pendingOrder}
             // isLoading={props.fetchingOrderCount}
           />
@@ -69,7 +69,7 @@ function InvoiceJumstartBox (props) {
 
             jumpstartClick={()=>props.handleOrderOpenDrawer('complete')}
             cursorData={"pointer"}
-            borderD={props.activeTable ==='complete' ? "4px solid red":""}
+            borderD={props.activeTable ==='complete' ? "2px solid orange":""}
             // value={ props.orderListCount.completeOrder}
             // isLoading={props.fetchingOrderCount}
           />
@@ -80,7 +80,7 @@ function InvoiceJumstartBox (props) {
                 defaultMessage="Invoice Cancelled"
             />}
             jumpstartClick={() => props.handleOrderOpenDrawer('cancelled')}
-            borderD={props.activeTable ==='cancelled' ? "4px solid red":""}
+            borderD={props.activeTable ==='cancelled' ? "2px solid orange":""}
             cursorData={"pointer"}
             // value={ props.orderListCount.cancelOrder}
             // isLoading={props.fetchingOrderCount}
@@ -92,7 +92,7 @@ function InvoiceJumstartBox (props) {
                 defaultMessage="Invoice Approved"
             />}
             jumpstartClick={() => props.handleOrderOpenDrawer('approved')}
-            borderD={props.activeTable ==='approved' ? "4px solid red":""}
+            borderD={props.activeTable ==='approved' ? "2px solid orange":""}
             cursorData={"pointer"}
             // value={ props.orderListCount.cancelOrder}
             // isLoading={props.fetchingOrderCount}

@@ -56,7 +56,7 @@ function ProcureJumpStart (props) {
             />}
             jumpstartClick={()=> props.handleOrderOpenDrawer('open')}
             cursorData={"pointer"}
-            borderD={props.activeTable ==='open' ? "4px solid red":""}
+            borderD={props.activeTable ==='open' ? "2px solid orange":""}
             // value={ props.orderListCount.pendingOrder}
             // isLoading={props.fetchingOrderCount}
           />
@@ -69,7 +69,7 @@ function ProcureJumpStart (props) {
 
             jumpstartClick={()=>props.handleOrderOpenDrawer('complete')}
             cursorData={"pointer"}
-            borderD={props.activeTable ==='complete' ? "4px solid red":""}
+            borderD={props.activeTable ==='complete' ? "2px solid orange":""}
             // value={ props.orderListCount.completeOrder}
             // isLoading={props.fetchingOrderCount}
           />
@@ -80,7 +80,7 @@ function ProcureJumpStart (props) {
                 defaultMessage="Orders Cancelled"
             />}
             jumpstartClick={() => props.handleOrderOpenDrawer('cancelled')}
-            borderD={props.activeTable ==='cancelled' ? "4px solid red":""}
+            borderD={props.activeTable ==='cancelled' ? "2px solid orange":""}
             cursorData={"pointer"}
             // value={ props.orderListCount.cancelOrder}
             // isLoading={props.fetchingOrderCount}
