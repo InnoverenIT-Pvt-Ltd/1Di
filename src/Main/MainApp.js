@@ -201,11 +201,11 @@ function MainApp(props) {
 
       {/* </Sider> */}
       {/* <LayoutWrapper style={{ backgroundColor: "white", width: "75rem" }}> */}
-       <div className="p-0 min-h-screen bg-white fixed w-[75rem] max-sm:w-wk"
+       <div className=" min-h-screen bg-white fixed w-[75rem] max-sm:w-wk"
        >
-        <NavbarWrapper style={{ padding: 0, height: 50,}}>
+        <NavbarWrapper style={{  height: 50, width:"99%"}}>
           {/* <Header> */}
-          <div className="flex items-center max-sm:flex-row-reverse p-1">
+          <div className="flex items-center  max-sm:flex-row-reverse p-1">
           <Link to="/dashboard">
           <div class="ml-2" >
             {/* <MultiAvatar
@@ -219,7 +219,7 @@ function MainApp(props) {
               className="big-logo"
                src={KoreroLogo}
               // src={NuboxLogo}
-              style={{width: "8vw",height:"8vh"  }}
+              style={{width: "7vw",height:"7vh"  }}
               alt="Tekorero logo"
             />
           </div>
