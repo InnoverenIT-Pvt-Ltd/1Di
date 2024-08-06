@@ -197,7 +197,7 @@ function OuterAllInventoryCard (props) {
 `;
 const CardElement = styled.div`
 
-  /* border:2px solid red */
+  /* border:2px solid orange */
    padding: 0 10px;
    margin-top: 2.5em;
   display: flex;

@@ -11,7 +11,8 @@ function MainTable (props) {
     }
 console.log("ddddr",props.witoutPrice)
   return (
-    <table className="min-w-full border-collapse border border-gray-200">
+    
+    <table className="  min-w-[70%] border-collapse border border-gray-200">
       <tbody>
         {/* {Object.keys(props.witoutPrice).map((key) => (
           <tr key={key} className="bg-gray-50 odd:bg-white">
@@ -61,6 +62,7 @@ console.log("ddddr",props.witoutPrice)
           </tr>
       </tbody>
     </table>
+    
   );
 };
 

@@ -43,7 +43,7 @@ function InventoryDeliveryInfoForm(props) {
 
   const addressSchema = Yup.object().shape({
     address1: Yup.string().required('Address is required'),
-    city: Yup.string().required('City is required'),
+    // city: Yup.string().required('City is required'),
     // pinCode: Yup.string().required('Pin Code is required'),
     // state: Yup.string().required('State is required'), 
   });
@@ -262,11 +262,12 @@ function InventoryDeliveryInfoForm(props) {
                              backgroundColor:"red",
                                  borderRadius: "50%", 
                                  width: "31px", 
-                                 height: "31px"
+                                 height: "31px",
+                                 display:"flex", justifyContent:"center", alignItems:"center"
                            }}
                          >
                           {priority==="High" && (
-                            <CheckCircleOutlineIcon className="!text-white" />
+                            <CheckCircleOutlineIcon className="!text-white text-center text-[1.1rem]" />
                           )}
                          </Button>
                        </Tooltip>
@@ -344,7 +345,7 @@ function InventoryDeliveryInfoForm(props) {
                 htmlType="submit" 
                 loading={props.addingInventoryDeliveryInfo}
                 >
-                  Next
+                  Check Out
                 </Button>
               {/* </Link> */}
             </FlexContainer>

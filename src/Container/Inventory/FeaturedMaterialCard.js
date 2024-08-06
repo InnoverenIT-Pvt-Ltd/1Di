@@ -324,10 +324,10 @@ console.log("drbbb")
     <>
    
   
-
-    <div class="h-[24vh] border-[0.5rem] rounded overflow-auto w-wk">
-    <div class="text-base text-black font-bold font-poppins">Featured</div>
-    <CardWrapper>
+   <div class="text-base justify-start text-black font-bold font-poppins">Featured</div>
+    <div class="h-[34vh] border-[0.5rem] rounded overflow-auto w-wk">
+   
+    {/* <CardWrapper> */}
     {/* <Carousel
     pagination={false}
                      breakPoints={breakPoints}
@@ -341,26 +341,26 @@ console.log("drbbb")
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
                      const isLastElement = index === props.featuredMaterials.length - 1;
                      return (
-                      <CardElement >
+                      <div >
                         <div 
                         // ref={isLastElement ? lastProductElementRef : null} 
-                        key={item.suppliesId} className="card-element">
-                      <div class=" h-[18rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[13rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                        key={item.suppliesId}>
+                      <div class=" h-[12rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[8rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
                      
                       <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
                                               {item.imageId ? (
                                                     <div class="object-cover object-center  flex items-center">
                                                      <img
                                                               src={`${base_url}/image/${item.imageId}`} 
-                                                              style={{ height: "12.5rem", width: "13rem" }}
+                                                              style={{ height: "6.5rem", width: "7rem" }}
                                                           />
                                                          </div>  
                                                         ) : (
                            
-                                                        <div className=" text-base h-[12.5rem]  w-[13rem] flex justify-center items-center">Image Not Available</div>
+                                                        <div className=" text-sm text-center h-[6.5rem]  w-[7rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
-                                                            <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-evenly "> 
+                                                            <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-around "> 
                                                              
                                                                   <div> {item.newSuppliesNo}  </div>
                                                                   <div > 
@@ -371,7 +371,7 @@ console.log("drbbb")
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-evenly"> 
+                                                                  <div className=" flex flex-row  w-full justify-around"> 
                                                                         <div class=" mt-1 text-xs text-[#1124AA] ">
                                                                               {item.categoryName}
                                                                             </div>
@@ -451,13 +451,13 @@ console.log("drbbb")
                   
                                          </div>
                                          </div>
-                                       </CardElement>
+                                       </div>
                     );
                   })}
                   {/* </Carousel> */}
                   
                   {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
-            </CardWrapper> 
+            {/* </CardWrapper>  */}
             <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
       <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
          © {new Date().getFullYear()} {` `}, 1Di inc.
@@ -504,7 +504,7 @@ const CardWrapper = styled.div`
 `;
 const CardElement = styled.div`
 
-  /* border:2px solid red */
+  /* border:2px solid orange */
    padding: 0 10px;
    margin-top: 2.5em;
   display: flex;

@@ -16,8 +16,8 @@ if(props.addingCODinventory){
   return (
 <>
 {props.codInventryorDr.lengh === 0 ? <h2>Payment Error</h2>:
-<div className="oderContainer">
-    <div className="box center">
+<div className="flex flex-col  items-center justify-center h-[50vh] ">
+    
       <CheckCircleFilled style={{ fontSize: "6.6875em", color: "#3066BE" }} />
       <div class = "text-lg">
          Order placed successfully  &nbsp;
@@ -27,7 +27,7 @@ if(props.addingCODinventory){
       You will receive a confirmation message shortly. For More Details check
           order status on your whatsapp
       </h3>
-      <FlexContainer justifyContent="center" style={{ width: "100%" }}>
+      <div className=" mt-4 flex justify-center items-center w-[100%]" >
         <div >
         <Link to="/orderinprogree">
           <Button
@@ -50,8 +50,8 @@ if(props.addingCODinventory){
           </Link>
       
       
-      </FlexContainer>
-    </div>
+      </div>
+    
   </div>
 }
 </>

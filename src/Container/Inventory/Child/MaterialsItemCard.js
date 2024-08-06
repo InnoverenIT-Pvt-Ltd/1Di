@@ -185,7 +185,7 @@ function MaterialsItemCard(props) {
                                                          </div>  
                                                         ) : (
                            
-                                                        <div className=" text-base h-[12.5rem]  w-[13rem] flex justify-center items-center">Image Not Available</div>
+                                                        <div className=" text-base h-[12.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
                                                             <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-evenly "> 
@@ -332,7 +332,7 @@ const CardWrapper = styled.div`
 `;
 const CardElement = styled.div`
 
-  /* border:2px solid red */
+  /* border:2px solid orange */
    padding: 0 10px;
    margin-top: 2.5em;
   display: flex;

@@ -1,7 +1,6 @@
 import React from "react";
 import { CheckCircleFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { FlexContainer } from "../../Components/UI/Layout";
 import { Button } from "antd";
 
 import "./OrderTemplate.scss";
@@ -16,7 +15,7 @@ function OrderCancelTemplate(props) {
           Your Order #1111 from Raj Fruits Supplier has been Successfully
           Cancelled.
         </p>
-        <FlexContainer justifyContent="center" style={{ width: "100%" }}>
+        <div className="flex flex-col  items-center justify-center h-[50vh] ">
           {/* <Link to="/shopName/ordermaincontent">
             <Button
              className="btnTrack"
@@ -36,7 +35,7 @@ function OrderCancelTemplate(props) {
            
           
           
-        </FlexContainer>
+        </div>
       </div>
     </div>
   );

@@ -26,9 +26,9 @@ function InventoryDeliveryInfo (props) {
           style={{color:"white"}}
           onClick={() => history.back()}
         /> 
-          <div class="text-lg text-white font-semibold"> Shipping Information</div> 
+          <div class=" flex text-lg text-white w-[100%] justify-center font-semibold"> Shipping Information</div> 
           </div>
-          <div className="text-white font-normal">QuotationId : {props.invencartItem.orderPhoneId}</div>
+          <div className=" flex justify-end w-[100%] text-white font-normal pr-3"> Quotation ID &nbsp;<span class="text-bold text-[#eacc0c]">{props.invencartItem.orderPhoneId}</span></div>
               </div>
                      
                <div class="flex justify-center items-center mt-4">
