@@ -273,3 +273,88 @@ export const addContact = (data) => (dispatch) => {
       });
     });
 };
+
+export const verifyEmailurL = (data) => (dispatch) => {
+  dispatch({
+    type: types.VERIFY_EMAIL_REQUEST,
+  });
+  axios
+    .post(`${base_url}/otp/user/generateOTP`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.VERIFY_EMAIL_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'OTP sent successfully to the provided Email account',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.VERIFY_EMAIL_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const validateOtpurL = (data, cb) => (dispatch) => {
+  dispatch({
+    type: types.VALIDATE_OTP_REQUEST,
+  });
+  axios
+    .post(`${base_url}/api/otp/validateOtp`, data)
+    .then((res) => {
+      dispatch({
+        type: types.VALIDATE_OTP_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+      Swal.fire({
+        icon: 'success',
+        title: 'OTP validiated successfully!',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.VALIDATE_OTP_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+      Swal.fire({
+        icon: 'error',
+        title: 'OTP is not matching with input!',
+      })
+    });
+};
+export const forgotUserPassword = (data, cb) => (dispatch) => {
+
+  dispatch({ type: types.FORGOT_PASSWORD_REQUEST });
+  axios
+    .post(`${base_url}/setPassword`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+
+
+      dispatch({
+        type: types.FORGOT_PASSWORD_SUCCESS,
+
+      });
+      cb && cb("success")
+      Swal.fire({
+        icon: 'success',
+        title: 'You have successfully reset your password!',
+      })
+    })
+    .catch((err) => {
+
+      dispatch({ type: types.FORGOT_PASSWORD_FAILURE });
+      cb && cb("failure");
+    });
+};

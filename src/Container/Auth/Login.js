@@ -99,14 +99,14 @@ class Login extends Component {
                 }}
               >
                 {({ errors, touched, isSubmitting, values }) => (
-                  <Form className="form-background p-10">
+                  <Form className="form-background p-2">
                     <div
 
                       style={{ alignItems: "center", display: "flex", flexDirection: "column" }}
                     >
-                      <div className="text-2xl font-semibold">Sign in or create an account</div>
-                      <div className="text-xl font-semibold mt-2">Enter your email to sign in or create an account</div>
-                      <div className="w-full mt-4">
+                      <div className="text-xl font-semibold">Sign in or create an account</div>
+                      <div className="text-base font-semibold mt-2">Enter your email to sign in or create an account</div>
+                      <div className="w-full mt-2">
                         <Field
                           name="email"
                           type="email"
@@ -125,7 +125,7 @@ class Login extends Component {
 
                         />
                       </div>
-                      <div className="w-full mt-4">
+                      <div className="w-full mt-3">
                         <Button
                           type="primary"
                           htmlType="submit"
@@ -135,14 +135,17 @@ class Login extends Component {
                           <label className="text-white">Log In</label>
                         </Button>
                       </div>
-                      <div className="w-full mt-4">By using Shop Pay, you agree to the  
+                      <div className="w-full mt-2">By using 1dI, you agree to the  
                      <label className="text-[#1075D3]">terms of service</label>  
                       and 
                       <label className="text-[#1075D3]">privacy policy.</label> 
                       </div>
-                      <div className="flex justify-between w-wk mt-4">
-                      <div className="text-[#1075D3] font-medium">Forgot Password</div>
-                      <div className="text-[#1075D3] font-medium">Register</div>
+                      <div className="flex justify-between w-wk mt-2">
+                      <div className="text-[#1075D3] font-medium"><Link to="/forgotPassword">Forgot Password</Link></div>
+                      <div className="text-[#1075D3] font-medium">
+                        <label className="font-medium  text-black">Dont have account </label>
+                        <Link to="/registration">
+                        Register</Link> ?</div>
                       </div>
                     </div>
 

@@ -17,6 +17,16 @@ const initialState = {
   updatingOrganizationDetails: false,
   updatingOrganizationDetailsError: null,
 
+
+  verifyingEmail: false,
+  verifyingEmailError: false,
+
+  validatingOtp: false,
+  validatingOtpError: false,
+  validOtp: "",
+  doResetpassword: false,
+  doResetpasswordError: false,
+
   AchievementModal: false,
 
 
@@ -143,6 +153,46 @@ export const authReducer = (state = initialState, action) => {
                addingContact: false,
                addingContactError: true 
               };
+
+              case types.VERIFY_EMAIL_REQUEST:
+                return { ...state, verifyingEmail: true };
+              case types.VERIFY_EMAIL_SUCCESS:
+                return {
+                  ...state,
+                  verifyingEmail: false,
+                };
+              case types.VERIFY_EMAIL_FAILURE:
+                return {
+                  ...state,
+                  verifyingEmail: false,
+                  verifyingEmailError: true,
+                };
+          
+              case types.VALIDATE_OTP_REQUEST:
+                return { ...state, validatingOtp: true };
+              case types.VALIDATE_OTP_SUCCESS:
+                return {
+                  ...state,
+                  validatingOtp: false,
+                  validOtp: action.payload
+                };
+              case types.VALIDATE_OTP_FAILURE:
+                return {
+                  ...state,
+                  validatingOtp: false,
+                  validatingOtpError: true,
+                };
+          
+              case types.FORGOT_PASSWORD_REQUEST:
+                return { ...state, doResetpassword: true };
+              case types.FORGOT_PASSWORD_SUCCESS:
+                return {
+                  ...state,
+                  doResetpassword: false,
+                  doResetpasswordError: false,
+                };
+              case types.FORGOT_PASSWORD_FAILURE:
+          
 
 
     default:
