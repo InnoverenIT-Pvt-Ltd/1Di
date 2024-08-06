@@ -58,6 +58,7 @@ import InvoPayment from "../Container/Inventory/InvoPayment";
 import InventoryPaymentLoading from "../Container/Inventory/InventoryPaymentLoading";
 import InventoryOrdersuccess from "../Container/Inventory/InventoryOrdersuccess";
 import { MenuFoldOutlined, MenuUnfoldOutlined, CloseOutlined } from '@ant-design/icons';
+import Showmessage from "../Container/Inventory/Showmessage";
 const OrderSupplier =lazy(()=>import("../Container/OrderSupplier/OrderSupplier"));
 
 const NotificationPopover = lazy(() =>
@@ -465,6 +466,7 @@ function MainApp(props) {
                   <Route exact path="/:shopName/invopayment" component={InvoPayment} />
                   <Route exact path="/profile"  component={Profile} />
                   <Route exact path="/:shopName/invOrdersuccess" component={InventoryOrdersuccess}/>
+                  <Route exact path="/:shopName/chequeOrdersuccess" component={Showmessage}/>
                   <Route exact path="/:shopName/invenloading/:stripePaymentId/:paymentId" component={InventoryPaymentLoading}/>
                   <Route exact path="/planner"  component={Planner} />
                   <Route exact pat="/supplierInventory" component={SupplierInventory}/>
