@@ -69,19 +69,19 @@ function CategoriesListCard (props) {
         style={{
           color:props.activeClick === item.categoryId && "Blue",
           cursor:"pointer"
-        }} className="flex  w-44 h-28  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 object-cover object-center  ">
+        }} className="flex  w-44 h-28  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 ">
                           <div class="flex  flex-col items-center md:w-60 mx-2 my-2">
                         <div class=" w-20 h-20" >
                           {item.imageId ? (
-                            <div className=" sm:h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 md:h-20 max-w-screen-md ">
-                            <div   className=" h-20 w-20  object-cover object-center hover:shadow-lg">
+                            <div className=" flex items-center sm:h-20 w-20 flex-shrink-0 overflow-hidden rounded-md  md:h-20 max-w-screen-md ">
+                            <div   className=" flex items-center h-20 w-20   hover:shadow-lg">
                             <img  src={`${base_url}/image/${item.imageId}`} alt=""
                                             />
                             </div>
                             </div>
                           ) : (
                            
-                              <div className=" text-[0.65rem] text-center">Image Not Available</div>
+                              <div className=" flex text-[0.65rem] h-20 w-20 items-center">Image Not Available</div>
                            
                           )}
                         </div>

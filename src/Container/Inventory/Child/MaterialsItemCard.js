@@ -199,7 +199,7 @@ function MaterialsItemCard(props) {
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-evenly"> 
+                                                                  <div className=" flex flex-row justify-around"> 
                                                                         <div class=" mt-1 text-xs text-[#1124AA] ">
                                                                               {item.categoryName}
                                                                             </div>
@@ -210,8 +210,8 @@ function MaterialsItemCard(props) {
                                                               
                                                       
                                                                                                                          
-                                                                            <div class="w-40 mt-1 flex  justify-between max-sm:flex items-center">
-                                                                            <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
+                                                                            <div class="mt-1 flex  justify-between max-sm:flex items-center">
+                                                                            <div class=" flex  max-sm:w-48  ">
                                                                             <div className="add-minus-quantity">
                                                                           <span
 
@@ -236,7 +236,7 @@ function MaterialsItemCard(props) {
                           
                                              
                                                                            </div>
-                                                                           <div className="  cursor-pointer ml-2"
+                                                                           <div className="  cursor-pointer "
                                                                                  onClick={() =>
                                                                                     handleAddToCart(
                                                                                       item.suppliesId

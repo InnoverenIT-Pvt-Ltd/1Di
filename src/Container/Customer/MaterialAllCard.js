@@ -122,9 +122,9 @@ function MaterialAllCard (props) {
                          const date = dayjs(item.creationDate).format("YYYY/MM/DD");
                         return (
                           <CardElement >
-                          <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
+                          <div class=" flex flex-col items-center max-sm:mr-0 md:flex   h-hwk border">
                                               {item.imageId ? (
-                                                    <div class="object-cover object-center  flex items-center">
+                                                    <div class=" flex items-center">
                                                      <img
                                                               src={`${base_url}/image/${item.imageId}`} 
                                                               style={{ height: "6.5rem", width: "7rem" }}
@@ -132,10 +132,10 @@ function MaterialAllCard (props) {
                                                          </div>  
                                                         ) : (
                            
-                                                        <div className=" text-xs h-[6.5rem]  w-[7rem] flex justify-center items-center">Image Not Available</div>
+                                                        <div className="flex items-center text-xs h-[6.5rem]  w-[7rem] ">Image Not Available</div>
                                                       
                                                     )}
-                                                            <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-evenly cursor-pointer "> 
+                                                            <div class=" flex w-wk flex-row mt-1 text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
                                                                   <div> {item.newSuppliesNo}  </div>
                                                                   <div > 
@@ -150,7 +150,7 @@ function MaterialAllCard (props) {
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-evenly mt-1"> 
+                                                                  <div className=" flex flex-row justify-around w-full mt-1"> 
                                                                         <div class="  text-xs text-[#1124AA] ">
                                                                               {item.categoryName}
                                                                             </div>
