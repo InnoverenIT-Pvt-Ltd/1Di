@@ -104,9 +104,9 @@ const initialState = {
 
   productDetailsDrawr:false,
 
-  fetchingProductsById: false,
-  fetchingProductsByIdError: false,
-  productsById: {},
+  fetchingProductsByProductId: false,
+  fetchingProductsByProductIdError: false,
+  productsByproductId: {},
 
   fetchingFeaturedMaterials: true, fetchingFeaturedMaterialsError: false,
   featuredMaterials:[]
@@ -461,23 +461,23 @@ const initialState = {
         case types.HANDLE_PRODUCTS_DETAILS_DRAWER:
             return { ...state, productDetailsDrawr: action.payload };
 
-            case types.GET_PRODUCT_BY_ID_REQUEST:
+            case types.GET_PRODUCTS_BY_PRODUCTID_REQUEST:
               return {
                 ...state,
-                fetchingProductsById: true,
-                fetchingProductsByIdError: false,
+                fetchingProductsByProductId: true,
+                fetchingProductsByProductIdError: false,
               };
-            case types.GET_PRODUCT_BY_ID_SUCCESS:
+            case types.GET_PRODUCTS_BY_PRODUCTID_SUCCESS:
               return {
                 ...state,
-                fetchingProductsById: false,
-                productsById: action.payload,
+                fetchingProductsByProductId: false,
+                productsByproductId: action.payload,
               };
-            case types.GET_PRODUCT_BY_ID_FAILURE:
+            case types.GET_PRODUCTS_BY_PRODUCTID_FAILURE:
               return {
                 ...state,
-                fetchingProductsById: false,
-                fetchingProductsByIdError: true,
+                fetchingProductsByProductId: false,
+                fetchingProductsByProductIdError: true,
               };
 
               case types.GET_FEATURED_MATERIALS_REQUEST:

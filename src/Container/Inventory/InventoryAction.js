@@ -723,9 +723,9 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           });
         };
 
-        export const getProductsById = (productId) => (dispatch) => {
+        export const getProductsByProductId = (productId) => (dispatch) => {
           dispatch({
-            type: types.GET_PRODUCT_BY_ID_REQUEST,
+            type: types.GET_PRODUCTS_BY_PRODUCTID_REQUEST,
           });
           axios
             .get(`${base_url2}/product/bothSuppliesAndProduct/${productId}`, {
@@ -736,14 +736,14 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             .then((res) => {
               console.log(res);
               dispatch({
-                type: types.GET_PRODUCT_BY_ID_SUCCESS,
+                type: types.GET_PRODUCTS_BY_PRODUCTID_SUCCESS,
                 payload: res.data,
               });
             })
             .catch((err) => {
               console.log(err.response);
               dispatch({
-                type: types.GET_PRODUCT_BY_ID_FAILURE,
+                type: types.GET_PRODUCTS_BY_PRODUCTID_FAILURE,
                 payload: err,
               });
             });

@@ -207,7 +207,14 @@ function MaterialsItemCard(props) {
                                                                               {item.subCategoryName}
                                                                             </div> 
                                                                   </div>
-                                                              
+                                                                  <div className=" flex flex-row justify-around"> 
+                                                                        <div class=" mt-1 text-xs text-[#1124AA] ">
+                                                                            Dis.price -  {item.discounts?.[0]?.allowedDiscount}
+                                                                            </div>
+                                                                            <div class=" mt-1 text-xs text-[#1124AA]">
+                                                                              Price - {item.suppliesPrices?.[0].suppliesPrice}
+                                                                            </div> 
+                                                                  </div>
                                                       
                                                                                                                          
                                                                             <div class="mt-1 flex  justify-between max-sm:flex items-center">

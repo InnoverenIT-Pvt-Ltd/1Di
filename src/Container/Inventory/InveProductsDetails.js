@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getProductsById } from "./InventoryAction";
+import { getProductsByProductId } from "./InventoryAction";
 import { Link } from "react-router-dom";
 import { MultiAvatar, Spacer } from "../../Components/UI/Elements";
 import { Scrollbars } from 'react-custom-scrollbars-2';
@@ -29,8 +29,11 @@ const { Option } = Select;
 
 function InveProductsDetails(props) {
   useEffect(() => {
-    props.getProductsById(props.productId);
-  }, []);
+    if (props.productId) {
+      console.log('Fetching product details for:', props.productId);
+      props.getProductsByProductId(props.productId);
+    }
+  }, [props.productId]);
 
 //   if (props.fetchingProductsList) {
 //     return <BundleLoader />;PD10985606347262024
@@ -51,28 +54,28 @@ const breakPoints = [
   { width: 768, itemsToShow: 2, itemToScroll: 2 },
   { width: 1100, itemsToShow: 4, itemToScroll: 4 },
 ];
-console.log(props.productsById)
+console.log(props.productsByproductId)
   return (
     
     <div className="bg-[#F7F8FC]">
  <div className="flex justify-between items-center w-[44rem]">
       <div >
-        <div>{props.productsById.suppliesName}</div>
-        <div>{props.productsById.newSuppliesNo}</div>
-        {/* <p><strong>Price:</strong>{props.productsById.price}</p>
-        <p><strong>Category:</strong>{props.productsById.categoryName}</p>
-        <p><strong>Attribute:</strong> {props.productsById.attributeName}</p>
-        <p><strong>Description:</strong> {props.productsById.description}</p> */}
+        <div>{props.productsByproductId.suppliesName}</div>
+        <div>{props.productsByproductId.newSuppliesNo}</div>
+        {/* <p><strong>Price:</strong>{props.productsByproductId.price}</p>
+        <p><strong>Category:</strong>{props.productsByproductId.categoryName}</p>
+        <p><strong>Attribute:</strong> {props.productsByproductId.attributeName}</p>
+        <p><strong>Description:</strong> {props.productsByproductId.description}</p> */}
         <div className='flex items-center justify-center w-[w-wk]'>
         <div className="flex items-center justify-center">
         <div class="text-sm text-black w-16">
-         USD {props.productsById.allowedDiscount}
+         USD {props.productsByproductId ?.discounts?.[0]?.allowedDiscount}
         </div>
       </div>
       <div className="flex items-center justify-center">
         <div class="text-sm text-black">
         USD 
-        {props.productsById.price}
+        {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice}
         </div>
       </div>
         {/* <div className="add-minus-quantity">
@@ -100,13 +103,13 @@ console.log(props.productsById)
           </span>
 
         </div> */}
-        <div className="flex items-center justify-center">
+        {/* <div className="flex items-center justify-center">
           <div class="text-sm text-black">
           USD  
-          {props.productsById.cost} 
+          {props.productsByproductId.cost} 
           </div>
 
-        </div>
+        </div> */}
        
         </div>
         {/* <div class="mt-2 flex  justify-end w-wk m-1">
@@ -127,7 +130,7 @@ console.log(props.productsById)
                   </div> */}
       </div>
       <div >
-      <img  src={`${base_url}/image/${props.productsById.imageId}`}  className="w-[20rem]" />
+      <img  src={`${base_url}/image/${props.productsByproductId.imageId}`}  className="w-[20rem]" />
       {/* <img 
         //   src={NuboxLogo}
            src={KoreroLogo}
@@ -145,10 +148,10 @@ console.log(props.productsById)
         </Carousel> 
       </div> */}
     </div>
-    <div dangerouslySetInnerHTML={{ __html: `<p>${props.productsById.description}</p>` }} />
+    <div dangerouslySetInnerHTML={{ __html: `<p>${props.productsByproductId.description}</p>` }} />
     
     <div className="cardDs-bottom">
-      <CartTable productsById={props.productsById}/>
+      <CartTable productsByproductId={props.productsByproductId}/>
     {/* <div class="border-[0.5rem] rounded overflow-auto">
       <Carousel
     // ref={carouselRef}
@@ -180,14 +183,14 @@ console.log(props.productsById)
   );
 }
 const mapStateToProps = ({ inventory,auth }) => ({
-    productsById: inventory.productsById,
-  fetchingProductsById:inventory.fetchingProductsById,
+    productsByproductId: inventory.productsByproductId,
+  fetchingProductsByProductId:inventory.fetchingProductsByProductId,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getProductsById,
+      getProductsByProductId,
    
     },
     dispatch
