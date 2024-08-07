@@ -159,7 +159,14 @@ function MaterialAllCard (props) {
                                                                             </div> 
                                                                   </div>
                                                               
-                                                      
+                                                                  <div className=" flex flex-row justify-around"> 
+                                                                        <div class=" mt-1 text-xs text-[#1124AA] ">
+                                                                            WSL -  {item.discounts?.[0]?.allowedDiscount}
+                                                                            </div>
+                                                                            <div class=" mt-1 text-xs text-[#1124AA]">
+                                                                              RTL - {item.suppliesPrices?.[0].suppliesPrice}
+                                                                            </div> 
+                                                                  </div>
                                                                                                                          
                                                                             <div class="w-40 mt-1 flex  justify-between max-sm:flex items-center">
                                                                             {/* <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">

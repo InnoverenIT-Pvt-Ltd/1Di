@@ -338,7 +338,7 @@ function CartTable (props) {
     }
 console.log("ddddr",props.productsByproductId)
   return (
-    <table className="min-w-full border-collapse border border-gray-200">
+    <table className="min-w-[70%] border-collapse border border-gray-200">
       <tbody>
         {/* {Object.keys(props.productsByproductId).map((key) => (
           <tr key={key} className="bg-gray-50 odd:bg-white">

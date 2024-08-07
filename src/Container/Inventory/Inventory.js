@@ -28,7 +28,7 @@ function Inventory (props) {
     investorSerachedData={props.investorSerachedData}
     />
   ) : (  
-    <div className="overflow-x-auto h-[38rem] md:h-[42rem] scroller">
+    <div className="overflow-x-auto h-[75vh] md:h-[89vh] scroller overflow-y-hidden">
     <div className="relative bg-[#1124AA] text-white w-wk">
      <InventoryHeader/>
      </div>
@@ -38,7 +38,7 @@ function Inventory (props) {
    <div class="text-base text-black font-bold font-poppins">Products</div>
            <InventoryItemsCard invencartItem={props.invencartItem}/> 
            </div> */}
-           <div class="mt-5">
+           <div class="mt-2">
            {/* <div class="text-base text-black font-bold font-poppins">Materials and Spares</div> */}
 <MaterialsItemCard invencartItem={props.invencartItem}/>
 </div>

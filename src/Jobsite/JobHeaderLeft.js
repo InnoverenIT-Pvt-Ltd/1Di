@@ -27,7 +27,7 @@ const JobHeaderLeft = (props) => {
           className="big-logo"
            src={KoreroLogo}
           // src={NuboxLogo}
-          style={{ width: "8vw",height:"8vh"  }}
+          style={{ width: "5vw",height:"5vh"  }}
           alt="Tekorero logo"
         />
       </div>
