@@ -345,14 +345,14 @@ function MaterialsItemCard(props) {
                         <div 
                         // ref={isLastElement ? lastProductElementRef : null} 
                         key={item.suppliesId}>
-                      <div class=" h-[12rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[8rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                      <div class=" h-[14rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[12rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
                      
                       <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
                                               {item.imageId ? (
-                                                    <div class="object-cover object-center  flex items-center">
+                                                    <div class=" flex items-center">
                                                      <img
                                                               src={`${base_url}/image/${item.imageId}`} 
-                                                              style={{ height: "6.5rem", width: "7rem" }}
+                                                              style={{ height: "8.5rem", width: "9rem" }}
                                                           />
                                                          </div>  
                                                         ) : (
@@ -465,11 +465,11 @@ function MaterialsItemCard(props) {
                   
                   {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
             {/* </CardWrapper>  */}
-            <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
+            {/* <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
       <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
          © {new Date().getFullYear()} {` `}, 1Di inc.
         
-      </div>   
+      </div>    */}
   
    </div>
 
