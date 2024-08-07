@@ -173,7 +173,7 @@ function MaterialsItemCard(props) {
                         <div 
                         // ref={isLastElement ? lastProductElementRef : null} 
                         key={item.suppliesId} className="card-element">
-                      <div class=" h-[18rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[13rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                      <div class=" h-[19rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[14rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
                      
                       <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
                                               {item.imageId ? (
@@ -209,10 +209,10 @@ function MaterialsItemCard(props) {
                                                                   </div>
                                                                   <div className=" flex flex-row justify-around"> 
                                                                         <div class=" mt-1 text-xs text-[#1124AA] ">
-                                                                            Dis.price -  {item.discounts?.[0]?.allowedDiscount}
+                                                                            WSL -  {item.discounts?.[0]?.allowedDiscount}
                                                                             </div>
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              Price - {item.suppliesPrices?.[0].suppliesPrice}
+                                                                              RTL - {item.suppliesPrices?.[0].suppliesPrice}
                                                                             </div> 
                                                                   </div>
                                                       
@@ -220,9 +220,7 @@ function MaterialsItemCard(props) {
                                                                             <div class="mt-1 flex  justify-between max-sm:flex items-center">
                                                                             <div class=" flex  max-sm:w-48  ">
                                                                             <div className="add-minus-quantity">
-                                                                          <span
-
-                                                                          >
+                                                                          <span >
                                                                                 <MinusOutlined onClick={() => handleDecrement(item.suppliesId)}/>
                                                                           </span>
                                                                         
@@ -340,8 +338,8 @@ const CardWrapper = styled.div`
 const CardElement = styled.div`
 
   /* border:2px solid orange */
-   padding: 0 10px;
-   margin-top: 2.5em;
+   padding: 0 4px;
+   margin-top: 0.5rem;
   display: flex;
     justify-content: center;
   /* margin:0px 20px; */

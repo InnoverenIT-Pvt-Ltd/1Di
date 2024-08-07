@@ -58,7 +58,7 @@ console.log(props.productsByproductId)
   return (
     
     <div className="bg-[#F7F8FC]">
- <div className="flex justify-between items-center w-[44rem]">
+ <div className="flex justify-between items-center w-full">
       <div >
         <div>{props.productsByproductId.suppliesName}</div>
         <div>{props.productsByproductId.newSuppliesNo}</div>
@@ -129,7 +129,7 @@ console.log(props.productsByproductId)
                                                                                 </div>
                   </div> */}
       </div>
-      <div >
+      <div class=" flex justify-end">
       <img  src={`${base_url}/image/${props.productsByproductId.imageId}`}  className="w-[20rem]" />
       {/* <img 
         //   src={NuboxLogo}
