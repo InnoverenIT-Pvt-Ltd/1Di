@@ -185,6 +185,33 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
       });
   };
 
+  export const getStripeInd =()=>(dispatch)=>{
+    dispatch({
+      type: types.GET_STRIPE_IND_REQUEST,
+    });
+    axios
+      .get(`${base_url}/paymentMode/activated`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);    
+        dispatch({
+          type: types.GET_STRIPE_IND_SUCCESS,
+          payload: res.data,
+        });
+       
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_STRIPE_IND_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
   export const addInventoryDeliveryInfo = (data,quotationId,cb) => (dispatch) => {
     dispatch({
       type: types.ADD_INVENTORY_DELIVERY_INFO_REQUEST,

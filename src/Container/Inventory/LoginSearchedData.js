@@ -1,15 +1,20 @@
 import React from 'react'
 import styled from "styled-components";
-import { base_url } from '../Config/Auth';
-import { RollbackOutlined } from "@ant-design/icons";
 import { Tooltip } from 'antd';
+import { base_url } from '../../Config/Auth';
+import { RollbackOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import InventoryHeader from './InventoryHeader';
 
-const MainSearchedData = (props) => {
+const LoginSearchedData = (props) => {
     return (
-
+        <>
+        <div className="relative bg-[#1124AA] text-white w-wk">
+        <InventoryHeader/>
+        </div>
         <div class="w-wk   self-center">
-           <div>
-            <a href='/'>
+        <div>
+            <a href='/inventory'>
       <RollbackOutlined
           className="BackButton flex justify-start "
           style={{color:"black"}}
@@ -17,9 +22,9 @@ const MainSearchedData = (props) => {
         />
         </a>
         </div>
-      <div class="text-black font-semibold">Catalog</div> 
+      <div class="text-black font-semibold">Material</div> 
       <div class="  items-center  h-34  rounded overflow-auto">
-      
+     
       <CardWrapper>
     
                         {props.investorSerachedData.map((item) => {
@@ -66,10 +71,11 @@ const MainSearchedData = (props) => {
         
          </div>
       </div>
+      </>
         );
 }
 
-export default MainSearchedData
+export default LoginSearchedData
 const MainWrapper = styled.div`
   /* */
   margin: 0px 20px;

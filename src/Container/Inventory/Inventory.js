@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import InventoryHeader from "./InventoryHeader";
 import {getInventoryCartItems} from "./InventoryAction";
+import LoginSearchedData from "./LoginSearchedData";
 const InventoryItemsCard=lazy(()=>import("./Child/InventoryItemsCard"));
 const AllInventorySupplierCard=lazy(()=>import("./Child/AllInventorySupplierCard"));
 const MaterialsItemCard =lazy(()=>import("./Child/MaterialsItemCard"));
@@ -22,6 +23,11 @@ function Inventory (props) {
 
   return (
     <React.Fragment>
+        {props.investorSerachedData.length > 0 ? (
+    <LoginSearchedData
+    investorSerachedData={props.investorSerachedData}
+    />
+  ) : (  
     <div className="overflow-x-auto h-[38rem] md:h-[42rem] scroller">
     <div className="relative bg-[#1124AA] text-white w-wk">
      <InventoryHeader/>
@@ -46,15 +52,17 @@ function Inventory (props) {
 </div> */}
         </Suspense>
        </div>
+         )} 
     </React.Fragment>
   );
 }
 
-const mapStateToProps = ({ inventory, auth }) => ({
+const mapStateToProps = ({ inventory, auth,customer }) => ({
   invencartItem: inventory.invencartItem,
   userId: auth.userDetails.userId,
  fetchingInventoryCartItems:inventory.fetchingInventoryCartItems,
- userDetails:auth.userDetails
+ userDetails:auth.userDetails,
+ investorSerachedData: customer.investorSerachedData
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
