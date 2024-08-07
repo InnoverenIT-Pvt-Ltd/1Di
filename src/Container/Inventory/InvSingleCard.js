@@ -52,13 +52,13 @@ import FeaturedMaterialCard from './FeaturedMaterialCard';
 console.log(props.item.productInfo)
     return(
       <>
-        <div className="w-wk h-[7rem] bg-white mt-5 flex rounded-lg p-2 ">
-        <div className=" sm:h-28 w-28 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-        <div   className=" h-32 w-32 -mt-5 -ml-2 object-cover object-center">
+        <div className="w-wk h-16 bg-white mt-2 flex rounded p-2 ">
+        <div className=" sm:h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+        <div   className=" h-14 w-14 ">
         <img 
         src={`${base_url}/image/${props.item.productInfo.imageId}`} 
        alt="images" 
-style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
+     style={{ height: "3rem", width: "3.5rem"}}
        
         /> 
                    
@@ -88,19 +88,19 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
      
      
         </div>
-        <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div>
+        <div className="md:h-[3rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div>
         <div className="flex items-center justify-center w-[w-wk]">
         <div class="text-sm text-black w-[13.4rem] flex justify-center">
         {props.item.productInfo.newProductId}
         </div>
       </div>    
-      <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
+      <div className="md:h-[3rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
       <div className=' flex items-center  justify-center w-[w-wk]'>
         <div className='w-[10rem] flex items-center  justify-center'>
         Avilable date
         </div>
         </div>
-      <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
+      <div className="md:h-[3rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
       <div className='flex items-center justify-center w-[w-wk]'>
         <div className="flex items-center justify-center">
         <div class="text-sm text-black w-16">
@@ -146,7 +146,7 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
 
         </div>
         </div>
-        <div className="md:h-[6rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
+        <div className="md:h-[3rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
         <div className=' flex items-center  justify-center w-[w-wk]'>
           
         <div className="flex items-center justify-center">

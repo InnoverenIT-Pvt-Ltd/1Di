@@ -99,7 +99,7 @@ class Login extends Component {
                 }}
               >
                 {({ errors, touched, isSubmitting, values }) => (
-                  <Form className="form-background p-2">
+                  <Form className="form-background p-5">
                     <div
 
                       style={{ alignItems: "center", display: "flex", flexDirection: "column" }}
