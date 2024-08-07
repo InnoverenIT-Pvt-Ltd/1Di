@@ -20,6 +20,10 @@ const initialState = {
     fetchingAllSuppliesCategoryError: false,
     allSuppliesCategory:[],
 
+    fetchingStrpieInd: false,
+    fetchingStrpieIndError: false,
+    stripeInd:{},
+
     uploadInvodrwr:false,
 
     uploadingInventoryDocs: false,
@@ -191,6 +195,21 @@ const initialState = {
                         fetchingInventoryCartItems: false,
                         fetchingInventoryCartItemsError: true,
                       };
+
+                      case types.GET_STRIPE_IND_REQUEST:
+                        return { ...state, fetchingStrpieInd: true };
+                      case types.GET_STRIPE_IND_SUCCESS:
+                        return {
+                          ...state,
+                          fetchingStrpieInd: false,
+                          stripeInd: action.payload,
+                        };
+                      case types.GET_STRIPE_IND_FAILURE:
+                        return {
+                          ...state,
+                          fetchingStrpieInd: false,
+                          fetchingStrpieIndError: true,
+                        };
   
 
                     case types.ADD_INVENTORY_DELIVERY_INFO_REQUEST:
