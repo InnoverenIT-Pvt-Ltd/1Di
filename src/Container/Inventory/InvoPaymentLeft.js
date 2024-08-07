@@ -17,7 +17,7 @@ import PayChecktInventoryModal from "./PayChecktInventoryModal";
 import { base_url2 } from "../../Config/Auth";
 import InventoryOrdersuccess from "./InventoryOrdersuccess";
 
-const InvoPaymentLeft = ({ userId, invencartItem, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
+const InvoPaymentLeft = ({ props,userId, invencartItem, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
   const [value, setValue] = useState(1);
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
   const history = useHistory();
@@ -388,6 +388,7 @@ console.log(invencartItem)
     <>
       <br />
       <Radio.Group onChange={onChange} value={value}>
+      {/* {props.stripeInd.stripeInd ? ( */}
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           <Radio value={"Stripe"}>
             <div style={{ display: "flex", alignItems: "baseline" }}>
@@ -405,7 +406,10 @@ console.log(invencartItem)
             </div>
           </Radio>
         </FlexContainer>
+          {/* ) : null} */}
+ 
         <Spacer style={{ marginBottom: "50px" }} />
+        {/* {props.stripeInd.payByCashInd ? ( */}
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           <Radio value={"Cash on Delivery"}>
             <div style={{ alignItems: "baseline", justifyContent: "space-evenly" }}>
@@ -424,6 +428,8 @@ console.log(invencartItem)
             </div>
           </Radio>
         </FlexContainer>
+          {/* ) : null} */}
+          {/* {props.stripeInd.razorpayInd ? ( */}
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           <Radio value={"Razorpay"}>
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-evenly" }}>
@@ -441,6 +447,8 @@ console.log(invencartItem)
             </div>
           </Radio>
         </FlexContainer>
+          {/* ) : null} */}
+           {/* {props.stripeInd.payByCheckInd ? ( */}
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           {/* <Radio value={"pay by check"}>
             <div className="mt-4 flex" >  
@@ -486,6 +494,7 @@ console.log(invencartItem)
       
     </Radio.Group>
         </FlexContainer>
+           {/* ) : null} */}
         <br />
         <br />
       </Radio.Group>

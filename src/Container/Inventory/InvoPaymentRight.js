@@ -9,7 +9,7 @@ function InvoPaymentRight(props){
     // const finalgrandTotalValue=cartSummaryData && cartSummaryData.grandTotal;
     // const finalshippingValue=cartSummaryData && cartSummaryData.shippingCharge;
 
-   
+   console.log(props.invencartItem)
         return (
             <>
             <h3>SubTotal</h3>
