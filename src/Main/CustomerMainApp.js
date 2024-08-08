@@ -152,7 +152,7 @@ class CustomerMainApp extends Component {
                 <div className="absolute inset-0 h-full w-full clip-path-curve bg-[#1124AA]"></div>
                 <div className="relative z-10 max-w-7xl mx-auto p-8">                 
                     <div className="text-center flex  flex-col items-start">
-                        <h1 className="text-4xl font-bold text-white">Generate your wholesale order.</h1>
+                        <h1 className="text-4xl font-poppins font-bold text-white">Generate your wholesale order.</h1>
                         <p className="mt-4 text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                        <Link to="/login">
                         <button className="mt-8 bg-[#1124AA] text-white font-bold py-2 px-4 rounded ">Order Products</button>
@@ -164,7 +164,7 @@ class CustomerMainApp extends Component {
                 </div>
                 <div className="relative   bg-white h-[7rem] w-[33.2rem] -mt-[5.1rem] rounded-[2rem] -ml-4"></div>
 <div className='flex justify-center'>
-                <div className='w-[90%] flex flex-col justify-center items-center overflow-x-auto p-4 h-[-webkit-fill-available]'>
+                <div className='w-[90%] flex flex-col justify-center items-center overflow-x-auto p-1 h-[-webkit-fill-available]'>
                 <CategoriesListCard categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/>
                 {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
                 <div className='w-wk flex  '>

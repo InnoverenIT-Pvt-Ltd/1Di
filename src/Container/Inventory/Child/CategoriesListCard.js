@@ -52,14 +52,14 @@ function CategoriesListCard (props) {
   return (
 
   <div class="w-wk   self-center">
-<div class="text-black font-semibold mt-8">Catalog</div> 
-<div class="  items-center  h-34  rounded overflow-auto">
+<div class="text-black font-semibold mt-2">Catalog</div> 
+<div class="  items-center  h-[14vh]  rounded overflow-auto">
 
 <CardWrapper>
 <Carousel
                      breakPoints={breakPoints}
-                    style={{ minHeight: "5rem", justifyContent:"center" }}
-                      class=" w-2/12  mt-8 ml-10"
+                    style={{ minHeight: "4rem", justifyContent:"center" }}
+                      class=" w-2/12  mt-3 ml-10"
                     >
                   {props.allSuppliesCategory.map((item) => {
                     return (
@@ -70,29 +70,29 @@ function CategoriesListCard (props) {
           color:props.activeClick === item.categoryId && "Blue",
           cursor:"pointer"
         }} className="flex  w-44 h-28  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 ">
-                          <div class="flex  flex-col items-center md:w-60 mx-2 my-2">
-                        <div class=" w-20 h-20" >
+                          <div class="flex  flex-col items-center md:w-60 mr-3 ml-3">
+                        <div class=" w-16 h-16" >
                           {item.imageId ? (
-                            <div className=" flex items-center sm:h-20 w-20 flex-shrink-0 overflow-hidden rounded-md  md:h-20 max-w-screen-md ">
-                            <div   className=" flex items-center h-20 w-20   hover:shadow-lg">
+                            <div className=" flex items-center sm:h-16 w-16 flex-shrink-0 overflow-hidden rounded-md  md:h-20 max-w-screen-md ">
+                            <div   className=" flex items-center h-16 w-16   hover:shadow-lg">
                             <img  src={`${base_url}/image/${item.imageId}`} alt=""
                                             />
                             </div>
                             </div>
                           ) : (
                            
-                              <div className=" flex text-[0.65rem] h-20 w-20 items-center">Image Not Available</div>
+                              <div className=" flex text-[0.65rem] h-16 w-16 items-center">Image Not Available</div>
                            
                           )}
                         </div>
 
-                        <CardDescription>
+                        <div >
                         
                           <Tooltip title={item.categoryName} placement="top" arrow>
-                            <div class="text-xs font-bold ">{item.categoryName || ""}</div>
+                            <div class="text-[0.65rem] font-bold ">{item.categoryName || ""}</div>
                           </Tooltip>
 
-                        </CardDescription>
+                        </div>
 
                         </div>
                         </div>
@@ -144,7 +144,7 @@ const CardWrapper = styled.div`
 const CardElement = styled.div`
 
    padding: 0 10px;
-   margin-top: 1.5rem;
+  //  margin-top: 1.5rem;
   display: flex;
     justify-content: center;
   @media only screen and (max-width: 600px) {
