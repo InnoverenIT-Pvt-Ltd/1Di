@@ -408,7 +408,8 @@ export const customerReducer = (state = initialState, action) => {
           return {
               ...state,
               fetchingPurchaseListC: false,
-              purchaseListC: action.payload,
+              purchaseListC: [...state.purchaseListC, ...action.payload],
+              // purchaseListC: action.payload,
           };
       case types.GET_SUPPLIES_LIST_C_FAILURE:
           return {

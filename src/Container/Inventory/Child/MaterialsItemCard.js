@@ -5,14 +5,15 @@ import styled from "styled-components";
 import { Select } from "../../../Components/UI/Elements";
 import Tooltip from '@mui/material/Tooltip';
 import { Button } from "antd";
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { BundleLoader } from "../../../Components/Placeholder";
 import "../Inventory.scss";
-import {getSuppliesList,LinkInventoryItem} from "../InventoryAction";
-import { InfoCircleTwoTone,  MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import {getSuppliesList,LinkInventoryItem,handleSuppliesDetails} from "../InventoryAction";
+import {  MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import Carousel from "react-elastic-carousel";
 import { base_url,base_url2 } from "../../../Config/Auth";
 import axios from 'axios';
+import InveSuppliesDetailsDrawer from "./InveSuppliesDetailsDrawer";
 const { Option } = Select;
 
 function MaterialsItemCard(props) {
@@ -24,28 +25,28 @@ function MaterialsItemCard(props) {
 
   const [error, setError] = useState(null);
   const [data, setData] = useState({});
+  const [rowDatas, setrowDatas] = useState("");
 
   useEffect(() => {
      props.getSuppliesList(page);    
   }, [page]);
 
-  // useEffect(() => {
-  //   const fetchList = async (pageNumber) => {
-  //     setLoading(true);
-  //     try {
-  //       await props.getSuppliesList(pageNumber);
-  //       setLoading(false);
-  //       if (pageNumber + 1 >= props.purchaseList[0]?.pageCount) {
-  //         setHasMore(false);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching list:", error);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchList(page);
-  // }, [page]);
 
+  const handleLoadMore = () => {
+    const PageMapd = props.purchaseList && props.purchaseList.length &&props.purchaseList[0].pageCount
+    setTimeout(() => {  
+      if  (props.purchaseList)
+      {
+        if (page < PageMapd) {    
+            setPage(page + 1);
+    props.getSuppliesList(page);
+            }
+              if (page === PageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
+        }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,6 +78,9 @@ function MaterialsItemCard(props) {
 
   const [units, setUnits] = useState({});
 
+  function handleRowData(item) {
+    setrowDatas(item)
+}
   const handleQuantityChange = (event, suppliesId) => {
     const newUnit = parseInt(event.target.value, 10);
     if (!isNaN(newUnit) && newUnit >= 1) {
@@ -119,9 +123,9 @@ function MaterialsItemCard(props) {
         }
       };
 
-  if (props.fetchingPurchaseList) {
-    return <BundleLoader />;
-  }
+  // if (props.fetchingPurchaseList) {
+  //   return <BundleLoader />;
+  // }
 
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -153,22 +157,26 @@ function MaterialsItemCard(props) {
     <div class="text-base text-black font-bold font-poppins w-32">Items: {data.count}</div>
     </div>
 
-    <div class="h-[50vh] overflow-auto">
+    <div >
 
-    <CardWrapper>
-    {/* <Carousel
-    pagination={false}
-                     breakPoints={breakPoints}
-                    style={{ minHeight: "6em", justifyContent:"center" }}
-                      class=" w-2/12  mt-8 ml-10"
-                      onNextEnd={next}
-                      onPrevEnd={previous}
-                    > */}
+  
+ 
+                     <InfiniteScroll
+      dataLength={props.purchaseList.length} 
+     next={handleLoadMore}
+     hasMore={hasMore}
+     height={"50vh"}
+    style={{width:"-webkit-fill-available"}}
+    loader={props.fetchingPurchaseList?<div class="flex justify-center">Loading...</div>:null}
+    endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
+    >
+       <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
                   {props.purchaseList.map((item,index) => {
                      const currentdate = dayjs().format("YYYY/MM/DD");
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
                      const isLastElement = index === props.purchaseList.length - 1;
                      return (
+                     
                       <CardElement >
                         <div 
                         // ref={isLastElement ? lastProductElementRef : null} 
@@ -188,31 +196,37 @@ function MaterialsItemCard(props) {
                                                         <div className=" text-base h-[12.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
-                                                            <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-evenly "> 
+                                                            <div class=" flex w-wk cursor-pointer flex-row mt-1 text-[#1124AA] justify-evenly "> 
                                                              
                                                                   <div> {item.newSuppliesNo}  </div>
                                                                   <div > 
                                                                   <Tooltip title={item.suppliesName} placement="top" arrow>
                                                                                               
-                                                                                              <div>{item.suppliesName || ""}</div>
+                                                                                              <div class="cursor-pointer"
+                                                                                                onClick={() => {
+                                                                                                  props.handleSuppliesDetails(true);
+                                                                                                  handleRowData(item);
+                                                                                                }} 
+                                                                                              >{item.suppliesName || ""}</div>
                                                                                             </Tooltip>
                                                                      </div>
                                                                      
                                                                   </div>
                                                                   <div className=" flex flex-row justify-around"> 
-                                                                        <div class=" mt-1 text-xs text-[#1124AA] ">
+                                                                        <div class=" mt-1 text-xs text-[#1124AA] truncate max-w-[100px] "title={item.categoryName}>
                                                                               {item.categoryName}
                                                                             </div>
+                                                                            
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
                                                                               {item.subCategoryName}
                                                                             </div> 
                                                                   </div>
                                                                   <div className=" flex flex-row justify-around"> 
                                                                         <div class=" mt-1 text-xs text-[#1124AA] ">
-                                                                            WSL -  {item.discounts?.[0]?.allowedDiscount}
+                                                                            WSL -  {item.suppliesPrices?.[0].suppliesPrice?.toFixed(2)}
                                                                             </div>
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              RTL - {item.suppliesPrices?.[0].suppliesPrice}
+                                                                              RTL - {item.suppliesPrices?.[0].suppliesPriceB2C?.toFixed(2)}
                                                                             </div> 
                                                                   </div>
                                                       
@@ -257,48 +271,26 @@ function MaterialsItemCard(props) {
                   
                                                                           </div>
                                                                           
-                                                                          {/* <div class="flex justify-between m-2 w-wk max-sm:w-40 items-baseline md: " >
-                                                                              <Desc>{item.description === "null" ? "No Description" : `${item.description}`}</Desc>
-                                                                              {item.description === "<div></div>\n" ? null : (
-                                                                                <Tooltip
-                                                                                  style={{ backgroundColor: "red" }}
-                                                                                  title={
-                                                                                    <Desc2>{item.description === "null" ? "No Description" : `${item.description}`}</Desc2>
-                                                                                  }
-                                                                                  placement="top"
-                                                                                  arrow
-                                                                                >
-                                                                                  <span
-                                                                                    style={{
-                                                                                      cursor: "pointer",
-                                                                                    }}
-                                                                                  >
-                                                                                    
-                                                                                    <InfoCircleTwoTone class=" flex items-center"/>
-                                                                                  </span>
-                                                                                </Tooltip>
-                                                                              )}
-                                                                            </div> */}
+                                                                          
                                                                             
                                                                              
                   
                                          </div>
                                          </div>
                                        </CardElement>
+                               
                     );
                   })}
-                  {/* </Carousel> */}
+                  </div>
+                  </InfiniteScroll>
                   
-                  {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
-            </CardWrapper> 
-            {/* <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
-      <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
-         © {new Date().getFullYear()} {` `}, 1Di inc.
-        
-      </div>    */}
   
    </div>
-
+<InveSuppliesDetailsDrawer
+      suppliesDetailsDrawr={props.suppliesDetailsDrawr}
+      handleSuppliesDetails={props.handleSuppliesDetails}
+      rowDatas={rowDatas}
+      />
    </>
   );
 }
@@ -307,13 +299,15 @@ const mapStateToProps = ({ inventory,auth }) => ({
   fetchingPurchaseList:inventory.fetchingPurchaseList,
   userId: auth.userDetails.userId,
   organizationId: auth.userDetails.organizationId,
+  suppliesDetailsDrawr:inventory.suppliesDetailsDrawr,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getSuppliesList,
-      LinkInventoryItem
+      LinkInventoryItem,
+      handleSuppliesDetails
 
     },
     dispatch

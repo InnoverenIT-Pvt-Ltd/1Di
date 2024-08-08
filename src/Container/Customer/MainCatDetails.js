@@ -3,17 +3,20 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
  import { getWitoutPrice } from "../Customer/CustomerAction";
+ import { getProductsByProductId } from "../Inventory/InventoryAction";
 import styled from "styled-components";
 import { Select } from "../../Components/UI/Elements";
 import { base_url } from "../../Config/Auth";
 import MainTable from "./MainTable";
+import { Footer } from "./Footer";
 
 
 const { Option } = Select;
 
 function MainCatDetails(props) {
   useEffect(() => {
-    props.getWitoutPrice(props.rowDatas.suppliesId);
+   // props.getWitoutPrice(props.rowDatas.suppliesId);
+    props.getProductsByProductId(props.rowDatas.suppliesId);
   }, []);
 
 //   if (props.fetchingProductsList) {
@@ -35,64 +38,73 @@ const breakPoints = [
   { width: 768, itemsToShow: 2, itemToScroll: 2 },
   { width: 1100, itemsToShow: 4, itemToScroll: 4 },
 ];
-console.log(props.witoutPrice)
+console.log(props.productsByproductId)
 
 
-return (
-    <>
-{props.witoutPrice.map((item) => {
-   
+
     return (
     <>
-        <div className="bg-[#F7F8FC]">
-     <div className="flex justify-between items-center w-[44rem]">
-          <div >
-            <div>{item .suppliesName}</div>
-            <div>{item.newSuppliesNo}</div>
-            
-            <div className='flex items-center justify-center w-[w-wk]'>
-            <div className="flex items-center justify-center">
-           
+     <div className="bg-[#F7F8FC]">
+ <div className="flex justify-between items-center w-full">
+      <div >
+        <div>{props.productsByproductId.suppliesName}</div>
+        <div>{props.productsByproductId.newSuppliesNo}</div>
     
-            </div>
-           
-            </div>
-           
-          </div>
-          <div >
-          <img  src={`${base_url}/image/${item.imageId}`}  className="w-[20rem]" />
-         
-          </div>
-          
+        <div className='flex items-center justify-center w-[w-wk]'>
+        <div className="flex items-center justify-center">
+        <div class="text-sm text-black w-16">
+         RTL {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
         </div>
-        <div dangerouslySetInnerHTML={{ __html: `<p>${item.description}</p>` }} />
-        
+      </div>
+      {/* <div className="flex items-center justify-center ml-1">
+        <div class="text-sm text-black">
+        WSL  {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice}
        
-          <hr class=" mt-4 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
-          <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
-             © {new Date().getFullYear()} {` `}  1Di inc
-          </div>
-       </div>
+        </div>
+      </div> */}
+        </div>
+      
+      </div>
+      <div class=" flex justify-end">
+      <img  src={`${base_url}/image/${props.productsByproductId.imageId}`}  className="w-[20rem]" />
+     
+      </div>
+   
+    </div>
+    <div className="flex w-wk justify-between mt-2 ">
+    <div className="flex flex-col border w-[47.5%]">
+    <div className=" font-medium">Description </div>
+    <div dangerouslySetInnerHTML={{ __html:props.productsByproductId.description? `<p>${props.productsByproductId.description}</p>`: "<p></p>" }} />
+    </div>
+    <div className="flex flex-col border w-[47.5%]">
+    <div className=" font-medium">Description French </div>
+    <div dangerouslySetInnerHTML={{ __html: props.productsByproductId.qrCodeNo ?`<p>${props.productsByproductId.qrCodeNo}</p>`: "<p></p>" }} />
+    </div>
+    </div>
+    <div className="cardDs-bottom mt-3">
+    <MainTable productsByproductId={props.productsByproductId}/>
+   
+      </div>
+     
+   </div>
+ <Footer/>
        </>
       
       );
- })}
-  <div className=" flex items-center cardDs-bottom">
-          <MainTable witoutPrice={props.witoutPrice}/>
-        
-          </div>
- </>
-);
+
+
 }
-const mapStateToProps = ({ customer,auth }) => ({
+const mapStateToProps = ({ customer,auth ,inventory}) => ({
     witoutPrice: customer.witoutPrice,
   fetchingWitoutPrice:customer.fetchingWitoutPrice,
+  productsByproductId: inventory.productsByproductId,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getWitoutPrice,
+      getProductsByProductId
    
     },
     dispatch
