@@ -220,7 +220,7 @@ function MainApp(props) {
               className="big-logo"
                src={KoreroLogo}
               // src={NuboxLogo}
-              style={{width: "7vw",height:"7vh"  }}
+              style={{width: "6vw",height:"6vh"  }}
               alt="Tekorero logo"
             />
           </div>
