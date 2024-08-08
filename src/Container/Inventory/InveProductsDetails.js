@@ -38,16 +38,7 @@ function InveProductsDetails(props) {
 //   if (props.fetchingProductsList) {
 //     return <BundleLoader />;PD10985606347262024
 //   }
-const puzzleDescription = `
-  Elephants are the largest existing land animals! They are strong, unique in their built, and caring. Watch these
-  majestic animals travel with their herd in this 3D, immersive puzzle.
-  Each piece is made with great detail and quality craftsmanship doing justice to the vibrant colours that pop out
-  (pun intended!) as you assemble this unique illustration. High-quality pieces that don’t break and are easy to fit.
-  Develop a new hobby, or engage in some brain training as puzzles are known to stimulate the brain, and improve
-  our spatial reasoning, memory, problem-solving abilities and even increase our IQ! Puzzles are also a great way
-  to boost the mood, relieve stress and increase self-confidence!
-  You can do it yourself, with your family and friends or even use it for gifting!
-`;
+
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
   { width: 500, itemsToShow: 2 },
@@ -69,13 +60,13 @@ console.log(props.productsByproductId)
         <div className='flex items-center justify-center w-[w-wk]'>
         <div className="flex items-center justify-center">
         <div class="text-sm text-black w-16">
-         USD {props.productsByproductId ?.discounts?.[0]?.allowedDiscount}
+         RTL {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
         </div>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center ml-1">
         <div class="text-sm text-black">
-        USD 
-        {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice}
+        WSL  {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice}
+       
         </div>
       </div>
         {/* <div className="add-minus-quantity">
@@ -148,9 +139,17 @@ console.log(props.productsByproductId)
         </Carousel> 
       </div> */}
     </div>
+    <div className="flex w-wk justify-between mt-2 ">
+    <div className="flex flex-col border w-[47.5%]">
+    <div className=" font-medium">Description </div>
     <div dangerouslySetInnerHTML={{ __html: `<p>${props.productsByproductId.description}</p>` }} />
-    
-    <div className="cardDs-bottom">
+    </div>
+    <div className="flex flex-col border w-[47.5%]">
+    <div className=" font-medium">Description French </div>
+    <div dangerouslySetInnerHTML={{ __html: `<p>${props.productsByproductId.qrCodeNo}</p>` }} />
+    </div>
+    </div>
+    <div className="cardDs-bottom  mt-3 ">
       <CartTable productsByproductId={props.productsByproductId}/>
     {/* <div class="border-[0.5rem] rounded overflow-auto">
       <Carousel

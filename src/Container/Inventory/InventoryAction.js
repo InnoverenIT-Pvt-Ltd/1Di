@@ -750,6 +750,13 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           });
         };
 
+        export const handleSuppliesDetails = (modalProps) => (dispatch) => {
+          dispatch({
+            type: types.HANDLE_SUPPLIES_DETAILS_DRAWER,
+            payload: modalProps,
+          });
+        };
+
         export const getProductsByProductId = (productId) => (dispatch) => {
           dispatch({
             type: types.GET_PRODUCTS_BY_PRODUCTID_REQUEST,

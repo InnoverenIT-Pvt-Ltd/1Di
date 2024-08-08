@@ -108,6 +108,8 @@ const initialState = {
 
   productDetailsDrawr:false,
 
+  suppliesDetailsDrawr:false,
+
   fetchingProductsByProductId: false,
   fetchingProductsByProductIdError: false,
   productsByproductId: {},
@@ -359,7 +361,9 @@ const initialState = {
                                         return {
                                             ...state,
                                             fetchingPurchaseList: false,
-                                            purchaseList: action.payload,
+                                            // purchaseList: action.payload,
+                                            purchaseList: [...state.purchaseList, ...action.payload],
+                                           
                                         };
                                     case types.GET_SUPPLIES_LIST_FAILURE:
                                         return {
@@ -479,6 +483,9 @@ const initialState = {
 
         case types.HANDLE_PRODUCTS_DETAILS_DRAWER:
             return { ...state, productDetailsDrawr: action.payload };
+
+            case types.HANDLE_SUPPLIES_DETAILS_DRAWER:
+              return { ...state, suppliesDetailsDrawr: action.payload };
 
             case types.GET_PRODUCTS_BY_PRODUCTID_REQUEST:
               return {

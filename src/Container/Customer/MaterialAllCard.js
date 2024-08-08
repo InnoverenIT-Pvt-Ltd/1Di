@@ -36,9 +36,9 @@ function MaterialAllCard (props) {
       carouselRef.current.prev();
     };
   
-    if (props.fetchingPurchaseListC) {
-      return <BundleLoader />;
-    }
+    // if (props.fetchingPurchaseListC) {
+    //   return <BundleLoader />;
+    // }
   
     const breakPoints = [
       { width: 1, itemsToShow: 1 },
@@ -73,12 +73,26 @@ function MaterialAllCard (props) {
         };
     });
     };
-   
-
-    const handleInfiniteScroll = () => {
-      setPage(page + 1);
-      props.getSuppliesCList(page);
-    };
+          const handleLoadMore = () => {
+            const callPageMapd = props.purchaseListC && props.purchaseListC.length &&props.purchaseListC[0].pageCount
+            setTimeout(() => {
+        
+              if  (props.purchaseListC)
+              {
+                if (page < callPageMapd) {
+                  setPage(page + 1);
+                  props.getSuppliesCList(page);
+              }
+              if (page === callPageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
+          };
+    // const handleInfiniteScroll = () => {
+    //   setPage(page + 1);
+    //   props.getSuppliesCList(page);
+    // };
     const handleAddToCart = (suppliesId) => { 
       let data={
          
@@ -102,12 +116,12 @@ function MaterialAllCard (props) {
         <div >
         <InfiniteScroll
         dataLength={props.purchaseListC.length}
-        next={handleInfiniteScroll}
+        next={handleLoadMore}
         hasMore={hasMore}
         height={"40vh"}
         style={{ width: "-webkit-fill-available" }}
         loader={props.fetchingPurchaseListC ? <div className="flex justify-center">Loading...</div> : null}
-        initialLoad={true}
+        //initialLoad={true}
       >
         <CardWrapper>
             {/* <Carousel

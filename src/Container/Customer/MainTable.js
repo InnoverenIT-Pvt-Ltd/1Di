@@ -1,68 +1,67 @@
 import React from 'react';
+
 function MainTable (props) {
-    
   const data = {
-        "Completed puzzle dimension": '24x18 inch / 60x45 cm',
-        "Piece count": "500pc",
-        "Packaging":"Set-Up Box",
-        "Age group": '6+',
-        "Package dimension": '12x8x2 inch / 30x20x5 cm',
-        "Weight": '0.56lb'
-    }
-console.log("ddddr",props.witoutPrice)
-  return (
+  
+    "Length": {
+      retail: props.productsByproductId.length || "0",
+      inner: props.productsByproductId.innerLength || "0",
+      master: props.productsByproductId.masterLength || "0",
+    },
+    "Depth": {
+      retail: props.productsByproductId.width || "0",
+      inner: props.productsByproductId.innerWidth || "0",
+      master: props.productsByproductId.masterWidth || "0",
+    },
+    "Hight": {
+      retail: props.productsByproductId.height || "0",
+      inner: props.productsByproductId.innerHeight || "0",
+      master: props.productsByproductId.masterHeight || "0",
+    },
+    "Volume": {
+      retail: props.productsByproductId.volume || "0",
+      inner: props.productsByproductId.innerVolume || "0",
+      master: props.productsByproductId.masterVolume || "0",
+    },
+    "Weight": {
+      retail: props.productsByproductId.weight || "0",
+      inner: props.productsByproductId.innerWeight || "0",
+      master: props.productsByproductId.masterWeight || "0",
+    },
+    // "Arcticle No": {
+    //   retail: props.productsByproductId.weight || "",
+    //   inner: props.productsByproductId.hsn || "",
+    //   master: ""
+    // },
     
-    <table className="  min-w-[70%] border-collapse border border-gray-200">
+    "Category": {
+      retail: props.productsByproductId.categoryName || "No Data",
+      inner: props.productsByproductId.categoryName || "No Data",
+      master: props.productsByproductId.categoryName || "No Data"
+    }
+  };
+
+  return (
+    <table className="min-w-[70%] border-collapse border border-gray-200">
+      <thead>
+        <tr className="bg-gray-50">
+          <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
+          <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Retail</th>
+          <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Inner</th>
+          <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Master</th>
+        </tr>
+      </thead>
       <tbody>
-        {/* {Object.keys(props.witoutPrice).map((key) => (
+        {Object.keys(data).map((key) => (
           <tr key={key} className="bg-gray-50 odd:bg-white">
             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">{key}</th>
-            <td className="p-2 border border-gray-200">{data[key]}</td>
+            <td className="p-2 border border-gray-200">{data[key].retail}</td>
+            <td className="p-2 border border-gray-200">{data[key].inner}</td>
+            <td className="p-2 border border-gray-200">{data[key].master}</td>
           </tr>
-        ))} */}
-         <tr  className="bg-gray-50 odd:bg-white">
-            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Completed puzzle dimension</th>
-            <td className="p-2 border border-gray-200">
-              {/* {props.witoutPrice.hsn} */}
-              24x18 inch / 60x45 cm
-            </td>
-          </tr>
-          <tr  className="bg-gray-50 odd:bg-white">
-            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Piece count</th>
-            <td className="p-2 border border-gray-200">
-              {/* {props.witoutPrice.hsn} */}
-              500pc
-            </td>
-          </tr>
-          <tr  className="bg-gray-50 odd:bg-white">
-            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Age group</th>
-            <td className="p-2 border border-gray-200">
-              {/* {props.witoutPrice.hsn}  */} 6+
-              </td>
-          </tr>
-          <tr  className="bg-gray-50 odd:bg-white">
-            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Package dimension</th>
-            <td className="p-2 border border-gray-200">{props.witoutPrice.hsn}</td>
-          </tr>
-<tr  className="bg-gray-50 odd:bg-white">
-            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Hsn</th>
-            <td className="p-2 border border-gray-200">{props.witoutPrice.hsn}</td>
-          </tr>
-          <tr  className="bg-gray-50 odd:bg-white">
-            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Weight</th>
-            <td className="p-2 border border-gray-200">{props.witoutPrice.netWeight}</td>
-          </tr>
-          <tr  className="bg-gray-50 odd:bg-white">
-            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Attribute</th>
-            <td className="p-2 border border-gray-200">{props.witoutPrice.attributeName} {props.witoutPrice.subAttributeName}</td>
-          </tr>
-          <tr  className="bg-gray-50 odd:bg-white">
-            <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Category</th>
-            <td className="p-2 border border-gray-200">{props.witoutPrice.categoryName} {props.witoutPrice.subCategoryName}</td>
-          </tr>
+        ))}
       </tbody>
     </table>
-    
   );
 };
 

@@ -1,21 +1,35 @@
-import React, {Suspense, lazy,useEffect } from "react";
+import React, {Suspense, lazy,useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import InventoryHeader from "./InventoryHeader";
 import {getInventoryCartItems} from "./InventoryAction";
+import {getProductByCategoryId,getCategories,getCustomerProductList} from "../Customer/CustomerAction";
 import LoginSearchedData from "./LoginSearchedData";
+import ProductCardListbyCategory from "../Customer/ProductCardListbyCategory";
 const InventoryItemsCard=lazy(()=>import("./Child/InventoryItemsCard"));
 const AllInventorySupplierCard=lazy(()=>import("./Child/AllInventorySupplierCard"));
 const MaterialsItemCard =lazy(()=>import("./Child/MaterialsItemCard"));
 const CategoriesListCard = lazy(()=>import("./Child/CategoriesListCard"));
 
 function Inventory (props) {
-
+  const [page, setPage] = useState(1);
+  const [categoriesPrds, setCategoriesPrds] = useState([]);
+  const [activeClick, setActiveClick] = useState('');
   useEffect(()=>{
     props.getInventoryCartItems(props.userId);
       },[]);
 
+
+  const handleActiveClick = (categoryId) => {
+    setActiveClick(categoryId);
+    props.getProductByCategoryId(categoryId);
+  };
+
+
+  
+      
+    
   if (props.fetchingInventoryCartItems)
     {
       return <BundleLoader/>
@@ -33,23 +47,26 @@ function Inventory (props) {
      <InventoryHeader/>
      </div>
         <Suspense fallback={<BundleLoader />}>
-        <CategoriesListCard/>
-        {/* <div class="mt-5">
-   <div class="text-base text-black font-bold font-poppins">Products</div>
-           <InventoryItemsCard invencartItem={props.invencartItem}/> 
-           </div> */}
+        <div className="mt-4">
+        <CategoriesListCard categoriesPrds={props.categoriesPrds}
+      handleActiveClick={handleActiveClick}
+      activeClick={activeClick}
+      fetchingCategories={props.fetchingCategories}/>
+      </div>
+      <div className='w-wk flex  '>
+                    <div>
+                      Products by Catalog
+                    </div>
+                    <div className='flex  justify-center'>
+                        <ProductCardListbyCategory productsbyCategoryId={props.productsbyCategoryId} activeClick={activeClick}/>
+                  </div>
+                        </div> 
+
            <div class="mt-2">
-           {/* <div class="text-base text-black font-bold font-poppins">Materials and Spares</div> */}
+         
 <MaterialsItemCard invencartItem={props.invencartItem}/>
 </div>
-{/* <div class="mt-5">
-{props.userDetails.moduleMapper.tradingInd === true && (
-  <>
-           <p>Products from our Suppliers</p>
-<AllInventorySupplierCard invencartItem={props.invencartItem}/>
-</>
-)}
-</div> */}
+
         </Suspense>
        </div>
          )} 
@@ -67,11 +84,17 @@ const mapStateToProps = ({ inventory, auth,customer }) => ({
   userId: auth.userDetails.userId,
  fetchingInventoryCartItems:inventory.fetchingInventoryCartItems,
  userDetails:auth.userDetails,
- investorSerachedData: customer.investorSerachedData
+ investorSerachedData: customer.investorSerachedData,
+ categoriesPrds:customer.categoriesPrds,
+ productsbyCategoryId:customer.productsbyCategoryId,
+ fetchingCategories:customer.fetchingCategories,
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getInventoryCartItems,
+  getProductByCategoryId,
+  getCategories,
+  getCustomerProductList
 
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Inventory);
