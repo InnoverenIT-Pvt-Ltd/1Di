@@ -167,7 +167,7 @@ class CustomerMainApp extends Component {
                 <div className='w-[90%] flex flex-col justify-center items-center overflow-x-auto p-1 h-[-webkit-fill-available]'>
                 <CategoriesListCard categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/>
                 {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
-                <div className='w-wk flex  '>
+                <div className='w-wk flex  mt-5 '>
                     <div>
                       Products by Catalog
                     </div>

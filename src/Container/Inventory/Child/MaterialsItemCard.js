@@ -257,11 +257,8 @@ useEffect(() => {
                                                                             </div> 
                                                                   </div>
                                                                   <div className=" flex flex-row justify-around"> 
-                                                                        <div class=" mt-1 text-xs text-[#1124AA] ">
-                                                                            WSL - <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPrice?.toFixed(2)}
-                                                                            </div>
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              RTL - <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C?.toFixed(2)}
+                                                                              SRP - <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C?.toFixed(2)}
                                                                             </div> 
                                                                   </div>
                                                       

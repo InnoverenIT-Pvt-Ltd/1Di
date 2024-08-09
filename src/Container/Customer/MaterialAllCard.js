@@ -208,7 +208,7 @@ function MaterialAllCard (props) {
                                                                             WSL -  {item.discounts?.[0]?.allowedDiscount}
                                                                             </div> */}
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              RTL -<CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPrice}
+                                                                            SRP - <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPrice}
                                                                             </div> 
                                                                   </div>
                                                                                                                          

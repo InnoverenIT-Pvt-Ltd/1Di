@@ -35,10 +35,10 @@ console.log(props.productsByproductId)
       <div >
         <div>{props.productsByproductId.suppliesName}</div>
         <div>{props.productsByproductId.newSuppliesNo}</div>
-        <div className='flex items-center justify-center w-[w-wk]'>
+        <div className='flex items-center justify-center w-[w-wk] mt-3'>
         <div className="flex items-center justify-center">
         <div class="text-sm text-black w-16">
-         RTL- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/> {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
+        SRP- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/> {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
         </div>
       </div>
       <div className="flex items-center justify-center ml-1">
@@ -52,12 +52,12 @@ console.log(props.productsByproductId)
       <img  src={`${base_url}/image/${props.productsByproductId.imageId}`}  className="w-[20rem]" />
       </div> 
     </div>
-    <div className="flex w-wk justify-between ">
-    <div className="flex flex-col border">
+    <div className="flex w-wk justify-evenly  mt-6">
+    <div className="flex flex-col border box-border h-40 w-[30rem]">
     <div className=" font-medium">Description </div>
     <div dangerouslySetInnerHTML={{ __html: props.productsByproductId.description ?`<p>${props.productsByproductId.description}</p>`:"<p></p>" }} />
     </div>
-    <div className="flex flex-col border">
+    <div className="flex flex-col border box-border h-40 w-[30rem]">
     <div className=" font-medium">Description French </div>
     <div
   dangerouslySetInnerHTML={{
@@ -68,7 +68,7 @@ console.log(props.productsByproductId)
 />
     </div>
     </div>
-    <div className="cardDs-bottom">
+    <div className="cardDs-bottom mt-5  flex justify-center">
       <CartTable productsByproductId={props.productsByproductId}/>
       </div>
       <hr class=" mt-4 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
