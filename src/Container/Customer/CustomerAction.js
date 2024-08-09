@@ -547,10 +547,13 @@ export const searchInvestorName = (name) => (dispatch) => {
     type: types.GET_INVESTOR_SEARCH_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplies/suppliesName/${name}`, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
+    // .get(`${base_url2}/supplies/suppliesName/${name}`,
+    .get(`${base_url2}/supplies/search/${name}`,
+
+       {
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
     })
     .then((res) => {
     
