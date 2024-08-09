@@ -22,7 +22,7 @@ class CurrencySymbol extends Component {
           <span style={{ fontSize: "14px" }}>AU&#36; </span>
         )}
         {currencyType === "CAD" && (
-          <span style={{ fontSize: "14px" }}>CA&#36; </span>
+          <span style={{ fontSize: "14px"}}>CA&#36; </span>
         )}
         {currencyType === "SGD" && (
           <span style={{ fontSize: "14px" }}>SG&#36; </span>

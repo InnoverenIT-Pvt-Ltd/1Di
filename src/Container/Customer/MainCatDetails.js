@@ -9,13 +9,13 @@ import { Select } from "../../Components/UI/Elements";
 import { base_url } from "../../Config/Auth";
 import MainTable from "./MainTable";
 import { Footer } from "./Footer";
+import { CurrencySymbol } from "../../Components/Common";
 
 
 const { Option } = Select;
 
 function MainCatDetails(props) {
   useEffect(() => {
-   // props.getWitoutPrice(props.rowDatas.suppliesId);
     props.getProductsByProductId(props.rowDatas.suppliesId);
   }, []);
 
@@ -53,7 +53,7 @@ console.log(props.productsByproductId)
         <div className='flex items-center justify-center w-[w-wk]'>
         <div className="flex items-center justify-center">
         <div class="text-sm text-black w-16">
-         RTL {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
+         RTL- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/> {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
         </div>
       </div>
       {/* <div className="flex items-center justify-center ml-1">
