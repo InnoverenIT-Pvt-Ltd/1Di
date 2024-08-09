@@ -50,10 +50,10 @@ console.log(props.productsByproductId)
         <div>{props.productsByproductId.suppliesName}</div>
         <div>{props.productsByproductId.newSuppliesNo}</div>
     
-        <div className='flex items-center justify-center w-[w-wk]'>
+        <div className='flex items-center justify-center w-[w-wk] mt-3'>
         <div className="flex items-center justify-center">
         <div class="text-sm text-black w-16">
-         RTL {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
+         SRP {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
         </div>
       </div>
       {/* <div className="flex items-center justify-center ml-1">
@@ -71,17 +71,17 @@ console.log(props.productsByproductId)
       </div>
    
     </div>
-    <div className="flex w-wk justify-between mt-2 ">
-    <div className="flex flex-col border w-[47.5%]">
+    <div className="flex w-wk justify-evenly mt-6 ">
+    <div className="flex flex-col border box-border h-40 w-[30rem]">
     <div className=" font-medium">Description </div>
     <div dangerouslySetInnerHTML={{ __html:props.productsByproductId.description? `<p>${props.productsByproductId.description}</p>`: "<p></p>" }} />
     </div>
-    <div className="flex flex-col border w-[47.5%]">
+    <div className="flex flex-col border box-border h-40 w-[30rem]">
     <div className=" font-medium">Description French </div>
     <div dangerouslySetInnerHTML={{ __html: props.productsByproductId.qrCodeNo ?`<p>${props.productsByproductId.qrCodeNo}</p>`: "<p></p>" }} />
     </div>
     </div>
-    <div className="cardDs-bottom mt-3">
+    <div className="cardDs-bottom mt-5 flex justify-center">
     <MainTable productsByproductId={props.productsByproductId}/>
    
       </div>

@@ -226,7 +226,7 @@ function MaterialsItemCard(props) {
                                                                             WSL -  {item.suppliesPrices?.[0].suppliesPrice?.toFixed(2)}
                                                                             </div>
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              RTL - {item.suppliesPrices?.[0].suppliesPriceB2C?.toFixed(2)}
+                                                                              SRP - {item.suppliesPrices?.[0].suppliesPriceB2C?.toFixed(2)}
                                                                             </div> 
                                                                   </div>
                                                       
