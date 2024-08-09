@@ -14,15 +14,21 @@ import {getSuppliesCList,handleCatagoryDetails} from "./CustomerAction";
 import { BundleLoader } from '../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MainDetailsDrawer from './MainDetailsDrawer';
+import { CurrencySymbol } from '../../Components/Common';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 function MaterialAllCard (props) {
   const [units, setUnits] = useState({});
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
     const [rowDatas, setrowDatas] = useState("");
+    const [sortOrder, setSortOrder] = useState('asc'); 
+    const [sortedList, setSortedList] = useState([]);
+   
     useEffect(() => {
      props.getSuppliesCList(page);
     }, []);
+
     function handleRowData(item) {
       setrowDatas(item)
   }
@@ -36,10 +42,19 @@ function MaterialAllCard (props) {
       carouselRef.current.prev();
     };
   
-    // if (props.fetchingPurchaseListC) {
-    //   return <BundleLoader />;
-    // }
-  
+    useEffect(() => {
+      const sorted = [...props.purchaseListC].sort((a, b) => {
+        const nameA = a.categoryName ? a.categoryName.toUpperCase() : "";
+        const nameB = b.categoryName ? b.categoryName.toUpperCase() : "";
+        return sortOrder === "asc" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+      });
+      setSortedList(sorted);
+    }, [props.purchaseListC, sortOrder]);
+
+    const handleSortChange = (order) => {
+      setSortOrder(order);
+    };
+
     const breakPoints = [
       { width: 1, itemsToShow: 1 },
       { width: 500, itemsToShow: 2 },
@@ -114,8 +129,23 @@ function MaterialAllCard (props) {
         <>
     
         <div >
+        <div className="sorting-controls">
+        <SortButton
+            onClick={() => handleSortChange("asc")}
+            active={sortOrder === "asc"}
+          >
+            <FilterAltIcon/> A-Z
+          </SortButton>
+          <SortButton
+            onClick={() => handleSortChange("desc")}
+            active={sortOrder === "desc"}
+          >
+            <FilterAltIcon/> Z-A
+          </SortButton>
+      </div>
+
         <InfiniteScroll
-        dataLength={props.purchaseListC.length}
+        dataLength={sortedList.length}
         next={handleLoadMore}
         hasMore={hasMore}
         height={"40vh"}
@@ -131,7 +161,7 @@ function MaterialAllCard (props) {
                           class=" w-2/12  mt-8 ml-10"
                         > */}
 
-                      {props.purchaseListC.map((item) => {
+                      {sortedList.map((item) => {
                          const currentdate = dayjs().format("YYYY/MM/DD");
                          const date = dayjs(item.creationDate).format("YYYY/MM/DD");
                         return (
@@ -164,8 +194,8 @@ function MaterialAllCard (props) {
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-around w-full mt-1"> 
-                                                                        <div class="  text-xs text-[#1124AA] ">
+                                                                  <div className=" flex flex-row justify-around "> 
+                                                                        <div class="  text-xs text-[#1124AA] truncate max-w-[100px]">
                                                                               {item.categoryName}
                                                                             </div>
                                                                             <div class=" text-xs text-[#1124AA]">
@@ -178,7 +208,7 @@ function MaterialAllCard (props) {
                                                                             WSL -  {item.discounts?.[0]?.allowedDiscount}
                                                                             </div> */}
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              SRP - {item.suppliesPrices?.[0].suppliesPrice}
+                                                                            SRP - <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPrice}
                                                                             </div> 
                                                                   </div>
                                                                                                                          
@@ -283,105 +313,18 @@ const CardElement = styled.div`
     width: 100%;
   }
 `;
-const CardDescription = styled.div`
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const CardImage = styled.div`
-  margin: auto;
-  width: 7rem;
-  height: 7rem;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const WithOutImage = styled.div`
-  margin: auto;
-  width: 10em;
-  height: 10em;
-  display: flex;
-  align-items: center;
-  flex-direction:column @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
 
-const Header = styled.div`
-  text-overflow: ellipsis;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1.3em;
-  font-family: Poppins;
-  font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
+const SortButton = styled.button`
+  background-color: ${(props) => (props.active ? '#007bff' : '#f8f9fa')};
+  color: ${(props) => (props.active ? '#fff' : '#007bff')};
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
 
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-text-align:center
+  &:hover {
+    background-color: ${(props) => (props.active ? '#0056b3' : '#e2e6ea')};
   }
 `;
-const Desc = styled.p`
-  height: 1.5em;
-  overflow: hidden;
-  padding: 1%;
-  text-align: center;
-`;
-const Desc2 = styled.p`
-  height: 60px;
-  overflow: auto;
-  color: white;
-  padding: 3%;
-  text-align: center;
-`;
-
-const Price = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-`;
-const Price1 = styled.div`
-  height: 3.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  display: grid;
-  width: -webkit-fill-available;
-  place-items: baseline;
-  white-space: pre;
-`;
-const Price2 = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  text-decoration-line: line-through;
-`;
-const Size = styled.div`
-  height: 2.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  display: grid;
-  width: -webkit-fill-available;
-  place-items: baseline;
-  white-space: pre;
-`;  

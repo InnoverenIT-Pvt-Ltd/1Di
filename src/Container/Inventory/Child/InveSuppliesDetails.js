@@ -8,6 +8,7 @@ import { Select } from "../../../Components/UI/Elements";
 import "../Inventory.scss";
 import CartTable from "../CartTable";
 import { base_url } from "../../../Config/Auth";
+import { CurrencySymbol } from "../../../Components/Common";
 
 const { Option } = Select;
 
@@ -37,12 +38,12 @@ console.log(props.productsByproductId)
         <div className='flex items-center justify-center w-[w-wk] mt-3'>
         <div className="flex items-center justify-center">
         <div class="text-sm text-black w-16">
-         SRP {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
+        SRP- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/> {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
         </div>
       </div>
       <div className="flex items-center justify-center ml-1">
         <div class="text-sm text-black">
-        WSL  {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice}
+        WSL- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/>  {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice}
         </div>
       </div>
         </div>

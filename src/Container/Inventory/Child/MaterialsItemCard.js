@@ -14,6 +14,9 @@ import dayjs from "dayjs";
 import { base_url,base_url2 } from "../../../Config/Auth";
 import axios from 'axios';
 import InveSuppliesDetailsDrawer from "./InveSuppliesDetailsDrawer";
+import { CurrencySymbol } from "../../../Components/Common";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+
 const { Option } = Select;
 
 function MaterialsItemCard(props) {
@@ -27,11 +30,25 @@ function MaterialsItemCard(props) {
   const [data, setData] = useState({});
   const [rowDatas, setrowDatas] = useState("");
 
+  const [sortOrder, setSortOrder] = useState('asc'); 
+    const [sortedList, setSortedList] = useState([]);
+
   useEffect(() => {
      props.getSuppliesList(page);    
   }, [page]);
 
+useEffect(() => {
+      const sorted = [...props.purchaseList].sort((a, b) => {
+        const nameA = a.categoryName ? a.categoryName.toUpperCase() : "";
+        const nameB = b.categoryName ? b.categoryName.toUpperCase() : "";
+        return sortOrder === "asc" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+      });
+      setSortedList(sorted);
+    }, [props.purchaseList, sortOrder]);
 
+    const handleSortChange = (order) => {
+      setSortOrder(order);
+    };
   const handleLoadMore = () => {
     const PageMapd = props.purchaseList && props.purchaseList.length &&props.purchaseList[0].pageCount
     setTimeout(() => {  
@@ -159,10 +176,28 @@ function MaterialsItemCard(props) {
 
     <div >
 
-  
+    <div className="sorting-controls">
+        <SortButton
+            onClick={() => handleSortChange("asc")}
+            active={sortOrder === "asc"}
+          >
+            <FilterAltIcon/> A-Z
+          </SortButton>
+          <SortButton
+            onClick={() => handleSortChange("desc")}
+            active={sortOrder === "desc"}
+          >
+            <FilterAltIcon/> Z-A
+          </SortButton>
+
+          <Select style={{width:"6rem"}}>
+            <Option value="r">Recommend</Option>
+            <Option value="b">Best seller</Option>
+          </Select>
+      </div>
  
                      <InfiniteScroll
-      dataLength={props.purchaseList.length} 
+      dataLength={sortedList.length} 
      next={handleLoadMore}
      hasMore={hasMore}
      height={"50vh"}
@@ -171,10 +206,10 @@ function MaterialsItemCard(props) {
     endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
     >
        <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
-                  {props.purchaseList.map((item,index) => {
+                  {sortedList.map((item,index) => {
                      const currentdate = dayjs().format("YYYY/MM/DD");
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
-                     const isLastElement = index === props.purchaseList.length - 1;
+                     const isLastElement = index === sortedList.length - 1;
                      return (
                      
                       <CardElement >
@@ -222,11 +257,8 @@ function MaterialsItemCard(props) {
                                                                             </div> 
                                                                   </div>
                                                                   <div className=" flex flex-row justify-around"> 
-                                                                        <div class=" mt-1 text-xs text-[#1124AA] ">
-                                                                            WSL -  {item.suppliesPrices?.[0].suppliesPrice?.toFixed(2)}
-                                                                            </div>
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              SRP - {item.suppliesPrices?.[0].suppliesPriceB2C?.toFixed(2)}
+                                                                              SRP - <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C?.toFixed(2)}
                                                                             </div> 
                                                                   </div>
                                                       
@@ -314,12 +346,7 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(MaterialsItemCard);
-const MainWrapper = styled.div`
-  /* */
-  margin: 0px 20px;
-  @media only screen and (max-width: 600px) {
-  }
-`;
+
 const CardWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -345,116 +372,19 @@ const CardElement = styled.div`
     width: 100%;
   }
 `;
-const CardDescription1 = styled.div`
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+const SortButton = styled.button`
+  background-color: ${(props) => (props.active ? '#007bff' : '#f8f9fa')};
+  color: ${(props) => (props.active ? '#fff' : '#007bff')};
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
 
+  &:hover {
+    background-color: ${(props) => (props.active ? '#0056b3' : '#e2e6ea')};
   }
-`;
-const CardDescription = styled.div`
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const CardImage = styled.div`
-  margin: auto;
-  width: 5rem;
-  height: 5rem;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const WithOutImage = styled.div`
-  margin: auto;
-  width: 10em;
-  height: 10em;
-  display: flex;
-  align-items: center;
-  flex-direction:column @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-
-const Header = styled.div`
-  text-overflow: ellipsis;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1.3em;
-  font-family: Poppins;
-  font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-text-align:center
-  }
-`;
-const Desc = styled.p`
-  height: 1.5em;
-  overflow: hidden;
-  padding: 1%;
-  text-align: center;
-`;
-const Desc2 = styled.p`
-  height: 60px;
-  overflow: auto;
-  color: white;
-  padding: 3%;
-  text-align: center;
-`;
-
-const Price = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-`;
-const Price1 = styled.div`
-  height: 3.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  display: grid;
-  width: -webkit-fill-available;
-  place-items: baseline;
-  white-space: pre;
-`;
-const Price2 = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  text-decoration-line: line-through;
-`;
-const Size = styled.div`
-  height: 2.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  display: grid;
-  width: -webkit-fill-available;
-  place-items: baseline;
-  white-space: pre;
 `;
 
 
