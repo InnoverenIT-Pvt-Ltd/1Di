@@ -189,6 +189,11 @@ useEffect(() => {
           >
             <FilterAltIcon/> Z-A
           </SortButton>
+
+          <Select style={{width:"6rem"}}>
+            <Option value="r">Recommend</Option>
+            <Option value="b">Best seller</Option>
+          </Select>
       </div>
  
                      <InfiniteScroll

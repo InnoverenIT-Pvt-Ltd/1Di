@@ -25,25 +25,11 @@ const { Option } = Select;
 function CategoriesListCard (props) {
 
   const [hasMore, setHasMore] = useState(true);
-  const [sortOrder, setSortOrder] = useState('asc'); 
-  const [sortedList, setSortedList] = useState([]);
-
   useEffect(() => {
    props.getAllSuppliesCatagory();
   }, []);
 
-  useEffect(() => {
-      const sorted = [...props.allSuppliesCategory].sort((a, b) => {
-        const nameA = a.categoryName ? a.categoryName.toUpperCase() : "";
-        const nameB = b.categoryName ? b.categoryName.toUpperCase() : "";
-        return sortOrder === "asc" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
-      });
-      setSortedList(sorted);
-    }, [props.allSuppliesCategory, sortOrder]);
 
-    const handleSortChange = (order) => {
-      setSortOrder(order);
-    };
 
   const carouselRef = useRef(null);
 
@@ -69,20 +55,7 @@ function CategoriesListCard (props) {
 
   <div class="w-wk   self-center">
 <div class="text-black font-semibold mt-2">Catalog</div> 
-<div className="sorting-controls">
-        <SortButton
-            onClick={() => handleSortChange("asc")}
-            active={sortOrder === "asc"}
-          >
-            <FilterAltIcon/> A-Z
-          </SortButton>
-          <SortButton
-            onClick={() => handleSortChange("desc")}
-            active={sortOrder === "desc"}
-          >
-            <FilterAltIcon/> Z-A
-          </SortButton>
-      </div>
+
 <div class="  items-center  h-[14vh]  rounded overflow-auto">
 
 <CardWrapper>
@@ -91,7 +64,7 @@ function CategoriesListCard (props) {
                     style={{ minHeight: "4rem", justifyContent:"center" }}
                       class=" w-2/12  mt-3 ml-10"
                     >
-                  {sortedList.map((item) => {
+                  {props.allSuppliesCategory.map((item) => {
                     return (
                       <CardElement >
 
@@ -181,18 +154,3 @@ const CardElement = styled.div`
   }
 `;
 
-
-const SortButton = styled.button`
-  background-color: ${(props) => (props.active ? '#007bff' : '#f8f9fa')};
-  color: ${(props) => (props.active ? '#fff' : '#007bff')};
-  border: 1px solid #007bff;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  margin: 0 0.5rem;
-  cursor: pointer;
-  font-size: 1rem;
-
-  &:hover {
-    background-color: ${(props) => (props.active ? '#0056b3' : '#e2e6ea')};
-  }
-`;

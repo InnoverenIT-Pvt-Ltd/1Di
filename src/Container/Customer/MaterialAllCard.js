@@ -194,8 +194,8 @@ function MaterialAllCard (props) {
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-around w-full mt-1"> 
-                                                                        <div class="  text-xs text-[#1124AA] ">
+                                                                  <div className=" flex flex-row justify-around "> 
+                                                                        <div class="  text-xs text-[#1124AA] truncate max-w-[100px]">
                                                                               {item.categoryName}
                                                                             </div>
                                                                             <div class=" text-xs text-[#1124AA]">
