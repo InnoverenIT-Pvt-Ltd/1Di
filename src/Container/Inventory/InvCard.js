@@ -13,10 +13,14 @@ import { BundleLoader } from "../../Components/Placeholder";
 import { createBrowserHistory } from "history";
 import { RollbackOutlined } from "@ant-design/icons";
 import FeaturedMaterialCard from "./FeaturedMaterialCard";
-
+import axios from 'axios';
+import {base_url2} from "../../Config/Auth"
 const history = createBrowserHistory();
 
 function InvCard (props) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(()=>{
 
@@ -60,12 +64,33 @@ function InvCard (props) {
         {
           return <BundleLoader/>
         }
-const invencartItem = {
 
-  cartItems:[
-     
-  ]
-}
+const handlePostRequest = async () => {
+    setLoading(true);
+    setError(null);
+
+    // const url = 'https://example.com/api/endpoint';
+    // const postData = {
+    //   key1: 'value1',
+    //   key2: 'value2'
+    // };
+
+    try {
+      const response = await axios.post(`${base_url2}/quotation/toShipping/clicks`,{},
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      );
+      setData(response.data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
 
@@ -133,6 +158,7 @@ props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
           <Link to={props.invencartItem.cartItems && props.invencartItem.cartItems.length > 0 ? `/shopName/invcartInfo` :`/shopName/inventorycart`}>
             <Button type="primary"
               // disabled={props.invencartItem.cartItems && props.invencartItem.cartItems.length === 0 }
+              onClick={handlePostRequest}
             ><div class="text-white cursor-pointer">To Shipping</div></Button>
           </Link>
   :null}

@@ -12,6 +12,14 @@ import UploadInventoryDrawer from "./UploadInventory/UploadInventoryDrawer";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import cart1 from "../../Assests/Images/cart1.png";
+import TimeInterval from "../../Components/Utils/TimeInterval";
+import { StyledSelect ,StyledRangePicker} from "../../Components/UI/Antd";
+import {
+  setSelectedTimeIntervalReport,
+  setTimeRangeReport,
+} from "../Auth/Planner/PlannerAction";
+
+const Option = StyledSelect.Option;
 
 function InventoryActionRight (props) {
 
@@ -25,6 +33,11 @@ console.log("fffff",props.employee_type)
       <>
 
         <div class="flex items-center">
+        {/* <TimeInterval
+         times={props.dateRangeList}
+          handleClick={props.setSelectedTimeIntervalReport}
+        /> */}
+
         {props.employee_type === "Customer"  && 
         <div>
         <Link to="/shopName/inventorycart">
@@ -66,18 +79,22 @@ console.log("fffff",props.employee_type)
     );
 }
 
-const mapStateToProps = ({ inventory, auth, }) => ({
+const mapStateToProps = ({ inventory, auth,planner }) => ({
   uploadInvodrwr: inventory.uploadInvodrwr,
   linkInvntoryItems:inventory.linkInvntoryItems,
   invencartItemCount:inventory.invencartItemCount,
   userId: auth.userDetails.userId,
-  employee_type:auth.userDetails.employee_type
+  employee_type:auth.userDetails.employee_type,
+dateRangeList: planner.dateRangeList,
+
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       handleUploadInventoryDrawer,
-      getInventoryCartItemsCount
+      getInventoryCartItemsCount,
+      setSelectedTimeIntervalReport,
+      setTimeRangeReport
     },
     dispatch
   );
