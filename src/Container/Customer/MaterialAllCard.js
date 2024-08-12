@@ -5,6 +5,7 @@ import Carousel from "react-elastic-carousel";
 import styled from "styled-components";
 import Tooltip from '@mui/material/Tooltip';
 import { base_url } from '../../Config/Auth';
+import { Select } from "../../Components/UI/Elements";
 import { Button } from "antd";
 import { InfoCircleTwoTone,  
     MinusOutlined,
@@ -16,6 +17,10 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import MainDetailsDrawer from './MainDetailsDrawer';
 import { CurrencySymbol } from '../../Components/Common';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import MaterialRecommendedCard from '../Inventory/Child/MaterialRecommendedCard';
+import MaterialBestSellerCard from '../Inventory/Child/MaterialBestSellerCard';
+
+const { Option } = Select;
 
 function MaterialAllCard (props) {
   const [units, setUnits] = useState({});
@@ -24,7 +29,9 @@ function MaterialAllCard (props) {
     const [rowDatas, setrowDatas] = useState("");
     const [sortOrder, setSortOrder] = useState('asc'); 
     const [sortedList, setSortedList] = useState([]);
-   
+
+    const [selectedValue, setSelectedValue] = useState('default');
+
     useEffect(() => {
      props.getSuppliesCList(page);
     }, []);
@@ -125,11 +132,15 @@ function MaterialAllCard (props) {
 
       props.LinkInventoryItem(data);
     }
+
+    const handleChange = (value) => {
+      setSelectedValue(value);
+    };
     return (
         <>
     
         <div >
-        <div className="sorting-controls">
+        <div className="flex">
         <SortButton
             onClick={() => handleSortChange("asc")}
             active={sortOrder === "asc"}
@@ -142,8 +153,18 @@ function MaterialAllCard (props) {
           >
             <FilterAltIcon/> Z-A
           </SortButton>
-      </div>
+<Select
+        style={{ width: '10rem' }}
+        defaultValue="default"
+        onChange={handleChange}
+      >
+        <Option value="default">Select</Option>
+        <Option value="recommend">Recommend</Option>
+        <Option value="bestSeller">Best Seller</Option>
+      </Select>
 
+      </div>
+      {selectedValue === 'default' &&
         <InfiniteScroll
         dataLength={sortedList.length}
         next={handleLoadMore}
@@ -259,7 +280,11 @@ function MaterialAllCard (props) {
                       {/* </Carousel> */}
                     
                 </CardWrapper>    
-                </InfiniteScroll>
+                </InfiniteScroll>}
+
+                {selectedValue === 'recommend' && <MaterialRecommendedCard invencartItem={props.invencartItem}/>}
+{selectedValue === 'bestSeller' && <MaterialBestSellerCard invencartItem={props.invencartItem}/>}
+  
        </div>
        <MainDetailsDrawer
        rowDatas={rowDatas}

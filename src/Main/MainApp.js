@@ -72,8 +72,8 @@ const Courses = lazy(() => import('../Container/Courses/Courses'))
 
 const Planner = lazy(() => import("../Container/Auth/Planner/Planner"));
 const Quotation = lazy(()=>import("../Container/Quotation/Quotation"));
-const SupplierInventory =lazy(()=>import("../Container/Inventory/SupplierInventory"))
-
+const SupplierInventory =lazy(()=>import("../Container/Inventory/SupplierInventory"));
+const PaymentPage =lazy(()=>import("../Container/PaymentPage/PaymentPage"));
 
 
 function MainApp(props) {
@@ -356,7 +356,20 @@ function MainApp(props) {
                                  /></label>
               </span>
             </Link>
-            
+            {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
+            <Link to="/paymentPage" className="dheight">
+              <span
+                style={{
+                  paddingLeft: "1em",
+                  color: click == "paymentPage" ? "#8dc1f1" : "black"
+                }}
+                onClick={() => { handleClick("paymentPage") }}
+              >
+                <label class="font-poppins text-base cursor-pointer"> 
+                              Pay
+                               </label>
+              </span>
+            </Link>:null}
             {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
             <Link to="/planner" className="dheight">
               <span
@@ -460,6 +473,7 @@ function MainApp(props) {
                   <Route exact path="/completedorder" component={CompletedOrder} />
                   <Route exact path="/invoice" component={Invoice} />
                   <Route exact path="/changepassword" component={CustomerChangePassword} />
+                  <Route exact path="/paymentPage" component={PaymentPage} />
                   {/* <Route exact path="/report" component={} /> */}
                   <Route exact path="/:shopName/invcartInfo" component={InventoryDeliveryInfo} />
                   <Route exact path="/:shopName/inventorycart" component={InventoryCart} />
@@ -470,6 +484,8 @@ function MainApp(props) {
                   <Route exact path="/:shopName/invenloading/:stripePaymentId/:paymentId" component={InventoryPaymentLoading}/>
                   <Route exact path="/planner"  component={Planner} />
                   <Route exact pat="/supplierInventory" component={SupplierInventory}/>
+                 
+
                 </Switch>
                 <AchievementDrawerModal
                   clickData={props.clickData}

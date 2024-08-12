@@ -115,8 +115,11 @@ const initialState = {
   productsByproductId: {},
 
   fetchingFeaturedMaterials: true, fetchingFeaturedMaterialsError: false,
-  featuredMaterials:[]
+  featuredMaterials:[],
   
+  fetchingMaterialRecommendeds: false,
+  fetchingMaterialRecommendedsError:false,
+  materialRecommendeds:[]
 };
 
   export const inventoryReducer = (state = initialState, action) => {
@@ -512,6 +515,26 @@ const initialState = {
                 return { ...state, fetchingFeaturedMaterials: false, featuredMaterials: action.payload };
               case types.GET_FEATURED_MATERIALS_FAILURE:
                 return { ...state, fetchingFeaturedMaterials: false, fetchingFeaturedMaterialsError: true };
+
+
+                case types.GET_MATERIAL_RECOMMEND_REQUEST:
+                  return { ...state, fetchingMaterialRecommendeds: true };
+              case types.GET_MATERIAL_RECOMMEND_SUCCESS:
+                  return {
+                      ...state,
+                      fetchingMaterialRecommendeds: false,
+                      materialRecommendeds: [...state.materialRecommendeds, ...action.payload],
+                     
+                  };
+              case types.GET_MATERIAL_RECOMMEND_FAILURE:
+                  return {
+                      ...state,
+                      fetchingMaterialRecommendeds: false,
+                      fetchingMaterialRecommendedsError: true,
+                  };
+
+
+
 
                           default:
             return state;
