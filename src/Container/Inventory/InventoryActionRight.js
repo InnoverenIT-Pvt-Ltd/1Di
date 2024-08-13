@@ -42,7 +42,7 @@ console.log("fffff",props.employee_type)
         <div>
         <Link to="/shopName/inventorycart">
               <div className="cart-icon ">
-                <ShoppingCartIcon style={{color:"white"}} class="w-8 h-8 text-white"/>
+                <ShoppingCartIcon className="w-8 h-8 text-white"/>
                 <p>
                   {props.invencartItemCount.productCount}
                   {/* {props.linkInvntoryItems.productCount ? `${props.invencartItemCount.productCount}` : 

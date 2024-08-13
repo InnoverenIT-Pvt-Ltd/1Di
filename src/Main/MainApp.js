@@ -356,7 +356,7 @@ function MainApp(props) {
                                  /></label>
               </span>
             </Link>
-            {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
+            {/* {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
             <Link to="/paymentPage" className="dheight">
               <span
                 style={{
@@ -369,7 +369,7 @@ function MainApp(props) {
                               Pay
                                </label>
               </span>
-            </Link>:null}
+            </Link>:null} */}
             {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
             <Link to="/planner" className="dheight">
               <span

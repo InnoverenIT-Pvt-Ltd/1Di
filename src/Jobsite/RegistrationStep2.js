@@ -45,32 +45,38 @@ const dialCode = props.countries.map((item)=> ({
           values,
           ...rest
         }) => (
-        
-          <Form class="w-wk flex justify-center">
-             <div   className="bg-[#DFDFDF] rounded-2xl p-3 border-solid  flex flex-col justify-center mt-3 w-11/12  " >
+        <div class=" h-[63vh]">
+          <Form class="w-wk flex justify-center ">
+             <div   className="bg-[#DFDFDF] rounded-2xl p-3 border-solid  flex flex-col justify-center mt-3 w-11/12   " >
             <div class=" overflow-x-hidden max-h-[36rem]">
-              <div class="p-4 ">
-                
+              <div class="p-4 ">                
               <div class="flex flex-col w-wk">
                   <div class="flex justify-between mt-2 w-wk">
                   <div class="flex items-center justify-between w-[18rem]">
-                  <div class="font-montserrat font-semibold text-xs w-28 ">First Name</div>
+                  <div class="font-poppins font-semibold text-xs w-28 ">First Name</div>
                   <div class="">
                         <Field
                                 placeholder={`First Name`}
                                 component={InputComponent}
                                 onChange={props.handleStepFirstName}
                                 value={props.firstName} 
+                                style={{
+                                  height: "1.8rem",
+                                    // borderRadius: "0.4rem"
+                                }}
                             />
                            </div>
                              </div>
                              <div class="flex items-center justify-between w-[18rem]">      
-                             <div class="w-28 font-montserrat font-semibold text-xs  ">Last Name</div>
+                             <div class="w-28 font-poppins font-semibold text-xs  ">Last Name</div>
                              <div class="">
                 <Field
                       placeholder="Last Name"
                       inlineLabel
-                      width={"100%"}
+                      style={{
+                        height: "1.8rem",
+                          // borderRadius: "0.4rem"
+                      }}
                       component={InputComponent}
                       value={props.lastName}
                       onChange={props.handleStepLastName}
@@ -82,7 +88,7 @@ const dialCode = props.countries.map((item)=> ({
                              </div>
                              <div class="flex justify-between w-wk mt-2">
                              <div class="flex items-center justify-between w-[18rem]">
-                <div className="input-header1  font-montserrat font-semibold text-xs  w-28">  Email </div>
+                <div className="input-header1  font-poppins font-semibold text-xs  w-28">  Email </div>
                         <div>
                         <Field
                                 value={props.email}
@@ -90,13 +96,17 @@ const dialCode = props.countries.map((item)=> ({
                                 type="email"
                                 component={InputComponent}
                                 onChange={props.handleStepEmail}
+                                style={{
+                                  height: "1.8rem",
+                                    // borderRadius: "0.4rem"
+                                }}
                             />
                            
                                                </div>
                              </div>
                             <Spacer />
                             <div class="flex items-center justify-between w-[18rem]">
-                {/* <div className="input-header1 font-montserrat font-semibold text-xs w-28"> {props.Cteptwos.confirmEmail}</div> */}
+                {/* <div className="input-header1 font-poppins font-semibold text-xs w-28"> {props.Cteptwos.confirmEmail}</div> */}
                 {/* <div>
                         <Field
                                  value={props.confirmEmailId}
@@ -112,20 +122,20 @@ const dialCode = props.countries.map((item)=> ({
                             
                             <Spacer />
                             <div class="flex items-center justify-between w-[18rem]">
-                            {/* <div className="input-header1 font-montserrat font-semibold text-xs  w-28">{props.Cteptwos.repeatPassword}</div> */}
+                            {/* <div className="input-header1 font-poppins font-semibold text-xs  w-28">{props.Cteptwos.repeatPassword}</div> */}
                              </div>
                              </div>
-                             <div class="flex justify-between w-wk mt-2">
-                             <div class="flex items-center justify-between w-[18rem]">
-                             <div class=" font-montserrat font-semibold text-xs w-28 ">Dial Code</div>
+                             <div class="flex justify-between w-1/2 mt-2">
+                             <div class="flex flex-col items-center justify-between w-[18rem]">
+                             <div class=" font-poppins font-semibold text-xs w-28 ">Dial Code</div>
                              <div>
                     <Select
                       placeholder="Select code"
                       inlineLabel
-                      width={"100%"}
+                   
                       value={props.countryDialCode}
                       onChange={props.handleDialCodeStep2}
-                      style={{width:"5rem"}}
+                      style={{ height: "1rem",width:"5rem"}}
                     >
                       {/* <Option value={"+91"}>{"+91"}</Option>
                       <Option value={"+31"}>{"+31"}</Option> */}
@@ -137,14 +147,15 @@ const dialCode = props.countries.map((item)=> ({
                    </div>
                   </div>
                                 
-                  <div class="flex items-center justify-between w-[18rem]">
-                  <div className="input-header1 font-montserrat font-semibold text-xs  w-28">Mobile No</div>
+                  <div class="flex flex-col  items-center justify-between w-[18rem]">
+                  <div className="input-header1 font-poppins font-semibold text-xs  w-28">Mobile No</div>
                   <div>   
                                     <Field
                                         value={props.mobileNo}
                                         placeholder={`Mobile #`}
                                         onChange={props.handleMoBoStep2}
                                         component={InputComponent}
+                                          style={{ height: "1.8rem"}}
                                     />
                                    
 </div>
@@ -158,7 +169,7 @@ const dialCode = props.countries.map((item)=> ({
               </div>
             </div>
           </Form>
-          
+          </div>
         )}
       </Formik>
     </>

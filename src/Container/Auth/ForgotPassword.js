@@ -7,7 +7,7 @@ import { ValidationError, Title, SubTitle } from "../../Components/UI/Elements";
 import { FlexContainer } from "../../Components/UI/Layout";
 import Button from "antd/lib/button";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import FWLogo from "../../Assests/Images/Logo_new copy.png";  // for CT
+import FWLogo from "../../Assests/Images/Logo_new.png";  // for CT
 import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
 import { Input } from "antd";
 
@@ -61,10 +61,10 @@ class ForgotPassword extends Component {
                 <img
                   className="big-logo"
                   src={FWLogo}
-                  style={{ width: 200 }}
+                  style={{ width:" 4rem ", height:"4rem" }}
                   alt="Tekorero logo"
                 />
-                <div className="p-4 w-full rounded shadow-2xl border">
+                <div className="p-4 w-full rounded shadow-2xl border mt-3">
                   <Title>Forgot Password</Title>
                   <SubTitle>Link will be sent to your registered email id</SubTitle>
                   <div class="mt-3" />
@@ -258,7 +258,7 @@ class ForgotPassword extends Component {
                 </div>
                 <div className="text-xs text-center font-poppins mt-auto text-black absolute bottom-0"
                  >
-                  © {new Date().getFullYear()},  {` `} 1dI, All rights reserved.
+                  © {new Date().getFullYear()},  {` `} 1Di, All rights reserved.
                 </div>
               </div>
 

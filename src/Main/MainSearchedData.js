@@ -7,17 +7,27 @@ import { Tooltip } from 'antd';
 const MainSearchedData = (props) => {
     return (
 
-        <div class="w-wk   self-center">
-           <div>
+        <div class="w-wk   self-center h-[77vh]">
+           <div className="relative bg-[#1124AA] h-10 text-white w-wk flex flex-col justify-center">
+      <div class="flex">
+    <RollbackOutlined
+          className="BackButton flex justify-start text-[1.1rem]"
+          style={{color:"white", }}
+          
+        />
+    <div class="text-lg w-[100%] flex justify-center text-white font-semibold">Catalog</div>
+</div>
+          </div>
+          {/* <div class="relative bg-[#1124AA] h-10 text-white w-wk flex flex-row  justify-center">
+           <div class=" flex " >
             <a href='/'>
       <RollbackOutlined
-          className="BackButton flex justify-start "
-          style={{color:"black"}}
-         
-        />
+          className="BackButton flex justify-start "/>
+          style={{color:"white"}}
         </a>
         </div>
-      <div class="text-black font-semibold">Catalog</div> 
+      <div class=" text-lg w-[100%] flex justify-center text-white font-semibold">Catalog</div> 
+      </div> */}
       <div class="  items-center  h-34  rounded overflow-auto">
       
       <CardWrapper>
@@ -51,7 +61,7 @@ const MainSearchedData = (props) => {
                               <CardDescription>
                               
                                 <Tooltip title={item.categoryName} placement="top" arrow>
-                                  <div class="text-xs font-bold ">{item.categoryName || ""}</div>
+                                  <div class="text-xs truncate ">{item.categoryName || ""}</div>
                                 </Tooltip>
       
                               </CardDescription>

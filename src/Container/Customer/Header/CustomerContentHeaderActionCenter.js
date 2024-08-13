@@ -139,7 +139,7 @@ function CustomerContentHeaderActionCenter (props) {
         <div class = "flex">
         <div class=" w-72 md:ml-4 max-sm:w-16 ml-0">
           <Input
-            placeholder="Search by Name,Tag, Upc"
+            placeholder="Search by Name,Tag, UPC"
             class="w-96"
             suffix={suffix}
             onPressEnter={handleSearch}

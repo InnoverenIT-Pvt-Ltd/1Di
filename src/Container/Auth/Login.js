@@ -77,6 +77,8 @@ class Login extends Component {
     console.log(this.props);
     return (
       <>
+
+
        <div class="flex flex-col items-center">
             {/* <img
               className="big-logo"
@@ -99,11 +101,8 @@ class Login extends Component {
                 }}
               >
                 {({ errors, touched, isSubmitting, values }) => (
-                  <Form className="form-background p-5  rounded">
-                    <div
-
-                      style={{ alignItems: "center", display: "flex", flexDirection: "column" }}
-                    >
+                  <Form className="form-background p-3  rounded w-[95%]">
+                    <div class=" flex flex-col items-center"  >
                       <div className="text-xl font-semibold">Sign in or create an account</div>
                       <div className="text-base font-semibold mt-2">Enter your email to sign in or create an account</div>
                       <div className="w-full mt-2">
@@ -135,15 +134,15 @@ class Login extends Component {
                           <label className="text-white">Log In</label>
                         </Button>
                       </div>
-                      <div className="w-full mt-2">By using 1dI, you agree to the  
-                     <label className="text-[#1075D3]">terms of service</label>  
+                      <div className="w-full mt-2 text-sm flex flex-row">By using 1Di, you agree to the  
+                     <div className="text-[#1075D3]">terms of service</div>  
                       and 
-                      <label className="text-[#1075D3]">privacy policy.</label> 
+                      <div className="text-[#1075D3]">privacy policy.</div> 
                       </div>
                       <div className="flex justify-between w-wk mt-2">
-                      <div className="text-[#1075D3] font-medium"><Link to="/forgotPassword">Forgot Password</Link></div>
-                      <div className="text-[#1075D3] font-medium">
-                        <label className="font-medium  text-black">Dont have account </label>
+                      <div className="text-[#1075D3] text-sm font-medium"><Link to="/forgotPassword">Forgot Password</Link></div>
+                      <div className="text-[#1075D3] font-medium flex flex-row items-center">
+                        <div className="font-medium  text-sm text-black mr-1">Dont have account </div>
                         <Link to="/registration">
                         Register</Link> ?</div>
                       </div>
