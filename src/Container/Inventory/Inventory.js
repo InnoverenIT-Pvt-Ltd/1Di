@@ -53,9 +53,10 @@ function Inventory (props) {
       activeClick={activeClick}
       fetchingCategories={props.fetchingCategories}/>
       </div>
-      <div className='w-wk flex  '>
-                    <div>
-                      Products by Catalog
+      <div class=" flex flex-row m-4 w-wk">
+        <div className=' flex  mt-5 '>
+                    <div class="font-bold">
+                      Products 
                     </div>
                     <div className='flex  justify-center'>
                         <ProductCardListbyCategory productsbyCategoryId={props.productsbyCategoryId} activeClick={activeClick}/>
@@ -65,8 +66,8 @@ function Inventory (props) {
            <div class="mt-2">
          
 <MaterialsItemCard invencartItem={props.invencartItem}/>
-</div>
-
+       </div>
+       </div>
         </Suspense>
        </div>
          )} 

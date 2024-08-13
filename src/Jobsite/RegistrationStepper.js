@@ -164,7 +164,7 @@ let data={
 
                 </StyledSteps>
                 <div
-                    style={{ minHeight: "40vh" }}
+                    style={{ minHeight: "35vh" }}
                 >{steps[current].content}</div>
                 <FlexContainer justifyContent="flex-end">
                     <div className="steps-action">

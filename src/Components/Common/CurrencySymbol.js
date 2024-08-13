@@ -7,25 +7,25 @@ class CurrencySymbol extends Component {
     return (
       <>
         {currencyType === "USD" && (
-          <span style={{ fontSize: "14px" }}>US&#36;</span>
+          <span style={{ fontSize: "12px" }}>US&#36;</span>
         )}
         {currencyType === "EUR" && (
-          <span style={{ fontSize: "14px" }}>&euro;</span>
+          <span style={{ fontSize: "12px" }}>&euro;</span>
         )}
         {currencyType === "GBP" && (
-          <span style={{ fontSize: "14px" }}>&#163;</span>
+          <span style={{ fontSize: "12px" }}>&#163;</span>
         )}
         {currencyType === "INR" && (
-          <span style={{ fontSize: "14px" }}>&#x20b9; </span>
+          <span style={{ fontSize: "12px" }}>&#x20b9; </span>
         )}
         {currencyType === "AUD" && (
-          <span style={{ fontSize: "14px" }}>AU&#36; </span>
+          <span style={{ fontSize: "12px" }}>AU&#36; </span>
         )}
         {currencyType === "CAD" && (
-          <span style={{ fontSize: "14px"}}>CA&#36; </span>
+          <span style={{ fontSize: "12px"}}>CA&#36; </span>
         )}
         {currencyType === "SGD" && (
-          <span style={{ fontSize: "14px" }}>SG&#36; </span>
+          <span style={{ fontSize: "12px" }}>SG&#36; </span>
         )}
       </>
     );

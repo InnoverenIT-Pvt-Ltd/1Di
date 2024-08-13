@@ -162,22 +162,19 @@ class CustomerMainApp extends Component {
                 </div>
                 </div>
                 </div>
-                <div className="relative   bg-white h-[7rem] w-[33.2rem] -mt-[5.1rem] rounded-[2rem] -ml-4"></div>
-<div className='flex justify-center'>
-                <div className='w-[90%] flex flex-col justify-center items-center overflow-x-auto p-1 h-[-webkit-fill-available]'>
+        <div className="relative   bg-white h-[7rem] w-[33.2rem] -mt-[5.1rem] rounded-[2rem] -ml-4"></div>
+          <div className='flex justify-center'>
+             <div className='w-[90%] flex flex-col justify-center items-center overflow-x-auto p-1 h-[-webkit-fill-available]'>
                 <CategoriesListCard categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/>
                 {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
-                <div className='w-wk flex  mt-5 '>
-                    <div>
-                      Products by Catalog
+                <div className='w-wk flex  mt-7 flex-row '>                
+                    <div  class="font-bold" >
+                      Products 
                     </div>
                     <div className='flex  justify-center'>
                         <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
-                  </div>
-                        </div> 
-                 
-
-         <div class=" self-center  w-wk mt-3"> 
+                    </div>
+                    <div class=" self-center  w-wk "> 
          {/* <div class=" w-1/4">
                       <CustomerMainAppLeft categoriesPrds={this.props.categoriesPrds} 
                       handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick}
@@ -358,10 +355,11 @@ class CustomerMainApp extends Component {
                                           </MainWrapper>
                                           
 </div>
-                                          </div>
-                                          </div> 
-                                          </div>
-                                          </div>
+                    </div>
+                </div>
+              </div> 
+            </div>
+           </div>
                                            )}  
                                           </div>
         <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />

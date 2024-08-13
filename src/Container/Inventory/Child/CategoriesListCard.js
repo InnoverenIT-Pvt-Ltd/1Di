@@ -54,7 +54,7 @@ function CategoriesListCard (props) {
   return (
 
   <div class="w-wk   self-center">
-<div class="text-black font-semibold mt-2">Catalog</div> 
+<div class="text-black font-bold mt-2">Catalog</div> 
 
 <div class="  items-center  h-[14vh]  rounded overflow-auto">
 
