@@ -136,11 +136,29 @@ function MaterialAllCard (props) {
     const handleChange = (value) => {
       setSelectedValue(value);
     };
+   
     return (
         <>
     
         <div >
-        <div className="flex">
+        <div className="flex justify-between items-center">
+        <div  class="font-bold" >
+                      Products 
+                    </div>
+          <div className='flex items-center'>
+          <div className='mr-12'>Filter:</div>
+        <Select
+        style={{ width: '10rem' }}
+        defaultValue="default"
+        onChange={handleChange}
+      >
+        <Option value="default">Select</Option>
+        <Option value="recommend">Recommend</Option>
+        <Option value="bestSeller">Best Seller</Option>
+      </Select>
+      </div>
+      <div className='flex items-center'>
+      <div className='mr-12'>Sort by:</div>
         <SortButton
             onClick={() => handleSortChange("asc")}
             active={sortOrder === "asc"}
@@ -153,15 +171,7 @@ function MaterialAllCard (props) {
           >
             <FilterAltIcon/> Z-A
           </SortButton>
-<Select
-        style={{ width: '10rem' }}
-        defaultValue="default"
-        onChange={handleChange}
-      >
-        <Option value="default">Select</Option>
-        <Option value="recommend">Recommend</Option>
-        <Option value="bestSeller">Best Seller</Option>
-      </Select>
+          </div>
 
       </div>
       {selectedValue === 'default' &&
@@ -185,9 +195,10 @@ function MaterialAllCard (props) {
                       {sortedList.map((item) => {
                          const currentdate = dayjs().format("YYYY/MM/DD");
                          const date = dayjs(item.creationDate).format("YYYY/MM/DD");
+                         console.log(item.suppliesPrice)
                         return (
                           <CardElement >
-                          <div class=" flex flex-col items-center max-sm:mr-0 md:flex   h-hwk border">
+                          <div class=" flex flex-col items-center max-sm:mr-0 md:flex w-[12.6vw]   h-hwk border">
                                               {item.imageId ? (
                                                     <div class=" flex items-center">
                                                      <img
@@ -200,7 +211,17 @@ function MaterialAllCard (props) {
                                                         <div className="flex items-center text-xs h-[6.5rem]  w-[7rem] ">Image Not Available</div>
                                                       
                                                     )}
-                                                            <div class=" flex w-wk flex-row mt-1 text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
+                                                      <div className=" flex justify-end flex-row w-full "> 
+                                                                        {/* <div class=" mt-1 text-xs text-[#1124AA] ">
+                                                                            WSL -  {item.discounts?.[0]?.allowedDiscount}
+                                                                            </div> */}
+                                                                            <div class="  flex  p-1 text-xs text-[#1124AA]">
+                                                                            SRP - 
+                                                                            {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> */}
+                                                                             {item.suppliesPrice} CA$
+                                                                            </div> 
+                                                                  </div>
+                                                            <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
                                                                   <div> {item.newSuppliesNo}  </div>
                                                                   <div > 
@@ -224,14 +245,7 @@ function MaterialAllCard (props) {
                                                                             </div> 
                                                                   </div>
                                                               
-                                                                  <div className=" flex flex-row w-full justify-end"> 
-                                                                        {/* <div class=" mt-1 text-xs text-[#1124AA] ">
-                                                                            WSL -  {item.discounts?.[0]?.allowedDiscount}
-                                                                            </div> */}
-                                                                            <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                            SRP - <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPrice}
-                                                                            </div> 
-                                                                  </div>
+                                                                
                                                                                                                          
                                                                             <div class="w-40 mt-1 flex  justify-between max-sm:flex items-center">
                                                                             {/* <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
@@ -326,7 +340,7 @@ const CardElement = styled.div`
 
   /* border:2px solid orange */
    padding: 0 10px;
-   margin-top: 2.5em;
+   margin-top: 1rem;
   display: flex;
     justify-content: center;
   /* margin:0px 20px; */
@@ -344,7 +358,8 @@ const SortButton = styled.button`
   color: ${(props) => (props.active ? '#fff' : '#007bff')};
   border: 1px solid #007bff;
   border-radius: 4px;
-  padding: 0.5rem 1rem;
+  height: 2.4rem;
+  padding: 0.25rem 1rem;
   margin: 0 0.5rem;
   cursor: pointer;
   font-size: 1rem;

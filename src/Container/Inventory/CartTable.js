@@ -4,29 +4,29 @@ function CartTable (props) {
   const data = {
   
     "Length": {
-      retail: props.productsByproductId.length || "0",
-      inner: props.productsByproductId.innerLength || "0",
-      master: props.productsByproductId.masterLength || "0",
+      retail: props.productsByproductId.length?props.productsByproductId.length.toFixed(2) : "0",
+      inner: props.productsByproductId.innerLength?props.productsByproductId.innerLength.toFixed(2) : "0",
+      master: props.productsByproductId.masterLength?props.productsByproductId.masterLength.toFixed(2) : "0",
     },
     "Depth": {
-      retail: props.productsByproductId.width || "0",
-      inner: props.productsByproductId.innerWidth || "0",
-      master: props.productsByproductId.masterWidth || "0",
+      retail: props.productsByproductId.width?props.productsByproductId.width.toFixed(2) : "0",
+      inner: props.productsByproductId.innerWidth?props.productsByproductId.innerWidth.toFixed(2) : "0",
+      master: props.productsByproductId.masterWidth?props.productsByproductId.masterWidth.toFixed(2) : "0",
     },
-    "Hight": {
-      retail: props.productsByproductId.height || "0",
-      inner: props.productsByproductId.innerHeight || "0",
-      master: props.productsByproductId.masterHeight || "0",
+    "Height": {
+      retail: props.productsByproductId.height?props.productsByproductId.height.toFixed(2) : "0",
+      inner: props.productsByproductId.innerHeight?props.productsByproductId.innerHeight.toFixed(2) : "0",
+      master: props.productsByproductId.masterHeight?props.productsByproductId.masterHeight.toFixed(2) : "0",
     },
     "Volume": {
-      retail: props.productsByproductId.volume || "0",
-      inner: props.productsByproductId.innerVolume || "0",
-      master: props.productsByproductId.masterVolume || "0",
+      retail: props.productsByproductId.volume?props.productsByproductId.volume.toFixed(2) : "0",
+      inner: props.productsByproductId.innerVolume?props.productsByproductId.innerVolume.toFixed(2) : "0",
+      master: props.productsByproductId.masterVolume?props.productsByproductId.masterVolume.toFixed(2) : "0",
     },
     "Weight": {
-      retail: props.productsByproductId.weight || "0",
-      inner: props.productsByproductId.innerWeight || "0",
-      master: props.productsByproductId.masterWeight || "0",
+      retail: props.productsByproductId.weight?props.productsByproductId.weight.toFixed(2) : "0",
+      inner: props.productsByproductId.innerWeight?props.productsByproductId.innerWeight.toFixed(2) : "0",
+      master: props.productsByproductId.masterWeight?props.productsByproductId.masterWeight.toFixed(2) : "0",
     },
     // "Arcticle No": {
     //   retail: props.productsByproductId.weight || "",
