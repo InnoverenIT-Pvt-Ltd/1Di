@@ -44,15 +44,15 @@ console.log(props.productsByproductId)
 
     return (
     <>
-     <div className="bg-[#F7F8FC]">
+     <div className="bg-[#F7F8FC] p-8">
  <div className="flex justify-between items-center w-full">
       <div >
-        <div>{props.productsByproductId.suppliesName}</div>
-        <div>{props.productsByproductId.newSuppliesNo}</div>
+        <div className="text-xl font-medium">{props.productsByproductId.suppliesName}</div>
+        <div className="text-xl font-medium">{props.productsByproductId.newSuppliesNo}</div>
     
-        <div className='flex items-center justify-center w-[w-wk] mt-3'>
-        <div className="flex items-center justify-center">
-        <div class="text-sm text-black w-16">
+        <div className='flex items-center  w-[w-wk] mt-3'>
+        <div className="flex items-center ">
+        <div class="text-sm font-bold text-black w-16">
        
          SRP- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/> {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
         </div>
@@ -72,17 +72,17 @@ console.log(props.productsByproductId)
       </div>
    
     </div>
-    <div className="flex w-wk justify-evenly mt-6 ">
-    <div className="flex flex-col border box-border h-40 w-[30rem]">
-    <div className=" font-medium">Description </div>
-    <div dangerouslySetInnerHTML={{ __html:props.productsByproductId.description? `<p>${props.productsByproductId.description}</p>`: "<p></p>" }} />
+    <div className="flex w-wk justify-between mt-6 ">
+    <div className="flex flex-col border box-border h-40 w-[27rem]">
+    <div className=" font-medium ml-1">Description </div>
+    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html:props.productsByproductId.description? `<p>${props.productsByproductId.description}</p>`: "<p></p>" }} />
     </div>
-    <div className="flex flex-col border box-border h-40 w-[30rem]">
-    <div className=" font-medium">Description French </div>
-    <div dangerouslySetInnerHTML={{ __html: props.productsByproductId.qrCodeNo ?`<p>${props.productsByproductId.qrCodeNo}</p>`: "<p></p>" }} />
+    <div className="flex flex-col border box-border h-40 w-[27rem]">
+    <div className=" font-medium ml-1">Description in French </div>
+    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html: props.productsByproductId.qrCodeNo ?`<p>${props.productsByproductId.qrCodeNo}</p>`: "<p></p>" }} />
     </div>
     </div>
-    <div className="cardDs-bottom mt-5 flex justify-center">
+    <div className="cardDs-bottom mt-5 flex ">
     <MainTable productsByproductId={props.productsByproductId}/>
    
       </div>

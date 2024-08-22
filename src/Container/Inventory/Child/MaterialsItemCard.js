@@ -185,7 +185,24 @@ useEffect(() => {
 
     <div >
 
-    <div className="flex">
+    <div className="flex justify-between items-center">
+    <div  class="font-bold" >
+                      Products 
+                    </div>
+                    <div className='flex items-center'>
+                    <div className='mr-12'>Filter:</div>
+    <Select
+        style={{ width: '10rem' }}
+        defaultValue="default"
+        onChange={handleChange}
+      >
+        <Option value="default">Select</Option>
+        <Option value="recommend">Recommend</Option>
+        <Option value="bestSeller">Best Seller</Option>
+      </Select>
+      </div>
+      <div className='flex items-center'>
+      <div className='mr-12'>Sort by:</div>
         <SortButton
             onClick={() => handleSortChange("asc")}
             active={sortOrder === "asc"}
@@ -198,15 +215,7 @@ useEffect(() => {
           >
             <FilterAltIcon/> Z-A
           </SortButton>
-<Select
-        style={{ width: '10rem' }}
-        defaultValue="default"
-        onChange={handleChange}
-      >
-        <Option value="default">Select</Option>
-        <Option value="recommend">Recommend</Option>
-        <Option value="bestSeller">Best Seller</Option>
-      </Select>
+          </div>
       </div>
       {selectedValue === 'default' &&
                      <InfiniteScroll
@@ -229,7 +238,7 @@ useEffect(() => {
                         <div 
                         // ref={isLastElement ? lastProductElementRef : null} 
                         key={item.suppliesId} className="card-element">
-                      <div class=" h-[19rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[14rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                      <div class=" h-[19rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[12.6rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
                      
                       <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
                                               {item.imageId ? (
@@ -241,10 +250,15 @@ useEffect(() => {
                                                          </div>  
                                                         ) : (
                            
-                                                        <div className=" text-base h-[12.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
+                                                        <div className=" text-base h-[9.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
-                                                            <div class=" flex w-wk cursor-pointer flex-row mt-1 text-[#1124AA] justify-evenly "> 
+                                                     <div className=" flex justify-end flex-row w-full "> 
+                                                                            <div class=" mr-3 text-xs text-[#1124AA]">
+                                                                              SRP -  {item.suppliesPrice} CA$
+                                                                            </div> 
+                                                                  </div>
+                                                                  <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
                                                                   <div> {item.newSuppliesNo}  </div>
                                                                   <div > 
@@ -269,14 +283,10 @@ useEffect(() => {
                                                                               {item.subCategoryName}
                                                                             </div> 
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-around"> 
-                                                                            <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              SRP - <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C?.toFixed(2)}
-                                                                            </div> 
-                                                                  </div>
+                                                                 
                                                       
                                                                                                                          
-                                                                            <div class="mt-1 flex  justify-between max-sm:flex items-center">
+                                                                            <div class="mt-1 flex  justify-between max-sm:flex items-center p-4">
                                                                             <div class=" flex  max-sm:w-48  ">
                                                                             <div className="add-minus-quantity">
                                                                           <span >

@@ -55,9 +55,7 @@ function Inventory (props) {
       </div>
       <div class=" flex flex-row m-4 w-wk">
         <div className=' flex  mt-5 '>
-                    <div class="font-bold">
-                      Products 
-                    </div>
+                   
                     <div className='flex  justify-center'>
                         <ProductCardListbyCategory productsbyCategoryId={props.productsbyCategoryId} activeClick={activeClick}/>
                   </div>
