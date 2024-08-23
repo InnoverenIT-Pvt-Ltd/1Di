@@ -12,7 +12,7 @@ import PaymentCheckoutForm from "../Payment/PaymentCheckoutForm";
 // const stripePromise = loadStripe('pk_live_51LAhLPKXR87JGQ2mbvZttPANWPbRh9p8chyzzqWS87BAykmpgunwMyR6cAWim4CmOI8Ph6qyKMUZXOvrsqWQrJG400VZPXiFaV');
 //Uat pk
 //  const stripePromise = loadStripe('pk_test_51LAhLPKXR87JGQ2mrDgfc3XSxcxCrDFkWbrhqMHwhDNOp6XZS3murGpQi9Z1UWxMgkj4LSkHa4YKuc4LiW1hD7Fq00LPAwIPu8');
-const stripePromise = loadStripe('pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3');
+const stripePromise = loadStripe('pk_test_51PqCWlIMpvH6thpXhGRrnLxBQcEJJ0yl9YvCSzFZy8hX1Q1XIdMXM8fM1ar43dlv9uC4IJPkWIsP7dimrUklQMyc007c8UddvV');
 
 function MyStoreCheckout(props) {
   // const cartData = props.deliveryInfo.storeCart;

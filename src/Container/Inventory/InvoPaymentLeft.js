@@ -17,7 +17,7 @@ import PayChecktInventoryModal from "./PayChecktInventoryModal";
 import { base_url2 } from "../../Config/Auth";
 import InventoryOrdersuccess from "./InventoryOrdersuccess";
 
-const InvoPaymentLeft = ({ props,userId, invencartItem, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
+const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
   const [value, setValue] = useState(1);
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
   const history = useHistory();
@@ -347,10 +347,11 @@ const InvoPaymentLeft = ({ props,userId, invencartItem, addiNVEStripeModal, hand
   };
   const handlePayByBlur = async () => {
     const check = checkNo.trim();
-    if (check === "") {
-      message.error("Check number is required!");
-      return;
-    } {
+    // if (check === "") {
+    //   message.error("Check number is required!");
+    //   return;
+    // } {
+    {
       try {
         const response = await axios.post(`${base_url2}/payment/protal/prosess`, { paymentNo: check, quotationId:invencartItem.orderPhoneId,type:"Cheque",
            amount:invencartItem.cartSummary.grandTotal
@@ -384,11 +385,12 @@ const InvoPaymentLeft = ({ props,userId, invencartItem, addiNVEStripeModal, hand
     codInventoryOrder(data);
   };
 console.log(invencartItem)
+ console.log(stripeNo)
   return (
     <>
       <br />
       <Radio.Group onChange={onChange} value={value}>
-      {/* {props.stripeInd.stripeInd ? ( */}
+      {stripeNo.stripeInd ? (
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           <Radio value={"Stripe"}>
             <div style={{ display: "flex", alignItems: "baseline" }}>
@@ -406,10 +408,26 @@ console.log(invencartItem)
             </div>
           </Radio>
         </FlexContainer>
-          {/* ) : null} */}
- 
-        <Spacer style={{ marginBottom: "50px" }} />
-        {/* {props.stripeInd.payByCashInd ? ( */}
+         ) : null} 
+          <div className="flex justify-between mt-2">
+          <Radio value={"EFT"}>
+            <div style={{ display: "flex", alignItems: "baseline" }}>
+              {/* <img style={{ width: "5rem" }} alt="pay" src={stripe} /> */}
+              {/* <Button
+                type="primary"
+                style={{ backgroundColor: "#0073c8", marginLeft: "0.62em", borderRadius: "0.3rem" }}
+                onClick={() => { handleInventoryStripeModal(true); }}
+              >
+                Checkout
+              </Button> */}
+            </div>
+            <div>
+              <h3>Electronics Fund Transfer (EFT) - send remittance to sales@1Di.ca (Click the option and process)</h3>
+            </div>
+          </Radio>
+          </div>
+       
+        {stripeNo.payByCashInd ? (
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           <Radio value={"Cash on Delivery"}>
             <div style={{ alignItems: "baseline", justifyContent: "space-evenly" }}>
@@ -428,8 +446,8 @@ console.log(invencartItem)
             </div>
           </Radio>
         </FlexContainer>
-          {/* ) : null} */}
-          {/* {props.stripeInd.razorpayInd ? ( */}
+         ) : null}  
+          {stripeNo.razorpayInd ? (
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           <Radio value={"Razorpay"}>
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-evenly" }}>
@@ -447,8 +465,8 @@ console.log(invencartItem)
             </div>
           </Radio>
         </FlexContainer>
-          {/* ) : null} */}
-           {/* {props.stripeInd.payByCheckInd ? ( */}
+           ) : null} 
+           {stripeNo.payByCheckInd ? (
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           {/* <Radio value={"pay by check"}>
             <div className="mt-4 flex" >  
@@ -472,10 +490,10 @@ console.log(invencartItem)
           </Radio> */}
           <Radio.Group onChange={handlePaymentChange} value={paymentMethod}>
       <Radio value="pay by check">
-        <div className="mt-4 flex">      
+        <div className=" flex mt-2">      
           Pay by Check
           {paymentMethod === "pay by check" && (
-            <div className="flex justify-center">
+            <div className="flex justify-center ml-2 mr-2">
               <Input
                 className="rounded border-black w-48"
                 type="text"
@@ -484,7 +502,7 @@ console.log(invencartItem)
                 //onBlur={handlePayByBlur}
                 placeholder="Enter check No"
               />
-               <Button type="primary" onClick={handlePayByBlur}>
+               <Button type="primary" onClick={handlePayByBlur} style={{marginLeft:"1rem"}}>
                 Pay by Check
               </Button>
             </div>
@@ -494,6 +512,25 @@ console.log(invencartItem)
       
     </Radio.Group>
         </FlexContainer>
+        ): null} 
+
+        <div className="flex justify-between mt-2">
+          <Radio value={"Creditors"}>
+            <div style={{ display: "flex", alignItems: "baseline" }}>
+              {/* <img style={{ width: "5rem" }} alt="pay" src={stripe} /> */}
+              {/* <Button
+                type="primary"
+                style={{ backgroundColor: "#0073c8", marginLeft: "0.62em", borderRadius: "0.3rem" }}
+                onClick={() => { handleInventoryStripeModal(true); }}
+              >
+                Checkout
+              </Button> */}
+            </div>
+            <div>
+              <h3>Credit - Net 30 </h3>
+            </div>
+          </Radio>
+          </div>
            {/* ) : null} */}
         <br />
         <br />

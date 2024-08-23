@@ -21,6 +21,7 @@ import ProductCardListbyCategory from '../Container/Customer/ProductCardListbyCa
 import { base_url } from '../Config/Auth';
 import CategoriesListCard from '../Container/Inventory/Child/CategoriesListCard';
 import MainSearchedData from './MainSearchedData';
+import { Footer } from '../Container/Customer/Footer';
 
 const CustomerMainAppLeft =lazy(()=>import("./CustomerMainAppLeft"));
 const MaterialAllCard =lazy(()=>import("../Container/Customer/MaterialAllCard"));
@@ -148,9 +149,9 @@ class CustomerMainApp extends Component {
   ) : (  
   <div>
                 <div class="flex justify-center w-wk">
-                <div className="relative bg-[#1124AA] text-white w-[87.2rem]">
+                <div className="relative bg-[#1124AA] text-white w-[87.2rem] h-44">
                 <div className="absolute inset-0 h-full w-full clip-path-curve bg-[#1124AA]"></div>
-                <div className="relative z-10 max-w-7xl mx-auto p-8">                 
+                <div className="relative z-10 max-w-7xl mx-auto p-2">                 
                     <div className="text-center flex  flex-col items-start">
                         <h1 className="text-4xl font-poppins font-bold text-white">Generate your wholesale order.</h1>
                         <p className="mt-4 text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
@@ -167,7 +168,7 @@ class CustomerMainApp extends Component {
              <div className='w-[90%] flex flex-col justify-center items-center overflow-x-auto p-1 h-[-webkit-fill-available]'>
                 <CategoriesListCard categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/>
                 {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
-                <div className='w-wk flex  mt-10 flex-row '>                
+                <div className='w-wk flex  mt-4 flex-row '>                
                    
                     <div className='flex  justify-center'>
                         <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
@@ -179,9 +180,12 @@ class CustomerMainApp extends Component {
                       
                       />
                     </div> */}
-            <div class="w-wk h-[100vh] max-sm:h-[60vh] md:h-[100vh] overflow-x-auto ">
-           
-                <MainWrapper>
+            <div class="w-wk  max-sm:h-[60vh]   ">
+        
+                                                
+                                                <MaterialAllCard/> 
+                                             
+               
                 {/* <Carousel
                      breakPoints={breakPoints}
                     style={{ minHeight: "6em", justifyContent:"center" }}
@@ -338,10 +342,7 @@ class CustomerMainApp extends Component {
                                                   </InfiniteScroll>
                                                   </div> */}
                                                  
-                                              <div>
-                                                
-                                             <MaterialAllCard/> 
-                                              </div>
+                                            
                                               {/* <div class="mt-3">
                                                 <p>Products from our Suppliers </p>
                                                 <OuterAllInventoryCard/>
@@ -350,7 +351,7 @@ class CustomerMainApp extends Component {
                                                 <p>All Supplies </p>
                                                 <OuterAllSuppliesCard/>
                                                 </div> */}
-                                          </MainWrapper>
+                                          
                                           
 </div>
                     </div>
@@ -360,11 +361,7 @@ class CustomerMainApp extends Component {
            </div>
                                            )}  
                                           </div>
-        <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
-      <div class="text-sm flex justify-center  text-gray-700 bottom-0 sticky w-wk items-center" >
-         © {new Date().getFullYear()} {` `}, 1Di inc.
-        
-      </div>
+      <Footer/>
               
                                         </>
                                       );

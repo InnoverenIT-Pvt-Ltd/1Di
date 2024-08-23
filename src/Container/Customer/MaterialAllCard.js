@@ -141,7 +141,7 @@ function MaterialAllCard (props) {
         <>
     
         <div >
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center h-[0.1rem]">
         <div  class="font-bold" >
                       Products 
                     </div>
@@ -179,8 +179,8 @@ function MaterialAllCard (props) {
         dataLength={sortedList.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        height={"40vh"}
-        style={{ width: "-webkit-fill-available" }}
+        height={"31vh"}
+        style={{ width: "-webkit-fill-available",marginTop:"2rem" }}
         loader={props.fetchingPurchaseListC ? <div className="flex justify-center">Loading...</div> : null}
         //initialLoad={true}
       >
@@ -358,7 +358,7 @@ const SortButton = styled.button`
   color: ${(props) => (props.active ? '#fff' : '#007bff')};
   border: 1px solid #007bff;
   border-radius: 4px;
-  height: 2.4rem;
+  height: 2rem;
   padding: 0.25rem 1rem;
   margin: 0 0.5rem;
   cursor: pointer;

@@ -179,16 +179,18 @@ useEffect(() => {
       }
   return (
     <>
-    <div class="flex justify-end">
-    <div class="text-base text-black font-bold font-poppins w-32">Items: {data.count}</div>
-    </div>
+   
 
     <div >
 
     <div className="flex justify-between items-center">
+  
+   
+  
     <div  class="font-bold" >
                       Products 
                     </div>
+                    <div class="text-base text-black font-bold font-poppins w-32">Items: {data.count}</div>
                     <div className='flex items-center'>
                     <div className='mr-12'>Filter:</div>
     <Select
@@ -253,11 +255,16 @@ useEffect(() => {
                                                         <div className=" text-base h-[9.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
-                                                     <div className=" flex justify-end flex-row w-full "> 
+                                                     <div className=" flex justify-between flex-row w-full "> 
+                                                                            <div class=" mr-3 text-xs text-[#1124AA]">
+                                                                            WSL -  {item.suppliesPrice} CA$
+                                                                            </div> 
+                                                                 
+                                                    
                                                                             <div class=" mr-3 text-xs text-[#1124AA]">
                                                                               SRP -  {item.suppliesPrice} CA$
                                                                             </div> 
-                                                                  </div>
+                                                                            </div>
                                                                   <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
                                                                   <div> {item.newSuppliesNo}  </div>

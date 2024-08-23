@@ -22,7 +22,7 @@ const initialState = {
 
     fetchingStrpieInd: false,
     fetchingStrpieIndError: false,
-    stripeInd:{},
+    stripeNo:{},
 
     uploadInvodrwr:false,
 
@@ -207,7 +207,7 @@ const initialState = {
                         return {
                           ...state,
                           fetchingStrpieInd: false,
-                          stripeInd: action.payload,
+                          stripeNo: action.payload,
                         };
                       case types.GET_STRIPE_IND_FAILURE:
                         return {
