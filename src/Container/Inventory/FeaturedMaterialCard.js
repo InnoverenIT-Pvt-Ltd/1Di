@@ -324,8 +324,8 @@ function MaterialsItemCard(props) {
     <>
    
   
-   <div class="text-base justify-start text-black font-bold font-poppins">Featured</div>
-    <div class="h-[34vh] border-[0.5rem] rounded overflow-auto w-wk">
+   <div class="text-base justify-start text-black font-bold font-poppins mt-3">Featured</div>
+   <div class="flex  w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
    
     {/* <CardWrapper> */}
     {/* <Carousel
