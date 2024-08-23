@@ -66,7 +66,7 @@ console.log(props.item.productInfo)
       </div>
        
         <div className=" flex items-center  justify-center flex-col w-wk">
-          <div class="text-blue-600 text-base font-bold cursor-pointer"
+          <div class="text-blue-600 text-sm font-bold cursor-pointer font-poppins"
              onClick={() => {
               props.handleProductDetails(true);
               handleRowData(props.item);
@@ -75,7 +75,7 @@ console.log(props.item.productInfo)
             {props.item.productInfo.productFullName}
 
           </div>
-          <div className="">
+          {/* <div className="">
         <div class="text-sm text-black">
         Category -  {props.item.productInfo.category}
         </div>
@@ -84,7 +84,7 @@ console.log(props.item.productInfo)
         <div class="text-sm text-black">
         Attribute -  {props.item.productInfo.attribute}
         </div>
-      </div>
+      </div> */}
      
      
         </div>
