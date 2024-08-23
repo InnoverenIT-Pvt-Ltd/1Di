@@ -54,9 +54,9 @@ function CategoriesListCard (props) {
   return (
 
   <div class="w-wk   self-center">
-<div class="text-black font-bold mt-2">Catalog</div> 
+<div class="text-black font-bold">Catalog</div> 
 
-<div class="  items-center  h-[14vh]  rounded overflow-auto">
+<div class="  items-center   rounded ">
 
 <CardWrapper>
 <Carousel
@@ -74,7 +74,7 @@ function CategoriesListCard (props) {
           cursor:"pointer"
         }} className="flex  w-44 h-28  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 ">
                           <div class="flex  flex-col items-center md:w-60 mr-3 ml-3">
-                        <div class=" w-16 h-16" >
+                        <div class=" w-16 h-16 text-center" >
                           {item.imageId ? (
                             <div className=" flex items-center sm:h-16 w-16 flex-shrink-0 overflow-hidden rounded-md  md:h-20 max-w-screen-md ">
                             <div   className=" flex items-center h-16 w-16   hover:shadow-lg">

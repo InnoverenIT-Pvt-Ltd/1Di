@@ -7,6 +7,7 @@ import {getInventoryCartItems} from "./InventoryAction";
 import {getProductByCategoryId,getCategories,getCustomerProductList} from "../Customer/CustomerAction";
 import LoginSearchedData from "./LoginSearchedData";
 import ProductCardListbyCategory from "../Customer/ProductCardListbyCategory";
+import { Footer } from "../Customer/Footer";
 const InventoryItemsCard=lazy(()=>import("./Child/InventoryItemsCard"));
 const AllInventorySupplierCard=lazy(()=>import("./Child/AllInventorySupplierCard"));
 const MaterialsItemCard =lazy(()=>import("./Child/MaterialsItemCard"));
@@ -39,6 +40,7 @@ function Inventory (props) {
     <React.Fragment>
         {props.investorSerachedData.length > 0 ? (
     <LoginSearchedData
+    invencartItem={props.invencartItem}
     investorSerachedData={props.investorSerachedData}
     />
   ) : (  
@@ -69,11 +71,7 @@ function Inventory (props) {
         </Suspense>
        </div>
          )} 
-       <hr class="  w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
-      <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
-         © {new Date().getFullYear()} {` `}, 1Di inc.
-        
-      </div>  
+      <Footer/>
     </React.Fragment>
   );
 }

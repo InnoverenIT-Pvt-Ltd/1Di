@@ -1,85 +1,168 @@
-import React from 'react'
+import React, { useEffect,useState, useRef,lazy } from 'react'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import styled from "styled-components";
 import { base_url } from '../Config/Auth';
 import { RollbackOutlined } from "@ant-design/icons";
+import {handleCatagoryDetails} from "../Container/Customer/CustomerAction";
 import { Tooltip } from 'antd';
+import MainDetailsDrawer from '../Container/Customer/MainDetailsDrawer';
 
 const MainSearchedData = (props) => {
+
+  const [rowDatas, setrowDatas] = useState("");
+  function handleRowData(item) {
+    setrowDatas(item)
+}
+console.log(props.investorSerachedData)
+const investorSerachedDataCount = props.investorSerachedData.length;
+console.log(investorSerachedDataCount)
     return (
 
-        <div class="w-wk   self-center h-[77vh]">
+        <div class="w-wk   self-center ">
            <div className="relative bg-[#1124AA] h-10 text-white w-wk flex flex-col justify-center">
       <div class="flex">
+      <a href='/'>
     <RollbackOutlined
-          className="BackButton flex justify-start text-[1.1rem]"
+          className="BackButton flex justify-start text-[1rem]"
           style={{color:"white", }}
           
         />
-    <div class="text-lg w-[100%] flex justify-center text-white font-semibold">Catalog</div>
+          </a>
+    <div class="text-lg w-[100%] flex justify-center text-white font-semibold">Your Searched Items ({investorSerachedDataCount})</div>
 </div>
-          </div>
-          {/* <div class="relative bg-[#1124AA] h-10 text-white w-wk flex flex-row  justify-center">
-           <div class=" flex " >
-            <a href='/'>
-      <RollbackOutlined
-          className="BackButton flex justify-start "/>
-          style={{color:"white"}}
-        </a>
-        </div>
-      <div class=" text-lg w-[100%] flex justify-center text-white font-semibold">Catalog</div> 
-      </div> */}
-      <div class="  items-center  h-34  rounded overflow-auto">
+          </div>      
+      <div class="  items-center  h-[38rem]  rounded overflow-auto">
       
-      <CardWrapper>
-    
-                        {props.investorSerachedData.map((item) => {
-                          return (
-                            <CardElement >
-      
-                              <div 
-                              //onClick={() => props.handleActiveClick(item.categoryId)} 
-              style={{
-                color:props.activeClick === item.categoryId && "Blue",
-                cursor:"pointer"
-              }} className="flex  w-44 h-28  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 object-cover object-center  ">
-                                <div class="flex  flex-col items-center md:w-60 mx-2 my-2">
-                              <div class=" w-20 h-20" >
-                                {item.imageId ? (
-                                  <div className=" sm:h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 md:h-20 max-w-screen-md ">
-                                  <div   className=" h-20 w-20  object-cover object-center hover:shadow-lg">
-                                  <img  src={`${base_url}/image/${item.imageId}`} alt=""
-                                                  />
-                                  </div>
-                                  </div>
-                                ) : (
-                                 
-                                    <div className=" text-[0.65rem] text-center">Image Not Available</div>
-                                 
-                                )}
-                              </div>
-      
-                              <CardDescription>
-                              
-                                <Tooltip title={item.categoryName} placement="top" arrow>
-                                  <div class="text-xs truncate ">{item.categoryName || ""}</div>
-                                </Tooltip>
-      
-                              </CardDescription>
-      
-                              </div>
-                              </div>
-                            </CardElement>
-                          );
-                        })}
-                       
-                      </CardWrapper>
-        
+
+        <CardWrapper>
+          
+
+                      {props.investorSerachedData.map((item) => {
+                        
+                         console.log(item.suppliesPrice)
+                        return (
+                          <CardElement >
+
+                          <div class=" flex flex-col items-center max-sm:mr-0 md:flex w-[12.6vw]   h-hwk border">
+                                              {item.imageId ? (
+                                                    <div class=" flex items-center">
+                                                     <img
+                                                              src={`${base_url}/image/${item.imageId}`} 
+                                                              style={{ height: "6.5rem", width: "7rem" }}
+                                                          />
+                                                         </div>  
+                                                        ) : (
+                           
+                                                        <div className="flex items-center text-xs h-[6.5rem]  w-[7rem] ">Image Not Available</div>
+                                                      
+                                                    )}
+                                                      <div className=" flex justify-end flex-row w-full "> 
+                                                                        {/* <div class=" mt-1 text-xs text-[#1124AA] ">
+                                                                            WSL -  {item.discounts?.[0]?.allowedDiscount}
+                                                                            </div> */}
+                                                                            <div class="  flex  p-1 text-xs text-[#1124AA]">
+                                                                            SRP - 
+                                                                            {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> */}
+                                                                             {item.suppliesPrice} CA$
+                                                                            </div> 
+                                                                  </div>
+                                                            <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
+                                                             
+                                                                  <div> {item.newSuppliesNo}  </div>
+                                                                  <div > 
+                                                                  <Tooltip title={item.suppliesName} placement="top" arrow>
+                                                                                              
+                                                                                              <div 
+                                                                                               onClick={() => {
+              props.handleCatagoryDetails(true);
+              handleRowData(item);
+            }} >{item.suppliesName || ""}</div>
+                                                                                            </Tooltip>
+                                                                     </div>
+                                                                     
+                                                                  </div>
+                                                                  <div className=" flex flex-row justify-around "> 
+                                                                        <div class="  text-xs text-[#1124AA] truncate max-w-[100px]">
+                                                                              {item.categoryName}
+                                                                            </div>
+                                                                            <div class=" text-xs text-[#1124AA]">
+                                                                              {item.subCategoryName}
+                                                                            </div> 
+                                                                  </div>
+                                                              
+                                                                
+                                                                                                                         
+                                                                            <div class="w-40 mt-1 flex  justify-between max-sm:flex items-center">
+                                                                            {/* <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
+                                                                            <div className="add-minus-quantity">
+                                                                          <span
+
+                                                                          >
+                                                                                <MinusOutlined onClick={() => handleDecrement(item.suppliesId)}/>
+                                                                          </span>
+                                                                        
+                                                                          <input  type="number"  
+                                                                          value={units[item.suppliesId] || 1}
+                                                                          onChange={(event) => handleQuantityChange(event, item.suppliesId)}
+                                                                          min="1" 
+                                                                          step="1"  />
+                                                                        
+                                                                          <span
+
+                                                                          >
+                                                                            <PlusOutlined onClick={() => handleIncrement(item.suppliesId)}/>
+                                                                            </span>
+
+                                                                          </div>
+           
+                          
+                                             
+                                                                           </div>
+                                                                           <div className="  cursor-pointer ml-2"
+                                                                                 onClick={() =>
+                                                                                    handleAddToCart(
+                                                                                      item.suppliesId
+                                                                    
+                                                                                    )
+                                                                                  }
+                                                                                >
+                                                                                    <Button type="primary" >
+                                                                                     Add
+                                                                                </Button>
+                                                                                </div> */}
+                                                                          </div>
+                  
+                                                                          </div>
+                                           </CardElement>
+                        );
+                      })}
+                    
+                    
+                </CardWrapper>    
          </div>
+         <MainDetailsDrawer
+       rowDatas={rowDatas}
+       handleCatagoryDetails={props.handleCatagoryDetails}
+       catagoryDetailsDrawr={props.catagoryDetailsDrawr}
+      />
       </div>
         );
 }
+const mapStateToProps = ({ customer, }) => ({
+  catagoryDetailsDrawr: customer.catagoryDetailsDrawr
+});
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      
+      handleCatagoryDetails
+    },
+    dispatch
+  );
 
-export default MainSearchedData
+export default connect(mapStateToProps, mapDispatchToProps)(MainSearchedData);
+
 const MainWrapper = styled.div`
   /* */
   margin: 0px 20px;

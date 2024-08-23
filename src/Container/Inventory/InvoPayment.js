@@ -71,6 +71,7 @@ function InvoPayment (props) {
       }
     }
   };
+  console.log(props.stripeNo && props.stripeNo.payByCashInd)
         return (
             <>
               <div className="relative bg-[#1124AA] text-white w-wk h-16 flex items-center justify-center">
@@ -108,7 +109,7 @@ function InvoPayment (props) {
                         width= "65%"
                         border= "none"
                     >
-                        <InvoPaymentLeft invencartItem={props.invencartItem} stripeInd={props.stripeInd}/>
+                        <InvoPaymentLeft invencartItem={props.invencartItem} stripeNo={props.stripeNo }/>
                     </MainWrapper>
                     <MainWrapper 
                     
@@ -129,7 +130,7 @@ function InvoPayment (props) {
     const mapStateToProps = ({ inventory, auth }) => ({
         invencartItem: inventory.invencartItem,
         userId: auth.userDetails.userId,
-        stripeInd:inventory.stripeInd
+        stripeNo:inventory.stripeNo
       });
       
       const mapDispatchToProps = (dispatch) =>

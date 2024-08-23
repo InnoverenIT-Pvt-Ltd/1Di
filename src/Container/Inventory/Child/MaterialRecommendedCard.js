@@ -128,8 +128,8 @@ function MaterialRecommendedCard(props) {
                  dataLength={props.materialRecommendeds.length} 
                 next={handleLoadMore}
                 hasMore={hasMore}
-                height={"50vh"}
-               style={{width:"-webkit-fill-available"}}
+                height={"31vh"}
+               style={{width:"-webkit-fill-available",marginTop:"2rem"}}
                loader={loading?<div class="flex justify-center">Loading...</div>:null}
                endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
                >
@@ -139,7 +139,7 @@ function MaterialRecommendedCard(props) {
                               <div 
                        
                         key={item.suppliesId} className="card-element">
-                      <div class=" h-[19rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[14rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                      <div class=" h-[19rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[13.6vw] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
                      
                       <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
                                               {item.imageId ? (
@@ -151,10 +151,15 @@ function MaterialRecommendedCard(props) {
                                                          </div>  
                                                         ) : (
                            
-                                                        <div className=" text-base h-[12.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
+                                                        <div className=" text-base h-[4.5rem] text-center w-[10rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
-                                                            <div class=" flex w-wk cursor-pointer flex-row mt-1 text-[#1124AA] justify-evenly "> 
+                                                     <div className=" flex flex-row justify-end w-full p-1"> 
+                                                                            <div class=" mt-1 text-xs text-[#1124AA]">
+                                                                              SRP -   {item.suppliesPrice} CA$
+                                                                            </div> 
+                                                                  </div>
+                                                            <div class=" flex w-wk cursor-pointer flex-col p-2 text-[#1124AA] justify-evenly "> 
                                                              
                                                                   <div> {item.newSuppliesNo}  </div>
                                                                   <div > 
@@ -179,14 +184,10 @@ function MaterialRecommendedCard(props) {
                                                                               {item.subCategoryName}
                                                                             </div> 
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-around"> 
-                                                                            <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              SRP - <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C?.toFixed(2)}
-                                                                            </div> 
-                                                                  </div>
+                                                                 
                                                       
                                                                                                                          
-                                                                            <div class="mt-1 flex  justify-between max-sm:flex items-center">
+                                                                            <div class="mr-1 absolute bottom-0 flex  justify-between max-sm:flex items-center">
                                                                             <div class=" flex  max-sm:w-48  ">
                                                                             <div className="add-minus-quantity">
                                                                           <span >
