@@ -24,6 +24,7 @@ import mang from "../../Assests/Images/mango.jpg";
 import { base_url } from "../../Config/Auth";
 import KoreroLogo from "../../Assests/Images/apple.jpg";
 import CartTable from "./CartTable";
+import { Footer } from "../Customer/Footer";
 
 const { Option } = Select;
 
@@ -48,27 +49,28 @@ const breakPoints = [
 console.log(props.productsByproductId)
   return (
     
-    <div className="bg-[#F7F8FC]">
+    <div className="bg-[#F7F8FC] p-8">
  <div className="flex justify-between items-center w-full">
       <div >
-        <div>{props.productsByproductId.suppliesName}</div>
-        <div>{props.productsByproductId.newSuppliesNo}</div>
+      <div className="text-xl font-medium">{props.productsByproductId.suppliesName}</div>
+      <div className="text-xl font-medium">{props.productsByproductId.newSuppliesNo}</div>
         {/* <p><strong>Price:</strong>{props.productsByproductId.price}</p>
         <p><strong>Category:</strong>{props.productsByproductId.categoryName}</p>
         <p><strong>Attribute:</strong> {props.productsByproductId.attributeName}</p>
         <p><strong>Description:</strong> {props.productsByproductId.description}</p> */}
-        <div className='flex items-center justify-center w-[w-wk] mt-3'>
-        <div className="flex items-center justify-center">
-        <div class="text-sm text-black w-16">
-         SRP {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
-        </div>
-      </div>
-      <div className="flex items-center justify-center ml-1">
-        <div class="text-sm text-black">
+        <div className='flex items-center  w-[w-wk] mt-3'>
+        <div className="flex items-center justify-center mr-2">
+      <div class="text-sm font-bold text-black">
         WSL  {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice}
        
         </div>
       </div>
+        <div className="flex items-center justify-center">
+        <div class="text-sm font-bold text-black">
+         SRP {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
+        </div>
+      </div>
+     
         {/* <div className="add-minus-quantity">
           <span
            onClick={()=>{
@@ -140,16 +142,16 @@ console.log(props.productsByproductId)
       </div> */}
     </div>
     <div className="flex w-wk justify-evenly mt-6">
-    <div className="flex flex-col border box-border h-40 w-[30rem]">
-    <div className=" font-medium">Description </div>
-    <div dangerouslySetInnerHTML={{ __html: `<p>${props.productsByproductId.description}</p>` }} />
+    <div className="flex flex-col border box-border h-40 w-[27rem]">
+    <div className=" font-medium ml-1">Description </div>
+    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html: `<p>${props.productsByproductId.description}</p>` }} />
     </div>
-    <div className="flex flex-col border box-border h-40 w-[30rem]">
-    <div className=" font-medium">Description French</div>
-    <div dangerouslySetInnerHTML={{ __html: `<p>${props.productsByproductId.qrCodeNo}</p>` }} />
+    <div className="flex flex-col border box-border h-40 w-[27rem]">
+    <div className=" font-medium ml-1">Description in French</div>
+    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html: `<p>${props.productsByproductId.qrCodeNo}</p>` }} />
     </div>
     </div>
-    <div className="cardDs-bottom  mt-5  flex justify-center">
+    <div className="cardDs-bottom  mt-5  flex ">
       <CartTable productsByproductId={props.productsByproductId}/>
     {/* <div class="border-[0.5rem] rounded overflow-auto">
       <Carousel
@@ -173,10 +175,7 @@ console.log(props.productsByproductId)
           ))}
         </Carousel> */}
       </div>
-      <hr class=" mt-4 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
-      <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
-         © {new Date().getFullYear()} {` `}  1Di inc
-      </div>
+      <Footer/>
    </div>
   
   );
