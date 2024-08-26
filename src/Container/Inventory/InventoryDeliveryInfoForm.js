@@ -272,7 +272,7 @@ function InventoryDeliveryInfoForm(props) {
                          </Button>
                        </Tooltip>
                        &nbsp;
-                       <Tooltip title="Medium">
+                       {/* <Tooltip title="Medium">
                          <Button
                            
                             shape="circle"
@@ -289,7 +289,7 @@ function InventoryDeliveryInfoForm(props) {
                             <CheckCircleOutlineIcon className="!text-white" />
                           )}
                           </Button>
-                       </Tooltip>
+                       </Tooltip> */}
                        &nbsp;
                        <Tooltip title="Low">
                          <Button

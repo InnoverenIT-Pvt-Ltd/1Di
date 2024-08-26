@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Select } from "../../Components/UI/Elements";
 import Tooltip from '@mui/material/Tooltip';
 import { Button } from "antd";
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { BundleLoader } from "../../Components/Placeholder";
 import "./Inventory.scss";
 import {getFeaturedMaterials,LinkInventoryItem} from "./InventoryAction";
@@ -20,12 +21,12 @@ function MaterialsItemCard(props) {
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
     
-  const carouselRef = useRef(null);
-  const observer = useRef();
+  // const carouselRef = useRef(null);
+  // const observer = useRef();
 
   useEffect(() => {
      props.getFeaturedMaterials(page);    
-  }, [page]);
+  }, []);
 
   // useEffect(() => {
   //   const fetchList = async (pageNumber) => {
@@ -43,18 +44,34 @@ function MaterialsItemCard(props) {
   //   };
   //   fetchList(page);
   // }, [page]);
+  const handleLoadMore = () => {
+    const callPageMapd = props.featuredMaterials && props.featuredMaterials.length &&props.featuredMaterials[0].pageCount
+    setTimeout(() => {  
+      if  (props.featuredMaterials)
+      {
+        if (page < callPageMapd) {    
+    setPage(page + 1);
+            props.getFeaturedMaterials(page);
+            }
+              if (page === callPageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
+  }
+ 
 
-  const lastProductElementRef = useCallback(node => {
-    if (loading) return;
-    if (observer.current) observer.current.disconnect();
-    observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting && hasMore) {
-        setPage(prevPage => prevPage + 1);
-      }
-    });
+  // const lastProductElementRef = useCallback(node => {
+  //   if (loading) return;
+  //   if (observer.current) observer.current.disconnect();
+  //   observer.current = new IntersectionObserver(entries => {
+  //     if (entries[0].isIntersecting && hasMore) {
+  //       setPage(prevPage => prevPage + 1);
+  //     }
+  //   });
 
-    if (node) observer.current.observe(node);
-  }, [loading, hasMore]);
+  //   if (node) observer.current.observe(node);
+  // }, [loading, hasMore]);
 
   const [units, setUnits] = useState({});
 
@@ -84,32 +101,32 @@ function MaterialsItemCard(props) {
       };
   });
   };
-   const next = () => {
-        if (carouselRef.current) {
-          carouselRef.current.next();
-        }
-      };
+  //  const next = () => {
+  //       if (carouselRef.current) {
+  //         carouselRef.current.next();
+  //       }
+  //     };
     
-      const previous = () => {
-        if (carouselRef.current) {
-          carouselRef.current.prev();
-        }
-        if (page > 0) {
-          setPage(prevPage => prevPage - 1);
-          setHasMore(true); // Allow fetching more pages again
-        }
-      };
+  //     const previous = () => {
+  //       if (carouselRef.current) {
+  //         carouselRef.current.prev();
+  //       }
+  //       if (page > 0) {
+  //         setPage(prevPage => prevPage - 1);
+  //         setHasMore(true); // Allow fetching more pages again
+  //       }
+  //     };
 
-  if (props.fetchingFeaturedMaterials) {
-    return <BundleLoader />;
-  }
+  // if (props.fetchingFeaturedMaterials) {
+  //   return <BundleLoader />;
+  // }
 
-  const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 500, itemsToShow: 2 },
-    { width: 768, itemsToShow: 4, itemToScroll: 4 },
-    { width: 1100, itemsToShow: 6, itemToScroll: 6 },
-  ];
+  // const breakPoints = [
+  //   { width: 1, itemsToShow: 1 },
+  //   { width: 500, itemsToShow: 2 },
+  //   { width: 768, itemsToShow: 4, itemToScroll: 4 },
+  //   { width: 1100, itemsToShow: 6, itemToScroll: 6 },
+  // ];
 
   const handleAddToCart = (suppliesId) => { 
         let data={
@@ -325,7 +342,7 @@ function MaterialsItemCard(props) {
    
   
    <div class="text-base justify-start text-black font-bold font-poppins mt-3">Featured</div>
-   <div class="flex  w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
+  
    
     {/* <CardWrapper> */}
     {/* <Carousel
@@ -336,31 +353,41 @@ function MaterialsItemCard(props) {
                       onNextEnd={next}
                       onPrevEnd={previous}
                     > */}
+                    <InfiniteScroll
+      dataLength={props.featuredMaterials.length} 
+     next={handleLoadMore}
+     hasMore={hasMore}
+     height={"32vh"}
+    style={{width:"-webkit-fill-available"}}
+    loader={props.fetchingFeaturedMaterials?<div class="flex justify-center">Loading...</div>:null}
+    endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
+    >
+        <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
                   {props.featuredMaterials.map((item,index) => {
                      const currentdate = dayjs().format("YYYY/MM/DD");
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
                      const isLastElement = index === props.featuredMaterials.length - 1;
                      return (
-                      <div >
+                    
                         <div 
                         // ref={isLastElement ? lastProductElementRef : null} 
-                        key={item.suppliesId}>
-                      <div class=" h-[14rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[12rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                        key={item.suppliesId} className="card-element">
+                     <div class=" h-[14rem] p-2 flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[13rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
                      
-                      <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
+                      <div class=" flex flex-col items-center w-wk max-sm:mr-0 md:flex   h-hwk">
                                               {item.imageId ? (
-                                                    <div class=" flex items-center">
+                                                   <div class="object-cover object-center  flex items-center">
                                                      <img
                                                               src={`${base_url}/image/${item.imageId}`} 
-                                                              style={{ height: "8.5rem", width: "9rem" }}
+                                                              style={{ height: "6.5rem", width: "13rem" }}
                                                           />
                                                          </div>  
                                                         ) : (
                            
-                                                        <div className=" text-sm text-center h-[6.5rem]  w-[7rem] flex justify-center items-center">Image Not Available</div>
+                                                        <div className=" text-sm text-center h-[6.5rem]  w-[13rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
-                                                            <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-around "> 
+                                                            <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-between "> 
                                                              
                                                                   <div> {item.newSuppliesNo}  </div>
                                                                   <div > 
@@ -371,7 +398,7 @@ function MaterialsItemCard(props) {
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row  w-full justify-around"> 
+                                                                  <div className=" flex flex-row  w-full justify-between"> 
                                                                         <div class=" mt-1 text-xs text-[#1124AA] ">
                                                                               {item.categoryName}
                                                                             </div>
@@ -380,7 +407,7 @@ function MaterialsItemCard(props) {
                                                                             </div> 
                                                                   </div>
                                                               
-                                                                  <div className=" flex flex-row justify-around"> 
+                                                                  <div className=" flex flex-row justify-between w-wk"> 
                                                                         <div class=" mt-1 text-xs text-[#1124AA] ">
                                                                             Dis.price -  {item.discounts?.[0]?.allowedDiscount}
                                                                             </div>
@@ -389,7 +416,7 @@ function MaterialsItemCard(props) {
                                                                             </div> 
                                                                   </div>
                                                                                                                          
-                                                                            <div class="w-40 mt-1 flex  justify-between max-sm:flex items-center">
+                                                                            <div class="w-wk mt-1 flex  justify-between max-sm:flex items-center">
                                                                             <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
                                                                             <div className="add-minus-quantity">
                                                                           <span
@@ -458,9 +485,11 @@ function MaterialsItemCard(props) {
                   
                                          </div>
                                          </div>
-                                       </div>
+                                     
                     );
                   })}
+                  </div>
+                  </InfiniteScroll>
                   {/* </Carousel> */}
                   
                   {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
@@ -471,8 +500,7 @@ function MaterialsItemCard(props) {
         
       </div>    */}
   
-   </div>
-
+   
    </>
   );
 }
