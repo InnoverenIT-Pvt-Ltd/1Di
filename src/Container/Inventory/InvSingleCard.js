@@ -66,7 +66,7 @@ console.log(props.item.productInfo)
       </div>
        
         <div className=" flex items-center  justify-center flex-col w-wk">
-          <div class="text-blue-600 text-sm font-bold cursor-pointer font-poppins"
+          <div class="text-blue-600 text-xs font-bold cursor-pointer font-poppins"
              onClick={() => {
               props.handleProductDetails(true);
               handleRowData(props.item);

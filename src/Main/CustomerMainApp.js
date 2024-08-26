@@ -22,6 +22,7 @@ import { base_url } from '../Config/Auth';
 import CategoriesListCard from '../Container/Inventory/Child/CategoriesListCard';
 import MainSearchedData from './MainSearchedData';
 import { Footer } from '../Container/Customer/Footer';
+import Q2SpecialtyPromotion from './Q2SpecialtyPromotion';
 
 const CustomerMainAppLeft =lazy(()=>import("./CustomerMainAppLeft"));
 const MaterialAllCard =lazy(()=>import("../Container/Customer/MaterialAllCard"));
@@ -183,8 +184,8 @@ class CustomerMainApp extends Component {
             <div class="w-wk  max-sm:h-[60vh]   ">
         
                                                 
-                                                <MaterialAllCard/> 
-                                             
+                                                {/* <MaterialAllCard/>  */}
+                                             <Q2SpecialtyPromotion/>
                
                 {/* <Carousel
                      breakPoints={breakPoints}

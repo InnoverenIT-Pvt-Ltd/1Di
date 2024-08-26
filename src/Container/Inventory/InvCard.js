@@ -163,7 +163,7 @@ props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
           </Link>
   :null}
         </div>
-        <div className=" h-[36vh]"> <FeaturedMaterialCard/></div>
+        <div className=" h-[36vh]"> <FeaturedMaterialCard invencartItem={props.invencartItem}/></div>
         
         <hr class=" mt-4 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
       <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >

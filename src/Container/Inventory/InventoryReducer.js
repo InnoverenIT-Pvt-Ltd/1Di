@@ -512,7 +512,9 @@ const initialState = {
               case types.GET_FEATURED_MATERIALS_REQUEST:
                 return { ...state, fetchingFeaturedMaterials: true, fetchingFeaturedMaterialsError: false };
               case types.GET_FEATURED_MATERIALS_SUCCESS:
-                return { ...state, fetchingFeaturedMaterials: false, featuredMaterials: action.payload };
+                return { ...state, fetchingFeaturedMaterials: false,
+                  featuredMaterials: [...state.featuredMaterials, ...action.payload],
+                };
               case types.GET_FEATURED_MATERIALS_FAILURE:
                 return { ...state, fetchingFeaturedMaterials: false, fetchingFeaturedMaterialsError: true };
 
