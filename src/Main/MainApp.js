@@ -202,9 +202,9 @@ function MainApp(props) {
 
       {/* </Sider> */}
       {/* <LayoutWrapper style={{ backgroundColor: "white", width: "75rem" }}> */}
-       <div className=" min-h-screen bg-white fixed w-[75rem] max-sm:w-wk"
+       <div className=" min-h-screen bg-white fixed w-[80vw] max-sm:w-wk"
        >
-        <NavbarWrapper style={{  height: 50, width:"99%"}}>
+        <NavbarWrapper style={{  height: 50, width:"100%"}}>
           {/* <Header> */}
           <div className="flex items-center  max-sm:flex-row-reverse p-1">
           <Link to="/dashboard">
@@ -220,7 +220,7 @@ function MainApp(props) {
               className="big-logo"
                src={KoreroLogo}
               // src={NuboxLogo}
-              style={{width: "6vw",height:"6vh"  }}
+              style={{width: "5vw",height:"5vh"  }}
               alt="Tekorero logo"
             />
           </div>
@@ -281,6 +281,20 @@ function MainApp(props) {
                 <label class="font-poppins font-bold text-base cursor-pointer">Orders</label>
               </span>
             </Link>:null}
+            <Link to="/invoice" className="dheight">
+              <span
+                style={{
+                  paddingLeft: "1em",
+                  color: click == "invoice" ? "#8dc1f1" : "black"
+                }}
+                onClick={() => { handleClick("invoice") }}
+              >
+                <label class="font-poppins font-bold text-base cursor-pointer"> <FormattedMessage
+                                   id="app.invoice"
+                                  defaultMessage="Invoice"
+                                 /></label>
+              </span>
+            </Link>
             {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
             <Link to="/quotation" className="dheight">
               <span
@@ -326,6 +340,7 @@ function MainApp(props) {
               </span>
             </Link>
             :null} 
+             
             {props.employee_type==="Supplier" ?  
             <Link to="/supplierInventory" className="dheight">
               <span
@@ -342,20 +357,7 @@ function MainApp(props) {
               </span>
             </Link>
             :null} 
-            <Link to="/invoice" className="dheight">
-              <span
-                style={{
-                  paddingLeft: "1em",
-                  color: click == "invoice" ? "#8dc1f1" : "black"
-                }}
-                onClick={() => { handleClick("invoice") }}
-              >
-                <label class="font-poppins font-bold text-base cursor-pointer"> <FormattedMessage
-                                   id="app.invoice"
-                                  defaultMessage="Invoice"
-                                 /></label>
-              </span>
-            </Link>
+           
             {/* {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
             <Link to="/paymentPage" className="dheight">
               <span

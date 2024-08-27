@@ -33,10 +33,10 @@ console.log(props.productsByproductId)
     
     <div className="bg-[#F7F8FC] p-8">
  <div className="flex justify-between items-center w-full">
-      <div >
+      <div className="w-[60%]">
       <div className="text-xl font-medium">{props.productsByproductId.suppliesName}</div>
-      <div className="text-xl font-medium">{props.productsByproductId.newSuppliesNo}</div>
-        <div className='flex items-center  w-[w-wk] mt-3'>
+      <div className="text-base font-medium">{props.productsByproductId.newSuppliesNo}</div>
+        <div className='flex items-center justify-evenly  mt-3'>
       
       <div className="flex items-center justify-center ">
         <div class="text-sm font-bold text-black">
@@ -50,16 +50,16 @@ console.log(props.productsByproductId)
       </div>
         </div>
       </div>
-      <div class=" flex justify-end">
-      <img  src={`${base_url}/image/${props.productsByproductId.imageId}`}  className="w-[20rem]" />
+      <div class=" flex justify-end w-[40%]">
+      <img  src={`${base_url}/image/${props.productsByproductId.imageId}`}  className="w-[14rem] h-[14rem]" />
       </div> 
     </div>
-    <div className="flex w-wk justify-between mt-6 ">
-    <div className="flex flex-col border box-border h-40 w-[27rem]">
+    <div className="flex w-wk justify-evenly mt-3 ">
+    <div className="flex flex-col border box-border h-40 w-[40%]">
     <div className=" font-medium ml-1">Description </div>
     <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html: props.productsByproductId.description ?`<p>${props.productsByproductId.description}</p>`:"<p></p>" }} />
     </div>
-    <div className="flex flex-col border box-border h-40 w-[27rem]">
+    <div className="flex flex-col border box-border h-40 w-[40%]">
     <div className=" font-medium ml-1">Description in French </div>
    <div className=" font-normal ml-1"
   dangerouslySetInnerHTML={{

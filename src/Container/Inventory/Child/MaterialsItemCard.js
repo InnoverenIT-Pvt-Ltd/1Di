@@ -184,17 +184,14 @@ useEffect(() => {
     <div >
 
     <div className="flex justify-between items-center">
-  
-   
-  
-    <div  class="font-bold" >
+   <div  class="font-bold font-poppins text-sm" >
                       Products 
                     </div>
-                    <div class="text-base text-black font-bold font-poppins w-32">Items: {data.count}</div>
+                    <div class="text-sm text-black font-bold font-poppins w-32">Items: {data.count}</div>
                     <div className='flex items-center'>
-                    <div className='mr-12'>Filter:</div>
+                    <div className='mr-8'>Filter:</div>
     <Select
-        style={{ width: '10rem' }}
+        style={{ width: '9rem' }}
         defaultValue="default"
         onChange={handleChange}
       >
@@ -255,7 +252,7 @@ useEffect(() => {
                                                         <div className=" text-base h-[9.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
-                                                     <div className=" flex justify-between flex-row w-full "> 
+                                                     <div className=" flex justify-around flex-row w-full "> 
                                                                             <div class=" mr-3 text-xs text-[#1124AA]">
                                                                             WSL -  {item.suppliesPrice} CA$
                                                                             </div> 
@@ -267,7 +264,7 @@ useEffect(() => {
                                                                             </div>
                                                                   <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
-                                                                  <div> {item.newSuppliesNo}  </div>
+                                                                  <div class=" flex justify-center"> {item.newSuppliesNo}  </div>
                                                                   <div > 
                                                                   <Tooltip title={item.suppliesName} placement="top" arrow>
                                                                                               
@@ -409,7 +406,7 @@ const SortButton = styled.button`
   color: ${(props) => (props.active ? '#fff' : '#007bff')};
   border: 1px solid #007bff;
   border-radius: 4px;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.75rem;
   margin: 0 0.5rem;
   cursor: pointer;
   font-size: 1rem;

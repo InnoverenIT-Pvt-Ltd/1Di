@@ -20,7 +20,7 @@ function MaterialsItemCard(props) {
     const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
-    
+  const [rowDatas, setrowDatas] = useState(""); 
   // const carouselRef = useRef(null);
   // const observer = useRef();
 
@@ -74,7 +74,9 @@ function MaterialsItemCard(props) {
   // }, [loading, hasMore]);
 
   const [units, setUnits] = useState({});
-
+  function handleRowData(item) {
+    setrowDatas(item)
+}
   const handleQuantityChange = (event, suppliesId) => {
     const newUnit = parseInt(event.target.value, 10);
     if (!isNaN(newUnit) && newUnit >= 1) {
@@ -341,7 +343,7 @@ function MaterialsItemCard(props) {
     <>
    
   
-   <div class="text-base justify-start text-black font-bold font-poppins mt-3">Featured</div>
+   <div class="text-sm justify-start text-black font-bold font-poppins mt-3">Featured</div>
   
    
     {/* <CardWrapper> */}
@@ -372,50 +374,56 @@ function MaterialsItemCard(props) {
                         <div 
                         // ref={isLastElement ? lastProductElementRef : null} 
                         key={item.suppliesId} className="card-element">
-                     <div class=" h-[14rem] p-2 flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[13rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                     <div class=" h-[19rem]  flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[13rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
                      
                       <div class=" flex flex-col items-center w-wk max-sm:mr-0 md:flex   h-hwk">
-                                              {item.imageId ? (
-                                                   <div class="object-cover object-center  flex items-center">
+                      {item.imageId ? (
+                                                    <div class="object-cover object-center  flex items-center">
                                                      <img
                                                               src={`${base_url}/image/${item.imageId}`} 
-                                                              style={{ height: "6.5rem", width: "13rem" }}
+                                                              style={{ height: "12.5rem", width: "13rem" }}
                                                           />
                                                          </div>  
                                                         ) : (
                            
-                                                        <div className=" text-sm text-center h-[6.5rem]  w-[13rem] flex justify-center items-center">Image Not Available</div>
+                                                        <div className=" text-base h-[9.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
-                                                            <div class=" flex w-wk flex-row mt-1 text-[#1124AA] justify-between "> 
+                                                     <div className=" flex justify-around flex-row w-full "> 
+                                                                            <div class=" mr-3 text-xs text-[#1124AA]">
+                                                                            WSL -  {item.suppliesPrice} CA$
+                                                                            </div> 
+                                                                 
+                                                    
+                                                                            <div class=" mr-3 text-xs text-[#1124AA]">
+                                                                              SRP -  {item.suppliesPrice} CA$
+                                                                            </div> 
+                                                                            </div>
+                                                                  <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
-                                                                  <div> {item.newSuppliesNo}  </div>
+                                                                  <div class=" flex justify-center"> {item.newSuppliesNo}  </div>
                                                                   <div > 
                                                                   <Tooltip title={item.suppliesName} placement="top" arrow>
                                                                                               
-                                                                                              <div>{item.suppliesName || ""}</div>
+                                                                                              <div class="cursor-pointer"
+                                                                                                onClick={() => {
+                                                                                                  props.handleSuppliesDetails(true);
+                                                                                                  handleRowData(item);
+                                                                                                }} 
+                                                                                              >{item.suppliesName || ""}</div>
                                                                                             </Tooltip>
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row  w-full justify-between"> 
-                                                                        <div class=" mt-1 text-xs text-[#1124AA] ">
+                                                                  <div className=" flex flex-row justify-around"> 
+                                                                        <div class=" mt-1 text-xs text-[#1124AA] truncate max-w-[100px] "title={item.categoryName}>
                                                                               {item.categoryName}
                                                                             </div>
+                                                                            
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
                                                                               {item.subCategoryName}
                                                                             </div> 
-                                                                  </div>
-                                                              
-                                                                  <div className=" flex flex-row justify-between w-wk"> 
-                                                                        <div class=" mt-1 text-xs text-[#1124AA] ">
-                                                                            Dis.price -  {item.discounts?.[0]?.allowedDiscount}
-                                                                            </div>
-                                                                            <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              Price - {item.suppliesPrices?.[0].suppliesPrice}
-                                                                            </div> 
-                                                                  </div>
-                                                                                                                         
+                                                                  </div>                                                
                                                                             <div class="w-wk mt-1 flex  justify-between max-sm:flex items-center">
                                                                             <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
                                                                             <div className="add-minus-quantity">
