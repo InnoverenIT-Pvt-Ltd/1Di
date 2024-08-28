@@ -44,18 +44,18 @@ function Inventory (props) {
     investorSerachedData={props.investorSerachedData}
     />
   ) : (  
-    <div className="overflow-x-auto h-[75vh] md:h-[89vh] scroller overflow-y-hidden">
+    <div className="overflow-x-auto h-[75vh] md:h-[92vh] scroller overflow-y-hidden">
     <div className="relative bg-[#1124AA] text-white w-wk">
      <InventoryHeader/>
      </div>
         <Suspense fallback={<BundleLoader />}>
-        <div className="mt-4">
+        <div className="mt-1">
         <CategoriesListCard categoriesPrds={props.categoriesPrds}
       handleActiveClick={handleActiveClick}
       activeClick={activeClick}
       fetchingCategories={props.fetchingCategories}/>
       </div>
-      <div class=" flex flex-row m-4 w-wk">
+      <div class=" flex flex-row  w-wk">
         <div className=' flex  mt-5 '>
                    
                     <div className='flex  justify-center'>
@@ -63,7 +63,7 @@ function Inventory (props) {
                   </div>
                         </div> 
 
-           <div class="mt-2">
+           <div class="">
          
 <MaterialsItemCard invencartItem={props.invencartItem}/>
        </div>

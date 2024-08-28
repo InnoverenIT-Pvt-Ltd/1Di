@@ -181,11 +181,11 @@ class CustomerMainApp extends Component {
                       
                       />
                     </div> */}
-            <div class="w-wk  max-sm:h-[60vh]   ">
+            <div class="w-wk  max-sm:h-[60vh] mt-2 ">
         
                                                 
-                                                {/* <MaterialAllCard/>  */}
-                                             <Q2SpecialtyPromotion/>
+                                                <MaterialAllCard/> 
+                                             {/* <Q2SpecialtyPromotion/> */}
                
                 {/* <Carousel
                      breakPoints={breakPoints}

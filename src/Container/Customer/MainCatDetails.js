@@ -48,9 +48,9 @@ console.log(props.productsByproductId)
  <div className="flex justify-between items-center w-full">
       <div >
         <div className="text-xl font-medium">{props.productsByproductId.suppliesName}</div>
-        <div className="text-xl font-medium">{props.productsByproductId.newSuppliesNo}</div>
+        <div className="text-base font-medium">{props.productsByproductId.newSuppliesNo}</div>
     
-        <div className='flex items-center  w-[w-wk] mt-3'>
+        <div className='flex items-center  w-wk mt-3'>
         <div className="flex items-center ">
         <div class="text-sm font-bold text-black w-16">
        

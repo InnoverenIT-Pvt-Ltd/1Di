@@ -17,6 +17,7 @@ import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import ProgressiveImage from "../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../Components/Forms/Autocomplete/ClearbitImage";
 import { MainWrapper } from "../../Components/UI/Elements";
+import { Footer } from "../Customer/Footer";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -323,11 +324,7 @@ function ContactusForm (props) {
               
               </MainWrapper>
             </Form>
-            <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
-      <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
-         © {new Date().getFullYear()} {` `}, 1Di inc.
-        
-      </div>
+           <Footer/>
             </div>
             
           )}

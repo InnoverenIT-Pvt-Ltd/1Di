@@ -77,6 +77,9 @@ import Stepper from "./Jobsite/Stepper";
 import Contact from "./Container/Contact/Contact";
 import Registration from "./Jobsite/Registrations";
 import ForgotPassword from "./Container/Auth/ForgotPassword";
+import RefundPolicy from "./Main/RefundPolicy";
+import FAQ from "./Main/FAQ";
+
 
 // const ProductDetails=lazy(()=>import("./Main/ProductDetails"));
 const CustomerMainApp = lazy(() => import("./Main/CustomerMainApp"));
@@ -108,7 +111,7 @@ class App extends Component {
             <Route exact path="/jobVendor" component={JobVendor} />
             <Route exact path="/jobTalent" component={JobTalent} />
             <Route exact path="/contactus" component={Contact} />
-
+            <Route exact path="/faq" component={FAQ} />
             <Route exact path="/:shopName/cart" component={Cart} />
               <Route exact path="/:shopName/payment" component={Payment} />
               <Route exact path="/:shopName/ordersucess" component={OrderSuccessFullTemplate} />
@@ -120,6 +123,7 @@ class App extends Component {
               <Route exact path="/:shopName/track" component={Track} />
               {/* <Route exact path="/contactus" component={ContactUs} /> */}
             <Route exact path="/" component={CustomerMainApp}/>
+            <Route exact path="/refund" component={RefundPolicy}/>
             <Route exact path="/registration" component={Registration}/>
             
             {fetchingUserDetails ? (

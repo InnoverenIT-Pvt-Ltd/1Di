@@ -12,17 +12,18 @@ function InvoPaymentRight(props){
    console.log(props.invencartItem)
         return (
             <>
-            <h3>SubTotal</h3>
-            <FlexContainer justifyContent="flex-end">
-                    <div >
-                        <span style={{ color: "#3066BE", fontWeight: "600" }}>
+          
+           
+                    <div className='flex mt-8 ' >
+                    <div className='w-wk'>SubTotal</div>
+                        <span className='text-[#3066BE] font-semibold flex justify-end w-wk' >
                            {props.invencartItem.cartSummary && props.invencartItem.cartSummary.subTotal}
                         
                         <br/>
-                            <span style={{color: " rgba(0, 0, 0, 0.5)" }}></span>
+                            <span className='text-black'></span>
                         </span>
                     </div>
-                </FlexContainer>
+            
             {/* <Spacer  marginTop="1.5em" />
             <h3> Delivery Fee</h3>
             <FlexContainer justifyContent="flex-end">
@@ -34,21 +35,22 @@ function InvoPaymentRight(props){
                     </span>
                 </div>
             </FlexContainer> */}
-            <Spacer  marginTop= "1.5em" />
+           
             <hr />
-            <h3> Grand Total</h3>
-            <FlexContainer justifyContent="flex-end">
-                    <div >
-                        <span style={{ color: "#3066BE", fontWeight: "600" }}>
+           
+          
+                    <div className='flex mt-6 ' >
+                    <div className='w-wk'> Grand Total</div>
+                    <span className='text-[#3066BE] font-semibold flex justify-end w-wk' >
                         {props.invencartItem.cartSummary && props.invencartItem.cartSummary.grandTotal}
                         
                         <br/>
-                            <span style={{color: " rgba(0, 0, 0, 0.5)" }}></span>
+                        <span className='text-black'></span>
                         </span>
                     </div>
-                </FlexContainer>
+               
             <hr />
-            <Spacer  marginTop= "1.5em" />
+           
            
         </>
         )

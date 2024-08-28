@@ -204,7 +204,7 @@ function MainApp(props) {
       {/* <LayoutWrapper style={{ backgroundColor: "white", width: "75rem" }}> */}
        <div className=" min-h-screen bg-white fixed w-[80vw] max-sm:w-wk"
        >
-        <NavbarWrapper style={{  height: 50, width:"100%"}}>
+        <NavbarWrapper style={{  height: 30, width:"100%"}}>
           {/* <Header> */}
           <div className="flex items-center  max-sm:flex-row-reverse p-1">
           <Link to="/dashboard">
@@ -220,7 +220,7 @@ function MainApp(props) {
               className="big-logo"
                src={KoreroLogo}
               // src={NuboxLogo}
-              style={{width: "5vw",height:"5vh"  }}
+              style={{width: "3vw",height:"3vh"  }}
               alt="Tekorero logo"
             />
           </div>
@@ -485,8 +485,7 @@ function MainApp(props) {
                   <Route exact path="/:shopName/chequeOrdersuccess" component={Showmessage}/>
                   <Route exact path="/:shopName/invenloading/:stripePaymentId/:paymentId" component={InventoryPaymentLoading}/>
                   <Route exact path="/planner"  component={Planner} />
-                  <Route exact pat="/supplierInventory" component={SupplierInventory}/>
-                 
+                  <Route exact pat="/supplierInventory" component={SupplierInventory}/>               
 
                 </Switch>
                 <AchievementDrawerModal

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Button } from 'antd';
+import { Route, Routes, Switch, Link } from "react-router-dom";
+import RefundPolicy from "../../../Main/RefundPolicy";
 
 function MainHeaderRight (props) {
 
     return (
         <>
-        <div className=" flex justify-evenly w-96">
+        <div className=" flex justify-evenly w-wk">
         {/* <div className=" flex">
             <div>
             <select>
@@ -26,10 +28,23 @@ function MainHeaderRight (props) {
             Wishlist
             </div> */}
             
-            <div>
+            <div className="flex">
+            <div className="mr-2">           
+            <Link to="/faq">
+           FAQ
+           </Link>        
+            </div> 
+            <div className="mr-2">
+              
+                <Link to="/refund">
+            Refund policy
+            </Link>
+            </div>
+            <div className="mr-2">
                 <a href="/contactus" target="blank">
                 Contact us
                 </a>
+                </div>
                 </div>   
    <div>
     <Button type="primary" style={{cursor:"pointer"}} >

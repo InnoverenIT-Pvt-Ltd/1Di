@@ -9,6 +9,7 @@ import {Button, Input} from "antd";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { base_url,base_url2 } from '../../Config/Auth'; 
+import InvSingleCard1 from './InvSingleCard1';
 function InvoPayment (props) {
 
       useEffect(() => {
@@ -19,10 +20,23 @@ function InvoPayment (props) {
   const [promocode, setPromocode] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
   const [promoCodeId, setPromoCodeId] = useState(null);
+  const [qn, setqn] = useState({});
   const handlePromoCodeChange = (e) => {
     setPromocode(e.target.value);
   };
-
+  function handleInc(data) {
+    setqn({ ...data, quantity: data.quantity + 1 });
+  }
+  function handleDec(data) {
+    setqn({ ...data, quantity: data.quantity - 1 });
+  }
+  function handlebackdelete(item) {
+    const cartItemId = item.cartItemId;
+    props.deleteCartItem(cartItemId);
+  }
+  function handleRemoveCart(data) {
+    setqn({ ...data });
+  }
  
   const handlePromoCodeBlur = async () => {
     const promo = promocode.trim();
@@ -74,13 +88,18 @@ function InvoPayment (props) {
   console.log(props.stripeNo && props.stripeNo.payByCashInd)
         return (
             <>
-              <div className="relative bg-[#1124AA] text-white w-wk h-16 flex items-center justify-center">
+              <div className="relative bg-[#1124AA] text-white w-wk h-8 flex items-center justify-center">
                 
                 <div class="text-white font-semibold text-2xl">Checkout</div>
                
                 
                 </div>
-                <div class="flex  justify-start mt-4">
+              
+               
+                     <div class="w-wk bg-white shadow-2xl rounded-lg border p-4 h-[89vh] flex justify-between"   >
+                     
+                      <div className='w-[40%]'>
+                      {/* <div class="flex  justify-start mt-1">
                 <Input  className='rounded border-black w-48'
         type="text"
         value={promocode}
@@ -98,31 +117,42 @@ function InvoPayment (props) {
           </Button>
         </div>
       )}
-    </div>
-                <FlexContainer
-                style={{justifyContent: "center"}}
-                >
-                    <MainWrapper 
-                        background= "#FFFFFF"
-                        boxShadow= "0.25em 0.25em 0.25em rgba(163 171, 185, 0.5)"
-                        borderRadius= "1.25em"
-                        width= "65%"
-                        border= "none"
-                    >
+    </div> */}
                         <InvoPaymentLeft invencartItem={props.invencartItem} stripeNo={props.stripeNo }/>
-                    </MainWrapper>
-                    <MainWrapper 
-                    
-                        background= "#FFFFFF"
-                        boxShadow= "0.25em 0.25em 0.25em rgba(163, 171, 185, 0.5)"
-                        borderRadius= "1.25em"
-                        width= "20%"
-                        marginLeft= "1.875em"
-                        border= "none"
-                    >
                         <InvoPaymentRight invencartItem={props.invencartItem}/>
-                    </MainWrapper>
-                </FlexContainer>
+                        </div>
+                        <div className=" w-[55%] h-[68vh] overflow-x-auto">
+      
+     
+  
+      <div className="w-[100%]">
+     {props.invencartItem.cartItems && props.invencartItem.cartItems.length === 0 ? <div class="flex justify-center  text-2xl text-[red]">Your Shopping cart is empty !</div>:
+props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
+            return ( 
+           <InvSingleCard1
+           key={item.cartItemId}
+           invencartItem={props.invencartItem}
+           item={item}
+           handleDec={handleDec}
+           handleInc={handleInc}
+           handleRemoveCart={handleRemoveCart}
+           handlebackdelete={handlebackdelete}
+           setqn={setqn}
+           qn={qn}
+           updatingPlusCart={props.updatingPlusCart}
+            />
+
+         )})} 
+      </div>
+      
+      
+     
+
+  </div>
+
+                    </div>
+                   
+              
             </>
         )
     }

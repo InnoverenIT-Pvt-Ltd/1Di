@@ -223,7 +223,7 @@ function MaterialAllCard (props) {
                                                                   </div>
                                                             <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
-                                                                  <div> {item.newSuppliesNo}  </div>
+                                                                  {/* <div> {item.newSuppliesNo}  </div> */}
                                                                   <div > 
                                                                   <Tooltip title={item.suppliesName} placement="top" arrow>
                                                                                               

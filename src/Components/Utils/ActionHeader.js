@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StyledActionHeader = styled.div`
     background:${props => props.theme.backgroundColor}; 
     color: ${props => props.theme.color};
-    padding: 0.6rem 1rem;
+    padding: 0.25rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
