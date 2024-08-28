@@ -93,11 +93,11 @@ function ProfileDropdown (props) {
              </Link> */}
 
              <Avatar 
-              style={{ backgroundColor: "green", verticalAlign: "middle", color: "white",marginRight:"15px" }}
+              style={{ backgroundColor: "green", verticalAlign: "middle", color: "white",marginRight:"15px",height:"27px",width:"27px" }}
               size="large"
             >
                {/* {`${props.user.firstName} ${props.user.lastName}`} */}
-               {fullName.charAt(0)}
+               <div className="-mt-[6px]">{fullName.charAt(0)}</div>
             </Avatar>
           
       </StyledDropdown>

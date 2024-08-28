@@ -221,7 +221,7 @@ useEffect(() => {
       dataLength={sortedList.length} 
      next={handleLoadMore}
      hasMore={hasMore}
-     height={"50vh"}
+     height={"58vh"}
     style={{width:"-webkit-fill-available"}}
     loader={props.fetchingPurchaseList?<div class="flex justify-center">Loading...</div>:null}
     endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
@@ -233,23 +233,21 @@ useEffect(() => {
                      const isLastElement = index === sortedList.length - 1;
                      return (
                      
-                      <CardElement >
-                        <div 
-                        // ref={isLastElement ? lastProductElementRef : null} 
-                        key={item.suppliesId} className="card-element">
-                      <div class=" h-[19rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[12.6rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                   
+                       
+                      <div  key={item.suppliesId} class=" h-[14rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[12.6rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
                      
                       <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
                                               {item.imageId ? (
                                                     <div class="object-cover object-center  flex items-center">
                                                      <img
                                                               src={`${base_url}/image/${item.imageId}`} 
-                                                              style={{ height: "12.5rem", width: "13rem" }}
+                                                              style={{ height: "6.5rem", width: "13rem" }}
                                                           />
                                                          </div>  
                                                         ) : (
                            
-                                                        <div className=" text-base h-[9.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
+                                                        <div className=" text-base h-[6.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
                                                      <div className=" flex justify-around flex-row w-full "> 
@@ -264,7 +262,7 @@ useEffect(() => {
                                                                             </div>
                                                                   <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
-                                                                  <div class=" flex justify-center"> {item.newSuppliesNo}  </div>
+                                                                  {/* <div class=" flex justify-center"> {item.newSuppliesNo}  </div> */}
                                                                   <div > 
                                                                   <Tooltip title={item.suppliesName} placement="top" arrow>
                                                                                               
@@ -290,7 +288,7 @@ useEffect(() => {
                                                                  
                                                       
                                                                                                                          
-                                                                            <div class="mt-1 flex  justify-between max-sm:flex items-center p-4">
+                                                                            <div class="mt-1 flex justify-evenly max-sm:flex items-center ">
                                                                             <div class=" flex  max-sm:w-48  ">
                                                                             <div className="add-minus-quantity">
                                                                           <span >
@@ -335,8 +333,8 @@ useEffect(() => {
                                                                              
                   
                                          </div>
-                                         </div>
-                                       </CardElement>
+                                      
+                                      
                                
                     );
                   })}

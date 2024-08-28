@@ -56,12 +56,12 @@ console.log(props.productsByproductId)
     </div>
     <div className="flex w-wk justify-evenly mt-3 ">
     <div className="flex flex-col border box-border h-40 w-[40%]">
-    <div className=" font-medium ml-1">Description </div>
-    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html: props.productsByproductId.description ?`<p>${props.productsByproductId.description}</p>`:"<p></p>" }} />
+    <div className=" font-medium ml-1 mt-1 font-poppins">Description </div>
+    <div className=" font-normal ml-1 font-poppins" dangerouslySetInnerHTML={{ __html: props.productsByproductId.description ?`<p>${props.productsByproductId.description}</p>`:"<p></p>" }} />
     </div>
     <div className="flex flex-col border box-border h-40 w-[40%]">
-    <div className=" font-medium ml-1">Description in French </div>
-   <div className=" font-normal ml-1"
+    <div className=" font-medium ml-1 mt-1 font-poppins">Description in French </div>
+   <div className=" font-normal ml-1 font-poppins"
   dangerouslySetInnerHTML={{
     __html: props.productsByproductId.qrCodeNo
       ? `<p>${props.productsByproductId.qrCodeNo}</p>`
