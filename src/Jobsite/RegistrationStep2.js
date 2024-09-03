@@ -104,29 +104,35 @@ const dialCode = props.countries.map((item)=> ({
                            
                                                </div>
                              </div>
-                            <Spacer />
-                            <div class="flex items-center justify-between w-[18rem]">
-                {/* <div className="input-header1 font-poppins font-semibold text-xs w-28"> {props.Cteptwos.confirmEmail}</div> */}
-                {/* <div>
-                        <Field
-                                 value={props.confirmEmailId}
-                                 placeholder={`${props.Cteptwos.confirmEmail}`}
-                                type="email"
+                             <div class="flex items-center justify-between w-[18rem]">
+                             <div className="input-header1  font-poppins font-semibold text-xs  w-28"> Extension</div>
+                    <div>
+                    <Field
+                                value={props.extension}
+                                placeholder={`Extension`}
+                                type="extension"
                                 component={InputComponent}
-                                onChange={props.handleConfirmEmailId}
+                                onChange={props.handleStepextension}
+                                style={{
+                                  height: "1.8rem",
+                                    // borderRadius: "0.4rem"
+                                }}
                             />
-    </div> */}
-                             </div>
+                  
+                          </div>
+                          </div>
+                          
+                            
                              </div>
                              <div class="flex justify-between w-wk mt-2">
                             
-                            <Spacer />
+                         
                             <div class="flex items-center justify-between w-[18rem]">
                             {/* <div className="input-header1 font-poppins font-semibold text-xs  w-28">{props.Cteptwos.repeatPassword}</div> */}
                              </div>
                              </div>
-                             <div class="flex justify-between w-1/2 mt-2">
-                             <div class="flex flex-col items-center justify-between w-[18rem]">
+                             <div class="flex  w-1/2 mt-2">
+                             <div class="flex flex-col ">
                              <div class=" font-poppins font-semibold text-xs w-28 ">Dial Code</div>
                              <div>
                     <Select
@@ -147,7 +153,7 @@ const dialCode = props.countries.map((item)=> ({
                    </div>
                   </div>
                                 
-                  <div class="flex flex-col  items-center justify-between w-[18rem]">
+                  <div class="flex flex-col  ">
                   <div className="input-header1 font-poppins font-semibold text-xs  w-28">Mobile No</div>
                   <div>   
                                     <Field
@@ -161,6 +167,7 @@ const dialCode = props.countries.map((item)=> ({
 </div>
                                 </div>
                             </div>
+                          
                              </div>       
           
               

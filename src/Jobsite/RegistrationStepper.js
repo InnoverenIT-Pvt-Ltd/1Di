@@ -12,6 +12,7 @@ import RegistrationStep2 from "./RegistrationStep2";
 import {
     addContact 
   } from "../Container/Auth/AuthAction";
+import RegistrationStep3 from "./RegistrationStep3";
 const Step = StyledSteps.Step;
 
 class RegistrationStepper extends Component {
@@ -22,6 +23,7 @@ class RegistrationStepper extends Component {
             thirdPageData: {},
             name:"",
             phoneNo:"",
+            billingEmail:"",
             address:[],
             email: "",
             phoneNumber: "",
@@ -30,6 +32,8 @@ class RegistrationStepper extends Component {
             lastName:"",
             countryDialCode:"",
             businessRegistration:"",
+            extension:"",
+            priPolInd:"",
         };
     }
     // handleSubmit = (data) => {
@@ -86,6 +90,19 @@ class RegistrationStepper extends Component {
             businessRegistration: e.target.value
         });
     }
+    handleStepEmailRegNo = (e) => {
+        this.setState({
+            billingEmail: e.target.value
+        });
+    }
+    handleStepextension = (e) => {
+        this.setState({
+            extension: e.target.value
+        });
+    }
+    handleSteppriPolInd = (newValue) => {
+        this.setState({ priPolInd: newValue });
+      };
     next = () => {
         const current = this.state.current + 1;
         this.setState({ current });
@@ -100,8 +117,10 @@ class RegistrationStepper extends Component {
 let data={
     name:this.state.name,
     phoneNo: this.state.phoneNo,
+    billingEmail:this.state.billingEmail,
+    extension:this.state.extension,
     address:this.state.address,
-
+    priPolInd:this.state.priPolInd,
     email:this.state.email,
     phoneNumber:this.state.phoneNumber,
     firstName:this.state.firstName,
@@ -122,7 +141,9 @@ let data={
                 handleNameStep1={this.handleNameStep1}             
                 name={this.state.name} 
                 handleStep1Phone={this.handleStep1Phone}
+                handleStepEmailRegNo={this.handleStepEmailRegNo}
                 phoneNo={this.state.phoneNo}
+                billingEmail={this.state.billingEmail}
                 handleAddressStep1={this.handleAddressStep1}
                 address={this.state.address}
 
@@ -137,7 +158,9 @@ let data={
                 handleMoBoStep2={this.handleMoBoStep2}
                 handleDialCodeStep2={this.handleDialCodeStep2}
                 handleStepBusRegNo={this.handleStepBusRegNo}
+                handleStepextension={this.handleStepextension}
                 firstName={this.state.firstName}
+                extension={this.state.extension}
                 email={this.state.email}
                 lastName={this.state.lastName}
                 countryDialCode={this.state.countryDialCode}
@@ -145,7 +168,13 @@ let data={
                 businessRegistration={this.state.businessRegistration}
                 />,
             },
-            
+            {
+                title: "Third",
+                content: <RegistrationStep3
+                priPolInd={this.state.priPolInd}
+                handleSteppriPolInd={this.handleSteppriPolInd}
+                />,
+            },
 
         ];
         const { current } = this.state;
@@ -160,7 +189,10 @@ let data={
                         title={<UserOutlined style={{ fontSize: "1.37em" }} />}
                         description="Contact Details"
                     />
-
+                  <Step
+                        title={<UserOutlined style={{ fontSize: "1.37em" }} />}
+                        description="Privacy Policy"
+                    />
 
                 </StyledSteps>
                 <div
@@ -175,7 +207,7 @@ let data={
                                         <Button
                                             type="primary"
                                             onClick={() => this.next()}
-                                            style={{ marginTop: "45px" }}
+                                           
                                         // disabled={this.props.serachedData === null}
                                         >
                                             Next
@@ -195,10 +227,10 @@ let data={
                             {current === steps.length - 1 && (
                                 <>
                                     <div 
-                                    className="py-1 px-8 shadow-2xl border-solid flex justify-end rounded-[2rem] ml-2   bg-[#586CB3]" style={{ boxShadow: "0.01rem 0.01rem 0.12rem 0.01rem" }}
+                                    className="py-1 px-8 mt-3 shadow-2xl border-solid flex justify-end rounded-[2rem] ml-2   bg-[#586CB3]" style={{ boxShadow: "0.01rem 0.01rem 0.12rem 0.01rem" }}
                                         type="primary"
                                         loading={this.props.addingContact}
-                                        onClick={() => this.handleComplete()
+                                        onClick={this.state.priPolInd ? () => this.handleComplete() : null
                                             // <>
                                             // {this.state.checked ? this.handleComplete():null}
                                             // </> 
