@@ -110,6 +110,21 @@ function RegistrationStep1 (props) {
                     />
                           </div>
                           </div>
+                          <div class="flex flex-row items-center">   
+                    <div className=" font-poppins text-sm  font-semibold w-44">Email</div>
+                    <div>
+                    <Field 
+                      isColumn
+                      component={InputComponent}
+                      inlineLabel 
+                      value={props.billingEmail}
+                      onChange={props.handleStepEmailRegNo}
+                      style={{
+                        height: "1.8rem", 
+                      }}
+                    />
+                          </div>
+                          </div>
                   </div>       
                   </div>
                   <div >
