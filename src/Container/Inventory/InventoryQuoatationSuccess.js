@@ -15,7 +15,7 @@ function InventoryQuoatationSuccess(props) {
 
   return (
 <>
-{/* {props.generatedQuotation.lengh === 0 ? <h2>Error</h2>: */}
+{props.generatedQuotation.lengh === 0 ? <h2>Error</h2>:
 <div className="flex flex-col  items-center justify-center h-[50vh] ">
     
       <CheckCircleFilled style={{ fontSize: "6.6875em", color: "#3066BE" }} />
@@ -52,7 +52,7 @@ function InventoryQuoatationSuccess(props) {
       </div>
     
   </div>
-
+}
 </>
 
    

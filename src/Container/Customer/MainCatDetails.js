@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
  import { getWitoutPrice } from "../Customer/CustomerAction";
- import { getProductsByProductId } from "../Inventory/InventoryAction";
+ import { getSuppliesBySuppliestId } from "../Inventory/InventoryAction";
 import styled from "styled-components";
 import { Select } from "../../Components/UI/Elements";
 import { base_url } from "../../Config/Auth";
@@ -16,7 +16,7 @@ const { Option } = Select;
 
 function MainCatDetails(props) {
   useEffect(() => {
-    props.getProductsByProductId(props.rowDatas.suppliesId);
+    props.getSuppliesBySuppliestId(props.rowDatas.suppliesId);
   }, []);
 
 //   if (props.fetchingProductsList) {
@@ -38,7 +38,7 @@ const breakPoints = [
   { width: 768, itemsToShow: 2, itemToScroll: 2 },
   { width: 1100, itemsToShow: 4, itemToScroll: 4 },
 ];
-console.log(props.productsByproductId)
+console.log(props.suppliesByproductId)
 
 
 
@@ -47,19 +47,19 @@ console.log(props.productsByproductId)
      <div className="bg-[#F7F8FC] p-8">
  <div className="flex justify-between items-center w-full">
       <div >
-        <div className="text-xl font-medium">{props.productsByproductId.suppliesName}</div>
-        <div className="text-base font-medium">{props.productsByproductId.newSuppliesNo}</div>
+        <div className="text-xl font-medium">{props.suppliesByproductId.suppliesName}</div>
+        <div className="text-base font-medium">{props.suppliesByproductId.newSuppliesNo}</div>
     
         <div className='flex items-center  w-wk mt-3'>
         <div className="flex items-center ">
         <div class="text-sm font-bold text-black w-16">
        
-         SRP- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/> {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
+         SRP- <CurrencySymbol  currencyType={props.suppliesByproductId.suppliesPrices?.[0].currencyName}/> {props.suppliesByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
         </div>
       </div>
       {/* <div className="flex items-center justify-center ml-1">
         <div class="text-sm text-black">
-        WSL  {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice}
+        WSL  {props.suppliesByproductId ?.suppliesPrices?.[0].suppliesPrice}
        
         </div>
       </div> */}
@@ -67,7 +67,7 @@ console.log(props.productsByproductId)
       
       </div>
       <div class=" flex justify-end">
-      <img  src={`${base_url}/image/${props.productsByproductId.imageId}`}  className="w-[20rem]" />
+      <img  src={`${base_url}/image/${props.suppliesByproductId.imageId}`}  className="w-[20rem]" />
      
       </div>
    
@@ -75,15 +75,15 @@ console.log(props.productsByproductId)
     <div className="flex w-wk justify-between mt-6 ">
     <div className="flex flex-col border box-border h-40 w-[27rem]">
     <div className=" font-medium ml-1">Description </div>
-    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html:props.productsByproductId.description? `<p>${props.productsByproductId.description}</p>`: "<p></p>" }} />
+    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html:props.suppliesByproductId.description? `<p>${props.suppliesByproductId.description}</p>`: "<p></p>" }} />
     </div>
     <div className="flex flex-col border box-border h-40 w-[27rem]">
     <div className=" font-medium ml-1">Description in French </div>
-    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html: props.productsByproductId.qrCodeNo ?`<p>${props.productsByproductId.qrCodeNo}</p>`: "<p></p>" }} />
+    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html: props.suppliesByproductId.qrCodeNo ?`<p>${props.suppliesByproductId.qrCodeNo}</p>`: "<p></p>" }} />
     </div>
     </div>
     <div className="cardDs-bottom mt-5 flex ">
-    <MainTable productsByproductId={props.productsByproductId}/>
+    <MainTable suppliesByproductId={props.suppliesByproductId}/>
    
       </div>
      
@@ -98,14 +98,14 @@ console.log(props.productsByproductId)
 const mapStateToProps = ({ customer,auth ,inventory}) => ({
     witoutPrice: customer.witoutPrice,
   fetchingWitoutPrice:customer.fetchingWitoutPrice,
-  productsByproductId: inventory.productsByproductId,
+  suppliesByproductId: inventory.suppliesByproductId,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getWitoutPrice,
-      getProductsByProductId
+      getSuppliesBySuppliestId
    
     },
     dispatch

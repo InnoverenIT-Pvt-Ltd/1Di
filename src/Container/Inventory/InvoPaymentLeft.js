@@ -380,12 +380,32 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
     let data = {
       amount: invencartItem.cartSummary.grandTotal ? invencartItem.cartSummary.grandTotal : 0,
       quotationId: invencartItem.orderPhoneId ? invencartItem.orderPhoneId:null,
-      type: "Cod",
+      type: "Cash on Delivery",
     };
     codInventoryOrder(data);
   };
-console.log(invencartItem)
- console.log(stripeNo)
+
+  const handleEFTOrder = () => {
+    history.push("/shopName/invOrdersuccess");
+    let data = {
+      amount: invencartItem.cartSummary.grandTotal ? invencartItem.cartSummary.grandTotal : 0,
+      quotationId: invencartItem.orderPhoneId ? invencartItem.orderPhoneId:null,
+      type: "EFT",
+    };
+    codInventoryOrder(data);
+  };
+
+  const handleCreditOrder = () => {
+    history.push("/shopName/invOrdersuccess");
+    let data = {
+      amount: invencartItem.cartSummary.grandTotal ? invencartItem.cartSummary.grandTotal : 0,
+      quotationId: invencartItem.orderPhoneId ? invencartItem.orderPhoneId:null,
+      type: "Credit",
+    };
+    codInventoryOrder(data);
+  };
+
+
   return (
     <>
       <br />
@@ -399,7 +419,6 @@ console.log(invencartItem)
               {value === "Stripe" && (
               <Button
                 type="primary"
-                style={{ backgroundColor: "#0073c8", marginLeft: "0.62em", borderRadius: "0.3rem" }}
                 onClick={() => { handleInventoryStripeModal(true); }}
               >
                 Checkout
@@ -413,23 +432,25 @@ console.log(invencartItem)
           </Radio>
         </FlexContainer>
          ) : null} 
-          <div className="flex justify-between mt-2">
+         
           <Radio value={"EFT"}>
-          <div className="flex items-center">
-              {/* <img style={{ width: "5rem" }} alt="pay" src={stripe} /> */}
-              {/* <Button
-                type="primary"
-                style={{ backgroundColor: "#0073c8", marginLeft: "0.62em", borderRadius: "0.3rem" }}
-                onClick={() => { handleInventoryStripeModal(true); }}
+          <div className="flex justify-between mt-2"> 
+            <div>
+          <h3> Electronics Fund Transfer (EFT) - </h3> send remittance to sales@1Di.ca
+          </div>
+            <div className="flex justify-center ml-2 mr-2">
+            {value === "EFT" && (
+            <Button
+                 type="primary"
+                 onClick={() => handleEFTOrder()}
+                 loading={addingCODinventory}
               >
                 Checkout
-              </Button> */}
+              </Button>)}
             </div>
-            <div>
-              <h3>Electronics Fund Transfer (EFT) - </h3> send remittance to sales@1Di.ca
-            </div>
-          </Radio>
-          </div>
+        </div>
+              </Radio>
+    
        
         {stripeNo.payByCashInd ? (
         <div class="flex justify-between items-center mt-2" >
@@ -520,19 +541,21 @@ console.log(invencartItem)
 
         <div className="flex justify-between mt-2">
           <Radio value={"Creditors"}>
-            <div style={{ display: "flex", alignItems: "baseline" }}>
-              {/* <img style={{ width: "5rem" }} alt="pay" src={stripe} /> */}
-              {/* <Button
-                type="primary"
-                style={{ backgroundColor: "#0073c8", marginLeft: "0.62em", borderRadius: "0.3rem" }}
-                onClick={() => { handleInventoryStripeModal(true); }}
-              >
-                Checkout
-              </Button> */}
+            <div className="flex justify-between mt-2"> 
+            <div>
+            <h3>Credit - Net 30 </h3>
+          </div>
+            <div className="flex justify-center ml-2 mr-2">
+            {value === "Creditors" && (
+            <Button
+            type="primary"
+            onClick={() => handleCreditOrder()}
+            loading={addingCODinventory}
+         >
+           Checkout
+         </Button>)}
             </div>
-            <div className="flex justify-between ">
-              <h3>Credit - Net 30 </h3>
-            </div>
+        </div>
           </Radio>
           </div>
            {/* ) : null} */}

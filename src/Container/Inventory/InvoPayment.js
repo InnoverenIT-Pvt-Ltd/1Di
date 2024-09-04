@@ -10,6 +10,11 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { base_url,base_url2 } from '../../Config/Auth'; 
 import InvSingleCard1 from './InvSingleCard1';
+import { createBrowserHistory } from "history";
+import { RollbackOutlined } from "@ant-design/icons";
+
+const history = createBrowserHistory();
+
 function InvoPayment (props) {
 
       useEffect(() => {
@@ -89,8 +94,16 @@ function InvoPayment (props) {
         return (
             <>
               <div className="relative bg-[#1124AA] text-white w-wk h-8 flex items-center justify-center">
-                
-                <div class="text-white font-semibold text-sm">Checkout</div>
+              <div class="flex w-wk items-center">
+            <RollbackOutlined
+          className="!text-[24px] BackButton  flex justify-start "
+          style={{color:"white"}}
+          onClick={() => history.back()}
+        /> 
+          <div class=" flex text-sm text-white w-[100%] justify-center font-semibold"> Checkout</div> 
+          <div className=" flex justify-end w-[100%] text-white text-sm text-[16px] font-normal pr-3"> </div>
+          </div>
+                <div class="text-white font-semibold text-sm"></div>
                
                 
                 </div>

@@ -4,40 +4,40 @@ function MainTable (props) {
   const data = {
   
     "Length": {
-      retail: props.productsByproductId.length?props.productsByproductId.length.toFixed(2) : "0",
-      inner: props.productsByproductId.innerLength?props.productsByproductId.innerLength.toFixed(2) : "0",
-      master: props.productsByproductId.masterLength?props.productsByproductId.masterLength.toFixed(2) : "0",
+      retail: props.suppliesByproductId.length?props.suppliesByproductId.length.toFixed(2) : "0",
+      inner: props.suppliesByproductId.innerLength?props.suppliesByproductId.innerLength.toFixed(2) : "0",
+      master: props.suppliesByproductId.masterLength?props.suppliesByproductId.masterLength.toFixed(2) : "0",
     },
     "Depth": {
-      retail: props.productsByproductId.width?props.productsByproductId.width.toFixed(2) : "0",
-      inner: props.productsByproductId.innerWidth?props.productsByproductId.innerWidth.toFixed(2) : "0",
-      master: props.productsByproductId.masterWidth?props.productsByproductId.masterWidth.toFixed(2) : "0",
+      retail: props.suppliesByproductId.width?props.suppliesByproductId.width.toFixed(2) : "0",
+      inner: props.suppliesByproductId.innerWidth?props.suppliesByproductId.innerWidth.toFixed(2) : "0",
+      master: props.suppliesByproductId.masterWidth?props.suppliesByproductId.masterWidth.toFixed(2) : "0",
     },
     "Height": {
-      retail: props.productsByproductId.height?props.productsByproductId.height.toFixed(2) : "0",
-      inner: props.productsByproductId.innerHeight?props.productsByproductId.innerHeight.toFixed(2) : "0",
-      master: props.productsByproductId.masterHeight?props.productsByproductId.masterHeight.toFixed(2) : "0",
+      retail: props.suppliesByproductId.height?props.suppliesByproductId.height.toFixed(2) : "0",
+      inner: props.suppliesByproductId.innerHeight?props.suppliesByproductId.innerHeight.toFixed(2) : "0",
+      master: props.suppliesByproductId.masterHeight?props.suppliesByproductId.masterHeight.toFixed(2) : "0",
     },
     "Volume": {
-      retail: props.productsByproductId.volume?props.productsByproductId.volume.toFixed(2) : "0",
-      inner: props.productsByproductId.innerVolume?props.productsByproductId.innerVolume.toFixed(2) : "0",
-      master: props.productsByproductId.masterVolume?props.productsByproductId.masterVolume.toFixed(2) : "0",
+      retail: props.suppliesByproductId.volume?props.suppliesByproductId.volume.toFixed(2) : "0",
+      inner: props.suppliesByproductId.innerVolume?props.suppliesByproductId.innerVolume.toFixed(2) : "0",
+      master: props.suppliesByproductId.masterVolume?props.suppliesByproductId.masterVolume.toFixed(2) : "0",
     },
     "Weight": {
-      retail: props.productsByproductId.weight?props.productsByproductId.weight.toFixed(2) : "0",
-      inner: props.productsByproductId.innerWeight?props.productsByproductId.innerWeight.toFixed(2) : "0",
-      master: props.productsByproductId.masterWeight?props.productsByproductId.masterWeight.toFixed(2) : "0",
+      retail: props.suppliesByproductId.weight?props.suppliesByproductId.weight.toFixed(2) : "0",
+      inner: props.suppliesByproductId.innerWeight?props.suppliesByproductId.innerWeight.toFixed(2) : "0",
+      master: props.suppliesByproductId.masterWeight?props.suppliesByproductId.masterWeight.toFixed(2) : "0",
     },
     // "Arcticle No": {
-    //   retail: props.productsByproductId.weight || "",
-    //   inner: props.productsByproductId.hsn || "",
+    //   retail: props.suppliesByproductId.weight || "",
+    //   inner: props.suppliesByproductId.hsn || "",
     //   master: ""
     // },
     
     "Category": {
-      retail: props.productsByproductId.categoryName || "No Data",
-      inner: props.productsByproductId.categoryName || "No Data",
-      master: props.productsByproductId.categoryName || "No Data"
+      retail: props.suppliesByproductId.categoryName || "No Data",
+      inner: props.suppliesByproductId.categoryName || "No Data",
+      master: props.suppliesByproductId.categoryName || "No Data"
     }
   };
 
