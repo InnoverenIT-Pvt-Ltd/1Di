@@ -19,6 +19,7 @@ import moment from "moment";
 import Carousel from "react-elastic-carousel";
 import { base_url } from "../../../Config/Auth";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import { Visibility } from "@mui/icons-material";
 
 const { Option } = Select;
 
@@ -60,8 +61,9 @@ function CategoriesListCard (props) {
 
 <CardWrapper>
 <Carousel
+                     pagination={false}
                      breakPoints={breakPoints}
-                    style={{ minHeight: "4rem", justifyContent:"center" }}
+                    style={{ minHeight: "4rem", justifyContent:"center"}}
                       class=" w-2/12  mt-3 ml-10"
                     >
                   {props.allSuppliesCategory.map((item) => {
@@ -72,7 +74,7 @@ function CategoriesListCard (props) {
         style={{
           color:props.activeClick === item.categoryId && "Blue",
           cursor:"pointer"
-        }} className="flex  w-44 h-28  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 ">
+        }} className="flex  w-44 h-24  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 ">
                           <div class="flex  flex-col items-center md:w-60 mr-3 ml-3">
                         <div class=" w-16 h-16 text-center" >
                           {item.imageId ? (

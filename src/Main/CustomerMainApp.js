@@ -171,7 +171,7 @@ class CustomerMainApp extends Component {
                 {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
                 <div className='w-wk flex  mt-4 flex-row '>                
                    
-                    <div className='flex  justify-center'>
+                    <div className='flex  justify-center mt-4'>
                         <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
                     </div>
                     <div class=" self-center  w-wk "> 

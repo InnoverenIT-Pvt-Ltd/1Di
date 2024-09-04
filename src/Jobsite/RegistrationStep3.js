@@ -102,7 +102,7 @@ const dialCode = props.countries.map((item)=> ({
   checked={props.priPolInd} 
   onChange={(e) => props.handleSteppriPolInd(e.target.checked)}
 />
-      <label>Click me!</label>
+      <label className="ml-1" >I agree to the Policy.</label>
     </div>
             </div>
           </Form>

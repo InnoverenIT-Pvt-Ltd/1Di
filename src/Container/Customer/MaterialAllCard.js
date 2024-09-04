@@ -179,7 +179,7 @@ function MaterialAllCard (props) {
         dataLength={sortedList.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        height={"31vh"}
+        height={"37vh"}
         style={{ width: "-webkit-fill-available",marginTop:"2rem" }}
         loader={props.fetchingPurchaseListC ? <div className="flex justify-center">Loading...</div> : null}
         //initialLoad={true}
