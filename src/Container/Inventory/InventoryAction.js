@@ -836,3 +836,31 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
               });
             });
         };
+        
+        export const generateQuatation = (quotationId,data,cb) => (dispatch) => {
+          dispatch({ type: types.GENERATE_QUOTATION_REQUEST });
+        
+          axios
+            .put(`${base_url2}/quotation/portal/convert/quotation/${quotationId}`,data, {
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            })
+        
+            .then((res) => {
+              console.log("resp",res)
+       
+          dispatch({
+                type: types.GENERATE_QUOTATION_SUCCESS,
+                payload: res.data,
+              });
+              cb && cb ("success")
+            })
+            .catch((err) => {
+              console.log("errr",err,err && err.response && err.response.data.error)
+              dispatch({
+                type: types.GENERATE_QUOTATION_FAILURE,
+              });
+              cb && cb ("error",err && err.response && err.response.data.error)
+            });
+        };       

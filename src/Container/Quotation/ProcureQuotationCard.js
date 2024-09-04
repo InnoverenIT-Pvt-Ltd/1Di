@@ -152,7 +152,7 @@ function ProcureQuotationCard(props) {
                                         <div className="   w-24 ">
                                         <Link to={`shopName/invopayment`}>
                                             <Button type="primary">
-                                                Pay
+                                                Convert to Order
                                                 </Button>
                                                 </Link>
                                             {/* {(item.customerPriceInd === true && item.priceConfirmInd === false) ? (

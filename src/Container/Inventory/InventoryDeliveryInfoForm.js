@@ -10,7 +10,7 @@ import { Button,DatePicker,Tooltip } from "antd";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { FlexContainer } from "../../Components/UI/Layout";
 import DeliveryInfoAddressFieldArray from "../../Components/Forms/Formik/DeliveryInfoAddressFieldArray";
-import {addInventoryDeliveryInfo } from "./InventoryAction";
+import {addInventoryDeliveryInfo,generateQuatation } from "./InventoryAction";
 import { Link, useHistory } from "react-router-dom";
 import moment from 'moment'; 
 import "./Inventory.scss";
@@ -61,6 +61,11 @@ function InventoryDeliveryInfoForm(props) {
       return <BundleLoader/>
     }
 
+
+    function generateQuatationFunction(){
+      history.push("/invQuotationsuccess");
+      props.generateQuatation(props.invencartItem.orderPhoneId);
+    }
 
   return (
     <>
@@ -323,6 +328,13 @@ function InventoryDeliveryInfoForm(props) {
             </div>
             <Spacer />
             <FlexContainer justifyContent="flex-end">
+            <Button 
+                className="bg-green-500"
+                onClick={() => generateQuatationFunction()}
+                loading={props.generatingQuotation}  
+                >
+                  Generate Quote
+                </Button>
               {/* <Link to="/shopName/invopayment"> */}
                 <Button type="primary"
                 htmlType="submit" 
@@ -343,13 +355,13 @@ const mapStateToProps = ({ inventory,auth }) => ({
   addingInventoryDeliveryInfo: inventory.addingInventoryDeliveryInfo,
   // invencartItem: inventory.invencartItem,
   userId: auth.userDetails.userId,
-  // fetchingInventoryCartItems:inventory.fetchingInventoryCartItems,
+  generatingQuotation:inventory.generatingQuotation,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addInventoryDeliveryInfo,
-      // getInventoryCartItems,
+      generateQuatation
     },
     dispatch
   );
