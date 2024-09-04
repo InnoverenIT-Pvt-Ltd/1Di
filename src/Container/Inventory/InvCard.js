@@ -96,7 +96,7 @@ const handlePostRequest = async () => {
     <>
 
     <section className="main-cart-section h-[85vh]">
-    <div className="relative bg-[#1124AA] h-10 text-white w-wk flex flex-col justify-center">
+    <div className="relative bg-[#1124AA] h-8 text-white w-wk flex flex-col justify-center">
       <div class="flex">
     <RollbackOutlined
           className="BackButton flex justify-start !text-xl "
@@ -108,18 +108,18 @@ const handlePostRequest = async () => {
         <p className="text-white font-normal flex w-[100%] justify-end pr-3">
           You have &nbsp; <span className="text-[#eacc0c] total-items-count">{props.invencartItemCount.productCount}</span> &nbsp; items in shopping cart</p> </div>
           </div>
-          <div class="rounded-lg m-2 p-2 h-12 w-wk overflow-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#DFE2F8]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div class="rounded m-1  h-8 w-wk overflow-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#DFE2F8]">
+          <div className=" flex justify-between items-center w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[0rem]"></div>
-        <div className=" md:w-[10.9rem] font-poppins">Product title</div>
-        <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className=" md:w-[5.11rem] font-poppins">SKU</div>
-        <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className=" md:w-[19.9rem] font-poppins">Product title</div>
+        <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className=" md:w-[4.11rem] font-poppins">SKU</div>
+        <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
         <div className=" md:w-[8.2rem] font-poppins">Available</div>
-        <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className="md:w-[8.2rem] font-poppins">Price</div> 
-        <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className=" md:w-[8rem] font-poppins">Ship By</div>        
+        <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className="md:w-[9.2rem] font-poppins">Price</div> 
+        <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className=" md:w-[7rem] font-poppins">Ship By</div>        
       </div>
       </div>
         <div className=" w-[100%] h-[30vh]">
