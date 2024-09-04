@@ -55,7 +55,7 @@ function Inventory (props) {
       activeClick={activeClick}
       fetchingCategories={props.fetchingCategories}/>
       </div>
-      <div class=" flex flex-row  w-wk">
+      <div class=" flex flex-row  w-wk mt-4">
         <div className=' flex  mt-5 '>
                    
                     <div className='flex  justify-center'>

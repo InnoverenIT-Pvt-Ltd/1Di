@@ -5,6 +5,8 @@ import { bindActionCreators } from "redux";
 import { Formik, Form, Field } from "formik";
 import { MainWrapper } from "../Components/UI/Layout";
 import { StyledSteps } from "../Components/UI/Antd";
+import BusinessIcon from '@mui/icons-material/Business';
+import PolicyIcon from '@mui/icons-material/Policy';
 import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import { FlexContainer } from "../Components/UI/Layout";
 import RegistrationStep1 from "./RegistrationStep1";
@@ -182,7 +184,7 @@ let data={
             <>
                 <StyledSteps current={current}>
                     <Step
-                        title={<UserOutlined style={{ fontSize: "1.37em" }} />}
+                        title={<BusinessIcon style={{ fontSize: "1.37em" }} />}
                         description="Company Info"
                     />
                     <Step
@@ -190,7 +192,7 @@ let data={
                         description="Contact Details"
                     />
                   <Step
-                        title={<UserOutlined style={{ fontSize: "1.37em" }} />}
+                        title={< PolicyIcon style={{ fontSize: "1.37em" }} />}
                         description="Privacy Policy"
                     />
 
