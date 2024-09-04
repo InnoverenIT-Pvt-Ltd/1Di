@@ -7,33 +7,33 @@ import "../Order/OrderTemplate.scss";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-function OrderSuccessfull(props) {
+function InventoryQuoatationSuccess(props) {
 
-if(props.addingCODinventory){
- return <h2>Loading...</h2>
-}
+// if(props.generatingQuotation){
+//  return <h2>Loading...</h2>
+// }
 
   return (
 <>
-{props.codInventryorDr.lengh === 0 ? <h2>Payment Error</h2>:
+{/* {props.generatedQuotation.lengh === 0 ? <h2>Error</h2>: */}
 <div className="flex flex-col  items-center justify-center h-[50vh] ">
     
       <CheckCircleFilled style={{ fontSize: "6.6875em", color: "#3066BE" }} />
       <div class = "text-lg">
-         Order placed successfully  &nbsp;
-        {props.codInventryorDr.orderId || ""}
+    Quotation generated successfully  &nbsp;
+        {props.generatedQuotation.orderId || ""}
       </div>
       <h3>
-      You will receive a confirmation message shortly. For more details click on Order tab.
+      You will receive a confirmation message shortly. For more details click on Quotation tab.
       </h3>
       <div className=" mt-4 flex justify-center items-center w-[100%]" >
         <div >
-        <Link to="/orderinprogree">
+        <Link to="/quoatation">
           <Button
           // className="btnTrack"
           type="primary" 
           >
-            Order Status
+            Go to Quotation
           </Button>
           </Link>
         </div>
@@ -52,7 +52,7 @@ if(props.addingCODinventory){
       </div>
     
   </div>
-}
+
 </>
 
    
@@ -60,17 +60,8 @@ if(props.addingCODinventory){
 }
 const mapStateToProps = ({ inventory, auth }) => ({
   invencartItem: inventory.invencartItem,
-  addingCODinventory:inventory.addingCODinventory,
-  codInventryorDr:inventory.codInventryorDr,
-  // placeOrder:inventory.placeOrder,
-  // deliveryInfo:inventory.deliveryInfo,
-  // updatingDeliveryInfo:inventory.updatingDeliveryInfo,
-  // showDeliveryInfo:inventory.showDeliveryInfo,
-  // linkingProductInfo: inventory.linkingProductInfo,
-  // productInfo:inventory.productInfo,
-  //  cartId:inventory.productInfo.cartId,
-  // cartId: inventory.dispatch.length && inventory.dispatch[0].cartId || "",
-
+  generatingQuotation:inventory.generatingQuotation,
+  generatedQuotation:inventory.generatedQuotation,
   userId: auth.userDetails.userId,
 });
 
@@ -81,4 +72,4 @@ const mapDispatchToProps = (dispatch) =>
       },
       dispatch
   );
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OrderSuccessfull));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InventoryQuoatationSuccess));

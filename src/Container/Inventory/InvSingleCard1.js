@@ -52,6 +52,7 @@ import FeaturedMaterialCard from './FeaturedMaterialCard';
 console.log(props.item.productInfo)
     return(
       <>
+      
         <div className="w-wk h-20 bg-white mt-2 flex rounded p-2 ">
         <div className="w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
         <div   className="">

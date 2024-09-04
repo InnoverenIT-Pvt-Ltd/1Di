@@ -57,6 +57,7 @@ import InventoryDeliveryInfo from "../Container/Inventory/InventoryDeliveryInfo"
 import InvoPayment from "../Container/Inventory/InvoPayment";
 import InventoryPaymentLoading from "../Container/Inventory/InventoryPaymentLoading";
 import InventoryOrdersuccess from "../Container/Inventory/InventoryOrdersuccess";
+import InventoryQuoatationSuccess from "../Container/Inventory/InventoryQuoatationSuccess";
 import { MenuFoldOutlined, MenuUnfoldOutlined, CloseOutlined } from '@ant-design/icons';
 import Showmessage from "../Container/Inventory/Showmessage";
 const OrderSupplier =lazy(()=>import("../Container/OrderSupplier/OrderSupplier"));
@@ -483,6 +484,7 @@ function MainApp(props) {
                   <Route exact path="/:shopName/inventorycart" component={InventoryCart} />
                   <Route exact path="/:shopName/invopayment" component={InvoPayment} />
                   <Route exact path="/profile"  component={Profile} />
+                  <Route exact path="/invQuotationsuccess" component={InventoryQuoatationSuccess}/>
                   <Route exact path="/:shopName/invOrdersuccess" component={InventoryOrdersuccess}/>
                   <Route exact path="/:shopName/chequeOrdersuccess" component={Showmessage}/>
                   <Route exact path="/:shopName/invenloading/:stripePaymentId/:paymentId" component={InventoryPaymentLoading}/>

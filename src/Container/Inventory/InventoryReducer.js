@@ -119,7 +119,11 @@ const initialState = {
   
   fetchingMaterialRecommendeds: false,
   fetchingMaterialRecommendedsError:false,
-  materialRecommendeds:[]
+  materialRecommendeds:[],
+
+  generatingQuotation: false,
+  generatedQuotation:{},
+  generatingQuotationError:false,
 };
 
   export const inventoryReducer = (state = initialState, action) => {
@@ -535,6 +539,12 @@ const initialState = {
                       fetchingMaterialRecommendedsError: true,
                   };
 
+                  case types.GENERATE_QUOTATION_REQUEST:
+                    return { ...state, generatingQuotation: true };
+                  case types.GENERATE_QUOTATION_SUCCESS:
+                    return { ...state, generatingQuotation: false, generatedQuotation: action.payload };
+                  case types.GENERATE_QUOTATION_FAILURE:
+                    return { ...state, generatingQuotation: false, generatingQuotationError: true };
 
 
 

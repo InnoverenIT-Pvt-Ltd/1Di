@@ -393,8 +393,10 @@ console.log(invencartItem)
       {stripeNo.stripeInd ? (
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           <Radio value={"Stripe"}>
-            <div style={{ display: "flex", alignItems: "baseline" }}>
-              <img style={{ width: "5rem" }} alt="pay" src={stripe} />
+        
+            <div className="flex items-center">
+              <img className="w-20" alt="pay" src={stripe} />
+              {value === "Stripe" && (
               <Button
                 type="primary"
                 style={{ backgroundColor: "#0073c8", marginLeft: "0.62em", borderRadius: "0.3rem" }}
@@ -402,16 +404,18 @@ console.log(invencartItem)
               >
                 Checkout
               </Button>
+                     )}
             </div>
+ 
             <div>
-              <h3>Credit and Debit Card payments such as Mastercard, Visa, American Express, iDEAL, Apple Pay, Google Pay, Klarna and much more.</h3>
+              <h3>Multiple channels supported - Mastercard, Visa, American Express, iDEAL, Apple Pay and much more.</h3>
             </div>
           </Radio>
         </FlexContainer>
          ) : null} 
-          <div className="flex justify-between mt-4">
+          <div className="flex justify-between mt-2">
           <Radio value={"EFT"}>
-            <div style={{ display: "flex", alignItems: "baseline" }}>
+          <div className="flex items-center">
               {/* <img style={{ width: "5rem" }} alt="pay" src={stripe} /> */}
               {/* <Button
                 type="primary"
@@ -422,16 +426,16 @@ console.log(invencartItem)
               </Button> */}
             </div>
             <div>
-              <h3>Electronics Fund Transfer (EFT) - send remittance to sales@1Di.ca </h3>
+              <h3>Electronics Fund Transfer (EFT) - </h3> send remittance to sales@1Di.ca
             </div>
           </Radio>
           </div>
        
         {stripeNo.payByCashInd ? (
-        <div class="flex justify-between items-center mt-4" >
+        <div class="flex justify-between items-center mt-2" >
           <Radio value={"Cash on Delivery"}>
-            <div style={{ alignItems: "baseline", justifyContent: "space-evenly" }}>
-              <img style={{ width: "4.25em" }} alt="pay" src={pay} />
+          <div className="flex items-center justify-evenly">
+              <img className="w-[4.25rem]"  alt="pay" src={pay} />
               Pay on Delivery (Cash)
               <Button
                 type="primary"
@@ -448,7 +452,7 @@ console.log(invencartItem)
         </div>
          ) : null}  
           {stripeNo.razorpayInd ? (
-        <div class="flex justify-between items-center mt-4" >
+        <div class="flex justify-between items-center mt-2" >
           <Radio value={"Razorpay"}>
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-evenly" }}>
               <img style={{ width: "5rem" }} alt="pay" src={Razorpay} />
@@ -467,9 +471,9 @@ console.log(invencartItem)
         </div>
            ) : null} 
            {stripeNo.payByCheckInd ? (
-         <div class="flex justify-between items-center mt-4" >
+         <div class="flex justify-between items-center mt-2" >
           {/* <Radio value={"pay by check"}>
-            <div className="mt-4 flex" >  
+            <div className="flex" >  
               Pay by Check
               <Button
                 type="primary"
@@ -490,7 +494,7 @@ console.log(invencartItem)
           </Radio> */}
           <Radio.Group onChange={handlePaymentChange} value={paymentMethod}>
       <Radio value="pay by check">
-        <div className=" flex mt-2 font-semibold">      
+        <div className=" flex font-semibold mt-2">      
           Pay by Check
           {paymentMethod === "pay by check" && (
             <div className="flex justify-center ml-2 mr-2">
@@ -503,7 +507,7 @@ console.log(invencartItem)
                 placeholder="Enter check No"
               /> */}
                <Button type="primary" onClick={handlePayByBlur} style={{marginLeft:"1rem"}}>
-                Pay by Check
+                Checkout
               </Button>
             </div>
           )}
@@ -514,7 +518,7 @@ console.log(invencartItem)
         </div>
         ): null} 
 
-        <div className="flex justify-between mt-4">
+        <div className="flex justify-between mt-2">
           <Radio value={"Creditors"}>
             <div style={{ display: "flex", alignItems: "baseline" }}>
               {/* <img style={{ width: "5rem" }} alt="pay" src={stripe} /> */}
@@ -526,7 +530,7 @@ console.log(invencartItem)
                 Checkout
               </Button> */}
             </div>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between ">
               <h3>Credit - Net 30 </h3>
             </div>
           </Radio>

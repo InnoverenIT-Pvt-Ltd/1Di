@@ -90,13 +90,13 @@ function InvoPayment (props) {
             <>
               <div className="relative bg-[#1124AA] text-white w-wk h-8 flex items-center justify-center">
                 
-                <div class="text-white font-semibold text-2xl">Checkout</div>
+                <div class="text-white font-semibold text-sm">Checkout</div>
                
                 
                 </div>
               
                
-                     <div class="w-wk bg-white shadow-2xl rounded-lg border p-4 h-[89vh] flex justify-between"   >
+                     <div class="w-wk bg-white shadow-2xl rounded-lg border p-1 h-[87vh] flex justify-between"   >
                      
                       <div className='w-[40%]'>
                       {/* <div class="flex  justify-start mt-1">
@@ -121,10 +121,7 @@ function InvoPayment (props) {
                         <InvoPaymentLeft invencartItem={props.invencartItem} stripeNo={props.stripeNo }/>
                         <InvoPaymentRight invencartItem={props.invencartItem}/>
                         </div>
-                        <div className=" w-[55%] h-[68vh] overflow-x-auto">
-      
-     
-  
+                        <div className=" w-[55%] h-[83vh] border box-border overflow-x-auto">
       <div className="w-[100%]">
      {props.invencartItem.cartItems && props.invencartItem.cartItems.length === 0 ? <div class="flex justify-center  text-2xl text-[red]">Your Shopping cart is empty !</div>:
 props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
