@@ -217,8 +217,8 @@ function MaterialAllCard (props) {
                                                                             </div> */}
                                                                             <div class="  flex  p-1 text-xs text-[#1124AA]">
                                                                             SRP - 
-                                                                            {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> */}
-                                                                             {item.suppliesPrice} CA$
+                                                                            <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)}
+                                                                             {/* {item.suppliesPrice} CA$ */}
                                                                             </div> 
                                                                   </div>
                                                             <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 

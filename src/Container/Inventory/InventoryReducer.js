@@ -124,6 +124,10 @@ const initialState = {
   generatingQuotation: false,
   generatedQuotation:{},
   generatingQuotationError:false,
+
+  fetchingSuppliesByProductId: false,
+  fetchingSuppliesByProductIdError:false,
+  suppliesByproductId:{},
 };
 
   export const inventoryReducer = (state = initialState, action) => {
@@ -511,6 +515,26 @@ const initialState = {
                 ...state,
                 fetchingProductsByProductId: false,
                 fetchingProductsByProductIdError: true,
+              };
+
+              case types.GET_SUPPLIES_BY_PRODUCTID_REQUEST:
+              return {
+                ...state,
+                fetchingSuppliesByProductId: true,
+                fetchingSuppliesByProductIdError: false,
+              };
+           
+              case types.GET_SUPPLIES_BY_PRODUCTID_SUCCESS:
+              return {
+                ...state,
+                fetchingSuppliesByProductId: false,
+                suppliesByproductId: action.payload,
+              };
+            case types.GET_SUPPLIES_BY_PRODUCTID_FAILURE:
+              return {
+                ...state,
+                fetchingSuppliesByProductId: false,
+                fetchingSuppliesByProductIdError: true,
               };
 
               case types.GET_FEATURED_MATERIALS_REQUEST:
