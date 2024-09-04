@@ -50,7 +50,7 @@ function ProcureStatusShower (props) {
                         </>
                 },
                 {
-                    title: 'Order Pick Up',
+                    title: 'Order Summary',
                     status:  '',
                    // subTitle: <StatusItemCard statusItems={props.statusItems}/>,
                     description: <>
@@ -60,14 +60,6 @@ function ProcureStatusShower (props) {
                 },
 
         
-               
-                // {
-                //     title: 'Customer Feedback',
-                //     status: 'progress',
-                //     description: <>
-                //  <Rate/>
-                //   </>
-                // },
             ]}
         />
       

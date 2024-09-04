@@ -109,20 +109,20 @@ const handlePostRequest = async () => {
           You have &nbsp; <span className="text-[#eacc0c] total-items-count">{props.invencartItemCount.productCount}</span> &nbsp; items in shopping cart</p> </div>
           </div>
           <div class="rounded m-1  h-8 w-wk overflow-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#DFE2F8]">
-          <div className=" flex justify-between items-center w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" flex justify-between items-center w-[100%] p-1 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[0rem]"></div>
         <div className=" md:w-[19.9rem] font-poppins">Product title</div>
         <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className=" md:w-[4.11rem] font-poppins">SKU</div>
+        <div className=" md:w-[3.11rem] font-poppins">SKU</div>
         <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className=" md:w-[8.2rem] font-poppins">Available</div>
+        <div className=" md:w-[3.5rem] font-poppins">Available</div>
         <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className="md:w-[9.2rem] font-poppins">Price</div> 
+        <div className="md:w-[12rem] font-poppins">Price</div> 
         <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className=" md:w-[7rem] font-poppins">Ship By</div>        
+        <div className=" md:w-[9rem] font-poppins">Ship By</div>        
       </div>
       </div>
-        <div className=" w-[100%] h-[30vh]">
+        <div className=" w-[100%] h-[41vh]">
       
         <Scrollbars style={{ width: "-webkit-fill-available", height:"35vh" }}  renderThumbVertical={({style, ...props}) =>
         <div {...props} style={{...style, backgroundColor: 'orange'}}/>

@@ -11,6 +11,7 @@ const StyledActionHeader = styled.div`
     align-items: center;
     align-content: center;
     box-shadow: 0 0.0625em 0.25em 0.0625em${props => props.theme.boxShadowColor};
+    height: 2rem;
 `
 const ActionHeader = (props) => {
     return (

@@ -70,7 +70,7 @@ console.log(props.item.productInfo)
       {/* </div> */}
        
         <div className=" flex items-center  justify-center flex-col text-ellipsis overflow-hidden">
-          <div class="text-blue-600 text-xs font-bold cursor-pointer font-poppins text-ellipsis overflow-hidden w-[21rem] ml-3"
+          <div class="text-blue-600 text-xs font-bold cursor-pointer font-poppins text-ellipsis overflow-hidden w-[22.5rem] ml-3"
              onClick={() => {
               props.handleProductDetails(true);
               handleRowData(props.item);
@@ -83,18 +83,18 @@ console.log(props.item.productInfo)
         </div>
         <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
         <div className="flex items-center justify-center ">
-        <div class="text-xs text-black w-[7.4rem] flex justify-center">
+        <div class="text-xs text-black w-[9.6rem] flex justify-center">
         {/* {props.item.productInfo.newProductId} */} article no
         </div>
       </div>    
       <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
       <div className=' flex items-center  justify-center '>
-        <div className='w-[7rem] flex items-center  justify-center'>
+        <div className='w-[9.1rem] flex items-center  justify-center'>
         Avilable date
         </div>
         </div>
       <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
-      <div className='flex items-center justify-center '>
+      <div className='flex items-center justify-center w-[18rem] '>
         <div className="flex items-center justify-center">
         <div class="text-xs text-black w-16">
          USD {props.item.itemSummary.discount}
@@ -140,7 +140,7 @@ console.log(props.item.productInfo)
         </div>
         </div>
         <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
-        <div className=' flex items-center  justify-center w-[7rem]'>
+        <div className=' flex items-center  justify-end w-[11rem]'>
           
         <div className="flex items-center justify-center text-xs">
         <input
