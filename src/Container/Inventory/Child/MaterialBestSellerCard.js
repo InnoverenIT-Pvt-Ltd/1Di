@@ -29,12 +29,12 @@ function MaterialBestSellerCard (props) {
         const type="procure";
         const limit="20";
 const endDate=props.endDate;
-const startDate=props.startDate;
+const startDate=new Date().toISOString();;
         const fetchBestSellerData = async () => {
             try {
                 setLoading(true);
 
-                const response = await axios.get(`${base_url2}/phoneOrder/org/getTop-sellingProduct/${type}/${limit}?endDate=2024-08-01T00:00:00.000Z&startDate=2024-08-12T11:31:59.319Z`,{
+                const response = await axios.get(`${base_url2}/phoneOrder/org/getTop-sellingProduct/${type}/${limit}?endDate=2024-08-13T11:31:59.319Z&startDate=2024-08-01T00:00:00.000Z`,{
                     headers: {
                         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
                       },

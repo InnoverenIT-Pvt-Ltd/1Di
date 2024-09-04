@@ -65,8 +65,8 @@ console.log(props.item.productInfo)
 </div>
       </div>
        
-        <div className=" flex items-center  justify-center flex-col w-wk">
-          <div class="text-blue-600 text-xs font-bold cursor-pointer font-poppins"
+        <div className=" flex items-center  justify-center flex-col text-ellipsis overflow-hidden w-wk">
+          <div class="text-blue-600 text-xs font-bold cursor-pointer font-poppins text-ellipsis overflow-hidden w-6"
              onClick={() => {
               props.handleProductDetails(true);
               handleRowData(props.item);
@@ -91,12 +91,12 @@ console.log(props.item.productInfo)
         <div className="md:h-[3rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div>
         <div className="flex items-center justify-center w-wk">
         <div class="text-sm text-black w-[13.4rem] flex justify-center">
-        {props.item.productInfo.newProductId}
+        {/* {props.item.productInfo.newProductId} */} article no
         </div>
       </div>    
       <div className="md:h-[3rem] md:bg-[#ACB6FC] md:mt-2 w-[0.1rem]"></div> 
       <div className=' flex items-center  justify-center w-wk'>
-        <div className='w-[10rem] flex items-center  justify-center'>
+        <div className='w-[8rem] flex items-center  justify-center'>
         Avilable date
         </div>
         </div>
@@ -160,7 +160,8 @@ console.log(props.item.productInfo)
       </div>
      
         <div className="flex items-center justify-center">
-        <DeleteOutlined
+        <DeleteOutlined 
+        className='text-[red] ml-2'
           onClick={() => {
             props.setqn(props.item)
             props.handlebackdelete(props.item)

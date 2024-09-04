@@ -269,19 +269,7 @@ function MainApp(props) {
             </Link>}
             </>
             :null}
-            {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
-            <Link to="/orderinprogree" className="dheight">
-              <span
-                style={{
-                  paddingLeft: "1em",
-                  color: click == "orderinprogree" ? "#8dc1f1" : "black"
-                }}
-                onClick={() => { handleClick("orderinprogree") }}
-              >
-                <label class="font-poppins font-bold text-base cursor-pointer">Orders</label>
-              </span>
-            </Link>:null}
-            <Link to="/invoice" className="dheight">
+              <Link to="/invoice" className="dheight">
               <span
                 style={{
                   paddingLeft: "1em",
@@ -310,6 +298,20 @@ function MainApp(props) {
                                  /></label>
               </span>
             </Link>:null}
+            {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
+            <Link to="/orderinprogree" className="dheight">
+              <span
+                style={{
+                  paddingLeft: "1em",
+                  color: click == "orderinprogree" ? "#8dc1f1" : "black"
+                }}
+                onClick={() => { handleClick("orderinprogree") }}
+              >
+                <label class="font-poppins font-bold text-base cursor-pointer">Orders</label>
+              </span>
+            </Link>:null}
+          
+           
             {/* <Link to="/completedorder">
               <span
                 style={{
