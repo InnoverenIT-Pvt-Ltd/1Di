@@ -10,8 +10,7 @@ const InveProductsDetails = lazy(() => import("./InveProductsDetails"));
 function InveProductsDetailsDrawer  (props) {
     const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "70%";
-    console.log(props.rowDatas && props.rowDatas.productInfo.productId)
-    // console.log(props.newData && props.newData.phoneTaskId)
+
     return (
         <>
             <StyledDrawer
