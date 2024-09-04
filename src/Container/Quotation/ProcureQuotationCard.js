@@ -37,18 +37,18 @@ function ProcureQuotationCard(props) {
 
       return (
         <>
-            <div className='mt-2'>
-                <MainForBroker className='!h-[72vh]'>
+            <div className='mt-1'>
+                <MainForBroker className='!h-[91vh]'>
                 <div className=" flex rounded w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[9.9rem] font-bold font-poppins"> <FormattedMessage
+        <div className=" w-[15.9rem] font-bold font-poppins"> <FormattedMessage
                                    id="app."
                                   defaultMessage="Quotation ID"
                                  /></div>
-        <div className=" w-[12.5rem] font-bold font-poppins"><FormattedMessage
-                                   id="app.date"
-                                  defaultMessage="Date"
+        <div className=" w-[18.5rem] font-bold font-poppins"><FormattedMessage
+                                   id="app.created"
+                                  defaultMessage="Created"
                                  /></div>
-        <div className="  w-[13.2rem] font-bold font-poppins "><FormattedMessage
+        <div className="  w-[21.2rem] font-bold font-poppins "><FormattedMessage
                                    id="app.delivery"
                                   defaultMessage="delivery"
                                  /></div>
@@ -63,7 +63,7 @@ function ProcureQuotationCard(props) {
       dataLength={props.orderProcureQuoatation.length} // This is important to prevent reloading the same data
      next={handleInfiniteScroll}
      hasMore={hasMore}
-     height={"62vh"}
+     height={"79vh"}
     style={{width:"-webkit-fill-available"}}
     // loader={props.fetchingLeadsTabData?<p style={{textAlign:"center"}}>Loading More...</p>:null} // Loader to display while loading more data
   initialLoad={true}
@@ -80,7 +80,7 @@ function ProcureQuotationCard(props) {
                         return (
                             <>
                               <div>
-                                <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 border border-white ">
+                                <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 border border-white ">
                                
 
                                         <div className=" flex w-[9.1rem] ">                                          
@@ -92,7 +92,13 @@ function ProcureQuotationCard(props) {
                                                 {item.newOrderNo}
                                             </div>
                                         </div>
-                                        <div className=" flex  w-[10.7rem] ">
+                                        <div className=" flex  w-[7.12rem] ">
+                    
+                                         <div class=" text-xs  font-poppins">                     
+                                           {`  ${dayjs(item.deliveryFromDate).format("DD-MM-YYYY")}`}
+                                           </div>
+                                        </div>
+                                        <div className=" flex  w-[6.7rem] ">
                                    <div class=" text-xs  font-poppins flex items-center">
                                           
                                             {country},
@@ -100,21 +106,17 @@ function ProcureQuotationCard(props) {
                                             {LocAdd}
                                         </div>
 
-                                </div>
-                                <div className=" flex  w-[11.2rem] ">
-                               <div class=" text-xs  font-poppins flex items-center">
-                                          
-                                            {country1},
-                                            &nbsp;
-                                            {LocAdd1}
-                                        </div>
+                                       </div>
+                                         <div className=" flex  w-[6.2rem] ">
+                                        <div class=" text-xs  font-poppins flex items-center">
+                                                    
+                                                        {country1},
+                                                        &nbsp;
+                                                        {LocAdd1}
+                                                    </div>
 
-                                </div>
-                                <div className=" flex  w-[7.12rem] ">
-                    
-                    <div class=" text-xs  font-poppins">                     
-                        {`  ${dayjs(item.deliveryFromDate).format("DD-MM-YYYY")}`}</div>
-                  </div>
+                                            </div>
+                                            
                                         <div className=" flex   w-[3.2rem] ">                                       
                                                 {/* <SmartphoneIcon /> */}
                                          
@@ -130,71 +132,21 @@ function ProcureQuotationCard(props) {
                                                 {item.count}
                                             </div>
                                         </div>
-                                        <div className=" flex   w-[8.1rem] ">                                
-                                                {/* Order Number */}
-                                            
-                                            <div
-                                                class=" text-base  font-poppins"
-                                            // onClick={() => {
-                                            //     props.handleOrderedPhoneModal(true);
-                                            //     props.getPhoneDetails(item.orderId);
-                                            // }}
-                                            // style={{
-                                            //     cursor: "pointer",
-                                            //     color: "#042E8A",
-                                            //   }}
-                                            >
-                                               
-                                            </div>
-                                        </div>
+                                        
                                   
-
-                                        <div className="   w-24 ">
+                                        <div class="flex justify-end  items-center">
+                                        <div className="   w-32 ">
                                         <Link to={`shopName/invopayment`}>
                                             <Button type="primary">
                                                 Convert to Order
                                                 </Button>
                                                 </Link>
-                                            {/* {(item.customerPriceInd === true && item.priceConfirmInd === false) ? (
-                                                <Popconfirm
-                                                    onConfirm={() => props.confirmButtonClick({
-                                                        priceConfirmInd: true,
-                                                        orderConfirmedUserId: props.userId,
-                                                        orderPhoneId: item.orderId,
-
-                                                    },
-                                                        item.orderId,
-                                                        props.userId
-                                                    )}
-                                                    title="Confirm Order?" okText="Yes" cancelText="No">
-                                                    <Button type='primary' style={buttonStyle}>  <FormattedMessage
-                                   id="app.confirm"
-                                  defaultMessage="confirm"
-                                 /></Button>
-                                                </Popconfirm>
-                                            ) : item.priceConfirmInd === true ? <b class="text-blue-500">Confirmed</b> : null} 
-                                              {item.dispatchInspectionInd === 3 ? (
-                                                <Button
-                                                type='primary'
-                                                    style={buttonStyle}
-                                                    onClick={() => {
-                                                        props.handlePickUpModal(true);
-                                                        handleRowData(item);
-                                                    }}
-                                                >
-                                                    <FormattedMessage
-                                   id="app.readytodispatch"
-                                  defaultMessage="readytodispatch"
-                                 /> </Button>
-                                            ) : item.dispatchInspectionInd === 4 ? <b>Picked Up</b> : null}
-                                             */}
+                                          
                                         </div>
-                                        <div className="w-[11.5rem] ">
-                                           
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white w-5 h-5 cursor-pointer">
-                                            <Tooltip title={<FormattedMessage
+                                      
+                                      
+                                            <div >
+                                            {/* <Tooltip title={<FormattedMessage
                                                                 id="app.status"
                                                                 defaultMessage="Feedback"
                                                             />}>
@@ -206,28 +158,30 @@ function ProcureQuotationCard(props) {
                                                                     //     handleSetParticularOrderData(item);
                                                                     // }}
                                                                 />
-                                                            </Tooltip>
+                                                            </Tooltip> */}
+                                 {/* <Button 
+                                                type='primary' 
+                                                style={{ backgroundColor:"green"}}
+                                                // onClick={() => {
+                                                //     props.handleStatuShowDrawer(true);
+                                                //     handleRowData(item);
+                                                // }}
+                                                >
+                                                   Status
+                                                    </Button> */}
                                             </div>
-                                            <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-red-700 w-5 h-5 mt-1 cursor-pointer">
+                                            {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full  w-5 h-5 mt-1 cursor-pointer">
                                             <NoteAltIcon
-                                                    className="!text-base cursor-pointer text-[tomato]"
+                                                    className="!text-base cursor-pointer text-green-600"
                                                     // onClick={() => {
                                                     //     props.handleFeedbackOrderDrawer(true);
                                                     //     handleSetParticularOrderData(item);
                                                     // }}
                                                 />
 
-                                            </div>
-                                        </div>
-                                        <div className=" flex   ">
-                                            {/* <div class=" text-base  font-poppins">
-                                                <CheckCircleOutlined
-                                                    style={{ color: "blue", display: "flex", justifyItems: "center", justifyContent: "center", fontSize: "0.75rem", marginTop: "0.25rem", marginLeft: "0.25rem" }} />
-                                            </div>
-                                            <div class=" text-base  font-poppins">
-                                                {item.dispatchReceivedDate ? dayjs(item.dispatchReceivedDate).format("DD-MM-YYYY") : null}
                                             </div> */}
                                         </div>
+                                        
 
                                     </div>
 

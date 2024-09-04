@@ -130,41 +130,41 @@ const handleInputChange = (value, key, dataIndex) => {
                                                     <div key={item.itemId}
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium   md:w-[6rem] max-sm:flex-row max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[6rem] max-sm:flex-row max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold   font-poppins">
                                                                     {item.productFullName}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold text-cardBody font-poppins">
                                                                     {item.category}
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold text-cardBody font-poppins">
                                                                     {item.attribute}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.itemId}
+                                                            <div className=" flex   md:w-[rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold text-cardBody font-poppins">
+                                                                    {item.newProductId}
                                                                 </div>
                                                             </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold text-cardBody font-poppins">
                                                                     {item.unit}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold text-cardBody font-poppins">
                                                                 {moment(item.deliveryDate).format("YYYY/MM/DD")} 
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold text-cardBody font-poppins">
                                                                  {editsuppliesId === item.itemId ? (
                                                                 <input
           type="date"
@@ -180,13 +180,13 @@ const handleInputChange = (value, key, dataIndex) => {
           )}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold text-cardBody font-poppins">
                                                                     {item.shippingNo} 
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold text-cardBody font-poppins">
                                                                 {editsuppliesId === item.itemId ? (
                        <Input
                        style={{ width: "3rem" }}
@@ -203,7 +203,7 @@ const handleInputChange = (value, key, dataIndex) => {
                                                                 </div>
                                                             </div>
                                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                            <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.itemId ? (
                         <>
                       <Button 

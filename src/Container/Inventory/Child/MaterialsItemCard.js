@@ -295,7 +295,9 @@ useEffect(() => {
                                                                                 <MinusOutlined onClick={() => handleDecrement(item.suppliesId)}/>
                                                                           </span>
                                                                         
-                                                                          <input  type="number"  
+                                                                          <input 
+                                                                          className=" flex justify-end"
+                                                                          type="number"  
                                                                           value={units[item.suppliesId] || 1}
                                                                           onChange={(event) => handleQuantityChange(event, item.suppliesId)}
                                                                           min="1" 

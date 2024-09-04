@@ -101,10 +101,10 @@ const InventoryActionLeft = (props) => {
       }, [listening, isRecording, startTime]);
     
   return (
-    <div class=" w-72 md:ml-4 max-sm:w-16 ml-0">
+    <div class=" w-72 md:ml-4 max-sm:w-16 ml-0 ">
     <Input
       placeholder="Search by Name,Tag, UPC"
-      class="w-96"
+      className="w-48 text-xs h-6"
       suffix={suffix}
       onPressEnter={handleSearch}
       onChange={handleChange}

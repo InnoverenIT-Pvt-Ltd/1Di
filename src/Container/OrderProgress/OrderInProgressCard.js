@@ -49,8 +49,8 @@ function OrderInProgressCard(props) {
                                   defaultMessage="Order ID"
                                  /></div>
         <div className=" w-[12.5rem] font-bold font-poppins"><FormattedMessage
-                                   id="app.date"
-                                  defaultMessage="Date"
+                                   id="app.created"
+                                  defaultMessage="Created"
                                  /></div>
         <div className="  w-[13.2rem] font-bold font-poppins "><FormattedMessage
                                    id="app.delivery"
@@ -84,7 +84,7 @@ function OrderInProgressCard(props) {
       dataLength={props.orderProcureData.length} // This is important to prevent reloading the same data
      next={handleInfiniteScroll}
      hasMore={hasMore}
-     height={"70vh"}
+     height={"85vh"}
     style={{width:"-webkit-fill-available",scrollbarWidth:"thin"}}
     loader={props.fetchingProcureOrderData?<p style={{textAlign:"center"}}>Loading...</p>:null} // Loader to display while loading more data
   initialLoad={true}
@@ -149,23 +149,32 @@ function OrderInProgressCard(props) {
                                                 {item.itemCount}
                                             </div>
                                         </div>
-                                        <div className=" flex   md:w-[8.1rem] ">
-                                             {/* Order Number */}                                      
-                                            <div
-                                                class=" text-base  font-poppins"
-                                            // onClick={() => {
-                                            //     props.handleOrderedPhoneModal(true);
-                                            //     props.getPhoneDetails(item.orderId);
-                                            // }}
-                                            // style={{
-                                            //     cursor: "pointer",
-                                            //     color: "#042E8A",
-                                            //   }}
-                                            >
-                                               
+                                      
+                                        <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-20 h-5  ml-2 cursor-pointer">
+                                            <Button 
+                                                type='primary' 
+                                                style={{ backgroundColor:"green"}}
+                                                onClick={() => {
+                                                    props.handleStatuShowDrawer(true);
+                                                    handleRowData(item);
+                                                }}
+                                                >
+                                                   Status
+                                                    </Button>
+                                            {/* <Tooltip title={<FormattedMessage
+                                                                id="app.status"
+                                                                defaultMessage="Status"
+                                                            />}>
+                                                                <EventRepeatIcon
+
+                                                                    className="!text-base cursor-pointer"
+                                                                    onClick={() => {
+                                                                        props.handleStatuShowDrawer(true);
+                                                                        handleRowData(item);
+                                                                    }}
+                                                                />
+                                                            </Tooltip> */}
                                             </div>
-                                        </div>
-                                  
 
                                         <div className="   md:w-24 ">
                                         <Button
@@ -211,36 +220,7 @@ function OrderInProgressCard(props) {
                                  /> </Button>
                                             ) : item.dispatchInspectionInd === 4 ? <b>Picked Up</b> : null}
                                              */}
-                                        </div>
-                                   
-                                      
-                                            <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5  ml-2 cursor-pointer">
-                                            <Tooltip title={<FormattedMessage
-                                                                id="app.status"
-                                                                defaultMessage="Status"
-                                                            />}>
-                                                                <EventRepeatIcon
-
-                                                                    className="!text-base cursor-pointer"
-                                                                    onClick={() => {
-                                                                        props.handleStatuShowDrawer(true);
-                                                                        handleRowData(item);
-                                                                    }}
-                                                                />
-                                                            </Tooltip>
-                                            </div>
-                                            {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-red-700 w-5 h-5 mt-1 cursor-pointer">
-                                            <NoteAltIcon
-                                                    className="!text-base cursor-pointer text-[tomato]"
-                                                    onClick={() => {
-                                                        props.handleStatuShowDrawer(true);
-                                                        handleSetParticularOrderData(item);
-                                                    }}
-                                                />
-
-                                            </div> */}
-                                     
-                                  
+                                        </div>                    
 </div>
                                     </div>
 
