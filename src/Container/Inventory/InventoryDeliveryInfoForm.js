@@ -253,7 +253,7 @@ function InventoryDeliveryInfoForm(props) {
                      </div>
                    
                      <div class="flex">
-                       <Tooltip title="High">
+                       <Tooltip title="Urgent">
                          <Button
                            
                             shape="circle"
@@ -272,42 +272,25 @@ function InventoryDeliveryInfoForm(props) {
                          </Button>
                        </Tooltip>
                        &nbsp;
-                       {/* <Tooltip title="Medium">
+                       <Tooltip title="Normal">
                          <Button
                            
                             shape="circle"
-             
-                           onClick={() => handleButtonClick("Medium")}
-                           style={{
-                             backgroundColor:"orange",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px",
-                           }}
-                         >
-                           {priority==="Medium" && (
-                            <CheckCircleOutlineIcon className="!text-white" />
-                          )}
-                          </Button>
-                       </Tooltip> */}
-                       &nbsp;
-                       <Tooltip title="Low">
-                         <Button
-                           
-                            shape="circle"
-                   
                            onClick={() => handleButtonClick("Low")}
                            style={{
                              backgroundColor:"teal",
                                  borderRadius: "50%", 
                                  width: "31px", 
-                                 height: "31px"
+                                 height: "31px",
+                                 display:"flex", justifyContent:"center", alignItems:"center"
                            }}
-                         > {priority==="Low" && (
-                          <CheckCircleOutlineIcon className="!text-white" />
-                        )}
-                        </Button>
+                         >
+                          {priority==="Low" && (
+                            <CheckCircleOutlineIcon className="!text-white text-center text-[1.1rem]" />
+                          )}
+                         </Button>
                        </Tooltip>
+                       
                      </div>
                  {/* <div>
                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Delivery Date</div>

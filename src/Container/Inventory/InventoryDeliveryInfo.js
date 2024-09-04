@@ -42,21 +42,21 @@ function InventoryDeliveryInfo (props) {
           style={{color:"white"}}
           onClick={() => history.back()}
         /> 
-          <div class=" flex text-[18px] text-white w-[100%] justify-center font-semibold"> Shipping Information</div> 
-          <div className=" flex justify-end w-[100%] text-white text-[16px] font-normal pr-3"> Quotation ID &nbsp;<span class="text-bold text-[16px] text-[#eacc0c]">{props.invencartItem.orderPhoneId}</span></div>
+          <div class=" flex text-sm text-white w-[100%] justify-center font-semibold"> Shipping Information</div> 
+          <div className=" flex justify-end w-[100%] text-white text-sm text-[16px] font-normal pr-3"> Quotation ID &nbsp;<span class="text-bold text-sm text-[#eacc0c]">{props.invencartItem.orderPhoneId}</span></div>
           </div>
       
               </div>
                      
                <div class="flex justify-center items-center mt-1">
-                    <div class="w-wk bg-white shadow-2xl rounded-lg border p-4 h-[82vh] flex justify-between"   >
+                    <div class="w-wk bg-white shadow-2xl rounded-lg border p-1 h-[87vh] flex justify-between"   >
                   <div className='w-[40%]'>
                         <InventoryDeliveryInfoForm 
                          invencartItem={props.invencartItem}
                          fetchingInventoryCartItems={props.fetchingInventoryCartItems}
                         />
                         </div>
-                        <div className=" w-[55%] h-[68vh] overflow-x-auto">
+                        <div className=" w-[55%] h-[83vh] border box-border overflow-x-auto">
       
      
   

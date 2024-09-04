@@ -52,15 +52,14 @@ import FeaturedMaterialCard from './FeaturedMaterialCard';
 console.log(props.item.productInfo)
     return(
       <>
-        <div className="w-wk h-24 bg-white mt-2 flex rounded p-2 ">
-        <div className=" sm:h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-        <div   className=" h-20 w-20 ">
+        <div className="w-wk h-20 bg-white mt-2 flex rounded p-2 ">
+        <div className="w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+        <div   className="">
         {props.item.productInfo.imageId ? (
         <img 
+        className="h-24"
         src={`${base_url}/image/${props.item.productInfo.imageId}`} 
        alt="images" 
-     style={{ height: "3rem", width: "3.5rem"}}
-       
         /> 
     ) : (
         <div className=" text-xs h-[4.5rem] text-center w-[5rem] flex justify-center items-center">Image Not Available</div>
@@ -70,7 +69,7 @@ console.log(props.item.productInfo)
       </div>
        
         <div className=" flex items-center  justify-center flex-col w-wk">
-          <div class="text-blue-600 text-xs font-bold cursor-pointer font-poppins"
+          <div class="text-blue-600 text-xs text-center font-bold cursor-pointer font-poppins"
              onClick={() => {
               props.handleProductDetails(true);
               handleRowData(props.item);
@@ -91,12 +90,12 @@ console.log(props.item.productInfo)
       </div> */}
       <div className='flex items-center justify-center w-wk'>
         <div className="flex items-center justify-center">
-        <div class="text-sm text-black w-16">
+        <div class="text-xs text-black w-16">
          USD {props.item.itemSummary.discount}
         </div>
       </div>
       <div className="flex items-center justify-center w-16">
-        <div class="text-sm text-black">
+        <div class="text-xs text-black">
         USD 
         {props.item.itemSummary.unitPrice}
         </div>
@@ -127,7 +126,7 @@ console.log(props.item.productInfo)
 
         </div>
         <div className="flex items-center justify-center">
-          <div class="text-sm text-black">
+          <div class="text-sm text-black ml-3">
           USD  
           {props.item.itemSummary.totalPrice} 
           </div>
@@ -165,6 +164,7 @@ console.log(props.item.productInfo)
      
         <div className="flex items-center justify-center">
         <DeleteOutlined
+        className='text-[red]'
           onClick={() => {
             props.setqn(props.item)
             props.handlebackdelete(props.item)
