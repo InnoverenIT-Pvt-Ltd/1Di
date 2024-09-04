@@ -115,7 +115,7 @@ const handlePostRequest = async () => {
         <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
         <div className=" md:w-[5.11rem] font-poppins">SKU</div>
         <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className=" md:w-[8.2rem] font-poppins">Available Date</div>
+        <div className=" md:w-[8.2rem] font-poppins">Available</div>
         <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
         <div className="md:w-[8.2rem] font-poppins">Price</div> 
         <div className="md:h-[2rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
