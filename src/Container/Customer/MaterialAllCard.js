@@ -216,9 +216,9 @@ function MaterialAllCard (props) {
                                                                             WSL -  {item.discounts?.[0]?.allowedDiscount}
                                                                             </div> */}
                                                                             <div class="  flex  p-1 text-xs text-[#1124AA]">
-                                                                            SRP - 
-                                                                            <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)}
-                                                                             {/* {item.suppliesPrice} CA$ */}
+                                                                            SRP {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)}
+                                                                            {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)} */}
+                                                                             {/* {item.suppliesPrice}  */}
                                                                             </div> 
                                                                   </div>
                                                             <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 

@@ -55,7 +55,7 @@ function CategoriesListCard (props) {
   return (
 
   <div class="w-wk   self-center">
-<div class="text-black font-bold">Catalog</div> 
+{/* <div class="text-black font-bold">Catalog</div>  */}
 
 <div class="  items-center   rounded ">
 

@@ -432,7 +432,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
           </Radio>
         </FlexContainer>
          ) : null} 
-         
+          {stripeNo.elecFormTransInd ? (
           <Radio value={"EFT"}>
           <div className="flex justify-between mt-2"> 
             <div>
@@ -450,7 +450,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
             </div>
         </div>
               </Radio>
-    
+     ) : null} 
        
         {stripeNo.payByCashInd ? (
         <div class="flex justify-between items-center mt-2" >
@@ -538,7 +538,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
     </Radio.Group>
         </div>
         ): null} 
-
+ {stripeNo.creditInd ? (
         <div className="flex justify-between mt-2">
           <Radio value={"Creditors"}>
             <div className="flex justify-between mt-2"> 
@@ -558,6 +558,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
         </div>
           </Radio>
           </div>
+            ): null} 
            {/* ) : null} */}
         <br />
         <br />

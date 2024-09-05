@@ -107,12 +107,12 @@ const handleAddToCart = (suppliesId) => {
                                                         )}
                                                          <div className=" flex justify-between flex-row w-full "> 
                                                                                 <div class=" mr-3 text-xs text-[#1124AA]">
-                                                                                WSL -  {item.suppliesPrice} CA$
+                                                                                WSL -  {item.suppliesPrice} 
                                                                                 </div> 
                                                                      
                                                         
                                                                                 <div class=" mr-3 text-xs text-[#1124AA]">
-                                                                                  SRP -  {item.suppliesPrice} CA$
+                                                                                  SRP -  {item.suppliesPrice} 
                                                                                 </div> 
                                                                                 </div>
                                                                       <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 

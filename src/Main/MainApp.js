@@ -262,29 +262,12 @@ function MainApp(props) {
                 }}
                 onClick={() => { handleClick("inventory") }}
               >
-                <label class="font-poppins font-bold text-base cursor-pointer">  <FormattedMessage
-                                   id="app.inventory"
-                                  defaultMessage="Inventory"
-                                 /></label>
+                <label class="font-poppins font-bold text-base cursor-pointer">Shop NOW</label>
               </span>
             </Link>}
             </>
             :null}
-              <Link to="/invoice" className="dheight">
-              <span
-                style={{
-                  paddingLeft: "1em",
-                  color: click == "invoice" ? "#8dc1f1" : "black"
-                }}
-                onClick={() => { handleClick("invoice") }}
-              >
-                <label class="font-poppins font-bold text-base cursor-pointer"> <FormattedMessage
-                                   id="app.invoice"
-                                  defaultMessage="Invoice"
-                                 /></label>
-              </span>
-            </Link>
-            {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
+             {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
             <Link to="/quotation" className="dheight">
               <span
                 style={{
@@ -311,6 +294,22 @@ function MainApp(props) {
                 <label class="font-poppins font-bold text-base cursor-pointer">Orders</label>
               </span>
             </Link>:null}
+              <Link to="/invoice" className="dheight">
+              <span
+                style={{
+                  paddingLeft: "1em",
+                  color: click == "invoice" ? "#8dc1f1" : "black"
+                }}
+                onClick={() => { handleClick("invoice") }}
+              >
+                <label class="font-poppins font-bold text-base cursor-pointer"> <FormattedMessage
+                                   id="app.invoice"
+                                  defaultMessage="Invoice"
+                                 /></label>
+              </span>
+            </Link>
+           
+            
           
            
             {/* <Link to="/completedorder">
@@ -390,7 +389,7 @@ function MainApp(props) {
                                  /></label> */}
               </span>
             </Link>:null}
-
+           
             {/* <Link to="/report">
               <span
                 style={{
@@ -427,6 +426,24 @@ function MainApp(props) {
      
 
           <div class="flex items-center"  >
+          <div className="flex">
+            <div className="mr-2">           
+            <Link to="/faq">
+            <label class=" font-bold font-poppins text-base cursor-pointer">FAQ</label>
+           </Link>        
+            </div> 
+            <div className="mr-2">
+              
+                <Link to="/refund">
+                <label class=" font-bold font-poppins text-base cursor-pointer">Refund policy</label>
+            </Link>
+            </div>
+            <div className="mr-2">
+                <a href="/contactus" target="blank">
+                <label class=" font-bold font-poppins text-base cursor-pointer">Contact us</label>
+                </a>
+                </div>
+                </div>   
           <a href="#" style={{ height: 45 }}>
             <FlexContainer
               alignItems="center"

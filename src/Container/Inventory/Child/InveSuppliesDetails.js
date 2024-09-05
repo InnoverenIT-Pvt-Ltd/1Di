@@ -40,12 +40,14 @@ console.log(props.productsByproductId)
       
       <div className="flex items-center justify-center ">
         <div class="text-sm font-bold text-black">
-        WSL- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/>  {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice}
+        WSL {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice}
+        {/* <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/>  {props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice} */}
         </div>
       </div>
       <div className="flex items-center justify-center ml-1">
-        <div class="text-sm font-bold text-black w-16">
-        SRP- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/> {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
+        <div class="text-sm font-bold text-black w-20">
+        SRP {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
+         {/* <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/> {props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C} */}
         </div>
       </div>
         </div>

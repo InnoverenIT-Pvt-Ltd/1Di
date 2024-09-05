@@ -64,7 +64,7 @@ console.log(investorSerachedDataCount)
                                                                             <div class="  flex  p-1 text-xs text-[#1124AA]">
                                                                             SRP - 
                                                                             {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> */}
-                                                                             {item.suppliesPrice} CA$
+                                                                             {item.suppliesPrice} 
                                                                             </div> 
                                                                   </div>
                                                             <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 

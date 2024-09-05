@@ -15,7 +15,7 @@ class JobHeader extends Component {
               viewType={viewType}
             />
           }
-            //  rightComponent={<JobHeaderRight/>}
+              // rightComponent={<JobHeaderRight/>}
 
         />
        

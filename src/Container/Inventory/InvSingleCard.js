@@ -97,12 +97,12 @@ console.log(props.item.productInfo)
       <div className='flex items-center justify-center w-[18rem] '>
         <div className="flex items-center justify-center">
         <div class="text-xs text-black w-16">
-         CA$ {props.item.itemSummary.discount}
+          {props.item.itemSummary.discount}
         </div>
       </div>
       <div className="flex items-center justify-center w-16">
         <div class="text-xs text-black">
-        CA$ 
+         
         {props.item.itemSummary.unitPrice}
         </div>
       </div>
@@ -133,7 +133,7 @@ console.log(props.item.productInfo)
         </div>
         <div className="flex items-center justify-center">
           <div class="text-xs text-black">
-          CA$  
+            
           {props.item.itemSummary.totalPrice} 
           </div>
 
