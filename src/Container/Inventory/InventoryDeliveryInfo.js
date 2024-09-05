@@ -43,7 +43,7 @@ function InventoryDeliveryInfo (props) {
           onClick={() => history.back()}
         /> 
           <div class=" flex text-sm text-white w-[100%] justify-center font-semibold"> Shipping Information</div> 
-          <div className=" flex justify-end w-[100%] text-white text-sm text-[16px] font-normal pr-3"> Quotation ID &nbsp;<span class="text-bold text-sm text-[#eacc0c]">{props.invencartItem.orderPhoneId}</span></div>
+          <div className=" flex justify-end w-[100%] text-white text-sm text-[16px] font-normal pr-3"> Quotation ID &nbsp;<span class="text-bold text-sm text-[#eacc0c]">{props.invencartItem.newQuotationId}</span></div>
           </div>
       
               </div>

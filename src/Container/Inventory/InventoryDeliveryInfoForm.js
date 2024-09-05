@@ -64,7 +64,7 @@ function InventoryDeliveryInfoForm(props) {
 
     function generateQuatationFunction(){
       history.push("/invQuotationsuccess");
-      props.generateQuatation(props.invencartItem.orderPhoneId);
+      props.generateQuatation({orderProcess:"convertToOrder"},props.invencartItem.orderPhoneId);
     }
 
   return (

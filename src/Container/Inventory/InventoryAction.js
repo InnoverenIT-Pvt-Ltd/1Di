@@ -857,11 +857,11 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             });
         };
         
-        export const generateQuatation = (quotationId,data,cb) => (dispatch) => {
+        export const generateQuatation = (data,quotationId,cb) => (dispatch) => {
           dispatch({ type: types.GENERATE_QUOTATION_REQUEST });
         
           axios
-            .put(`${base_url2}/quotation/portal/convert/quotation/${quotationId}`,data, {
+            .put(`${base_url2}/quotation/protal/procure/address/${quotationId}`,data, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
