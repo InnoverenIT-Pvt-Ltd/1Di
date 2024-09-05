@@ -156,7 +156,7 @@ function MaterialRecommendedCard(props) {
                                                     )}
                                                      <div className=" flex flex-row justify-end w-full p-1"> 
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
-                                                                              SRP -   {item.suppliesPrice} CA$
+                                                                              SRP -   {item.suppliesPrice} 
                                                                             </div> 
                                                                   </div>
                                                             <div class=" flex w-wk cursor-pointer flex-col p-2 text-[#1124AA] justify-evenly "> 

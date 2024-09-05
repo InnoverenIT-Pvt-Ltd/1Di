@@ -252,12 +252,14 @@ useEffect(() => {
                                                     )}
                                                      <div className=" flex justify-around flex-row w-full "> 
                                                                             <div class=" mr-3 text-xs text-[#1124AA]">
-                                                                            WSL -  <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPrice.toFixed(2)}
+                                                                            WSL {item.suppliesPrices?.[0].suppliesPrice.toFixed(2)}
+                                                                            {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPrice.toFixed(2)} */}
                                                                             </div> 
                                                                  
                                                     
                                                                             <div class=" mr-3 text-xs text-[#1124AA]">
-                                                                              SRP -  <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)}
+                                                                              SRP {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)}
+                                                                               {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)} */}
                                                                             </div> 
                                                                             </div>
                                                                   <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 

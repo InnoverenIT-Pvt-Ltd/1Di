@@ -54,7 +54,8 @@ console.log(props.suppliesByproductId)
         <div className="flex items-center ">
         <div class="text-sm font-bold text-black w-16">
        
-         SRP- <CurrencySymbol  currencyType={props.suppliesByproductId.suppliesPrices?.[0].currencyName}/> {props.suppliesByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
+         SRP {props.suppliesByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C}
+         {/* <CurrencySymbol  currencyType={props.suppliesByproductId.suppliesPrices?.[0].currencyName}/> {props.suppliesByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C} */}
         </div>
       </div>
       {/* <div className="flex items-center justify-center ml-1">

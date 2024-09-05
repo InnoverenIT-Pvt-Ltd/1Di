@@ -20,7 +20,7 @@ const JobHeaderLeft = (props) => {
     //message.success(`Language sucessfully changed to ${selectType} `);
   }
   return (
-    <div class=" flex flex-row items-center md:w-[75rem] max-sm:w-wk  max-sm:leading-3 justify-between " >
+    <div class=" flex flex-row items-center md:w-[74rem] max-sm:w-wk  max-sm:leading-3 justify-between " >
       <Link to="/">
       <div>
         <img
@@ -32,6 +32,24 @@ const JobHeaderLeft = (props) => {
         />
       </div>
       </Link>
+      <div className="flex">
+            <div className="mr-2">           
+            <Link to="/faq">
+           FAQ
+           </Link>        
+            </div> 
+            <div className="mr-2">
+              
+                <Link to="/refund">
+            Refund policy
+            </Link>
+            </div>
+            <div className="mr-2">
+                <a href="/contactus" target="blank">
+                Contact us
+                </a>
+                </div>
+                </div>   
       {/* <MenuUnfoldOutlined className="block md:hidden  " onClick={() => setOpen(!open)} /> */}
       {/* <div class="flex items-baseline md:mr-4 ">
         <Select 

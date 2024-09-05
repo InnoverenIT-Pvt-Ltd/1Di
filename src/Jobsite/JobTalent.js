@@ -6,6 +6,7 @@ import JobUploadForm from "./JobUploadForm";
 import JobTalentContent from "./JobTalentContent";
 import FWLogo from "../images/Picture.jpg";
 import Login from "../Container/Auth/Login";
+import { Footer } from "../Container/Customer/Footer";
 
 function JobTalent(props) {
   useEffect(() => {
@@ -61,11 +62,12 @@ function JobTalent(props) {
           <JobUploadForm />
         </div>
       </div> */}
-      <hr class=" mt-24 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
-      <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute items-center md:w-w7" >
-         © {new Date().getFullYear()} {` `}, 1Di inc.
-        
-      </div>
+ <div className="w-[75rem] absolute bottom-0">
+   <hr class=" mt-4 w-auto ml-0 h-1 mx-auto   bg-black border-0 rounded " />
+      <div class="text-sm flex justify-center  text-gray-700  w-wk items-center" >
+         © {new Date().getFullYear()} {` `}  1Di inc , All Prices quoted are in Canadian Dollars
+      </div>  
+      </div> 
     </React.Fragment>
   )
 }

@@ -137,7 +137,9 @@ class Login extends Component {
                       <div className="w-full mt-2 text-sm flex flex-row">By using 1Di, you agree to the  
                      <div className="text-[#1075D3]">terms of service</div>  
                       and 
+                      <Link to="/refund">
                       <div className="text-[#1075D3]">privacy policy.</div> 
+                      </Link>
                       </div>
                       <div className="flex justify-between w-wk mt-2">
                       <div className="text-[#1075D3] text-sm font-medium"><Link to="/forgotPassword">Forgot Password</Link></div>

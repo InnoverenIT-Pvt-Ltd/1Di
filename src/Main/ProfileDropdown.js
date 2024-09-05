@@ -60,7 +60,7 @@ const ProfileMenu = ({ logout, history,userDetails,translatedMenuItems }) => (
             paddingBottom: 0
           }}
         >
-           <Link to="/login">
+           <Link to="/">
            Logout
            
             </Link>
