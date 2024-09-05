@@ -381,6 +381,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
       amount: invencartItem.cartSummary.grandTotal ? invencartItem.cartSummary.grandTotal : 0,
       quotationId: invencartItem.orderPhoneId ? invencartItem.orderPhoneId:null,
       type: "Cash on Delivery",
+      orderProcess:"checkout",
     };
     codInventoryOrder(data);
   };
@@ -391,6 +392,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
       amount: invencartItem.cartSummary.grandTotal ? invencartItem.cartSummary.grandTotal : 0,
       quotationId: invencartItem.orderPhoneId ? invencartItem.orderPhoneId:null,
       type: "EFT",
+      orderProcess:"checkout",
     };
     codInventoryOrder(data);
   };
@@ -401,6 +403,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
       amount: invencartItem.cartSummary.grandTotal ? invencartItem.cartSummary.grandTotal : 0,
       quotationId: invencartItem.orderPhoneId ? invencartItem.orderPhoneId:null,
       type: "Credit",
+      orderProcess:"checkout",
     };
     codInventoryOrder(data);
   };
