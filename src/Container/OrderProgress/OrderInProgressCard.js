@@ -43,8 +43,8 @@ function OrderInProgressCard(props) {
             </div>
             <div className='mt-2'>
             <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[9.9rem] font-bold font-poppins"> <FormattedMessage
+                <div className=" flex rounded ml-4  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[8.9rem] font-bold font-poppins"> <FormattedMessage
                                    id="app."
                                   defaultMessage="Order ID"
                                  /></div>
@@ -52,10 +52,7 @@ function OrderInProgressCard(props) {
                                    id="app.created"
                                   defaultMessage="Created"
                                  /></div>
-        <div className="  w-[13.2rem] font-bold font-poppins "><FormattedMessage
-                                   id="app.delivery"
-                                  defaultMessage="delivery"
-                                 /></div>
+        <div className="  w-[13.2rem] font-bold font-poppins ">Shipping</div>
         <div className=" w-[7.7rem] font-bold font-poppins"><FormattedMessage
                                    id="app.items"
                                   defaultMessage="Items"
@@ -117,7 +114,7 @@ function OrderInProgressCard(props) {
                                             </div>
                                             
                                         </div>
-                                        <div className=" flex  md:w-[10.7rem] ">
+                                        <div className=" flex  md:w-[5.7rem] ">
                                    <div class=" text-xs  font-poppins flex items-center">
                                           
                                    {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
@@ -125,14 +122,15 @@ function OrderInProgressCard(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex  md:w-[11.2rem] ">
+                                <div className=" flex  md:w-[18.2rem] ">
                                <div class=" text-xs  font-poppins flex items-center">                                       
                                             {LocAdd}
                                         </div>
                                 </div>
-                                <div className=" flex  md:w-[7.12rem] ">
+                                <div className=" flex  md:w-[16.12rem] ">
                     
-                    <div class=" text-xs  font-poppins">           
+                    <div class=" text-xs  font-poppins">  
+                            
                       </div>
                   </div>
                   </div>

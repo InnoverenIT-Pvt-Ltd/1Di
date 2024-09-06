@@ -73,7 +73,7 @@ function InvoiceJumstartBox (props) {
             // value={ props.orderListCount.completeOrder}
             // isLoading={props.fetchingOrderCount}
           />
-          <JumpStartBox3
+          {/* <JumpStartBox3
             noProgress
             title={<FormattedMessage
                 id="app.orderscancelled"
@@ -84,8 +84,8 @@ function InvoiceJumstartBox (props) {
             cursorData={"pointer"}
             // value={ props.orderListCount.cancelOrder}
             // isLoading={props.fetchingOrderCount}
-          />
-           <JumpStartBox
+          /> */}
+           {/* <JumpStartBox
             noProgress
             title={<FormattedMessage
                 id="app.ordersapproved"
@@ -96,7 +96,7 @@ function InvoiceJumstartBox (props) {
             cursorData={"pointer"}
             // value={ props.orderListCount.cancelOrder}
             // isLoading={props.fetchingOrderCount}
-          />
+          /> */}
           </div>
         </div>
       </div>
