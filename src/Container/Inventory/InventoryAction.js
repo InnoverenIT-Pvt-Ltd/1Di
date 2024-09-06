@@ -66,7 +66,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
     });
     axios
       // .get(`${base_url2}/supplies/allSuppliesCatagory`, {
-        .get(`${base_url2}/product/allProductCatagory`, {
+        .get(`${base_url2}/supplies/allSuppliesBrand`, {
         // headers: {
         //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         // },

@@ -9,7 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { InfoCircleTwoTone } from '@ant-design/icons';
 import { base_url } from '../../Config/Auth';
 
-function ProductCardListbyCategory (props) {
+function AfteLoginBrand (props) {
 
 
   
@@ -31,14 +31,14 @@ function ProductCardListbyCategory (props) {
     console.log(props.productsbyCategoryId)
       return (
         <>
-    <div className='flex w-wk'><a href='/'>
+    <div className='flex w-wk'><a href='/inventory'>
     <Tooltip title="Back">
         <RollbackOutlined
           className="BackButton"       
         />
       </Tooltip>
       </a></div>
-        <div class="  items-center h-[22rem]  rounded overflow-auto">
+        <div class="  items-center h-[38rem]  rounded overflow-auto">
       
       <CardWrapper>
     
@@ -47,7 +47,7 @@ function ProductCardListbyCategory (props) {
                             <CardElement >
       
                               <div 
-                              //onClick={() => props.handleActiveClick(item.categoryId)} 
+                           
               style={{
                 color:props.activeClick === item.brand && "Blue",
                 cursor:"pointer"
@@ -71,21 +71,17 @@ function ProductCardListbyCategory (props) {
                                                                             </div> */}
                                                                             <div class="  flex  p-1 text-xs text-[#1124AA]">
                                                                             SRP {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)}
-                                                                            {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)} */}
-                                                                             {/* {item.suppliesPrice}  */}
+                                                                          
                                                                             </div> 
                                                                   </div>
                                                             <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
-                                                                  {/* <div> {item.newSuppliesNo}  </div> */}
+                                                                 
                                                                   <div > 
                                                                   <Tooltip title={item.suppliesName} placement="top" arrow>
                                                                                               
                                                                                               <div 
-            //                                                                                    onClick={() => {
-            //   props.handleCatagoryDetails(true);
-            //   handleRowData(item);
-            // }} 
+          
             >
               {item.suppliesName || ""}</div>
                                                                                             </Tooltip>
@@ -104,43 +100,7 @@ function ProductCardListbyCategory (props) {
                                                                 
                                                                                                                          
                                                                             <div class="w-40 mt-1 flex  justify-between max-sm:flex items-center">
-                                                                            {/* <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
-                                                                            <div className="add-minus-quantity">
-                                                                          <span
-
-                                                                          >
-                                                                                <MinusOutlined onClick={() => handleDecrement(item.suppliesId)}/>
-                                                                          </span>
-                                                                        
-                                                                          <input  type="number"  
-                                                                          value={units[item.suppliesId] || 1}
-                                                                          onChange={(event) => handleQuantityChange(event, item.suppliesId)}
-                                                                          min="1" 
-                                                                          step="1"  />
-                                                                        
-                                                                          <span
-
-                                                                          >
-                                                                            <PlusOutlined onClick={() => handleIncrement(item.suppliesId)}/>
-                                                                            </span>
-
-                                                                          </div>
-           
-                          
-                                             
-                                                                           </div>
-                                                                           <div className="  cursor-pointer ml-2"
-                                                                                 onClick={() =>
-                                                                                    handleAddToCart(
-                                                                                      item.suppliesId
-                                                                    
-                                                                                    )
-                                                                                  }
-                                                                                >
-                                                                                    <Button type="primary" >
-                                                                                     Add
-                                                                                </Button>
-                                                                                </div> */}
+                                                                          
                                                                           </div>
                   
                                                                           </div>
@@ -168,13 +128,7 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductCardListbyCategory);
-const MainWrapper = styled.div`
-  /* */
-  margin: 0px 20px;
-  @media only screen and (max-width: 600px) {
-  }
-`;
+export default connect(mapStateToProps, mapDispatchToProps)(AfteLoginBrand);
 const CardWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -201,105 +155,3 @@ const CardElement = styled.div`
     width: 100%;
   }
 `;
-const CardDescription = styled.div`
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const CardImage = styled.div`
-  margin: auto;
-  width: 7rem;
-  height: 7rem;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const WithOutImage = styled.div`
-  margin: auto;
-  width: 10em;
-  height: 10em;
-  display: flex;
-  align-items: center;
-  flex-direction:column @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-
-const Header = styled.div`
-  text-overflow: ellipsis;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1.3em;
-  font-family: Poppins;
-  font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-text-align:center
-  }
-`;
-const Desc = styled.p`
-  height: 1.5em;
-  overflow: hidden;
-  padding: 1%;
-  text-align: center;
-`;
-const Desc2 = styled.p`
-  height: 60px;
-  overflow: auto;
-  color: white;
-  padding: 3%;
-  text-align: center;
-`;
-
-const Price = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-`;
-const Price1 = styled.div`
-  height: 3.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  display: grid;
-  width: -webkit-fill-available;
-  place-items: baseline;
-  white-space: pre;
-`;
-const Price2 = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  text-decoration-line: line-through;
-`;
-const Size = styled.div`
-  height: 2.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  display: grid;
-  width: -webkit-fill-available;
-  place-items: baseline;
-  white-space: pre;
-`;  

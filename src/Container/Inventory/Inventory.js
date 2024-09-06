@@ -8,6 +8,7 @@ import {getProductByCategoryId,getCategories,getCustomerProductList} from "../Cu
 import LoginSearchedData from "./LoginSearchedData";
 import ProductCardListbyCategory from "../Customer/ProductCardListbyCategory";
 import { Footer } from "../Customer/Footer";
+import AfteLoginBrand from "../Customer/AfteLoginBrand";
 const InventoryItemsCard=lazy(()=>import("./Child/InventoryItemsCard"));
 const AllInventorySupplierCard=lazy(()=>import("./Child/AllInventorySupplierCard"));
 const MaterialsItemCard =lazy(()=>import("./Child/MaterialsItemCard"));
@@ -22,9 +23,9 @@ function Inventory (props) {
       },[]);
 
 
-  const handleActiveClick = (categoryId) => {
-    setActiveClick(categoryId);
-    props.getProductByCategoryId(categoryId);
+  const handleActiveClick = (brand) => {
+    setActiveClick(brand);
+    props.getProductByCategoryId(brand);
   };
 
 
@@ -50,23 +51,30 @@ function Inventory (props) {
      </div>
         <Suspense fallback={<BundleLoader />}>
         <div className="mt-1">
+        {props.productsbyCategoryId.length > 0 ? (
+    <AfteLoginBrand
+    productsbyCategoryId={props.productsbyCategoryId} 
+    />
+  ) : (  
         <CategoriesListCard categoriesPrds={props.categoriesPrds}
       handleActiveClick={handleActiveClick}
       activeClick={activeClick}
       fetchingCategories={props.fetchingCategories}/>
+    )}  
       </div>
-      <div class=" flex flex-row  w-wk mt-4">
-        <div className=' flex  mt-5 '>
+      <div class=" flex flex-col w-wk mt-4">
+        {/* <div className=' flex  mt-5 '>
                    
                     <div className='flex  justify-center'>
                         <ProductCardListbyCategory productsbyCategoryId={props.productsbyCategoryId} activeClick={activeClick}/>
                   </div>
-                        </div> 
-
+                        </div>  */}
+ {props.productsbyCategoryId.length === 0 && (
            <div class="">
          
 <MaterialsItemCard invencartItem={props.invencartItem}/>
        </div>
+        )}
        </div>
         </Suspense>
        </div>

@@ -70,9 +70,9 @@ function CategoriesListCard (props) {
                     return (
                       <CardElement >
 
-                        <div onClick={() => props.handleActiveClick(item.categoryId)} 
+                        <div onClick={() => props.handleActiveClick(item.brand)} 
         style={{
-          color:props.activeClick === item.categoryId && "Blue",
+          color:props.activeClick === item.brand && "Blue",
           cursor:"pointer"
         }} className="flex  w-44 h-24  hover:scale-100 ease-in  duration-500 hover:shadow-lg overflow-hidden rounded-md border border-gray-200 ">
                           <div class="flex  flex-col items-center md:w-60 mr-3 ml-3">
@@ -93,8 +93,8 @@ function CategoriesListCard (props) {
 
                         <div >
                         
-                          <Tooltip title={item.categoryName} placement="top" arrow>
-                            <div class="text-[0.65rem] font-bold ">{item.categoryName || ""}</div>
+                          <Tooltip title={item.brandName} placement="top" arrow>
+                            <div class="text-[0.65rem] font-bold ">{item.brandName || ""}</div>
                           </Tooltip>
 
                         </div>
