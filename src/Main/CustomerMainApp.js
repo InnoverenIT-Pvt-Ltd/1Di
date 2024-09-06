@@ -54,9 +54,9 @@ class CustomerMainApp extends Component {
     console.log('Component did mount');
    
 };
-    handleActiveClick=(categoryId)=>{
-      this.setState({activeClick:categoryId},()=>{
-        this.props.getProductByCategoryId(categoryId);
+    handleActiveClick=(brand)=>{
+      this.setState({activeClick:brand},()=>{
+        this.props.getProductByCategoryId(brand);
       });  
     };
 
@@ -74,7 +74,7 @@ class CustomerMainApp extends Component {
         if (this.props.categoriesPrds && this.props.categoriesPrds.length > 0) {
           this.setState({
               categoriesPrds: this.props.categoriesPrds,
-              activeClick: this.props.categoriesPrds[0].categoryId // Set default selected category
+              activeClick: this.props.categoriesPrds[0].brand // Set default selected category
           }, () => {
               // Fetch products for the default selected category
               this.props.getProductByCategoryId(this.state.activeClick);
@@ -167,13 +167,19 @@ class CustomerMainApp extends Component {
         <div className="relative   bg-white h-[7rem] w-[33.2rem] -mt-[5.1rem] rounded-[2rem] -ml-4"></div>
           <div className='flex justify-center'>
              <div className='w-[90%] flex flex-col justify-center items-center overflow-x-auto p-1 h-[-webkit-fill-available]'>
+             {this.props.productsbyCategoryId.length > 0 ? (
+    <ProductCardListbyCategory
+    productsbyCategoryId={this.props.productsbyCategoryId} 
+    />
+  ) : (  
                 <CategoriesListCard categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/>
+               )}  
                 {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
-                <div className='w-wk flex  mt-4 flex-row '>                
+                <div className='w-wk flex  mt-4  flex-col '>                
                    
-                    <div className='flex  justify-center mt-4'>
+                    {/* <div className='flex  justify-center mt-4'>
                         <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
-                    </div>
+                    </div> */}
                     <div class=" self-center  w-wk "> 
          {/* <div class=" w-1/4">
                       <CustomerMainAppLeft categoriesPrds={this.props.categoriesPrds} 
@@ -181,7 +187,8 @@ class CustomerMainApp extends Component {
                       
                       />
                     </div> */}
-            <div class="w-wk  max-sm:h-[60vh] mt-2 ">
+                    {this.props.productsbyCategoryId.length === 0 && (
+            <div class="w-wk  max-sm:h-[60vh] mt-1 ">
         
                                                 
                                                 <MaterialAllCard/> 
@@ -355,6 +362,7 @@ class CustomerMainApp extends Component {
                                           
                                           
 </div>
+ )}
                     </div>
                 </div>
               </div> 

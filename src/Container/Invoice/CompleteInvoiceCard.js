@@ -2,6 +2,7 @@
 import React, { useEffect, useState,} from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import dayjs from "dayjs";
 import { Input, } from "antd";
 import { MainForBroker } from '../../Components/UI/Layout';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -25,7 +26,7 @@ function CompleteInvoiceCard(props) {
     const fetchData = async () => {
         setLoading(true); 
         try {
-            const response = await axios.get(`${base_url2}/dummy/repair/contact/${props.userId}/${pageNo}`,{
+            const response = await axios.get(`${base_url2}/invoice/unPaidInvoice/${props.userId}`,{
                 headers: {
                   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
                 },
@@ -105,14 +106,17 @@ function CompleteInvoiceCard(props) {
                             <>
                                 <div>
                                 <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 border border-white ">
-                                        <div className=" flex   w-[9.1rem] ">                                                                            
+                                        <div className=" flex   w-[9.1rem] "> 
+                                        {item.invoiceId}                                                                           
                                         </div>
                                         <div className=" flex  w-[10.7rem] ">
                                    <div class=" text-xs font-poppins flex items-center">
+                                    {item.procureOrderInvoiceId}
                                         </div>
                                 </div>
                                 <div className=" flex  w-[11.2rem] ">
                                <div class=" text-xs font-poppins flex items-center">    
+                               {dayjs(item.shippingDate).format("YYYY/MM/DD")}
                                         </div>
 
                             </div>

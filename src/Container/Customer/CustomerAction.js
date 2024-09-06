@@ -423,12 +423,12 @@ export const getPaymentId = (data, cb) => dispatch => {
     });
 };
 
-export const getProductByCategoryId = (categoryId) => (dispatch) => {
+export const getProductByCategoryId = (brandId) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCT_BY_CATEGORY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplies/search/category/${categoryId}`)
+    .get(`${base_url2}/supplies/supplies/brand/${brandId}`)
     .then((res) => {
       dispatch({
         type: types.GET_PRODUCT_BY_CATEGORY_ID_SUCCESS,
