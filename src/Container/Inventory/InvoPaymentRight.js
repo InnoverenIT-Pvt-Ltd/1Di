@@ -17,7 +17,7 @@ function InvoPaymentRight(props){
                     <div className='flex mt-8 ' >
                     <div className='w-wk'>SubTotal</div>
                         <span className='text-[#3066BE] font-semibold flex justify-end w-wk' >
-                           {props.invencartItem.cartSummary && props.invencartItem.cartSummary.subTotal}
+                           {Number(props.invencartItem.cartSummary && props.invencartItem.cartSummary.subTotal).toFixed(2)}
                         
                         <br/>
                             <span className='text-black'></span>
@@ -42,7 +42,7 @@ function InvoPaymentRight(props){
                     <div className='flex mt-6 ' >
                     <div className='w-wk'> Grand Total</div>
                     <span className='text-[#3066BE] font-semibold flex justify-end w-wk' >
-                        {props.invencartItem.cartSummary && props.invencartItem.cartSummary.grandTotal}
+                        {Number(props.invencartItem.cartSummary && props.invencartItem.cartSummary.grandTotal).toFixed(2)}
                         
                         <br/>
                         <span className='text-black'></span>

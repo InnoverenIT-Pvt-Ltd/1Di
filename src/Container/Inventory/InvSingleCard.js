@@ -97,13 +97,12 @@ console.log(props.item.productInfo)
       <div className='flex items-center justify-center w-[18rem] '>
         <div className="flex items-center justify-center">
         <div class="text-xs text-black w-16">
-          {props.item.itemSummary.discount}
+        USD {Number(props.item.itemSummary.discount).toFixed(2)} 
         </div>
       </div>
       <div className="flex items-center justify-center w-16">
-        <div class="text-xs text-black">
-         
-        {props.item.itemSummary.unitPrice}
+        <div class="text-xs text-black">  
+        USD {Number(props.item.itemSummary.unitPrice).toFixed(2)}
         </div>
       </div>
         <div className="add-minus-quantity">
@@ -134,7 +133,8 @@ console.log(props.item.productInfo)
         <div className="flex items-center justify-center">
           <div class="text-xs text-black">
             
-          {props.item.itemSummary.totalPrice} 
+          USD  
+          {Number(props.item.itemSummary.totalPrice).toFixed(2)}  
           </div>
 
         </div>
