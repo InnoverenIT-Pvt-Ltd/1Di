@@ -54,20 +54,20 @@ console.log(props.item.productInfo)
       <>
         <div className="w-wk h-11 bg-white mt-1 flex rounded p-1 ">
         <div className=" h-11 w-11 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-        {/* <div   className=" h-14 w-14 "> */}
-        {/* {item.imageId ? ( */}
+        <div   className=" h-11 w-11 ">
+        {props.item.productInfo.imageId ? (
         <img 
         src={`${base_url}/image/${props.item.productInfo.imageId}`} 
        alt="images" 
      style={{ height: "2.75rem", width: "2.85rem"}}
        
         /> 
-      {/* ) : ( 
-        <div className=" text-[0.45rem] text-center  flex justify-center items-center">Image Not Available</div>
+      ) : ( 
+       <div className=" text-[0.45rem] text-center  flex ">Image Not Available</div>
                                                       
-        )}           */}
-</div>
-      {/* </div> */}
+       )}           
+ </div>
+     </div> 
        
         <div className=" flex items-center  justify-center flex-col text-ellipsis overflow-hidden">
           <div class="text-blue-600 text-xs font-bold cursor-pointer font-poppins text-ellipsis overflow-hidden w-[22.5rem] ml-3"
@@ -83,26 +83,28 @@ console.log(props.item.productInfo)
         </div>
         <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
         <div className="flex items-center justify-center ">
-        <div class="text-xs text-black w-[9.6rem] flex justify-center">
-        {/* {props.item.productInfo.newProductId} */} article no
+        <div class="text-xs text-black w-[6.6rem] flex justify-center">
+        {/* {props.item.productInfo.newProductId} */}
+
+        {props.item.productInfo.articleNo}
         </div>
       </div>    
       <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
       <div className=' flex items-center  justify-center '>
-        <div className='w-[9.1rem] flex items-center  justify-center'>
-        Avilable date
+        <div className='w-[7.1rem] flex items-center  justify-center'>
+        {props.item.productInfo.avalabilityDate}
         </div>
         </div>
       <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
-      <div className='flex items-center justify-center w-[18rem] '>
-        <div className="flex items-center justify-center">
+      <div className='flex items-center justify-center w-[24rem] '>
+        {/* <div className="flex items-center justify-center">
         <div class="text-xs text-black w-16">
-        USD {Number(props.item.itemSummary.discount).toFixed(2)} 
+        {Number(props.item.itemSummary.discount).toFixed(2)} 
         </div>
-      </div>
+      </div> */}
       <div className="flex items-center justify-center w-16">
         <div class="text-xs text-black">  
-        USD {Number(props.item.itemSummary.unitPrice).toFixed(2)}
+        {Number(props.item.itemSummary.unitPrice).toFixed(2)}
         </div>
       </div>
         <div className="add-minus-quantity">
@@ -131,9 +133,8 @@ console.log(props.item.productInfo)
 
         </div>
         <div className="flex items-center justify-center">
-          <div class="text-xs text-black">
+          <div class="text-xs text-black  w-16">
             
-          USD  
           {Number(props.item.itemSummary.totalPrice).toFixed(2)}  
           </div>
 

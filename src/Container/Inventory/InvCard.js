@@ -109,17 +109,17 @@ const handlePostRequest = async () => {
           You have &nbsp; <span className="text-[#eacc0c] total-items-count">{props.invencartItemCount.productCount}</span> &nbsp; items in shopping cart</p> </div>
           </div>
           <div class="rounded m-1  h-8 w-wk overflow-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#DFE2F8]">
-          <div className=" flex justify-between items-center w-[100%] p-1 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[0rem]"></div>
-        <div className=" md:w-[19.9rem] font-poppins">Product title</div>
-        <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className=" md:w-[3.11rem] font-poppins">SKU</div>
-        <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className=" md:w-[3.5rem] font-poppins">Available</div>
-        <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className="md:w-[12rem] font-poppins">Price</div> 
-        <div className="md:h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
-        <div className=" md:w-[9rem] font-poppins">Ship By</div>        
+          <div className=" flex w-[100%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" w-[5rem]"></div>
+        <div className=" w-[20.5rem] font-poppins">Product title</div>
+        <div className="h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className=" flex items-center  justify-center w-[6.9rem] font-poppins">SKU</div>
+        <div className="h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className="flex items-center  justify-center w-[7rem] font-poppins">Available</div>
+        <div className="h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className="flex items-center  justify-center w-[24rem] font-poppins">Price</div> 
+        <div className="h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className="flex items-center  justify-center w-[9rem] font-poppins">Ship By</div>        
       </div>
       </div>
         <div className=" w-[100%] h-[41vh]">
