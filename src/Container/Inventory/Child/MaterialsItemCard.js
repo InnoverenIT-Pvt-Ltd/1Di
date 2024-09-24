@@ -171,7 +171,8 @@ useEffect(() => {
           
             orderPhoneId:props.invencartItem.orderPhoneId ? props.invencartItem.orderPhoneId :null,
             userId:props.userId,
-            orgId:props.organizationId
+            orgId:props.organizationId,
+            orderSource:"b2b",
             
           }
   
