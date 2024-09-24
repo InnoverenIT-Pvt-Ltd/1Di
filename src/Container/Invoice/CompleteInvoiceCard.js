@@ -18,33 +18,28 @@ function CompleteInvoiceCard(props) {
     const [hasMore, setHasMore] = useState(true);
     const [pageNo, setPageNo] = useState(0);
 
-    const [drb, setDrb] = useState([]);
-  const [loading, setLoading] = useState(false); 
   const [error, setError] = useState(null); 
-
+  const [data1, setData1] = useState([]);
+  const [loading1, setLoading1] = useState(false);
+   
   useEffect(() => {
-    const fetchData = async () => {
-        setLoading(true); 
+    const fetchData1 = async () => {
         try {
-            const response = await axios.get(`${base_url2}/invoice/unPaidInvoice/${props.userId}`,{
-                headers: {
-                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-                },
-              }); 
-            if (response.drb.length === 0) {
-                setHasMore(false); 
-            }
-            setDrb(prevData => [...prevData, ...response.drb]); 
+          const response = await axios.get(`${base_url2}/invoice/clearInvoice/${props.userId}`,{
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+          setData1(response.data);
+          setLoading1(false);
         } catch (error) {
-            setError(error); 
-            console.error('Error fetching data:', error);
-        } finally {
-            setLoading(false); 
+          setError(error);
+          setLoading1(false);
         }
-    };
+      };
 
-    fetchData();
-}, [pageNo]);
+    fetchData1();
+}, []);
 
     function handleRowData(item) {
         setrowDatas(item)
@@ -90,7 +85,7 @@ function CompleteInvoiceCard(props) {
        
         <div className=" w-[1.2rem] font-normal font-poppins"></div>      
       </div>
-      <InfiniteScroll
+      {/* <InfiniteScroll
       dataLength={drb.length} 
     //  next={handleInfiniteScroll}
      hasMore={hasMore}
@@ -99,38 +94,41 @@ function CompleteInvoiceCard(props) {
     // loader={props.fetchingLeadsTabData?<p style={{textAlign:"center"}}>Loading More...</p>:null} // Loader to display while loading more data
   initialLoad={true}
       //  loader={props.fetchingRequirementTabData}
-    >
-                    {drb.map((item) => {
+    > */}
+                    {data1.map((item) => {
                       
-                        return (
-                            <>
-                                <div>
-                                <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 border border-white ">
-                                        <div className=" flex   w-[9.1rem] "> 
-                                        {item.invoiceId}                                                                           
-                                        </div>
-                                        <div className=" flex  w-[10.7rem] ">
-                                   <div class=" text-xs font-poppins flex items-center">
-                                    {item.procureOrderInvoiceId}
-                                        </div>
-                                </div>
-                                <div className=" flex  w-[11.2rem] ">
-                               <div class=" text-xs font-poppins flex items-center">    
-                               {dayjs(item.shippingDate).format("YYYY/MM/DD")}
-                                        </div>
+                      return (
+                          <>
+                              <div>
+                              <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 border border-white ">
+                              <div className=" flex   w-[9.1rem] ">
+                                      {item.invoiceId}                                                                            
+                                      </div>
+                                      <div className=" flex  w-[10.7rem] ">
+                                 <div class=" text-xs font-poppins flex items-center">
+                                 {item.newOrderNo}  
+                                      </div>
+                              </div>
+                              <div className=" flex  w-[11.2rem] ">
+                             <div class=" text-xs font-poppins flex items-center"> 
+                             {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`} 
+                                      </div>
 
-                            </div>
-                                <div className=" flex  w-[7.12rem] ">
-                                               
-                      </div>
-                                    </div>
-                                </div>
+                          </div>
+                              <div className=" flex  w-[7.12rem] ">
+                                          {item.totalValue}   
+                    </div>
+                    <div className=" flex  w-[7.12rem] ">
+                                          {/* {item.totalValue}    */}
+                    </div>
+                                  </div>
+                              </div>
 
-                            </>
+                          </>
 
-                        )
-                    })}
-</InfiniteScroll>
+                      )
+                  })}
+{/* </InfiniteScroll> */}
                 </MainForBroker >
             </div>
            
