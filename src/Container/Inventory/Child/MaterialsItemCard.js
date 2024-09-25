@@ -178,6 +178,10 @@ useEffect(() => {
   
         props.LinkInventoryItem(data);
       }
+
+      if (props.linkingInventoryItem){
+        return <BundleLoader/>
+      }
   return (
     <>
    
@@ -364,6 +368,9 @@ const mapStateToProps = ({ inventory,auth }) => ({
   userId: auth.userDetails.userId,
   organizationId: auth.userDetails.organizationId,
   suppliesDetailsDrawr:inventory.suppliesDetailsDrawr,
+linkingInventoryItem: inventory.linkingInventoryItem
+
+
 });
 
 const mapDispatchToProps = (dispatch) =>

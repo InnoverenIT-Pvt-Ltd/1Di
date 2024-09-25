@@ -36,6 +36,7 @@ function InventoryPaymentLoading(props) {
       const orderPhoneId = localStorage.getItem("orderPhoneId");
      props.makeInventoryPayment
         ({
+          amount:props.match.params.amount,
                           stripePaymentId:props.match.params.stripePaymentId,
                           paymentId: props.match.params.paymentId,
                           paymentType: "Stripe",
