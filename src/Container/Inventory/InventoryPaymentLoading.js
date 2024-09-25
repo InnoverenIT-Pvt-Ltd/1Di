@@ -43,6 +43,7 @@ function InventoryPaymentLoading(props) {
                           stripePaymentInd:finalStatus=== "failed" ? false :true,
                           status: finalStatus,
                           userId:props.userId,
+                          quotationId: props.invencartItem.orderPhoneId ? props.invencartItem.orderPhoneId : orderPhoneId,
                         },
                         handleCallback
                       ); 

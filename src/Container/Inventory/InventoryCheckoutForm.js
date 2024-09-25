@@ -27,8 +27,8 @@ class InventoryCheckoutForm extends React.Component {
       
       confirmParams: {
         // return_url: `https://shoppr.pro/${str}/loading/${this.props.stripePaymentId}/${this.props.paymentId}` //Production Url 
-        //  return_url: `http://b2b.1di.ca/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}` //Korero
-        return_url: `http://localhost:3000/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}` // localhostD
+         return_url: `http://b2b.1di.ca/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}` //Korero
+        // return_url: `http://localhost:3001/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}` // localhostD
       },
     });
 
@@ -53,7 +53,7 @@ class InventoryCheckoutForm extends React.Component {
           className="StripePayButton"
         >
           Pay 
-           {`100`} {"EUR"}
+          {`${this.props.invencartItem.cartSummary.grandTotal} ${"EUR"}`}
           {/* {`${this.props.finalgrandTotalValue} ${this.props.currency}`} {this.props.invencartItem.cartSummary && this.props.invencartItem.cartSummary.grandTotal}*/}
         </button>
         {/* </Link> */}

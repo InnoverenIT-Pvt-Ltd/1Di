@@ -14,11 +14,12 @@ const stripePromise = loadStripe("pk_test_51Pg4N4F9t5MfjsIZrPxRRnon7ENfinC1pcSx6
 
 function InventoryCheckout(props) {
 
+  const mutlipro = props.invencartItem.cartSummary.grandTotal *100;
   useEffect(() => {
     let data = {
       cartId: props.invencartItem.orderPhoneId ? props.invencartItem.orderPhoneId :null,
       currency: "EUR",
-      // amount:props.invencartItem.cartSummary && props.invencartItem.cartSummary.grandTotal,
+      amount:mutlipro,
       amount:"100",
     };
 
