@@ -278,7 +278,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
         type: types.MAKE_INVENTORY_PAYMENT_REQUEST,
     })
    
-     axios.post(`${base_url}/stripe/confirmPayment`,data ,{
+     axios.post(`${base_url2}/api/v1/stripe/confirmPayment`,data ,{
      headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
