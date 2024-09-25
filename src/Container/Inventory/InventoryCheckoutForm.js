@@ -22,13 +22,15 @@ class InventoryCheckoutForm extends React.Component {
 
       return;
     }
+    const mapamount=this.props.invencartItem.cartSummary.grandTotal *100;
+    const fixmapamount= mapamount.toFixed(2);
+    const amount=fixmapamount
     const result = await stripe.confirmPayment({
       elements, 
       
       confirmParams: {
-        // return_url: `https://shoppr.pro/${str}/loading/${this.props.stripePaymentId}/${this.props.paymentId}` //Production Url 
-         return_url: `http://b2b.1di.ca/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}` //Korero
-        // return_url: `http://localhost:3001/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}` // localhostD
+         return_url: `http://b2b.1di.ca/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}/${amount}` //1Di
+        // return_url: `http://localhost:3000/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}/${amount}` // localhostD
       },
     });
 
@@ -43,7 +45,8 @@ class InventoryCheckoutForm extends React.Component {
 
   render() {
     const { stripe } = this.props;
-// console.log(this.props.stripePaymentId)
+console.log(this.props.invencartItem.cartSummary.grandTotal)
+
     return (
       <form onSubmit={this.handleSubmit}>
 <PaymentElement/>
@@ -52,8 +55,8 @@ class InventoryCheckoutForm extends React.Component {
           disabled={!stripe}
           className="StripePayButton"
         >
-          Pay 
-          {`${this.props.invencartItem.cartSummary.grandTotal} ${"EUR"}`}
+            
+          {`Pay ${this.props.invencartItem.cartSummary.grandTotal.toFixed(2)} ${"EUR"}`}
           {/* {`${this.props.finalgrandTotalValue} ${this.props.currency}`} {this.props.invencartItem.cartSummary && this.props.invencartItem.cartSummary.grandTotal}*/}
         </button>
         {/* </Link> */}
@@ -81,7 +84,7 @@ function InjectedCheckoutForm(props) {
           addiNVEStripeModal={props.addiNVEStripeModal}
           handleInventoryStripeModal={props.handleInventoryStripeModal}
           finalgrandTotalValue={"100"}
-          // currency={props.shopName.currencyName}
+          invencartItem={props.invencartItem}
           confirmedInvnPayment={props.confirmedInvnPayment}
           currency={"EUR"}
           // finalgrandTotalValue={this.props.invencartItem.cartSummary && this.props.invencartItem.cartSummary.grandTotal}

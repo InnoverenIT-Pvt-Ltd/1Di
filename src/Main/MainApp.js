@@ -504,7 +504,7 @@ function MainApp(props) {
                   <Route exact path="/invQuotationsuccess" component={InventoryQuoatationSuccess}/>
                   <Route exact path="/:shopName/invOrdersuccess" component={InventoryOrdersuccess}/>
                   <Route exact path="/:shopName/chequeOrdersuccess" component={Showmessage}/>
-                  <Route exact path="/:shopName/invenloading/:stripePaymentId/:paymentId" component={InventoryPaymentLoading}/>
+                  <Route exact path="/:shopName/invenloading/:stripePaymentId/:paymentId/:amount" component={InventoryPaymentLoading}/>
                   <Route exact path="/planner"  component={Planner} />
                   <Route exact pat="/supplierInventory" component={SupplierInventory}/>               
 
