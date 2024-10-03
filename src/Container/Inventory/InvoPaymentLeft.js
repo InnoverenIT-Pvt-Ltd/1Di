@@ -413,7 +413,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
     <>
       <br />
       <Radio.Group onChange={onChange} value={value}>
-      {stripeNo.stripeInd ? (
+      {/* {stripeNo.stripeInd ? ( */}
         <FlexContainer justifyContent="space-between" style={{ display: "flex", alignItems: "center" }}>
           <Radio value={"Stripe"}>
         
@@ -434,7 +434,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
             </div>
           </Radio>
         </FlexContainer>
-         ) : null} 
+         {/* ) : null}  */}
           {stripeNo.elecFormTransInd ? (
           <Radio value={"EFT"}>
           <div className="flex justify-between mt-2"> 
