@@ -3,11 +3,10 @@
 // const base_url = "https://develop.tekorero.com/testHr/api/v1";
 // const base_url2 = "https://develop.tekorero.com/testErp";
 
-// NUBOX
-const login_url = "https://1DiWeb-env.eba-5ivfdpyc.us-east-2.elasticbeanstalk.com/";
-const base_url = "https://1DiWeb-env.eba-5ivfdpyc.us-east-2.elasticbeanstalk.com/api/v1";
-const base_url2 = "https://1DiWeb-env.eba-5ivfdpyc.us-east-2.elasticbeanstalk.com/Erp";
-
+// 1 Di B2B
+const login_url = "http://1diweb-env.eba-5ivfdpyc.us-east-2.elasticbeanstalk.com";
+const base_url = "http://1diweb-env.eba-5ivfdpyc.us-east-2.elasticbeanstalk.com/api/v1";
+const base_url2 = "http://1dierp-env.eba-ed4pbxag.us-east-2.elasticbeanstalk.com";
 
 export { base_url, base_url2, login_url };
 
