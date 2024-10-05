@@ -42,6 +42,24 @@ const [response, setResponse] = useState(null);
     }
   };
 
+  const [CancelItem, setCancelItem] = useState(null);
+  const [errorC, setErrorC] = useState(null);
+
+  const CancelItemRequest = async (item) => {
+    try {
+      const respoCancel = await axios.post(`${base_url2}/phoneOrder/cancelOrder/${item.itemId}`,{},
+       { headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setCancelItem(respoCancel.data);
+      console.log(respoCancel.data);
+    } catch (errorC) {
+      setErrorC(errorC);
+      console.error(errorC);
+    }
+  };
+
     return (
         <>
              <div> 
@@ -87,7 +105,7 @@ const [response, setResponse] = useState(null);
                                     <div className=" md:w-8"></div>
                  
                                 </div>
-                               <div class="overflow-y-auto h-[65vh]">
+                               <div>
                                     {/* <InfiniteScroll
                                         dataLength={props.orderProcureDetails.length}
                                         loader={props.fetchingProcureOrderDetails ? <div class="flex justify-center">Loading...</div> : null}
@@ -153,7 +171,14 @@ const [response, setResponse] = useState(null);
                                                 Receive
                                                 </Button>
                                                         </div>
-
+                                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">                                                 
+                                                            <Button type="primary"
+                                                            onClick={() =>
+                                                                CancelItemRequest(item)}
+                                                            >
+                                                Cancel
+                                                </Button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                     
