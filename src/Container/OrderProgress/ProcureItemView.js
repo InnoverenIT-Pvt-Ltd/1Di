@@ -3,8 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from "react-infinite-scroll-component";
-import {getProcureOrderDetails} from "../MyOrder/MyOrderAction";
+import {getProcureOrderDetails,  repeatOrder} from "../MyOrder/MyOrderAction";
 import {  Button } from "antd";
+import dayjs from "dayjs";
+import { base_url2 } from "../../Config/Auth";
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function ProcureItemView (props) {
   
@@ -22,20 +26,38 @@ const [RowData, setRowData] = useState("");
 function handleSetRowData(item) {
     setRowData(item);
 }
+const [CancelItem, setCancelItem] = useState(null);
+const [errorC, setErrorC] = useState(null);
 
+const CancelItemRequest = async (item) => {
+  try {
+    const respoCancel = await axios.post(`${base_url2}/phoneOrder/cancelOrder/${item.itemId}`,{},
+     { headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    });
+    setCancelItem(respoCancel.data);
+    console.log(respoCancel.data);
+  } catch (errorC) {
+    setErrorC(errorC);
+    console.error(errorC);
+  }
+};
 
     return (
         <>
              <div> 
+             <Link to="/repeatOrderInfo">
              <Button
                                                 type='primary'
-                                            //   onClick={() => {
-                                            //             props.repeatOrder({ordreId:item.orderId});
-                                            //             handleRowData(item);
-                                            //         }}
+                                              onClick={() => {
+                                                        props.repeatOrder();
+                                                       
+                                                    }}
                                                 >
                                                     Repeat Order
                                                     </Button>  
+                                                    </Link>
 <div className=' flex justify-end sticky flex-col z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
@@ -51,20 +73,20 @@ function handleSetRowData(item) {
                                         id="app.brand"
                                         defaultMessage="Brand"
                                     /></div>
-                                    <div className=" md:w-[5rem]"><FormattedMessage
+                                    <div className=" md:w-[9rem]"><FormattedMessage
                                         id="app.category"
                                         defaultMessage="Category"
                                     /></div>
-                                    <div className=" md:w-[5.1rem]"><FormattedMessage
+                                    <div className=" md:w-[8rem]"><FormattedMessage
                                         id="app.attribute"
                                         defaultMessage="Attribute"
                                     /></div>
         
-                                    <div className=" md:w-[6.5rem]"><FormattedMessage
+                                    <div className=" md:w-[6rem]"><FormattedMessage
                                         id="app.price"
                                         defaultMessage="Price"
                                     /></div>
-                         <div className=" md:w-[6.5rem]"><FormattedMessage
+                         <div className=" md:w-[5rem]"><FormattedMessage
                                         id="app.units"
                                         defaultMessage="Units"
                                     /></div>
@@ -107,22 +129,20 @@ function handleSetRowData(item) {
                                                                 </div>
                                                             </div>
                                                             
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex font-medium   md:w-[9rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs text-cardBody font-poppins text-ellipsis overflow-hidden whitespace-nowrap ">
                                                                     {item.category}
                                                                 </div>
                                                             </div>
                                                             </div>
-                                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.attribute} 
                                                                 </div>
                                                             </div>
-                                                    
                                                             <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.price} 
+                                                                CA$ {Number(item.price).toFixed(2)}  
                                                                 </div>
                                                             </div>     
                                                             <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -130,15 +150,16 @@ function handleSetRowData(item) {
                                                                     {item.unit} 
                                                                 </div>
                                                             </div>   
+                                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                            
 
                                                             <Button
                                                 type='primary'
-                                            //   onClick={() => {
-                                            //             props.repeatOrder({ordreId:item.orderId});
-                                            //             handleRowData(item);
-                                            //         }}
+                                              onClick={() => {
+                                                CancelItemRequest(item)
+                                                    }}
                                                 >
-                                                    Cancel Order
+                                                    Cancel 
                                                     </Button>  
                                                         </div>
 
@@ -170,6 +191,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getProcureOrderDetails,
+            repeatOrder
             // handlePhoneListOrderNoteModal,
             // handleFeedbackPhoneOrderDrawer,
 

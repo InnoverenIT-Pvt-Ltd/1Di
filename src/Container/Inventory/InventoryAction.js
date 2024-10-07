@@ -884,3 +884,58 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
               cb && cb ("error",err && err.response && err.response.data.error)
             });
         };       
+
+        export const addrepeatDelivery = (data,orderId,cb) => (dispatch) => {
+          dispatch({
+            type: types.ADD_REPEAT_DELIVERY_INFO_REQUEST,
+          });
+          axios
+            .post(`${base_url2}/rept/DUMMY/${orderId}`, data,{
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            })
+            .then((res) => {
+              console.log(res);
+              dispatch({
+                type: types.ADD_REPEAT_DELIVERY_INFO_SUCCESS,
+                payload: res.data
+              })
+              cb && cb("sucess")
+            })
+            .catch((err) => {
+              console.log(err);
+              dispatch({
+                type: types.ADD_REPEAT_DELIVERY_INFO_FAILURE,
+                payload: err,
+              })
+              cb&&cb()
+            })
+        }
+        
+        export const repeatPayOrder = (data,cb) => (dispatch) => {
+          dispatch({ type: types.REPEAT_PAYMENT_REQUEST });
+        
+          axios
+            .post(`${base_url2}/payment/RPT/DUMMY `, data, {
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            })
+        
+            .then((res) => {
+              console.log("resp",res)     
+          dispatch({
+                type: types.REPEAT_PAYMENT_SUCCESS,
+                payload: res.data,
+              });
+              cb && cb ("success")
+            })
+            .catch((err) => {
+              console.log("errr",err,err && err.response && err.response.data.error)
+              dispatch({
+                type: types.REPEAT_PAYMENT_FAILURE,
+              });
+              cb && cb ("error",err && err.response && err.response.data.error)
+            });
+        };       

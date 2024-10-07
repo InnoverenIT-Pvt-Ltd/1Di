@@ -60,6 +60,8 @@ import InventoryOrdersuccess from "../Container/Inventory/InventoryOrdersuccess"
 import InventoryQuoatationSuccess from "../Container/Inventory/InventoryQuoatationSuccess";
 import { MenuFoldOutlined, MenuUnfoldOutlined, CloseOutlined } from '@ant-design/icons';
 import Showmessage from "../Container/Inventory/Showmessage";
+import RepeatDeliveryInfo from "../Container/OrderProgress/RepeatDeliveryInfo";
+
 const OrderSupplier =lazy(()=>import("../Container/OrderSupplier/OrderSupplier"));
 
 const NotificationPopover = lazy(() =>
@@ -75,7 +77,6 @@ const Planner = lazy(() => import("../Container/Auth/Planner/Planner"));
 const Quotation = lazy(()=>import("../Container/Quotation/Quotation"));
 const SupplierInventory =lazy(()=>import("../Container/Inventory/SupplierInventory"));
 const PaymentPage =lazy(()=>import("../Container/PaymentPage/PaymentPage"));
-
 
 function MainApp(props) {
   const [visible, setVisible] = useState(false);
@@ -497,6 +498,7 @@ function MainApp(props) {
                   <Route exact path="/changepassword" component={CustomerChangePassword} />
                   <Route exact path="/paymentPage" component={PaymentPage} />
                   {/* <Route exact path="/report" component={} /> */}
+                  <Route exact path="/repeatOrderInfo" component={RepeatDeliveryInfo} />
                   <Route exact path="/:shopName/invcartInfo" component={InventoryDeliveryInfo} />
                   <Route exact path="/:shopName/inventorycart" component={InventoryCart} />
                   <Route exact path="/:shopName/invopayment" component={InvoPayment} />

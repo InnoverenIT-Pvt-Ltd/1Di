@@ -45,7 +45,7 @@ function ProcureStatusShower (props) {
                     description:
                         <>
 
-{props.statusItems.paymentType} | {moment(props.statusItems.paymentDate).format("DD-MM-YYYY")}
+    {`${props.statusItems.paymentType==="Cod" ? "Cash on Delivery" :props.statusItems.paymentType ? `${props.statusItems.paymentType} |`:""}  ${moment(props.statusItems.paymentDate).format("DD-MM-YYYY")? `${moment(props.statusItems.paymentDate).format("DD-MM-YYYY")}`:""} `}
 
                         </>
                 },
