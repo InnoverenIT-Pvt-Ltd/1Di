@@ -10,14 +10,14 @@ import stripe from "../../Assests/Images/Stripe-Emblem.png";
 import Razorpay from "../../Assests/Images/razorpay.png";
 import pay from "../../Assests/Images/cashShake.svg";
 import { FlexContainer, Spacer } from "../../Components/UI/Elements";
-import { handleInventoryStripeModal,codInventoryOrder,getInventoryCartItems} from "./InventoryAction";
+import { handleInventoryStripeModal,codInventoryOrder,repeatPayOrder} from "./InventoryAction";
 import axios from 'axios';
 import PaymentInventoryModal from "./PaymentInventoryModal";
 import PayChecktInventoryModal from "./PayChecktInventoryModal";
 import { base_url2 } from "../../Config/Auth";
 import InventoryOrdersuccess from "./InventoryOrdersuccess";
 
-const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
+const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, repeatPayOrder,addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
   const [value, setValue] = useState(1);
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
   const history = useHistory();
@@ -408,7 +408,16 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, addiNVEStripeMo
     codInventoryOrder(data);
   };
 
-
+  const postRepeatPayment = (status) => {
+    history.push("/shopName/invOrdersuccess");
+    let data = {
+      amount: "",
+      orderId:"",
+      type: "Cash on Delivery",
+      orderProcess:"checkout",
+    };
+    repeatPayOrder(data);
+  };
   return (
     <>
       <br />
@@ -592,7 +601,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       codInventoryOrder,
       handleInventoryStripeModal,
-      // getInventoryCartItems
+      repeatPayOrder
     },
     dispatch
   );

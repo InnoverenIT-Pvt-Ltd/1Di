@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { Button} from "antd";
 import { base_url2 } from "../../Config/Auth";
 import axios from 'axios';
+import dayjs from "dayjs";
 
 function StatusItemCard (props) {
   
@@ -115,6 +116,7 @@ const [response, setResponse] = useState(null);
                                         height={"65vh"}
                                     > */}
                                         {props.statusItems.orderItemInfo && props.statusItems.orderItemInfo.map((item) => {
+                                            const currentdate = dayjs().format("YYYY/MM/DD");
                                             return (
                                                 <div>
                                                     <div
@@ -162,7 +164,7 @@ const [response, setResponse] = useState(null);
                                                         
                                                             </div>
                                                             </div>
-                                                           
+                                                            {/* {item.shippingDate !== currentdate} */}
                                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">                                                 
                                                             <Button type="primary"
                                                             onClick={() =>

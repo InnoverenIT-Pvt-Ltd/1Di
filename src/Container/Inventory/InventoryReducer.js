@@ -128,6 +128,12 @@ const initialState = {
   fetchingSuppliesByProductId: false,
   fetchingSuppliesByProductIdError:false,
   suppliesByproductId:{},
+
+  addingRepeatDeliveryInfo: false, addingRepeatDeliveryInfoError: false,
+  repeatDeliveryInfo:{},
+
+  repeatingPayOrder: false, payRepeatOrder: {},
+  repeatingPayOrderError: false, 
 };
 
   export const inventoryReducer = (state = initialState, action) => {
@@ -570,6 +576,23 @@ const initialState = {
                   case types.GENERATE_QUOTATION_FAILURE:
                     return { ...state, generatingQuotation: false, generatingQuotationError: true };
 
+
+                    case types.ADD_REPEAT_DELIVERY_INFO_REQUEST:
+                      return { ...state, addingRepeatDeliveryInfo: true };
+                    case types.ADD_REPEAT_DELIVERY_INFO_SUCCESS:
+                      return { ...state, addingRepeatDeliveryInfo: false,
+                                        repeatDeliveryInfo:action.payload,
+                       };
+                    case types.ADD_REPEAT_DELIVERY_INFO_FAILURE:
+                      return { ...state, addingRepeatDeliveryInfo: false, addingRepeatDeliveryInfoError: true };
+
+
+                      case types.REPEAT_PAYMENT_REQUEST:
+                        return { ...state, repeatingPayOrder: true };
+                      case types.REPEAT_PAYMENT_SUCCESS:
+                        return { ...state, repeatingPayOrder: false, payRepeatOrder: action.payload };
+                      case types.REPEAT_PAYMENT_FAILURE:
+                        return { ...state, repeatingPayOrder: false, repeatingPayOrderError: true };
 
 
                           default:

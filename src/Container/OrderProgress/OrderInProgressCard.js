@@ -14,6 +14,8 @@ import {
 import dayjs from "dayjs";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
+
 const ProcureItemViewDrawer =lazy(()=>import("./ProcureItemViewDrawer"));
 const ProcureStatusShowDrawer =lazy(()=>import("./ProcureStatusShowDrawer"));
 
@@ -52,7 +54,7 @@ function OrderInProgressCard(props) {
                                    id="app.created"
                                   defaultMessage="Created"
                                  /></div>
-        <div className="  w-[13.2rem] font-bold font-poppins ">Shipping</div>
+        <div className="  w-[7.2rem] font-bold font-poppins ">Shipping</div>
         <div className=" w-[7.7rem] font-bold font-poppins"><FormattedMessage
                                    id="app.items"
                                   defaultMessage="Items"
@@ -75,6 +77,7 @@ function OrderInProgressCard(props) {
                                    id="app.revised"
                                   defaultMessage="revised"
                                  /> </div> */}
+                                
         <div className=" w-[1.2rem] font-normal font-poppins"></div>      
       </div>
       <InfiniteScroll
@@ -100,7 +103,7 @@ function OrderInProgressCard(props) {
 
                                 <div>
                                 <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                className="flex rounded  bg-white mt-1 h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                              
                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                         <div className=" flex   md:w-[9.1rem] ">                                          
@@ -121,7 +124,12 @@ function OrderInProgressCard(props) {
                                         </div>
                                 </div>
                                 </div>
-                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                <div className=" flex  md:w-[15.2rem] ">
+                               <div class=" text-xs  font-poppins flex items-center">                                       
+                                            {LocAdd}
+                                        </div>
+                                </div>
+                                {/* <div class=" max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex  md:w-[18.2rem] ">
                                <div class=" text-xs  font-poppins flex items-center">                                       
                                             {LocAdd}
@@ -133,9 +141,9 @@ function OrderInProgressCard(props) {
                             
                       </div>
                   </div>
-                  </div>
-                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex   md:w-[3.2rem] ">                                         
+                  </div> */}
+                  
+                  <div className=" flex  md:w-[3.2rem] ">                                         
                                             <div
                                                 class=" text-xs   font-poppins cursor-pointer text-orange-700 font-semibold"
                                                
@@ -147,6 +155,13 @@ function OrderInProgressCard(props) {
                                                 {item.itemCount}
                                             </div>
                                         </div>
+                                        <div className=" flex  md:w-[15.2rem] ">
+                               <div class=" text-xs  font-poppins flex items-center">                                       
+                                            
+                                        </div>
+                                </div>
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        
                                       
                                         <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-20 h-5  ml-2 cursor-pointer">
                                             <Button 
@@ -175,6 +190,7 @@ function OrderInProgressCard(props) {
                                             </div>
 
                                         <div className="   md:w-24 ">
+                                        <Link to="/repeatOrderInfo">
                                         <Button
                                                 type='primary'
                                               onClick={() => {
@@ -184,7 +200,7 @@ function OrderInProgressCard(props) {
                                                 >
                                                     Repeat Order
                                                     </Button>
-
+</Link>
                                             {/* {(item.customerPriceInd === true && item.priceConfirmInd === false) ? (
                                                 <Popconfirm
                                                     onConfirm={() => props.confirmButtonClick({

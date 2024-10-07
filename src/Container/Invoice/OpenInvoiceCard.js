@@ -74,19 +74,19 @@ function InvoiceCard(props) {
                                    id="app.date"
                                   defaultMessage="Date"
                                  /></div>
-        <div className="  w-[13.2rem] font-bold font-poppins "><FormattedMessage
+        <div className="  w-[10.2rem] font-bold font-poppins "><FormattedMessage
                                    id="app.amount"
                                   defaultMessage="Amount"
                                  /></div>
-                                  <div className="  w-[13.2rem] font-bold font-poppins "><FormattedMessage
-                                   id="app.payment"
-                                  defaultMessage="Payment"
-                                 /></div>
+                                 
         <div className=" w-[7.7rem] font-bold font-poppins"><FormattedMessage
                                    id="app.status"
                                   defaultMessage="Status"
                                  /></div>
-       
+        <div className="  w-[13.2rem] font-bold font-poppins "><FormattedMessage
+                                   id="app.payment"
+                                  defaultMessage="Payment"
+                                 /></div>
         <div className=" w-[1.2rem] font-normal font-poppins"></div>      
       </div>
       {/* <InfiniteScroll
@@ -105,7 +105,7 @@ function InvoiceCard(props) {
                           <>
                               <div>
                               <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 border border-white ">
-                                      <div className=" flex   w-[9.1rem] ">
+                                      <div className=" text-xs font-poppins flex items-center   w-[9.1rem] ">
                                       {item.invoiceId}                                                                            
                                       </div>
                                       <div className=" flex  w-[10.7rem] ">
@@ -113,17 +113,20 @@ function InvoiceCard(props) {
                                  {item.newOrderNo}  
                                       </div>
                               </div>
-                              <div className=" flex  w-[11.2rem] ">
+                              <div className=" text-xs font-poppins flex items-center  w-[11.2rem] ">
                              <div class=" text-xs font-poppins flex items-center"> 
                              {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`} 
                                       </div>
 
                           </div>
-                              <div className=" flex  w-[7.12rem] ">
-                                          {item.totalValue}   
+                          <div className=" text-xs font-poppins flex items-center  w-[11.12rem] ">
+                              CA$ {Number(item.totalValue).toFixed(2)} 
                     </div>
-                    <div className=" flex  w-[7.12rem] ">
-                                          {/* {item.totalValue}    */}
+                              <div className=" text-xs font-poppins flex items-center  w-[5.12rem] ">
+                              {item.paidInd ? "Paid" :"Unpaid"} 
+                    </div>
+                    <div className=" text-xs font-poppins flex items-center  w-[5.12rem] ">
+                                          {/* {item.paym}    */}
                     </div>
                                   </div>
                               </div>
