@@ -28,8 +28,8 @@ class InventoryCheckoutForm extends React.Component {
       elements, 
       
       confirmParams: {
-        //  return_url: `http://b2b.1di.ca.s3-website.us-east-2.amazonaws.com/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}/${amount}` //1Di
-        return_url: `http://localhost:3000/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}/${amount}` // localhostD
+         return_url: `http://b2b.1di.ca.s3-website.us-east-2.amazonaws.com/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}/${amount}` //1Di
+        // return_url: `http://localhost:3000/DRB/invenloading/${this.props.stripePaymentId}/${this.props.paymentId}/${amount}` // localhostD
       },
     });
 
