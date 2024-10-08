@@ -240,7 +240,7 @@ useEffect(() => {
                      
                    
                        
-                      <div  key={item.suppliesId} class=" h-[12rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[12.6rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                      <div  key={item.suppliesId} class=" h-[13rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[12.6rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
                      
                       <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
                                               {item.imageId ? (
@@ -283,8 +283,8 @@ useEffect(() => {
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-around"> 
-                                                                        <div class=" mt-1 text-xs text-[#1124AA] truncate max-w-[100px] "title={item.categoryName}>
+                                                                  <div className="flex justify-start w-wk ml-1"> 
+                                                                        <div class=" mt-1 text-xs text-[#1124AA] truncate max-w-[150px] "title={item.categoryName}>
                                                                               {item.categoryName}
                                                                             </div>
                                                                             

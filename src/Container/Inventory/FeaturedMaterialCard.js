@@ -371,43 +371,42 @@ function MaterialsItemCard(props) {
                      const isLastElement = index === props.featuredMaterials.length - 1;
                      return (
                     
-                        <div 
-                        // ref={isLastElement ? lastProductElementRef : null} 
-                        key={item.suppliesId} className="card-element">
-                     <div class=" h-[19rem]  flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[13rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                      <div  key={item.suppliesId} class=" h-[13rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[12.6rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
                      
-                      <div class=" flex flex-col items-center w-wk max-sm:mr-0 md:flex   h-hwk">
-                      {item.imageId ? (
+                      <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
+                                              {item.imageId ? (
                                                     <div class="object-cover object-center  flex items-center">
                                                      <img
                                                               src={`${base_url}/image/${item.imageId}`} 
-                                                              style={{ height: "12.5rem", width: "13rem" }}
+                                                              style={{ height: "6.5rem", width: "13rem" }}
                                                           />
                                                          </div>  
                                                         ) : (
                            
-                                                        <div className=" text-base h-[9.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
+                                                        <div className=" text-xs h-[6.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
                                                       
                                                     )}
                                                      <div className=" flex justify-around flex-row w-full "> 
                                                                             <div class=" mr-3 text-xs text-[#1124AA]">
-                                                                            WSL -  {item.suppliesPrice} 
+                                                                            WSL {item.suppliesPrices?.[0].suppliesPrice.toFixed(2)}
+                                                                            {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPrice.toFixed(2)} */}
                                                                             </div> 
                                                                  
                                                     
                                                                             <div class=" mr-3 text-xs text-[#1124AA]">
-                                                                              SRP -  {item.suppliesPrice} 
+                                                                              SRP {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)}
+                                                                               {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)} */}
                                                                             </div> 
                                                                             </div>
                                                                   <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
                                                              
-                                                                  <div class=" flex justify-center"> {item.newSuppliesNo}  </div>
+                                                                  {/* <div class=" flex justify-center"> {item.newSuppliesNo}  </div> */}
                                                                   <div > 
                                                                   <Tooltip title={item.suppliesName} placement="top" arrow>
                                                                                               
                                                                                               <div class="cursor-pointer"
                                                                                                 onClick={() => {
-                                                                                                  props.handleSuppliesDetails(true);
+                                                                                                  // props.handleSuppliesDetails(true);
                                                                                                   handleRowData(item);
                                                                                                 }} 
                                                                                               >{item.suppliesName || ""}</div>
@@ -415,25 +414,28 @@ function MaterialsItemCard(props) {
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-around"> 
-                                                                        <div class=" mt-1 text-xs text-[#1124AA] truncate max-w-[100px] "title={item.categoryName}>
+                                                                  <div className="flex justify-start w-wk ml-1"> 
+                                                                        <div class=" mt-1 text-xs text-[#1124AA] truncate max-w-[150px] "title={item.categoryName}>
                                                                               {item.categoryName}
                                                                             </div>
                                                                             
                                                                             <div class=" mt-1 text-xs text-[#1124AA]">
                                                                               {item.subCategoryName}
                                                                             </div> 
-                                                                  </div>                                                
-                                                                            <div class="w-wk mt-1 flex  justify-between max-sm:flex items-center">
-                                                                            <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
+                                                                  </div>
+                                                                 
+                                                      
+                                                                                                                         
+                                                                            <div class="mt-1 flex justify-evenly max-sm:flex items-center ">
+                                                                            <div class=" flex  max-sm:w-48  ">
                                                                             <div className="add-minus-quantity">
-                                                                          <span
-
-                                                                          >
+                                                                          <span >
                                                                                 <MinusOutlined onClick={() => handleDecrement(item.suppliesId)}/>
                                                                           </span>
                                                                         
-                                                                          <input  type="number"  
+                                                                          <input 
+                                                                          className=" flex justify-end"
+                                                                          type="number"  
                                                                           value={units[item.suppliesId] || 1}
                                                                           onChange={(event) => handleQuantityChange(event, item.suppliesId)}
                                                                           min="1" 
@@ -450,7 +452,7 @@ function MaterialsItemCard(props) {
                           
                                              
                                                                            </div>
-                                                                           <div className="  cursor-pointer ml-2"
+                                                                           <div className="  cursor-pointer "
                                                                                  onClick={() =>
                                                                                     handleAddToCart(
                                                                                       item.suppliesId
@@ -466,32 +468,10 @@ function MaterialsItemCard(props) {
                   
                                                                           </div>
                                                                           
-                                                                          {/* <div class="flex justify-between m-2 w-wk max-sm:w-40 items-baseline md: " >
-                                                                              <Desc>{item.description === "null" ? "No Description" : `${item.description}`}</Desc>
-                                                                              {item.description === "<div></div>\n" ? null : (
-                                                                                <Tooltip
-                                                                                  style={{ backgroundColor: "red" }}
-                                                                                  title={
-                                                                                    <Desc2>{item.description === "null" ? "No Description" : `${item.description}`}</Desc2>
-                                                                                  }
-                                                                                  placement="top"
-                                                                                  arrow
-                                                                                >
-                                                                                  <span
-                                                                                    style={{
-                                                                                      cursor: "pointer",
-                                                                                    }}
-                                                                                  >
-                                                                                    
-                                                                                    <InfoCircleTwoTone class=" flex items-center"/>
-                                                                                  </span>
-                                                                                </Tooltip>
-                                                                              )}
-                                                                            </div> */}
+                                                                          
                                                                             
                                                                              
                   
-                                         </div>
                                          </div>
                                      
                     );
@@ -519,8 +499,8 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getFeaturedMaterials,
-      LinkInventoryItem
-
+      LinkInventoryItem,
+      // handleSuppliesDetails
     },
     dispatch
   );

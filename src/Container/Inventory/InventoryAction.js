@@ -145,7 +145,9 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Added to cart',
+          title: 'Item added to cart',
+          showConfirmButton: false,
+          timer: 2000
         })
       })
       .catch((err) => {
@@ -890,7 +892,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.ADD_REPEAT_DELIVERY_INFO_REQUEST,
           });
           axios
-            .post(`${base_url2}/rept/DUMMY/${orderId}`, data,{
+            .post(`${base_url2}/phoneOrder/repeatOrder/address/${orderId}`, data,{
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -901,7 +903,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
                 type: types.ADD_REPEAT_DELIVERY_INFO_SUCCESS,
                 payload: res.data
               })
-              cb && cb("sucess")
+              cb && cb("success")
             })
             .catch((err) => {
               console.log(err);
@@ -917,7 +919,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           dispatch({ type: types.REPEAT_PAYMENT_REQUEST });
         
           axios
-            .post(`${base_url2}/payment/RPT/DUMMY `, data, {
+            .post(`${base_url2}/payment/repeatOrder/prosess`, data, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },

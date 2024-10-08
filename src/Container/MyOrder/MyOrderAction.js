@@ -758,12 +758,12 @@ export const getLeastSell = (type) => (dispatch) => {
     });
 };
 
-export const repeatOrder = (customer) => (dispatch, getState) => {
+export const repeatOrder = (orderId,data) => (dispatch, getState) => {
   dispatch({
     type: types.REPEAT_ORDER_REQUEST,
   });
   axios
-    .post(`${base_url2}/rptord/DummyURl`, customer, {
+    .put(`${base_url2}/phoneOrder/repeatOrder/${orderId}`,data,  {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

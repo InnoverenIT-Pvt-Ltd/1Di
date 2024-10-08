@@ -5,8 +5,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-    handleInventoryStripeModal,
-    makeInventoryPayment
+    handleInventoryStripeModal
 } from "./InventoryAction";
 import "./Inventory.scss";
 import { createBrowserHistory } from "history";
@@ -66,12 +65,6 @@ console.log(this.props.invencartItem.cartSummary.grandTotal)
 }
 
 function InjectedCheckoutForm(props) {
-  // const cartData = props.deliveryInfo.storeCart;
-  // const cartSummaryData = cartData && cartData.cartSummary;
-  // const finalSubTotalValue = cartSummaryData && cartSummaryData.subTotal;
-  // const finalgrandTotalValue = cartSummaryData && cartSummaryData.grandTotal;
-  // const shopName = props.shopName.name;
-  // const str = shopName && shopName.replace(/ +/g, "");
   return (
     <ElementsConsumer>
       {({ stripe, elements }) => (
@@ -80,14 +73,13 @@ function InjectedCheckoutForm(props) {
           elements={elements}
           paymentId={props.paymentId}
           stripePaymentId={props.stripePaymentId}
-          // deliveryInfo={props.deliveryInfo}
           addiNVEStripeModal={props.addiNVEStripeModal}
           handleInventoryStripeModal={props.handleInventoryStripeModal}
           finalgrandTotalValue={"100"}
           invencartItem={props.invencartItem}
           confirmedInvnPayment={props.confirmedInvnPayment}
           currency={"EUR"}
-          // finalgrandTotalValue={this.props.invencartItem.cartSummary && this.props.invencartItem.cartSummary.grandTotal}
+       
         />
       )}
     </ElementsConsumer>
@@ -95,19 +87,13 @@ function InjectedCheckoutForm(props) {
 }
 const mapStateToProps = ({ pass, auth, inventory }) => ({
   confirmedInvnPayment: inventory.confirmedInvnPayment,
-  // clientSecret: pass.passDetails.clientSecret,
-  // userDetails: auth.userDetails,
-  // tempPassDate: pass.tempPassDate,
   paymentId: inventory.paymentInventoryDetails.paymentId,
   stripePaymentId: inventory.paymentInventoryDetails.stripePaymentId,
-  // shopName: inventory.shopName,
-  // deliveryInfo: inventory.showDeliveryInfo,
   addiNVEStripeModal: inventory.addiNVEStripeModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        makeInventoryPayment,
       // buyPass
       handleInventoryStripeModal,
     },
