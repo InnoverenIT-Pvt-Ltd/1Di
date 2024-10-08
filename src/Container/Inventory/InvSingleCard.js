@@ -54,7 +54,7 @@ console.log(props.item.productInfo)
       <>
         <div className="w-wk h-11 bg-white mt-1 flex rounded p-1 ">
         <div className=" h-11 w-11 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-        <div   className=" h-11 w-11 ">
+        <div   className="flex items-center  h-11 w-11 ">
         {props.item.productInfo.imageId ? (
         <img 
         src={`${base_url}/image/${props.item.productInfo.imageId}`} 
