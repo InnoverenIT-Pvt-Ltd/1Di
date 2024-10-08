@@ -198,7 +198,7 @@ function MaterialAllCard (props) {
                          console.log(item.suppliesPrice)
                         return (
                           <CardElement >
-                          <div class=" flex flex-col items-center max-sm:mr-0 md:flex w-[12.6vw]   h-hwk border">
+                          <div class=" flex flex-col items-center max-sm:mr-0 md:flex w-[12.6vw]   h-[24vh] border">
                                               {item.imageId ? (
                                                     <div class=" flex items-center">
                                                      <img
@@ -236,8 +236,8 @@ function MaterialAllCard (props) {
                                                                      </div>
                                                                      
                                                                   </div>
-                                                                  <div className=" flex flex-row justify-around "> 
-                                                                        <div class="  text-xs text-[#1124AA] truncate max-w-[100px]">
+                                                                  <div className=" flex justify-start w-wk ml-1"> 
+                                                                        <div class="  text-xs text-[#1124AA] truncate max-w-[150px]">
                                                                               {item.categoryName}
                                                                             </div>
                                                                             <div class=" text-xs text-[#1124AA]">

@@ -578,6 +578,7 @@ export const myorderReducer = (state = initialState, action) => {
       return {
         ...state,
         repeatingOrderSuccess: false,
+        repeatOrderlist:{},
         // orderListData: state.orderListData.map((item) => {
         //   if (item.orderId === action.payload.orderId) {
         //     return action.payload;

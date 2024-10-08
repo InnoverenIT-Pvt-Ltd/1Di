@@ -194,7 +194,7 @@ function OrderInProgressCard(props) {
                                         <Button
                                                 type='primary'
                                               onClick={() => {
-                                                        props.repeatOrder({ordreId:item.orderId});
+                                                        props.repeatOrder(item.orderId);
                                                         handleRowData(item);
                                                     }}
                                                 >
