@@ -36,12 +36,28 @@ class RegistrationStepper extends Component {
             businessRegistration:"",
             extension:"",
             priPolInd:"",
+            password:"",
+            type:'password',
+            show:Boolean(),
+            type2:'password',
+            show2:Boolean(),
         };
     }
-    // handleSubmit = (data) => {
-    //     this.setState({ thirdPageData: data });
-    //     this.handleComplete();
-    // };
+
+    handlePassword = (e) => {
+        this.setState({
+            password: e.target.value
+        });
+    };
+handlePWClick=()=>{
+        this.setState({type:this.state.type === "text" ? "password" : "text"});
+        this.setState({show:!this.state.show});
+      }
+      handleConPwClick=()=>{
+        this.setState({type2:this.state.type2 === "text" ? "password" : "text"});
+        this.setState({show2:!this.state.show2});
+      }
+
 
     handleNameStep1 = (e) => {
         this.setState({
@@ -130,7 +146,10 @@ let data={
     lastName:this.state.lastName,
     countryDialCode:this.state.countryDialCode,
     businessRegistration:this.state.businessRegistration,
-    source:"SORG26873064191202024"
+    source:"SORG26873064191202024",
+    password:this.state.password,
+    b2bInd:true,
+
 }
         this.props.addContact(data);
     };
@@ -148,6 +167,14 @@ let data={
                 billingEmail={this.state.billingEmail}
                 handleAddressStep1={this.handleAddressStep1}
                 address={this.state.address}
+                handlePassword={this.handlePassword}
+                password={this.state.password}
+                handlePWClick={this.handlePWClick}
+                type={this.state.type}
+                show={this.state.show}
+                handleConPwClick={this.handleConPwClick}
+                type2={this.state.type2}
+                show2={this.state.show2}
 
                 />
             },
