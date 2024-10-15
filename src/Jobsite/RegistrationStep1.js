@@ -6,7 +6,11 @@ import { connect } from "react-redux";
 import { Spacer } from "../Components/UI/Elements";
 import { InputComponent } from "../Components/Forms/Formik/InputComponent";
 import RegisterAddressFieldArray from "../Components/Forms/Formik/RegisterAddressFieldArray";
-
+import {
+  EyeOutlined,
+  EyeInvisibleOutlined,
+  CheckCircleTwoTone,
+} from "@ant-design/icons";
 
 const { Option } = Select;
 function RegistrationStep1 (props) {
@@ -125,6 +129,35 @@ function RegistrationStep1 (props) {
                     />
                           </div>
                           </div>
+                          <div class="flex flex-row items-center">   
+                          <div className=" font-poppins text-sm  font-semibold w-44">Password</div>
+                            <div className="flex">
+                            <input 
+                            className="border rounded-[0.6rem] block p-1 mb-1 h-[1.8rem]"
+                      isColumn
+                      // component={InputComponent}
+                      inlineLabel
+                      value={props.password}
+                      type={props.type}
+                      onChange={props.handlePassword}
+                    />
+                    {props.show ? (
+                      <EyeOutlined
+                        type="eye"
+                        onClick={props.handlePWClick}
+                        style={{ marginLeft: "-1.25rem",width:"0.8rem" }}
+                        size="24"
+                      />
+                    ) : (
+                      <EyeInvisibleOutlined
+                        type="eye-invisible"
+                        onClick={props.handlePWClick}
+                        size="24"
+                        style={{ marginLeft: "-1.25rem",width:"0.8rem"}}
+                      />
+                    )}      
+                            </div>
+                            </div>
                   </div>       
                   </div>
                   <div >
