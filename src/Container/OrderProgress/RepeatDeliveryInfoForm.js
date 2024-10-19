@@ -56,10 +56,7 @@ function RepeatDeliveryInfoForm(props) {
     // deliveryDate: Yup.date().required('Delivery Date is required'),
   });
 
-  if (props.fetchingInventoryCartItems)
-    {
-      return <BundleLoader/>
-    }
+ 
 
 
   
@@ -94,8 +91,6 @@ function RepeatDeliveryInfoForm(props) {
         onSubmit={(values, { resetForm }) => {
           const formattedDate = values.deliveryDate ? moment.utc(values.deliveryDate).format('YYYY-MM-DDTHH:mm:ss[Z]') : null;
           props.addrepeatDelivery (
-
-            
             {
               ...values,
               priority: priority,
@@ -108,7 +103,7 @@ function RepeatDeliveryInfoForm(props) {
             //   longitude: values.address[0].longitude,
             },
             // props.invencartItem.orderPhoneId ? props.invencartItem.orderPhoneId:null,
-
+            props.repeatOrderlist.orderPhoneId 
             );
             handleCallBack(); 
             resetForm();
@@ -234,16 +229,15 @@ function RepeatDeliveryInfoForm(props) {
   );
 }
 
-const mapStateToProps = ({ inventory,auth }) => ({
+const mapStateToProps = ({ inventory,myorder,auth }) => ({
   addingRepeatDeliveryInfo: inventory.addingRepeatDeliveryInfo,
-  // invencartItem: inventory.invencartItem,
+  repeatOrderlist: myorder.repeatOrderlist,
   userId: auth.userDetails.userId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         addrepeatDelivery,
-    //   generateQuatation
     },
     dispatch
   );

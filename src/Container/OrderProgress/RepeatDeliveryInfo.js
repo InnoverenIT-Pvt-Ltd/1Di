@@ -8,6 +8,8 @@ import { RollbackOutlined } from "@ant-design/icons";
 // import {getInventoryCartItems,deleteCartItem} from "./InventoryAction";
 import { Footer } from '../Customer/Footer';
 import RepeatDeliveryInfoForm from './RepeatDeliveryInfoForm';
+import RepeatSingleCard from './RepeatSingleCard';
+import { BundleLoader } from '../../Components/Placeholder';
 // import InvSingleCard from './InvSingleCard';
 // import InvSingleCard1 from './InvSingleCard1';
 
@@ -16,22 +18,29 @@ const history = createBrowserHistory();
 function RepeatDeliveryInfo (props) {
   const [qn, setqn] = useState({});
 
+
+
     useEffect(() => {
         // props.getInventoryCartItems(props.userId);
       }, []);
-    //   function handleInc(data) {
-    //     setqn({ ...data, quantity: data.quantity + 1 });
-    //   }
-    //   function handleDec(data) {
-    //     setqn({ ...data, quantity: data.quantity - 1 });
-    //   }
-    //   function handlebackdelete(item) {
-    //     const cartItemId = item.cartItemId;
-    //     props.deleteCartItem(cartItemId);
-    //   }
-    //   function handleRemoveCart(data) {
-    //     setqn({ ...data });
-    //   }
+      function handleInc(data) {
+        setqn({ ...data, quantity: data.quantity + 1 });
+      }
+      function handleDec(data) {
+        setqn({ ...data, quantity: data.quantity - 1 });
+      }
+      function handlebackdelete(item) {
+        const cartItemId = item.cartItemId;
+        props.deleteCartItem(cartItemId);
+      }
+      function handleRemoveCart(data) {
+        setqn({ ...data });
+      }
+
+
+      if (props.repeatingOrderSuccess){
+        return <BundleLoader/>
+      }
         return (
             <>
             <div class="bg-[#F7F8FC]">
@@ -61,12 +70,12 @@ function RepeatDeliveryInfo (props) {
      
   
           <div className="w-[100%]">
-         {/* {props.invencartItem.cartItems && props.invencartItem.cartItems.length === 0 ? <div class="flex justify-center  text-2xl text-[red]">Your Shopping cart is empty !</div>:
-props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
+         {props.repeatOrderlist.cartItems && props.repeatOrderlist.cartItems.length === 0 ? <div class="flex justify-center  text-2xl text-[red]">Your Shopping cart is empty !</div>:
+props.repeatOrderlist.cartItems && props.repeatOrderlist.cartItems.map((item) => {
                 return ( 
-               <InvSingleCard1 
+               <RepeatSingleCard
                key={item.cartItemId}
-               invencartItem={props.invencartItem}
+               repeatOrderlist={props.repeatOrderlist}
                item={item}
                handleDec={handleDec}
                handleInc={handleInc}
@@ -77,7 +86,7 @@ props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
                updatingPlusCart={props.updatingPlusCart}
                 />
 
-             )})}  */}
+             )})} 
           </div>
           
           
@@ -92,10 +101,10 @@ props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
         )
 }
 
-const mapStateToProps = ({ inventory, auth }) => ({
-    // invencartItem: inventory.invencartItem,
+const mapStateToProps = ({ inventory,myorder, auth }) => ({
+  repeatOrderlist: myorder.repeatOrderlist,
     // userId: auth.userDetails.userId,
-    // fetchingInventoryCartItems:inventory.fetchingInventoryCartItems,
+    repeatingOrderSuccess:myorder.repeatingOrderSuccess,
   });
   
   const mapDispatchToProps = (dispatch) =>

@@ -160,7 +160,7 @@ function InvoiceCard(props) {
       return (
         <>
 
-            <div className='mt-2'>
+<div className='mt-2'>
                 <MainForBroker className='!h-[72vh]'>
                 <div className=" flex rounded  w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[9.9rem] font-bold font-poppins"> <FormattedMessage
@@ -205,38 +205,39 @@ function InvoiceCard(props) {
                       return (
                           <>
                               <div>
-                              <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 border border-white ">
+                              <div className="flex rounded border-l-2 border-green-500 bg-[#eef2f9] mt-1 h-8 items-center p-1 ">
                                       <div className=" text-xs font-poppins flex items-center   w-[9.1rem] ">
                                       {item.invoiceId}                                                                            
                                       </div>
-                                      <div className=" flex  w-[10.7rem] ">
+                                      <div className=" flex bg-[#eef2f9] w-[10.7rem] ">
                                  <div class=" text-xs font-poppins flex items-center">
                                  {item.newOrderNo}  
                                       </div>
                               </div>
-                              <div className=" text-xs font-poppins flex items-center  w-[11.2rem] ">
+                              <div className=" text-xs font-poppins flex items-center  bg-[#eef2f9] w-[11.2rem] ">
                              <div class=" text-xs font-poppins flex items-center"> 
                              {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`} 
                                       </div>
 
                           </div>
-                          <div className=" text-xs font-poppins flex items-center  w-[11.12rem] ">
+                          <div className=" text-xs font-poppins flex items-center bg-[#eef2f9]  w-[11.12rem] ">
                               CA$ {Number(item.totalValue).toFixed(2)} 
                     </div>
-                              <div className=" text-xs font-poppins flex items-center  w-[5.12rem] ">
+                              <div className=" text-xs font-poppins flex items-center bg-[#eef2f9] w-[5.12rem] ">
                               {item.paidInd ? "Paid" :"Unpaid"} 
                     </div>
-                    <div className=" text-xs font-poppins flex items-center  w-[5.12rem] ">
+                    <div className=" text-xs font-poppins flex items-center bg-[#eef2f9]  w-[5.12rem] ">
                                           {/* {item.paym}    */}
                     </div>
 
                     <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>
           </div>
                                   </div>
 
+                                  
                               </div>
 
                           </>

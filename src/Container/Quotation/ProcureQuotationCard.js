@@ -4,28 +4,31 @@ import { bindActionCreators } from "redux";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { Tooltip, Input,Button} from "antd";
-import { Link } from "react-router-dom";
+import { withRouter,useHistory  } from "react-router-dom";
 import styled from 'styled-components';
 import { MainForBroker } from '../../Components/UI/Layout';
 import {
-    getProcureQuotation,
-} from "../MyOrder/MyOrderAction"
+    getProcureQuotation,   handleItemViewDrawer,
+} from "../MyOrder/MyOrderAction";
+import { codInventoryOrder } from '../Inventory/InventoryAction';
 import dayjs from "dayjs";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { FormattedMessage } from 'react-intl';
-// const ProcureItemViewDrawer =lazy(()=>import("./ProcureItemViewDrawer"));
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import ProcureQuotationItemViewDrawer from '../OrderProgress/ProcureQuotationItemViewDrawer';
+import { base_url2 } from '../../Config/Auth';
 
 const { Search } = Input;
 
 function ProcureQuotationCard(props) {
+    const history = useHistory();
 
     useEffect(() => {
-        // setPageNo(pageNo + 1);
         props.getProcureQuotation(props.userId,pageNo,"procure");
     }, [props.userId])
+    
     const [rowDatas, setrowDatas] = useState("");
     const [hasMore, setHasMore] = useState(true);
     const [pageNo, setPageNo] = useState(0);
@@ -36,7 +39,6 @@ function ProcureQuotationCard(props) {
         setPageNo(pageNo + 1);
         props.getProcureQuotation(props.userId,pageNo,"procure");
       };
-
 
       const exportPDFAnnexure = () => {
         const doc = new jsPDF();
@@ -138,6 +140,16 @@ function ProcureQuotationCard(props) {
         doc.save('Quotation.pdf');
       };
 
+      const handleConvert = (item) =>{
+        props.codInventoryOrder({
+            amount: item.amount,
+            quotationId: item.quotationId,
+            type: "Cod",
+            orderProcess:"checkout"
+        });
+        history.push(`/shopName/invOrdersuccess`);
+      }
+    
       return (
         <>
             <div className='mt-1'>
@@ -147,14 +159,15 @@ function ProcureQuotationCard(props) {
                                    id="app."
                                   defaultMessage="Quotation ID"
                                  /></div>
-        <div className=" w-[18.5rem] font-bold font-poppins"><FormattedMessage
+        <div className=" w-[17rem] font-bold font-poppins"><FormattedMessage
                                    id="app.created"
                                   defaultMessage="Created"
                                  /></div>
-        <div className="  w-[21.2rem] font-bold font-poppins "><FormattedMessage
+        <div className="w-[12rem] font-bold font-poppins "><FormattedMessage
                                    id="app.delivery"
                                   defaultMessage="delivery"
                                  /></div>
+                   
         <div className=" w-[7.7rem] font-bold font-poppins"><FormattedMessage
                                    id="app.items"
                                   defaultMessage="Items"
@@ -166,144 +179,141 @@ function ProcureQuotationCard(props) {
       dataLength={props.orderProcureQuoatation.length} // This is important to prevent reloading the same data
      next={handleInfiniteScroll}
      hasMore={hasMore}
-     height={"79vh"}
+     height={"76vh"}
     style={{width:"-webkit-fill-available"}}
     // loader={props.fetchingLeadsTabData?<p style={{textAlign:"center"}}>Loading More...</p>:null} // Loader to display while loading more data
   initialLoad={true}
       //  loader={props.fetchingRequirementTabData}
     >
                     {props.orderProcureQuoatation.map((item) => {
-                        const LocAdd = `${item.loadingAddress && item.loadingAddress[0].city || ""}`;
-                        const LocAdd1 = `${item.unloadingAddress && item.unloadingAddress[0].city || ""}`;
-                        const country = `${item.loadingAddress && item.loadingAddress[0].countryAlpha2Code || ""}`
-                        const country1 = `${item.unloadingAddress && item.unloadingAddress[0].countryAlpha2Code || ""}`
-                        const currentdate = dayjs().format("YYYY/MM/DD");
-                        const date = dayjs(item.creationDate).format("YYYY/MM/DD");
-                        const result = currentdate === date
-                        return (
-                            <>
-                              <div>
-                                <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 border border-white ">
-                               
+                     const LocAdd = `${item.loadingAddress && item.loadingAddress[0].city || ""}`;
+                     const LocAdd1 = `${item.unloadingAddress && item.unloadingAddress[0].city || ""}`;
+                     const country = `${item.loadingAddress && item.loadingAddress[0].countryAlpha2Code || ""}`
+                     const country1 = `${item.unloadingAddress && item.unloadingAddress[0].countryAlpha2Code || ""}`
+                     const currentdate = dayjs().format("YYYY/MM/DD");
+                     const date = dayjs(item.creationDate).format("YYYY/MM/DD");
+                     const result = currentdate === date
+                     return (
+                         <>
+                           <div>
+                             <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 border border-white ">
+                            
 
-                                        <div className=" flex w-[9.1rem] ">                                          
-                                            <div class=" text-xs  font-poppins">
-                                                {result ? <span
-                                                    // className="blink" 
-                                                    style={{ color: "red", fontWeight: "600" }}
-                                                >New</span> : null}
-                                                {item.newOrderNo}
-                                            </div>
-                                        </div>
-                                        <div className=" flex  w-[7.12rem] ">
-                    
-                                         <div class=" text-xs  font-poppins">                     
-                                           {`  ${dayjs(item.deliveryFromDate).format("DD-MM-YYYY")}`}
-                                           </div>
-                                        </div>
-                                        <div className=" flex  w-[6.7rem] ">
-                                   <div class=" text-xs  font-poppins flex items-center">
-                                          
-                                            {country},
-                                            &nbsp;
-                                            {LocAdd}
-                                        </div>
-
-                                       </div>
-                                         <div className=" flex  w-[6.2rem] ">
-                                        <div class=" text-xs  font-poppins flex items-center">
-                                                    
-                                                        {country1},
-                                                        &nbsp;
-                                                        {LocAdd1}
-                                                    </div>
-
-                                            </div>
+                                     <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8 w-[9.1rem] ">                                          
+                                         <div class=" text-xs  font-poppins">
                                             
-                                        <div className=" flex   w-[3.2rem] ">                                       
-                                                {/* <SmartphoneIcon /> */}
+                                             {item.newOrderNo}   {result ? <span
+                                                 // className="blink" 
+                                                 style={{ color: "red", fontWeight: "600" }}
+                                             >New</span> : null}
+                                         </div>
+                                     </div>
+                                     <div className=" flex bg-[#eef2f9] h-8 w-[7.12rem] ">
+                 
+                                      <div class=" text-xs  font-poppins">                     
+                                        {`  ${dayjs(item.deliveryFromDate).format("DD-MM-YYYY")}`}
+                                        </div>
+                                     </div>
+                                      <div className=" flex bg-[#eef2f9] h-8 w-[6.2rem] ">
+                                     <div class=" text-xs  font-poppins flex items-center">
+                                                 
+                                                     {country1}
+                                                     &nbsp;
+                                                     {LocAdd1}
+                                                 </div>
+
+                                         </div>
                                          
-                                            <div
-                                                class=" text-xs font-poppins cursor-pointer text-[#3597b0] font-semibold"
-                                               
-                                                onClick={() => {
-                                                    handleRowData(item);
-                                                    props.handleItemViewDrawer(true);
-                                                    // props.getPhoneDetails(item.orderId);
-                                                }}
-                                            >
-                                                {item.count}
-                                            </div>
-                                        </div>
-                                        
-                                  
-                                        <div class="flex justify-end  items-center">
-                                        <div className="   w-32 ">
-                                        <Link to={`shopName/invopayment`}>
-                                            <Button type="primary">
-                                                Convert to Order
-                                                </Button>
-                                                </Link>
-                                          
-                                        </div>
+                                     <div className=" flex  bg-[#eef2f9] h-8 w-[3.2rem] ">                                       
+                                             {/* <SmartphoneIcon /> */}
                                       
-                                      
-                                            <div >
-                                            {/* <Tooltip title={<FormattedMessage
-                                                                id="app.status"
-                                                                defaultMessage="Feedback"
-                                                            />}>
-                                                                <EventRepeatIcon
+                                         <div
+                                             class=" text-xs font-poppins cursor-pointer text-[#3597b0] font-semibold"
+                                            
+                                             onClick={() => {
+                                                 handleRowData(item);
+                                                 props.handleItemViewDrawer(true);
+                                             }}
+                                         >
+                                            {item.itemCount}
+                                         </div>
+                                     </div>
+                                     
+                               
+                                     <div class="flex justify-end  items-center">
+                                     <div className=" bg-[#eef2f9] h-8  w-32 ">
+                                     {/* <Link to={`shopName/invopayment`}> */}
+                                         <Button type="primary" onClick={() => {
+                                                        handleConvert(item);
+                                                        // handleRowData(item);
+                                                    }}>
+                                             Convert to Order
+                                             </Button>
+                                             {/* </Link> */}
+                                       
+                                     </div>
+                                   
+                                   
+                                         <div >
+                                         {/* <Tooltip title={<FormattedMessage
+                                                             id="app.status"
+                                                             defaultMessage="Feedback"
+                                                         />}>
+                                                             <EventRepeatIcon
 
-                                                                    className="!text-base cursor-pointer"
-                                                                    // onClick={() => {
-                                                                    //     props.handleStatusOfOrder(true);
-                                                                    //     handleSetParticularOrderData(item);
-                                                                    // }}
-                                                                />
-                                                            </Tooltip> */}
-                                 {/* <Button 
-                                                type='primary' 
-                                                style={{ backgroundColor:"green"}}
-                                                // onClick={() => {
-                                                //     props.handleStatuShowDrawer(true);
-                                                //     handleRowData(item);
-                                                // }}
-                                                >
-                                                   Status
-                                                    </Button> */}
-                                            </div>
-                                            {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full  w-5 h-5 mt-1 cursor-pointer">
-                                            <NoteAltIcon
-                                                    className="!text-base cursor-pointer text-green-600"
-                                                    // onClick={() => {
-                                                    //     props.handleFeedbackOrderDrawer(true);
-                                                    //     handleSetParticularOrderData(item);
-                                                    // }}
-                                                />
+                                                                 className="!text-base cursor-pointer"
+                                                                 // onClick={() => {
+                                                                 //     props.handleStatusOfOrder(true);
+                                                                 //     handleSetParticularOrderData(item);
+                                                                 // }}
+                                                             />
+                                                         </Tooltip> */}
+                              {/* <Button 
+                                             type='primary' 
+                                             style={{ backgroundColor:"green"}}
+                                             // onClick={() => {
+                                             //     props.handleStatuShowDrawer(true);
+                                             //     handleRowData(item);
+                                             // }}
+                                             >
+                                                Status
+                                                 </Button> */}
+                                         </div>
+                                         {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full  w-5 h-5 mt-1 cursor-pointer">
+                                         <NoteAltIcon
+                                                 className="!text-base cursor-pointer text-green-600"
+                                                 // onClick={() => {
+                                                 //     props.handleFeedbackOrderDrawer(true);
+                                                 //     handleSetParticularOrderData(item);
+                                                 // }}
+                                             />
 
-                                            </div> */}
-                                              <div class="w-6">
+                                         </div> */}
+                                          <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>
           </div>
-                                        </div>
-                                        
+                                     </div>
+                                     
 
-                                    </div>
+                                 </div>
 
-                                </div>
+                             </div>
 
-                            </>
+                         </>
 
-                        )
-                    })}
+                     )
+                 })}
 </InfiniteScroll>
                 </MainForBroker >
             </div>
           
-            
+            <ProcureQuotationItemViewDrawer
+           rowDatas={rowDatas}
+           viewItemDrwr={props.viewItemDrwr}
+           handleItemViewDrawer={props.handleItemViewDrawer}
+           /> 
             
         </>
     );
@@ -311,22 +321,25 @@ function ProcureQuotationCard(props) {
 
 const mapStateToProps = ({ myorder, auth, setting, requirement }) => ({
     // addreviewOffer: myorder.addreviewOffer,
-    // viewItemDrwr: myorder.viewItemDrwr,
+    viewItemDrwr: myorder.viewItemDrwr,
     // orderedPhoneModal: myorder.orderedPhoneModal,
     orderProcureQuoatation: myorder.orderProcureQuoatation,
     userId: auth.userDetails.userId,
     // addPickUp: myorder.addPickUp
+
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getProcureQuotation,
-            // handleItemViewDrawer
+            handleItemViewDrawer,
+            codInventoryOrder
         },
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProcureQuotationCard);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProcureQuotationCard));
+
 const CatgryName = styled.div`
   font-size: 1rem;
   color: black;

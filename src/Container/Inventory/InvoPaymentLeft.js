@@ -17,7 +17,7 @@ import PayChecktInventoryModal from "./PayChecktInventoryModal";
 import { base_url2 } from "../../Config/Auth";
 import InventoryOrdersuccess from "./InventoryOrdersuccess";
 
-const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, repeatPayOrder,addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
+const InvoPaymentLeft = ({ props,userId,repeatDeliveryInfo,addingRepeatDeliveryInfo, invencartItem,stripeNo, repeatPayOrder,addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
   const [value, setValue] = useState(1);
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
   const history = useHistory();
@@ -411,13 +411,22 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, repeatPayOrder,
   const postRepeatPayment = (status) => {
     history.push("/shopName/invOrdersuccess");
     let data = {
-      amount: "",
-      orderId:"",
+      amount:  repeatDeliveryInfo.cartSummary.grandTotal ? repeatDeliveryInfo.cartSummary.grandTotal:0,
+      orderId: repeatDeliveryInfo.orderPhoneId,
       type: "Cash on Delivery",
       orderProcess:"checkout",
     };
     repeatPayOrder(data);
   };
+
+  const handleCashOnDelivery = () => {
+    if (repeatDeliveryInfo && repeatDeliveryInfo.cartSummary && repeatDeliveryInfo.cartSummary.grandTotal) {
+      postRepeatPayment();
+    } else {
+      handleAddPlaceOrder();
+    }
+  };
+  
   return (
     <>
       <br />
@@ -464,7 +473,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, repeatPayOrder,
               </Radio>
      ) : null} 
        
-        {stripeNo.payByCashInd ? (
+        {/* {stripeNo.payByCashInd ? ( */}
         <div class="flex justify-between items-center mt-2" >
           <Radio value={"Cash on Delivery"}>
           <div className="flex items-center justify-evenly">
@@ -472,8 +481,8 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, repeatPayOrder,
               Pay on Delivery (Cash)
               <Button
                 type="primary"
-                onClick={() => handleAddPlaceOrder()}
-                loading={addingCODinventory}
+                onClick={handleCashOnDelivery}
+                loading={addingCODinventory || addingRepeatDeliveryInfo }
               >
                 Place Order
               </Button>
@@ -483,7 +492,7 @@ const InvoPaymentLeft = ({ props,userId, invencartItem,stripeNo, repeatPayOrder,
             </div>
           </Radio>
         </div>
-         ) : null}  
+         {/* ) : null}   */}
           {stripeNo.razorpayInd ? (
         <div class="flex justify-between items-center mt-2" >
           <Radio value={"Razorpay"}>
@@ -594,6 +603,8 @@ const mapStateToProps = ({ inventory, auth }) => ({
   // invencartItem: inventory.invencartItem,
   addiNVEStripeModal: inventory.addiNVEStripeModal,
   userId: auth.userDetails.userId,
+  repeatDeliveryInfo:inventory.repeatDeliveryInfo,
+  addingRepeatDeliveryInfo:inventory.addingRepeatDeliveryInfo
 });
 
 const mapDispatchToProps = (dispatch) =>

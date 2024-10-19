@@ -833,3 +833,28 @@ export const getOrdrSuppierDetails = (orderId) => (dispatch) => {
       });
     });
 };
+
+export const getSupplierOrdrItemList = (orderId,userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIER_ORDR_ITEM_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/suppliersOrderIteams/${orderId}/${userId}`, 
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SUPPLIER_ORDR_ITEM_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SUPPLIER_ORDR_ITEM_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};

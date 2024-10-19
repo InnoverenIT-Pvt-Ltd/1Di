@@ -132,7 +132,8 @@ function InvoPayment (props) {
       )}
     </div> */}
                         <InvoPaymentLeft invencartItem={props.invencartItem} stripeNo={props.stripeNo }/>
-                        <InvoPaymentRight invencartItem={props.invencartItem}/>
+                        <InvoPaymentRight invencartItem={props.invencartItem} repeatDeliveryInfo={props.repeatDeliveryInfo}
+                          addingRepeatDeliveryInfo={props.addingRepeatDeliveryInfo}/>
                         </div>
                         <div className=" w-[55%] h-[83vh] border box-border overflow-x-auto">
       <div className="w-[100%]">
@@ -170,7 +171,9 @@ props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
     const mapStateToProps = ({ inventory, auth }) => ({
         invencartItem: inventory.invencartItem,
         userId: auth.userDetails.userId,
-        stripeNo:inventory.stripeNo
+        stripeNo:inventory.stripeNo,
+        repeatDeliveryInfo:inventory.repeatDeliveryInfo,
+        addingRepeatDeliveryInfo:inventory.addingRepeatDeliveryInfo
       });
       
       const mapDispatchToProps = (dispatch) =>
