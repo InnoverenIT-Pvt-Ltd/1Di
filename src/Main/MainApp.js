@@ -63,16 +63,11 @@ import Showmessage from "../Container/Inventory/Showmessage";
 import RepeatDeliveryInfo from "../Container/OrderProgress/RepeatDeliveryInfo";
 
 const OrderSupplier =lazy(()=>import("../Container/OrderSupplier/OrderSupplier"));
-
-const NotificationPopover = lazy(() =>
-  import("../Container/Notification/NotificationPopover"));
+const NotificationPopover = lazy(() =>import("../Container/Notification/NotificationPopover"));
 const Inventory = lazy(() => import('../Container/Inventory/Inventory'));
-
 const { Option } = Select;
-
 const { Header, Sider, Content } = Layout;
 const Courses = lazy(() => import('../Container/Courses/Courses'))
-
 const Planner = lazy(() => import("../Container/Auth/Planner/Planner"));
 const Quotation = lazy(()=>import("../Container/Quotation/Quotation"));
 const SupplierInventory =lazy(()=>import("../Container/Inventory/SupplierInventory"));

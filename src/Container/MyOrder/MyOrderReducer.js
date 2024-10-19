@@ -119,6 +119,7 @@ const initialState = {
   leastSell: [],
   repeatingOrderSuccess: false,
   repeatingOrderSuccessError: false,
+  repeatOrderlist:{},
 
   updatingOrdrSuplrItems: false,
   updatingOrdrSuplrItemsError: false,
@@ -578,7 +579,7 @@ export const myorderReducer = (state = initialState, action) => {
       return {
         ...state,
         repeatingOrderSuccess: false,
-        repeatOrderlist:{},
+        repeatOrderlist:action.payload,
         // orderListData: state.orderListData.map((item) => {
         //   if (item.orderId === action.payload.orderId) {
         //     return action.payload;
@@ -634,6 +635,23 @@ export const myorderReducer = (state = initialState, action) => {
         fetchingOrdrSuplrDetailsError: true,
       };
 
+
+      case types.GET_SUPPLIER_ORDR_ITEM_LIST_REQUEST:
+        return { ...state, fetchingSupplierOrdrItemList: true };
+      case types.GET_SUPPLIER_ORDR_ITEM_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingSupplierOrdrItemList: false,
+          supplrOrdrItemsList: action.payload,
+        };
+      case types.GET_SUPPLIER_ORDR_ITEM_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingSupplierOrdrItemList: false,
+          fetchingSupplierOrdrItemListError: true,
+        };
+
+        
     default:
       return state;
   }

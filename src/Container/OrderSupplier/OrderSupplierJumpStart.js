@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { JumpStartBox,JumpStartBox1,JumpStartBox2,JumpStartBox3 } from "../../Components/UI/Elements";
 import {getLeastSell,getTopSell} from "../MyOrder/MyOrderAction";
 // import OrderOpenDrawer from "./OrderOpenDrawer";
-
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 function OrderSupplierJumpStart (props) {
   // const [activeTable, setActiveTable] = useState('open');
 
@@ -21,74 +21,108 @@ props.getLeastSell("least");
 
     return (
       <>
-       <div class=" flex flex-row w-full" >
+      <div className=" flex flex-col">
+      <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
-        {/* <div class="flex w-wk">
-          <JumpStartBox
-            noProgress
-            title={<FormattedMessage
-              id="app.ordersAdded"
-              defaultMessage="Orders Added"
-            />}
-            // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
-            cursorData={"pointer"}
-            // value={ props.jumstartOrderCount.totalOrder}
-            // isLoading={props.fetchingJumpOrderCount}
-          />
-
-          <JumpStartBox1
-            noProgress
-            title={<FormattedMessage
-                id="app.ordersopen"
-                defaultMessage="Orders Open"
-            />}
-            // jumpstartClick={()=>handlePitchAddedDrawer(true)}
-            cursorData={"pointer"}
-            // value={ props.jumstartOrderCount.pendingOrder}
-            // isLoading={props.fetchingJumpOrderCount}
-          />
-</div> */}
-<div class="flex w-wk">
-<JumpStartBox1
-            noProgress
-            title={<FormattedMessage
-                id="app.ordersopen"
-                defaultMessage="Orders Open"
-            />}
-            // jumpstartClick={()=> props.handleOrderOpenDrawer('open')}
-            // cursorData={"pointer"}
-            // borderD={props.activeTable ==='open' ? "2px solid orange":""}
-            // value={ props.orderListCount.pendingOrder}
-            // isLoading={props.fetchingOrderCount}
-          />
-          <JumpStartBox2
-            noProgress
-            title={<FormattedMessage
-                id="app.orderscompleted"
-                defaultMessage="Orders Completed"
-            />}
-
-            // jumpstartClick={()=>props.handleOrderOpenDrawer('complete')}
-            // cursorData={"pointer"}
-            // borderD={props.activeTable ==='complete' ? "2px solid orange":""}
-            // value={ props.orderListCount.completeOrder}
-            // isLoading={props.fetchingOrderCount}
-          />
-          {/* <JumpStartBox3
-            noProgress
-            title={<FormattedMessage
-                id="app.orderscancelled"
-                defaultMessage="Orders Cancelled"
-            />}
-            // jumpstartClick={() => props.handleOrderOpenDrawer('cancelled')}
-            // borderD={props.activeTable ==='cancelled' ? "2px solid orange":""}
-            // cursorData={"pointer"}
-            // value={ props.orderListCount.cancelOrder}
-            // isLoading={props.fetchingOrderCount}
-          /> */}
+          
+          <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center text-xs">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-2 bg-green-600"><DynamicFeedIcon className="text-white"/></div>
+                             </div>
+                             <JumpStartBox
+              noProgress
+              title={<FormattedMessage
+                  id="app.ordersopen"
+                  defaultMessage="Orders Open"
+              />}
+              // jumpstartClick={()=> props.handleOrderOpenDrawer('open')}
+              cursorData={"pointer"}
+              // borderD={props.activeTable ==='open' ? "4px solid red":""}
+            //   value={props.orderinDashboard.totalOrder}
+            // isLoading={props.fetchingorderDetails}
+            />
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center text-xs">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-pink-600"><DynamicFeedIcon className="text-white"/></div>
+                               </div>
+                               <JumpStartBox
+             noProgress
+             title={<FormattedMessage
+                 id="app.orderscompleted"
+                 defaultMessage="Orders Completed"
+             />}
+ 
+            //  jumpstartClick={()=>props.handleOrderOpenDrawer('complete')}
+             cursorData={"pointer"}
+            //  borderD={props.activeTable ==='complete' ? "4px solid red":""}
+            // value={ props.orderinDashboard.pendingOrder}
+            // isLoading={props.fetchingorderDetails}
+            />
+                           </div>
+                       </div>
+                    
+                   </div>  
+                    
+                {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center text-xs">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-yellow-600"><DynamicFeedIcon className="text-white"/></div>
+                               </div>
+                               <JumpStartBox
+                noProgress
+                title={<FormattedMessage
+                    id="app.ordersshipped"
+                    defaultMessage="Orders Shipped"
+                />}
+                jumpstartClick={() => props.handleOrderOpenDrawer('shipped')}
+                borderD={props.activeTable ==='cancelled' ? "4px solid red":""}
+                cursorData={"pointer"}
+            // value={props.orderinDashboard.completeOrder}
+            isLoading={props.fetchingorderDetails}
+            />
+                           </div>
+                       </div>
+                     
+                   </div>  
+                   
+                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center text-xs">
+                              <div class="flex-shrink pr-3">
+                                  <div class="rounded-full p-2 bg-blue-600"><DynamicFeedIcon className="text-white"/></div>
+                              </div>
+                              <JumpStartBox
+                              noProgress
+                              title={<FormattedMessage
+                                  id="app.orderscancelled"
+                                  defaultMessage="Orders Cancelled"
+                              />}
+                              jumpstartClick={() => props.handleOrderOpenDrawer('cancelled')}
+                              borderD={props.activeTable ==='cancelled' ? "4px solid red":""}
+                              cursorData={"pointer"}
+                            //   value={props.orderinDashboard.cancelOrder}
+                            // isLoading={props.fetchingorderDetails}
+                            />
+                          </div>
+                      </div>      
+                  </div> */}
           </div>
+          
         </div>
-      </div>
+        </div>
 
       {/* <OrderOpenDrawer
       activeTable={activeTable}
@@ -113,10 +147,6 @@ const mapDispatchToProps = (dispatch) =>
  
       getLeastSell,
       getTopSell
-    //   getJumpInvestor4list,
-    //   handlePitchQualifiedDrawer,
-    //   handlePitchAddedDrawer,
-    //   handleDealClosedDrawer
 
     },
     dispatch

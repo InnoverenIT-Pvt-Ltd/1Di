@@ -13,7 +13,6 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-
 const { Search } = Input;
 
 function CompleteInvoiceCard(props) {
@@ -204,37 +203,39 @@ function CompleteInvoiceCard(props) {
                       return (
                           <>
                               <div>
-                              <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 border border-white ">
+                              <div className="flex rounded border-l-2 border-green-500 bg-[#eef2f9] mt-1  h-8 items-center p-1  ">
                               <div className=" flex  text-xs font-poppins items-center  w-[9.1rem] ">
                                       {item.invoiceId}                                                                            
                                       </div>
-                                      <div className=" flex  w-[10.7rem] ">
+                                      <div className=" flex bg-[#eef2f9] w-[10.7rem] ">
                                  <div class=" text-xs font-poppins flex items-center">
                                  {item.newOrderNo}  
                                       </div>
                               </div>
-                              <div className=" flex  w-[11.2rem] ">
+                              <div className=" flex bg-[#eef2f9] w-[11.2rem] ">
                              <div class=" text-xs font-poppins flex items-center"> 
                              {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`} 
                                       </div>
 
                           </div>
-                          <div className=" text-xs font-poppins flex items-center  w-[11.12rem] ">
+                          <div className=" text-xs font-poppins flex items-center bg-[#eef2f9]  w-[11.12rem] ">
                           CA$ {Number(item.totalValue).toFixed(2)} 
                     </div>
-                              <div className=" text-xs font-poppins flex items-center  w-[5.12rem] ">
+                              <div className=" text-xs font-poppins flex items-center bg-[#eef2f9] w-[5.12rem] ">
                               {item.paidInd ? "Paid" :"Unpaid"} 
                     </div>
-                    <div className=" text-xs font-poppins flex items-center  w-[5.12rem] ">
+                    <div className=" text-xs font-poppins bg-[#eef2f9] flex items-center  w-[5.12rem] ">
                                           {/* {item.paym}    */}
                     </div>
+
+                    <div class="w-6">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon text-[red]"/>
+                           </span>
+          </div>
                                   </div>
 
-                                  <div class="w-6">
-        <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
-                           </span>
-          </div> 
+ 
                               </div>
 
                           </>

@@ -149,16 +149,19 @@ function OrderInProgressCard(props) {
             </div>
             <div className='mt-2'>
             <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex rounded ml-4  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[8.9rem] font-bold font-poppins"> <FormattedMessage
+                <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[9.9rem] font-bold font-poppins"> <FormattedMessage
                                    id="app."
                                   defaultMessage="Order ID"
                                  /></div>
-        <div className=" w-[12.5rem] font-bold font-poppins"><FormattedMessage
-                                   id="app.created"
-                                  defaultMessage="Created"
+        <div className="w-[13.5rem] font-bold font-poppins"><FormattedMessage
+                                   id="app.date"
+                                  defaultMessage="Date"
                                  /></div>
-        <div className="  w-[7.2rem] font-bold font-poppins ">Shipping</div>
+        <div className="w-[20.2rem] font-bold font-poppins "><FormattedMessage
+                                   id="app.delivery"
+                                  defaultMessage="delivery"
+                                 /></div>
         <div className=" w-[7.7rem] font-bold font-poppins"><FormattedMessage
                                    id="app.items"
                                   defaultMessage="Items"
@@ -181,14 +184,13 @@ function OrderInProgressCard(props) {
                                    id="app.revised"
                                   defaultMessage="revised"
                                  /> </div> */}
-                                
         <div className=" w-[1.2rem] font-normal font-poppins"></div>      
       </div>
       <InfiniteScroll
       dataLength={props.orderProcureData.length} // This is important to prevent reloading the same data
      next={handleInfiniteScroll}
      hasMore={hasMore}
-     height={"85vh"}
+     height={"76vh"}
     style={{width:"-webkit-fill-available",scrollbarWidth:"thin"}}
     loader={props.fetchingProcureOrderData?<p style={{textAlign:"center"}}>Loading...</p>:null} // Loader to display while loading more data
   initialLoad={true}
@@ -206,11 +208,10 @@ function OrderInProgressCard(props) {
                             <>
 
                                 <div>
-                                <div
-                className="flex rounded  bg-white mt-1 h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                                <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                              
                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex   md:w-[9.1rem] ">                                          
+                                        <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8  md:w-[9.1rem] ">                                          
                                             <div class=" text-xs  font-poppins">
                                                 {item.newOrderNo}
                                                 &nbsp;
@@ -221,33 +222,23 @@ function OrderInProgressCard(props) {
                                             </div>
                                             
                                         </div>
-                                        <div className=" flex  md:w-[5.7rem] ">
+                                        <div className=" flex bg-[#eef2f9] h-8 md:w-[10.7rem] ">
                                    <div class=" text-xs  font-poppins flex items-center">
                                           
                                    {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
                                         </div>
                                 </div>
                                 </div>
-                                <div className=" flex  md:w-[15.2rem] ">
+                                <div class="flex bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk items-center">
+                                <div className=" flex h-8 md:w-[22rem] ">
                                <div class=" text-xs  font-poppins flex items-center">                                       
                                             {LocAdd}
                                         </div>
                                 </div>
-                                {/* <div class=" max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex  md:w-[18.2rem] ">
-                               <div class=" text-xs  font-poppins flex items-center">                                       
-                                            {LocAdd}
-                                        </div>
-                                </div>
-                                <div className=" flex  md:w-[16.12rem] ">
-                    
-                    <div class=" text-xs  font-poppins">  
-                            
-                      </div>
+                                
                   </div>
-                  </div> */}
-                  
-                  <div className=" flex  md:w-[3.2rem] ">                                         
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div className=" flex h-8 bg-[#eef2f9]  md:w-[3.2rem] ">                                         
                                             <div
                                                 class=" text-xs   font-poppins cursor-pointer text-orange-700 font-semibold"
                                                
@@ -259,41 +250,25 @@ function OrderInProgressCard(props) {
                                                 {item.itemCount}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[15.2rem] ">
-                               <div class=" text-xs  font-poppins flex items-center">                                       
-                                            
-                                        </div>
-                                </div>
-                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        
-                                      
-                                        <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-20 h-5  ml-2 cursor-pointer">
-                                            <Button 
-                                                type='primary' 
-                                                style={{ backgroundColor:"green"}}
-                                                onClick={() => {
-                                                    props.handleStatuShowDrawer(true);
-                                                    handleRowData(item);
-                                                }}
-                                                >
-                                                   Status
-                                                    </Button>
-                                            {/* <Tooltip title={<FormattedMessage
-                                                                id="app.status"
-                                                                defaultMessage="Status"
-                                                            />}>
-                                                                <EventRepeatIcon
-
-                                                                    className="!text-base cursor-pointer"
-                                                                    onClick={() => {
-                                                                        props.handleStatuShowDrawer(true);
-                                                                        handleRowData(item);
-                                                                    }}
-                                                                />
-                                                            </Tooltip> */}
+                                        <div className=" flex h-8 bg-[#eef2f9]  md:w-[8.1rem] ">
+                                             {/* Order Number */}                                      
+                                            <div
+                                                class=" text-base  font-poppins"
+                                            // onClick={() => {
+                                            //     props.handleOrderedPhoneModal(true);
+                                            //     props.getPhoneDetails(item.orderId);
+                                            // }}
+                                            // style={{
+                                            //     cursor: "pointer",
+                                            //     color: "#042E8A",
+                                            //   }}
+                                            >
+                                               
                                             </div>
+                                        </div>
+                                  
 
-                                        <div className="   md:w-24 ">
+                                        <div className=" bg-[#eef2f9] h-8  md:w-24 ">
                                         <Link to="/repeatOrderInfo">
                                         <Button
                                                 type='primary'
@@ -304,7 +279,7 @@ function OrderInProgressCard(props) {
                                                 >
                                                     Repeat Order
                                                     </Button>
-</Link>
+                                                    </Link>
                                             {/* {(item.customerPriceInd === true && item.priceConfirmInd === false) ? (
                                                 <Popconfirm
                                                     onConfirm={() => props.confirmButtonClick({
@@ -338,13 +313,42 @@ function OrderInProgressCard(props) {
                                  /> </Button>
                                             ) : item.dispatchInspectionInd === 4 ? <b>Picked Up</b> : null}
                                              */}
-                                        </div>                    
-</div>
-<div class="w-6">
+                                        </div>
+                                   
+                                      
+                                            <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white  md:w-5 h-5 cursor-pointer">
+                                            <Tooltip title={<FormattedMessage
+                                                                id="app.status"
+                                                                defaultMessage="Status"
+                                                            />}>
+                                                                <EventRepeatIcon
+
+                                                                    className="!text-base cursor-pointer"
+                                                                    onClick={() => {
+                                                                        props.handleStatuShowDrawer(true);
+                                                                        handleRowData(item);
+                                                                    }}
+                                                                />
+                                                            </Tooltip>
+                                            </div>
+                                            {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-red-700 w-5 h-5 mt-1 cursor-pointer">
+                                            <NoteAltIcon
+                                                    className="!text-base cursor-pointer text-[tomato]"
+                                                    onClick={() => {
+                                                        props.handleStatuShowDrawer(true);
+                                                        handleSetParticularOrderData(item);
+                                                    }}
+                                                />
+
+                                            </div> */}
+                                                <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>
-          </div> 
+          </div>
+                                     
+                                  
+</div>
                                     </div>
 
                                 </div>

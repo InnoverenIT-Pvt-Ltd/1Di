@@ -17,7 +17,19 @@ function InvoPaymentRight(props){
                     <div className='flex mt-8 ' >
                     <div className='w-wk'>SubTotal</div>
                         <span className='text-[#3066BE] font-semibold flex justify-end w-wk' >
-                           {Number(props.invencartItem.cartSummary && props.invencartItem.cartSummary.subTotal).toFixed(2)}
+                        {props.invencartItem.length > 0 && 
+                        <>
+                        (
+                            {Number(props.invencartItem.cartSummary && props.invencartItem.cartSummary.subTotal).toFixed(2)}
+                    )
+                    </>}
+                        {props.repeatDeliveryInfo.length > 0 && 
+                        <>
+                        (
+                        {Number(props.repeatDeliveryInfo && props.repeatDeliveryInfo.cartSummary && props.repeatDeliveryInfo.cartSummary.grandTotal).toFixed(2)} 
+                        )
+                        </>}
+                           
                         
                         <br/>
                             <span className='text-black'></span>
@@ -42,8 +54,18 @@ function InvoPaymentRight(props){
                     <div className='flex mt-6 ' >
                     <div className='w-wk'> Grand Total</div>
                     <span className='text-[#3066BE] font-semibold flex justify-end w-wk' >
+                    {props.invencartItem.length > 0 && 
+                        <>
+                        (
                         {Number(props.invencartItem.cartSummary && props.invencartItem.cartSummary.grandTotal).toFixed(2)}
-                        
+                    )
+                    </>}
+                        {props.repeatDeliveryInfo.length > 0 && 
+                        <>
+                        (
+                        {Number(props.repeatDeliveryInfo && props.repeatDeliveryInfo.cartSummary && props.repeatDeliveryInfo.cartSummary.grandTotal).toFixed(2)} 
+                        )
+                        </>}
                         <br/>
                         <span className='text-black'></span>
                         </span>

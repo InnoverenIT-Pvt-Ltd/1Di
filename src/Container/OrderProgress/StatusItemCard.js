@@ -65,9 +65,9 @@ const [response, setResponse] = useState(null);
         <>
              <div> 
                       
-             <div className=' flex  sticky flex-col z-auto'>
+             <div className=' flex justify-end sticky flex-col z-auto'>
              <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-             <div className=" flex rounded ml-4  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky  z-10">
+             <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
              <div className=" md:w-[11.5rem]"><FormattedMessage
                                         id="app.name"
                                         defaultMessage="Name"
@@ -106,7 +106,7 @@ const [response, setResponse] = useState(null);
                                     <div className=" md:w-8"></div>
                  
                                 </div>
-                               <div>
+                                <div class="overflow-y-auto h-[85vh]">
                                     {/* <InfiniteScroll
                                         dataLength={props.orderProcureDetails.length}
                                         loader={props.fetchingProcureOrderDetails ? <div class="flex justify-center">Loading...</div> : null}
@@ -122,42 +122,42 @@ const [response, setResponse] = useState(null);
                                                     <div
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex   md:w-[12rem] max-sm:flex-row max-sm:justify-between  ">
+                                                            <div className=" flex  border-l-2 border-green-500 bg-[#eef2f9]  md:w-[12rem] max-sm:flex-row max-sm:justify-between  ">
                                                                 <div class=" text-xs font-bold   font-poppins">
                                                                     {item.productFullName}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex   md:w-[10.23rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex bg-[#eef2f9]   md:w-[10.23rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div title={item.category}
                                                                  class=" text-xs font-bold text-cardBody font-poppins truncate max-w-[9rem]">
                                                                     {item.category} 
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex  bg-[#eef2f9]  md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs font-bold   font-poppins">
                                                                     {item.attribute}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex   md:w-[8rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex bg-[#eef2f9]   md:w-[8rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs font-bold   font-poppins">
                                                                     {item.newProductId}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex bg-[#eef2f9]   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs font-bold   font-poppins">
                                                                     {item.unit}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex bg-[#eef2f9]   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs font-bold   font-poppins">
                                                                 {item.shippingDate} 
                                                                 </div>
                                                         
                                                             </div>
                                                             
-                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex bg-[#eef2f9]   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs font-bold   font-poppins">
                                                                 {item.shippingNo} 
                                                                 </div>

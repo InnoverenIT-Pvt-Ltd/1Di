@@ -58,35 +58,35 @@ const CancelItemRequest = async (item) => {
                                                     Repeat Order
                                                     </Button>  
                                                     </Link>
-<div className=' flex justify-end sticky flex-col z-auto'>
+                                                    <div className=' flex justify-end sticky flex-col z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
                                     <div className=" md:w-[10rem]"><FormattedMessage
                                         id="app.name"
                                         defaultMessage="Name"
                                     /></div>
-                                    <div className=" md:w-[4.5rem]"><FormattedMessage
-                                        id="app.model"
-                                        defaultMessage="Model"
-                                    /></div>
                                     <div className="md:w-[6.2rem]"><FormattedMessage
                                         id="app.brand"
                                         defaultMessage="Brand"
                                     /></div>
-                                    <div className=" md:w-[9rem]"><FormattedMessage
+                                    <div className=" md:w-[4.5rem]"><FormattedMessage
+                                        id="app.model"
+                                        defaultMessage="Model"
+                                    /></div>
+                                    <div className=" md:w-[5rem]"><FormattedMessage
                                         id="app.category"
                                         defaultMessage="Category"
                                     /></div>
-                                    <div className=" md:w-[8rem]"><FormattedMessage
+                                    <div className=" md:w-[6.5rem]"><FormattedMessage
                                         id="app.attribute"
                                         defaultMessage="Attribute"
                                     /></div>
         
-                                    <div className=" md:w-[6rem]"><FormattedMessage
+                                    <div className=" md:w-[5.3rem]"><FormattedMessage
                                         id="app.price"
                                         defaultMessage="Price"
                                     /></div>
-                         <div className=" md:w-[5rem]"><FormattedMessage
+                         <div className=" md:w-[6.5rem]"><FormattedMessage
                                         id="app.units"
                                         defaultMessage="Units"
                                     /></div>
@@ -98,10 +98,8 @@ const CancelItemRequest = async (item) => {
                                     <InfiniteScroll
                                         dataLength={props.orderProcureDetails.length}
                                         loader={props.fetchingProcureOrderDetails ? <div class="flex justify-center">Loading...</div> : null}
-                                  
                                         hasMore={hasMore}
-     
-                                        height={"65vh"}
+                                        height={"85vh"}
                                     >
                                         {props.orderProcureDetails.map((item) => {
                                             return (
@@ -109,62 +107,66 @@ const CancelItemRequest = async (item) => {
                                                    <div
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className="font-medium   md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className="font-medium  border-l-2 border-green-500 bg-[#eef2f9] h-8 md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs text-cardBody font-poppins truncate max-w-[9rem]">
                                                                     {item.productFullName}
                                                                 </div>
                                                             </div>
-
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.model}
-                                                                </div>
-
-                                                            </div>
-                                                            </div>
-                                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.brand}
-                                                                </div>
-                                                            </div>
                                                             
-                                                            <div className=" flex font-medium   md:w-[9rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins text-ellipsis overflow-hidden whitespace-nowrap ">
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8  md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                {item.brand}
+                                                                </div>
+
+                                                            </div>
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8 md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                {item.model}
+                                                                </div>
+
+                                                            </div>
+                                                            {/* <div className=" flex font-medium   md:w-[6rem] max-sm:flex-row  ">
+                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                                {item.model} 
+                                                                </div>
+                                                            </div> */}
+                                                            
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs text-cardBody font-poppins truncate max-w-[9rem]">
                                                                     {item.category}
                                                                 </div>
                                                             </div>
-                                                            </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                         
+                                                           
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.attribute} 
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                    
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                CA$ {Number(item.price).toFixed(2)}  
+                                                                    {item.price} 
                                                                 </div>
                                                             </div>     
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.unit} 
                                                                 </div>
                                                             </div>   
-                                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            
-
+                                                            </div> 
                                                             <Button
                                                 type='primary'
-                                              onClick={() => {
-                                                CancelItemRequest(item)
-                                                    }}
+                                                onClick={() => {
+                                                    CancelItemRequest(item)
+                                                        }}
                                                 >
-                                                    Cancel 
+                                                    Cancel Order
                                                     </Button>  
                                                         </div>
 
                                                     </div>
-                                                </div>
+                                       
                                             )
                                         })}
                                     </InfiniteScroll>
