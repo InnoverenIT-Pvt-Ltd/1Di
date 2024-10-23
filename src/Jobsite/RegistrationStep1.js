@@ -11,15 +11,35 @@ import {
   EyeInvisibleOutlined,
   CheckCircleTwoTone,
 } from "@ant-design/icons";
+import { base_url } from "../Config/Auth";
+import axios from "axios";
 
 const { Option } = Select;
+
 function RegistrationStep1 (props) {
+
+  const [ClientType,setClientType] = useState([])
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(()=>{
-    // props.getCountry();
+    fetchClientIdList();
   },[])
 
-
-
+const fetchClientIdList = async () => {
+  try {
+    const response = await axios.get(`${base_url}/customerType/web`,{
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    });
+    setClientType(response.data);
+    setLoading(false);
+  } catch (error) {
+    setError(error);
+    setLoading(false);
+  }
+};
   return (
     <>
       <Formik
@@ -68,12 +88,19 @@ function RegistrationStep1 (props) {
                       <Field
                         placeholder={`Company name`}
                         component={InputComponent}
-                        value={props.companyName}
+                        value={props.name}
                         onChange={props.handleNameStep1}
                         style={{
                         height: "1.8rem"                          
                       }}
                       />
+                                                        <div>
+   {props.fieldErrors.name && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.name?props.fieldErrors.name:null}
+      </div>
+  )} 
+  </div>
                     </div>
                     </div>
                     <div class="flex flex-row items-center">   
@@ -92,6 +119,13 @@ function RegistrationStep1 (props) {
                         // borderRadius: "0.4rem"
                     }}
                   />
+                   <div>
+   {props.fieldErrors.businessRegistration && (
+    <div className="error-message  text-[red] font-semibold text-sm">
+      {!props.businessRegistration?props.fieldErrors.businessRegistration:null}
+      </div>
+  )} 
+  </div>
                   </div>
                     </div>
                     <div class="flex flex-row items-center">   
@@ -112,6 +146,13 @@ function RegistrationStep1 (props) {
                           // borderRadius: "0.4rem"
                       }}
                     />
+                                         <div>
+   {props.fieldErrors.phoneNo && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.phoneNo?props.fieldErrors.phoneNo:null}
+      </div>
+  )} 
+  </div>
                           </div>
                           </div>
                           <div class="flex flex-row items-center">   
@@ -127,37 +168,35 @@ function RegistrationStep1 (props) {
                         height: "1.8rem", 
                       }}
                     />
+                     <div>
+   {props.fieldErrors.billingEmail && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.billingEmail?props.fieldErrors.billingEmail:null}
+      </div>
+  )} 
+  </div>
                           </div>
                           </div>
-                          <div class="flex flex-row items-center">   
-                          <div className=" font-poppins text-sm  font-semibold w-44">Password</div>
-                            <div className="flex">
-                            <input 
-                            className="border rounded-[0.6rem] block p-1 mb-1 h-[1.8rem]"
-                      isColumn
-                      // component={InputComponent}
-                      inlineLabel
-                      value={props.password}
-                      type={props.type}
-                      onChange={props.handlePassword}
-                    />
-                    {props.show ? (
-                      <EyeOutlined
-                        type="eye"
-                        onClick={props.handlePWClick}
-                        style={{ marginLeft: "-1.25rem",width:"0.8rem" }}
-                        size="24"
-                      />
-                    ) : (
-                      <EyeInvisibleOutlined
-                        type="eye-invisible"
-                        onClick={props.handlePWClick}
-                        size="24"
-                        style={{ marginLeft: "-1.25rem",width:"0.8rem"}}
-                      />
-                    )}      
-                            </div>
-                            </div>
+                          <div class="flex flex-row items-center">
+                             
+                             <div className="font-poppins text-sm  font-semibold w-44"> Sector </div> 
+                                 <div>
+                                 <Select
+                           
+                                       placeholder="Select type"
+                                       inlineLabel
+                                       value={props.clientId}
+                                       onChange={props.handleClientId}
+                                       style={{width:"12.5rem"}}
+                                     >
+                                       {ClientType.map((item) => {
+                                         return <Option value={item.customerTypeId}>{item.name}</Option>;
+                                       })}
+                                     </Select>
+                     </div>
+                                            
+                                           </div>
+                           
                   </div>       
                   </div>
                   <div >

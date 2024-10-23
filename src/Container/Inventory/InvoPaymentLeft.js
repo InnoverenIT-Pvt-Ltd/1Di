@@ -418,6 +418,26 @@ const InvoPaymentLeft = ({ props,userId,repeatDeliveryInfo,addingRepeatDeliveryI
     };
     repeatPayOrder(data);
   };
+  const postRepeatEFTPayment = (status) => {
+    history.push("/shopName/invOrdersuccess");
+    let data = {
+      amount:  repeatDeliveryInfo.cartSummary.grandTotal ? repeatDeliveryInfo.cartSummary.grandTotal:0,
+      orderId: repeatDeliveryInfo.orderPhoneId,
+      type: "EFT",
+      orderProcess:"checkout",
+    };
+    repeatPayOrder(data);
+  };
+  const postRepeatCreditPayment = (status) => {
+    history.push("/shopName/invOrdersuccess");
+    let data = {
+      amount:  repeatDeliveryInfo.cartSummary.grandTotal ? repeatDeliveryInfo.cartSummary.grandTotal:0,
+      orderId: repeatDeliveryInfo.orderPhoneId,
+      type: "Credit",
+      orderProcess:"checkout",
+    };
+    repeatPayOrder(data);
+  };
 
   const handleCashOnDelivery = () => {
     if (repeatDeliveryInfo && repeatDeliveryInfo.cartSummary && repeatDeliveryInfo.cartSummary.grandTotal) {
@@ -427,6 +447,21 @@ const InvoPaymentLeft = ({ props,userId,repeatDeliveryInfo,addingRepeatDeliveryI
     }
   };
   
+  const handleEFTOrderDelivery = () => {
+    if (repeatDeliveryInfo && repeatDeliveryInfo.cartSummary && repeatDeliveryInfo.cartSummary.grandTotal) {
+      postRepeatEFTPayment();
+    } else {
+      handleEFTOrder();
+    }
+  };
+
+  const handleCreditOrderDelivery =()=> {
+    if (repeatDeliveryInfo && repeatDeliveryInfo.cartSummary && repeatDeliveryInfo.cartSummary.grandTotal) {
+      postRepeatCreditPayment();
+    } else {
+      handleCreditOrder();
+    }
+  }
   return (
     <>
       <br />
@@ -463,8 +498,8 @@ const InvoPaymentLeft = ({ props,userId,repeatDeliveryInfo,addingRepeatDeliveryI
             {value === "EFT" && (
             <Button
                  type="primary"
-                 onClick={() => handleEFTOrder()}
-                 loading={addingCODinventory}
+                 onClick={() => handleEFTOrderDelivery()}
+                 loading={addingCODinventory || addingRepeatDeliveryInfo }
               >
                 Checkout
               </Button>)}
@@ -570,8 +605,8 @@ const InvoPaymentLeft = ({ props,userId,repeatDeliveryInfo,addingRepeatDeliveryI
             {value === "Creditors" && (
             <Button
             type="primary"
-            onClick={() => handleCreditOrder()}
-            loading={addingCODinventory}
+            onClick={() => handleCreditOrderDelivery()}
+            loading={addingCODinventory || addingRepeatDeliveryInfo }
          >
            Checkout
          </Button>)}
