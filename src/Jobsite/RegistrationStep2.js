@@ -6,14 +6,29 @@ import { connect } from "react-redux";
 import { Spacer } from "../Components/UI/Elements";
 // import {getCountry} from  "../Containers/Auth/AuthAction";
 import { InputComponent } from "../Components/Forms/Formik/InputComponent";
-import AddressFieldArray from "../Components/Forms/Formik/AddressFieldArray";
 import {getCountries} from "./JobAction";
+import { base_url } from "../Config/Auth";
+import axios from "axios";
+import RegisterAddressFieldArray from "../Components/Forms/Formik/RegisterAddressFieldArray";
+import {
+  EyeOutlined,
+  EyeInvisibleOutlined,
+  CheckCircleTwoTone,
+} from "@ant-design/icons";
 
 const { Option } = Select;
+
 function RegistrationStep2 (props) {
 
+  const [ClientType,setClientType] = useState([])
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
+
+
   useEffect(()=>{
+    const currentUrl = window.location.href.split('/').slice(0, 3).join('/')
     props.getCountries();
+    fetchClientIdList();
   },[])
 
 const dialCode = props.countries.map((item)=> ({
@@ -21,12 +36,36 @@ const dialCode = props.countries.map((item)=> ({
   value: `+${item.country_dial_code}`,
 }));
 
+const fetchClientIdList = async () => {
+  try {
+    const response = await axios.get(`${base_url}/customerType/web`,{
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    });
+    setClientType(response.data);
+    setLoading(false);
+  } catch (error) {
+    setError(error);
+    setLoading(false);
+  }
+};
   return (
     <>
       <Formik
       initialValues={{ 
 
-        
+        address: [
+          {
+            address1: "",
+            address2: "",
+            street: "",
+            city: "",
+            state: "",
+            postalCode: "",
+            type:"billing"
+          },
+        ],
       }}
      
         onSubmit={(values, { resetForm }) => {
@@ -45,15 +84,15 @@ const dialCode = props.countries.map((item)=> ({
           values,
           ...rest
         }) => (
-        <div class=" h-[63vh]">
+
           <Form class="w-wk flex justify-center ">
              <div   className="bg-[#DFDFDF] rounded-2xl p-3 border-solid  flex flex-col justify-center mt-3 w-11/12   " >
             <div class=" overflow-x-hidden max-h-[36rem]">
-              <div class="p-4 ">                
-              <div class="flex flex-col w-wk">
+              <div class="p-1">                
+
                   <div class="flex justify-between mt-2 w-wk">
                   <div class="flex items-center justify-between w-[18rem]">
-                  <div class="font-poppins font-semibold text-xs w-28 ">First Name</div>
+                  <div class="font-poppins font-semibold text-xs w-44">First Name</div>
                   <div class="">
                         <Field
                                 placeholder={`First Name`}
@@ -65,8 +104,16 @@ const dialCode = props.countries.map((item)=> ({
                                     // borderRadius: "0.4rem"
                                 }}
                             />
+                             <div>
+   {props.fieldErrors2.firstName && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.firstName?props.fieldErrors2.firstName:null}
+      </div>
+  )} 
+  </div>
                            </div>
                              </div>
+
                              <div class="flex items-center justify-between w-[18rem]">      
                              <div class="w-28 font-poppins font-semibold text-xs  ">Last Name</div>
                              <div class="">
@@ -81,57 +128,22 @@ const dialCode = props.countries.map((item)=> ({
                       value={props.lastName}
                       onChange={props.handleStepLastName}
                     />
-                     
+                       <div>
+   {props.fieldErrors2.lastName && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.lastName?props.fieldErrors2.lastName:null}
+      </div>
+  )} 
+  </div> 
                   
   </div>
                              </div>
+
                              </div>
+
+
                              <div class="flex justify-between w-wk mt-2">
                              <div class="flex items-center justify-between w-[18rem]">
-                <div className="input-header1  font-poppins font-semibold text-xs  w-28">  Email </div>
-                        <div>
-                        <Field
-                                value={props.email}
-                                placeholder={`Email`}
-                                type="email"
-                                component={InputComponent}
-                                onChange={props.handleStepEmail}
-                                style={{
-                                  height: "1.8rem",
-                                    // borderRadius: "0.4rem"
-                                }}
-                            />
-                           
-                                               </div>
-                             </div>
-                             <div class="flex items-center justify-between w-[18rem]">
-                             <div className="input-header1  font-poppins font-semibold text-xs  w-28"> Extension</div>
-                    <div>
-                    <Field
-                                value={props.extension}
-                                placeholder={`Extension`}
-                                type="extension"
-                                component={InputComponent}
-                                onChange={props.handleStepextension}
-                                style={{
-                                  height: "1.8rem",
-                                    // borderRadius: "0.4rem"
-                                }}
-                            />
-                  
-                          </div>
-                          </div>
-                          
-                            
-                             </div>
-                             <div class="flex justify-between w-wk mt-2">
-                            
-                         
-                            <div class="flex items-center justify-between w-[18rem]">
-                            {/* <div className="input-header1 font-poppins font-semibold text-xs  w-28">{props.Cteptwos.repeatPassword}</div> */}
-                             </div>
-                             </div>
-                             <div class="flex  w-1/2 mt-2">
                              <div class="flex flex-col ">
                              <div class=" font-poppins font-semibold text-xs w-28 ">Dial Code</div>
                              <div>
@@ -166,17 +178,152 @@ const dialCode = props.countries.map((item)=> ({
                                    
 </div>
                                 </div>
+                             </div>
+                             <div class="flex items-center justify-between w-[18rem]">
+                             <div className="input-header1  font-poppins font-semibold text-xs  w-28"> Extension</div>
+                    <div>
+                    <Field
+                                value={props.extension}
+                                placeholder={`Extension`}
+                                type="extension"
+                                component={InputComponent}
+                                onChange={props.handleStepextension}
+                                style={{
+                                  height: "1.8rem",
+                                    // borderRadius: "0.4rem"
+                                }}
+                            />
+                  
+                          </div>
+                          </div>
+                             </div>
+
+                          <div class="flex justify-between w-wk mt-2">
+                          <div class="flex flex-row items-center">   
+                          <div className=" input-header1  font-poppins font-semibold text-xs w-32">Password</div>
+                            <div className="flex">
+                            <input 
+                            className="border rounded-[0.6rem] block p-1 mb-1 h-[1.8rem]"
+                      isColumn
+                      // component={InputComponent}
+                      inlineLabel
+                      value={props.password}
+                      type={props.type}
+                      onChange={props.handlePassword}
+                    />
+                    {props.show ? (
+                      <EyeOutlined
+                        type="eye"
+                        onClick={props.handlePWClick}
+                        style={{ marginLeft: "-1.25rem",width:"0.8rem" }}
+                        size="24"
+                      />
+                    ) : (
+                      <EyeInvisibleOutlined
+                        type="eye-invisible"
+                        onClick={props.handlePWClick}
+                        size="24"
+                        style={{ marginLeft: "-1.25rem",width:"0.8rem"}}
+                      />
+                    )}      
                             </div>
+                            <div>
+   {props.fieldErrors2.password && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.password?props.fieldErrors2.password:null}
+      </div>
+  )} 
+  </div> 
+                            </div>
+                            </div>
+
+                            <div class="flex justify-between w-wk mt-2">
+                            <div class="flex flex-row items-center">   
+                          <div className=" input-header1  font-poppins font-semibold text-xs w-32">Confirm Password</div>
+                            <div className="flex">
+                            <input 
+                            className="border rounded-[0.6rem] block p-1 mb-1 h-[1.8rem]"
+                      isColumn
+                      // component={InputComponent}
+                      inlineLabel
+                      value={props.confirmPassword}
+                      type={props.type2}
+                      onChange={props.handleConfirmPassword}
+                    />
+                    {props.show2 ? (
+                      <EyeOutlined
+                        type="eye"
+                        onClick={props.handleConPwClick}
+                        style={{
+                          marginLeft: "-1.25rem",width:"0.8rem"
+                        }}
+                        // style={{ size: 24 }}
+                      />
+                    ) : (
+                      <EyeInvisibleOutlined
+                        type="eye-invisible"
+                        onClick={props.handleConPwClick}
+                        style={{
+                           marginLeft: "-1.25rem",width:"0.8rem"
+                        }}
+              
+                      />
+                    )}
+                    {props.password ===""?null:props.password===props.confirmPassword ? (
+                      <CheckCircleTwoTone
+                        type="check-circle"
+                        theme="twoTone"
+                        twoToneColor="#52c41a"
+                        size={80}
+                        style={{
+                          marginRight: "-1.0rem",
+                          // marginTop: "0.3em",
+                          fontSize: "1.2rem",
+                        }}
+                      />
+                    ) : null}
+                            </div>
+
+                            </div>
+                            </div>
+                            <div class="flex justify-between w-wk mt-2">
+                             <div class="flex items-center">
+                <div className="input-header1  font-poppins font-semibold text-xs  w-28">  Email </div>
+                        <div>
+                        <Field
+                                value={props.email}
+                                placeholder={`Email`}
+                                type="email"
+                                component={InputComponent}
+                                onChange={props.handleStepEmail}
+                                style={{
+                                  height: "1.8rem",
+                                    // borderRadius: "0.4rem"
+                                }}
+                            />
+                            <div>
+   {props.fieldErrors2.email && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.email?props.fieldErrors2.email:null}
+      </div>
+  )} 
+  </div> 
+                                               </div>
+                             </div>
                           
-                             </div>       
-          
+                             </div>
+
+                           
+
+
+
+                             </div>
               
                 <Spacer />
               </div>
               </div>
-            </div>
+         
           </Form>
-          </div>
         )}
       </Formik>
     </>

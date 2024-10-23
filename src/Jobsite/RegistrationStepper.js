@@ -17,6 +17,91 @@ import {
 import RegistrationStep3 from "./RegistrationStep3";
 const Step = StyledSteps.Step;
 
+const validationRules = {
+    name: {
+      required: true,
+      message: 'Please enter your company name *',
+    },
+    billingEmail: {
+      required: true,
+      message: 'Please enter your email *',
+    },
+  };
+  const initialErrors = {
+    name: '',
+    billingEmail: '',
+  };
+
+  const validationRules2 = {
+    firstName: {
+        required: true,
+        message: 'Please enter your First name *',
+      },
+      lastName: {
+        required: true,
+        message: 'Please enter your First name *',
+      },
+      password: {
+        required: true,
+        message: 'Please enter your First name *',
+      },
+      email: {
+        required: true,
+        message: 'Please enter your email *',
+      },
+  };
+  const initialErrors2 = {
+    firstName:'',
+    lastName:'',
+    password:'',
+    email:'',
+  };
+
+  const confirmstepValid={
+    fullName:{
+        required: true,
+        message: 'Please enter your Full Name',
+    },
+    language:{
+        required: true,
+        message: 'Please select language',
+    },
+    emailId:{
+        required: true,
+        message: 'Please enter email',
+    },
+    password:{
+        required: true,
+        message: 'Please enter password',
+    },
+    dialCode:{
+        required: true,
+        message: 'Please enter dialcode',
+    },
+    mobileNo:{
+        required: true,
+        message: 'Please enter mobileNo',
+    },
+    confirmPassword:{
+        required: true,
+        message: 'Confirm Password',
+    },
+    confirmEmailId:{
+        required: true,
+        message: 'Confirm Email',
+    }
+  }
+  const confirmstepErrors = {
+    fullName: '',
+    language: '', 
+    emailId:'',
+    password:'',
+    dialCode:'',
+    mobileNo:'',
+    confirmPassword:'',
+    confirmEmailId:'',
+  };
+
 class RegistrationStepper extends Component {
     constructor(props) {
         super(props);
@@ -41,12 +126,33 @@ class RegistrationStepper extends Component {
             show:Boolean(),
             type2:'password',
             show2:Boolean(),
+            confirmPassword:"",
+            clientId:"",
+            fieldErrors: { ...initialErrors },
+            fieldErrors2: { ...initialErrors2 },
+            confirmstepfieldErrors: { ...confirmstepErrors },
+            confirmPasWrdError:null,
         };
     }
 
     handlePassword = (e) => {
         this.setState({
             password: e.target.value
+        });
+    };
+    handleClientId = (clId) => {
+        this.setState({
+            clientId:clId
+        });
+    }
+    handleConfirmPassword = (e) => {
+        if (this.state.password!==e.target.value) {
+            this.setState({confirmPasWrdError:'Password does not match'});
+          } else {
+            this.setState({confirmPasWrdError:null});
+          }
+        this.setState({
+            confirmPassword: e.target.value
         });
     };
 handlePWClick=()=>{
@@ -121,17 +227,60 @@ handlePWClick=()=>{
     handleSteppriPolInd = (newValue) => {
         this.setState({ priPolInd: newValue });
       };
-    next = () => {
+  
+    validate = () => {
+        const { name, billingEmail ,companyPhoneNo } = this.state;
+        const fieldErrors = { ...initialErrors };
+       
+        if (validationRules.name.required && !name) {
+          fieldErrors.name = validationRules.name.message;
+        }
+        if (validationRules.billingEmail.required && !billingEmail) {
+          fieldErrors.billingEmail = validationRules.billingEmail.message;
+        }
+        this.setState({ fieldErrors });
+        return Object.values(fieldErrors).every((error) => !error);
+      };
+
+      validate2 = () => {
+        const { firstName,lastName,password,email } = this.state;
+        const fieldErrors2 = { ...initialErrors2 };
+        if (validationRules2.firstName.required && !firstName) {
+            fieldErrors2.firstName = validationRules2.firstName.message;
+          }
+          if (validationRules2.lastName.required && !lastName) {
+            fieldErrors2.lastName = validationRules2.lastName.message;
+          }
+          if (validationRules2.password.required && !password) {
+            fieldErrors2.password = validationRules2.password.message;
+          }
+          if (validationRules2.email.required && !email) {
+            fieldErrors2.email = validationRules2.email.message;
+          }
+        this.setState({ fieldErrors2 });
+        return Object.values(fieldErrors2).every((error) => !error);
+      };
+
+      next = () => {
         const current = this.state.current + 1;
-        this.setState({ current });
+        if (current === 1 && !this.validate()) {
+            return;
+        }
+        if (current === 2 && !this.validate2()) {
+            return;
+        }
+        this.setState({current});
     };
 
     prev = () => {
         const current = this.state.current - 1;
         this.setState({ current });
     };
+
+
+
     handleComplete = () => {
-    
+        const currentUrl = window.location.href.split('/').slice(0, 3).join('/')
 let data={
     name:this.state.name,
     phoneNo: this.state.phoneNo,
@@ -149,9 +298,11 @@ let data={
     source:"SORG26873064191202024",
     password:this.state.password,
     b2bInd:true,
+    dCategory:"CAG84215788796212024",
+    clientId:this.state.clientId,
 
 }
-        this.props.addContact(data);
+        this.props.addContact(data,currentUrl,this.callback);
     };
 
     render() {
@@ -159,6 +310,7 @@ let data={
             {
                 title: "First",
                 content:<RegistrationStep1
+                fieldErrors={this.state.fieldErrors}
                 handleNameStep1={this.handleNameStep1}             
                 name={this.state.name} 
                 handleStep1Phone={this.handleStep1Phone}
@@ -167,20 +319,15 @@ let data={
                 billingEmail={this.state.billingEmail}
                 handleAddressStep1={this.handleAddressStep1}
                 address={this.state.address}
-                handlePassword={this.handlePassword}
-                password={this.state.password}
-                handlePWClick={this.handlePWClick}
-                type={this.state.type}
-                show={this.state.show}
-                handleConPwClick={this.handleConPwClick}
-                type2={this.state.type2}
-                show2={this.state.show2}
+                clientId={this.state.clientId}
+                handleClientId={this.handleClientId}
 
                 />
             },
             {
                 title: "Second",
                 content: <RegistrationStep2
+                fieldErrors2={this.state.fieldErrors2}
                 handleStepEmail={this.handleStepEmail}
                 handleStepFirstName={this.handleStepFirstName}
                 handleStepLastName={this.handleStepLastName}
@@ -195,6 +342,14 @@ let data={
                 countryDialCode={this.state.countryDialCode}
                 mobileNo={this.state.mobileNo} 
                 businessRegistration={this.state.businessRegistration}
+                handlePassword={this.handlePassword}
+                password={this.state.password}
+                handlePWClick={this.handlePWClick}
+                type={this.state.type}
+                show={this.state.show}
+                handleConPwClick={this.handleConPwClick}
+                type2={this.state.type2}
+                show2={this.state.show2}
                 />,
             },
             {
@@ -236,8 +391,8 @@ let data={
                                         <Button
                                             type="primary"
                                             onClick={() => this.next()}
-                                           
-                                        // disabled={this.props.serachedData === null}
+                                            // disabled={!this.validate}
+                                        
                                         >
                                             Next
                                         </Button>

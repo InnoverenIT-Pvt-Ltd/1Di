@@ -247,12 +247,12 @@ export const setClearbitData = (data) => (dispatch) => {
   });
 };
 
-export const addContact = (data) => (dispatch) => {
+export const addContact = (data,currentUrl) => (dispatch) => {
   dispatch({ type: types.ADD_CONTACT_DETAILS_REQUEST });
 
   axios
-    .post(`${base_url}/leads/website?url=talent.tekorero.com`, data)
-
+    // .post(`${base_url}/leads/website?url=talent.tekorero.com`, data)
+    .post(`${base_url}/leads/website/b2c-b2b/all/register?url=${currentUrl}`, data) 
     .then((res) => {
       Swal.fire({
         icon: 'success',
