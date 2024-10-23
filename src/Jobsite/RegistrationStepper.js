@@ -26,28 +26,46 @@ const validationRules = {
       required: true,
       message: 'Please enter your email *',
     },
+    phoneNo: {
+        required: true,
+        message: 'Please enter your phone no *',
+      },
+      businessRegistration: {
+        required: true,
+        message: 'Please enter your registration *',
+      },
   };
   const initialErrors = {
     name: '',
     billingEmail: '',
+    phoneNo:"",
+    businessRegistration:"",
   };
 
   const validationRules2 = {
     firstName: {
         required: true,
-        message: 'Please enter your First name *',
+        message: 'Please enter your first name *',
       },
       lastName: {
         required: true,
-        message: 'Please enter your First name *',
+        message: 'Please enter your last name *',
       },
       password: {
         required: true,
-        message: 'Please enter your First name *',
+        message: 'Please enter your password *',
       },
+      confirmPassword:{
+        required: true,
+        message: 'Confirm Password',
+    },
       email: {
         required: true,
         message: 'Please enter your email *',
+      },
+      phoneNumber: {
+        required: true,
+        message: 'Please enter your phone no *',
       },
   };
   const initialErrors2 = {
@@ -55,52 +73,11 @@ const validationRules = {
     lastName:'',
     password:'',
     email:'',
+    confirmPassword:'',
+    phoneNumber:'',
   };
 
-  const confirmstepValid={
-    fullName:{
-        required: true,
-        message: 'Please enter your Full Name',
-    },
-    language:{
-        required: true,
-        message: 'Please select language',
-    },
-    emailId:{
-        required: true,
-        message: 'Please enter email',
-    },
-    password:{
-        required: true,
-        message: 'Please enter password',
-    },
-    dialCode:{
-        required: true,
-        message: 'Please enter dialcode',
-    },
-    mobileNo:{
-        required: true,
-        message: 'Please enter mobileNo',
-    },
-    confirmPassword:{
-        required: true,
-        message: 'Confirm Password',
-    },
-    confirmEmailId:{
-        required: true,
-        message: 'Confirm Email',
-    }
-  }
-  const confirmstepErrors = {
-    fullName: '',
-    language: '', 
-    emailId:'',
-    password:'',
-    dialCode:'',
-    mobileNo:'',
-    confirmPassword:'',
-    confirmEmailId:'',
-  };
+
 
 class RegistrationStepper extends Component {
     constructor(props) {
@@ -130,7 +107,6 @@ class RegistrationStepper extends Component {
             clientId:"",
             fieldErrors: { ...initialErrors },
             fieldErrors2: { ...initialErrors2 },
-            confirmstepfieldErrors: { ...confirmstepErrors },
             confirmPasWrdError:null,
         };
     }
@@ -229,7 +205,7 @@ handlePWClick=()=>{
       };
   
     validate = () => {
-        const { name, billingEmail ,companyPhoneNo } = this.state;
+        const { name, billingEmail ,phoneNo,businessRegistration } = this.state;
         const fieldErrors = { ...initialErrors };
        
         if (validationRules.name.required && !name) {
@@ -238,12 +214,18 @@ handlePWClick=()=>{
         if (validationRules.billingEmail.required && !billingEmail) {
           fieldErrors.billingEmail = validationRules.billingEmail.message;
         }
+        if (validationRules.phoneNo.required && !phoneNo) {
+            fieldErrors.phoneNo = validationRules.phoneNo.message;
+          }
+          if (validationRules.businessRegistration.required && !businessRegistration) {
+            fieldErrors.businessRegistration = validationRules.businessRegistration.message;
+          }
         this.setState({ fieldErrors });
         return Object.values(fieldErrors).every((error) => !error);
       };
 
       validate2 = () => {
-        const { firstName,lastName,password,email } = this.state;
+        const { firstName,lastName,password,confirmPassword,email,phoneNumber } = this.state;
         const fieldErrors2 = { ...initialErrors2 };
         if (validationRules2.firstName.required && !firstName) {
             fieldErrors2.firstName = validationRules2.firstName.message;
@@ -254,9 +236,16 @@ handlePWClick=()=>{
           if (validationRules2.password.required && !password) {
             fieldErrors2.password = validationRules2.password.message;
           }
+          if (validationRules2.confirmPassword.required && !confirmPassword) {
+            fieldErrors2.confirmPassword = validationRules2.confirmPassword.message;
+          }
           if (validationRules2.email.required && !email) {
             fieldErrors2.email = validationRules2.email.message;
           }
+          if (validationRules2.phoneNumber.required && !phoneNumber) {
+            fieldErrors2.phoneNumber = validationRules2.phoneNumber.message;
+          }
+
         this.setState({ fieldErrors2 });
         return Object.values(fieldErrors2).every((error) => !error);
       };
@@ -321,7 +310,8 @@ let data={
                 address={this.state.address}
                 clientId={this.state.clientId}
                 handleClientId={this.handleClientId}
-
+                businessRegistration={this.state.businessRegistration}
+                handleStepBusRegNo={this.handleStepBusRegNo}
                 />
             },
             {
@@ -333,15 +323,14 @@ let data={
                 handleStepLastName={this.handleStepLastName}
                 handleMoBoStep2={this.handleMoBoStep2}
                 handleDialCodeStep2={this.handleDialCodeStep2}
-                handleStepBusRegNo={this.handleStepBusRegNo}
+             
                 handleStepextension={this.handleStepextension}
                 firstName={this.state.firstName}
                 extension={this.state.extension}
                 email={this.state.email}
                 lastName={this.state.lastName}
                 countryDialCode={this.state.countryDialCode}
-                mobileNo={this.state.mobileNo} 
-                businessRegistration={this.state.businessRegistration}
+                phoneNumber={this.state.phoneNumber} 
                 handlePassword={this.handlePassword}
                 password={this.state.password}
                 handlePWClick={this.handlePWClick}
@@ -350,6 +339,9 @@ let data={
                 handleConPwClick={this.handleConPwClick}
                 type2={this.state.type2}
                 show2={this.state.show2}
+                confirmPassword={this.state.confirmPassword}
+                confirmPasWrdError={this.state.confirmPasWrdError}
+                handleConfirmPassword={this.handleConfirmPassword}
                 />,
             },
             {

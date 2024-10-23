@@ -169,12 +169,19 @@ const fetchClientIdList = async () => {
                   <div className="input-header1 font-poppins font-semibold text-xs  w-28">Mobile No</div>
                   <div>   
                                     <Field
-                                        value={props.mobileNo}
+                                        value={props.phoneNumber}
                                         placeholder={`Mobile #`}
                                         onChange={props.handleMoBoStep2}
                                         component={InputComponent}
                                           style={{ height: "1.8rem"}}
                                     />
+                                                     <div>
+   {props.fieldErrors2.phoneNumber && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.phoneNumber?props.fieldErrors2.phoneNumber:null}
+      </div>
+  )} 
+  </div>       
                                    
 </div>
                                 </div>
@@ -282,6 +289,18 @@ const fetchClientIdList = async () => {
                         }}
                       />
                     ) : null}
+
+                       {props.fieldErrors2.confirmPassword && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.confirmPassword?props.fieldErrors2.confirmPassword:null}
+      </div>
+  )} 
+
+{props.confirmPasWrdError &&  (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {props.confirmPasWrdError}
+      </div>
+  )} 
                             </div>
 
                             </div>

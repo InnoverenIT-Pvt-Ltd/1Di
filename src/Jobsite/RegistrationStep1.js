@@ -96,7 +96,7 @@ const fetchClientIdList = async () => {
                       />
                                                         <div>
    {props.fieldErrors.name && (
-    <div className="error-message" style={{ color: 'red', fontSize: '14px' }}>
+    <div className="error-message text-[red] font-semibold text-sm">
       {!props.name?props.fieldErrors.name:null}
       </div>
   )} 
@@ -119,6 +119,13 @@ const fetchClientIdList = async () => {
                         // borderRadius: "0.4rem"
                     }}
                   />
+                   <div>
+   {props.fieldErrors.businessRegistration && (
+    <div className="error-message  text-[red] font-semibold text-sm">
+      {!props.businessRegistration?props.fieldErrors.businessRegistration:null}
+      </div>
+  )} 
+  </div>
                   </div>
                     </div>
                     <div class="flex flex-row items-center">   
@@ -139,6 +146,13 @@ const fetchClientIdList = async () => {
                           // borderRadius: "0.4rem"
                       }}
                     />
+                                         <div>
+   {props.fieldErrors.phoneNo && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.phoneNo?props.fieldErrors.phoneNo:null}
+      </div>
+  )} 
+  </div>
                           </div>
                           </div>
                           <div class="flex flex-row items-center">   
@@ -156,7 +170,7 @@ const fetchClientIdList = async () => {
                     />
                      <div>
    {props.fieldErrors.billingEmail && (
-    <div className="error-message" style={{ color: 'red', fontSize: '14px' }}>
+    <div className="error-message text-[red] font-semibold text-sm">
       {!props.billingEmail?props.fieldErrors.billingEmail:null}
       </div>
   )} 
