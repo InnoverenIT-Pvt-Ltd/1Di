@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { base_url2 } from '../../Config/Auth';
 
 const ProcureItemViewDrawer =lazy(()=>import("./ProcureItemViewDrawer"));
 const ProcureStatusShowDrawer =lazy(()=>import("./ProcureStatusShowDrawer"));
@@ -342,9 +343,12 @@ function OrderInProgressCard(props) {
 
                                             </div> */}
                                                 <div class="w-6">
-        <span onClick={() => exportPDFAnnexure()}>
+                                                <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </span>
+                           </a>
           </div>
                                      
                                   

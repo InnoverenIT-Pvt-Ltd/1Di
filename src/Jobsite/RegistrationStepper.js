@@ -15,6 +15,8 @@ import {
     addContact 
   } from "../Container/Auth/AuthAction";
 import RegistrationStep3 from "./RegistrationStep3";
+import Swal from "sweetalert2";
+
 const Step = StyledSteps.Step;
 
 const validationRules = {
@@ -266,7 +268,33 @@ handlePWClick=()=>{
         this.setState({ current });
     };
 
-
+    callback = (status) => {
+        if (status === "success") {
+        Swal.fire({
+            text: "Thanks for reaching out us.we revert you soon!!!",
+            icon: "success",  
+          });
+        // this.props.history.push("/orderinprogree");
+        }
+        else if(status === 'Something went wrong !!!'){
+               Swal.fire({
+            text:"Something went wrong !!!",
+            icon: "error",  
+        });
+          }
+          else if (status === " please provide mailId !!!"){
+            Swal.fire({
+                text:"Please provide mailId !!!",
+                icon: "error",  
+            });
+          }
+          else {
+               Swal.fire({
+            text:"Something went wrong !!!",
+            icon: "error",  
+        });
+          } 
+      };
 
     handleComplete = () => {
         const currentUrl = window.location.href.split('/').slice(0, 3).join('/')
