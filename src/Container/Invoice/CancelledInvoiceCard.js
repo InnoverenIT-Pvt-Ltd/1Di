@@ -222,9 +222,12 @@ function CancelledInvoiceCard(props) {
                       </div>
                                     </div>
                                     <div class="w-6">
-        <span onClick={() => exportPDFAnnexure()}>
+                                    <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon"/>
-                           </span>
+                           </a>
           </div> 
                                 </div>
 

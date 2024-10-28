@@ -75,7 +75,7 @@ function InvoiceJumstartBox (props) {
                     
                    </div>  
                     
-                <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
                        <div class={`bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] 
                        rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center ${props.activeTable ==='cancelled' ? "border-[2px] border-[red]":""}`}>
@@ -98,7 +98,7 @@ function InvoiceJumstartBox (props) {
                            </div>
                        </div>
                      
-                   </div>  
+                   </div>   */}
                    
                    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                       
@@ -112,7 +112,7 @@ function InvoiceJumstartBox (props) {
                               noProgress
                               title={<FormattedMessage
                                 id="app.ordersapproved"
-                                defaultMessage="Invoice Approved"
+                                defaultMessage="Invoice Reconcile"
                             />}
                             jumpstartClick={() => props.handleOrderOpenDrawer('approved')}
                               // borderD={props.activeTable ==='cancelled' ? "4px solid red":""}
