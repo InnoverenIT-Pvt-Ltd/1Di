@@ -70,7 +70,8 @@ const handleSelectChange = (value) => {
         productId:item.productId,
         orderId:props.rowDatas.orderId,
         shipBy: selectedShipper, 
-        shippingDate: new Date(date).toISOString()
+        shippingDate: new Date(date).toISOString(),
+        trackId:item.trackId
     };
       
  console.log("resd",updatedItem);  
@@ -115,8 +116,8 @@ const handleSelectChange = (value) => {
                                         defaultMessage="Shipping "
                                     /></div>
                                     <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app.awb"
-                                        defaultMessage="AWB"
+                                        id="app.trackid"
+                                        defaultMessage="Track Id"
                                     /></div>
                                    
                                    <div className=" md:w-[5rem]"><FormattedMessage
@@ -157,9 +158,9 @@ const handleSelectChange = (value) => {
                                                                     {item.attribute}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium bg-[#eef2f9]  md:w-[9rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9]  md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.itemId}
+                                                                    {item.newProductId}
                                                                 </div>
                                                             </div>
                                                             </div>
@@ -195,7 +196,17 @@ const handleSelectChange = (value) => {
                                                             </div>
                                                             <div className=" flex font-medium bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                {/* {moment(item.shippingDate).format("YYYY/MM/DD")}  */}
+                                                                {editsuppliesId === item.itemId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.trackId}
+                       onChange={(e) => handleInputChange(e.target.value, item.itemId, 'trackId')}
+                     />  
+                    ) : (
+                      <div className="font-normal text-sm  font-poppins">
+                        <div> {item.trackId}</div>
+                      </div>
+                    )}
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
