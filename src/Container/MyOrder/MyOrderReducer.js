@@ -130,6 +130,10 @@ const initialState = {
   fetchingOrdrSuplrDetails: false,
   fetchingOrdrSuplrDetailsError:false,
   ordrSuplrItem:[],
+
+  fetchingAllShipper: false,
+  fetchingAllShipperError: false,
+  allShipperList: [],
 };
 
 export const myorderReducer = (state = initialState, action) => {
@@ -651,6 +655,20 @@ export const myorderReducer = (state = initialState, action) => {
           fetchingSupplierOrdrItemListError: true,
         };
 
+        case types.GET_ALL_SHIPPER_REQUEST:
+          return { ...state, fetchingAllShipper: true };
+        case types.GET_ALL_SHIPPER_SUCCESS:
+          return {
+            ...state,
+            fetchingAllShipper: false,
+            allShipperList: action.payload,
+          };
+        case types.GET_ALL_SHIPPER_FAILURE:
+          return {
+            ...state,
+            fetchingAllShipper: false,
+            fetchingAllShipperError: true,
+          };
         
     default:
       return state;
