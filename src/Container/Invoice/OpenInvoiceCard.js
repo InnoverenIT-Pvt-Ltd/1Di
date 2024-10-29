@@ -12,6 +12,8 @@ import axios from 'axios';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import InvoiceOrderDrawer from './InvoiceOrderDrawer';
+import OrderIDrawer from './OrderIDrawer';
 
 const { Search } = Input;
 
@@ -28,6 +30,9 @@ function InvoiceCard(props) {
   const [data1, setData1] = useState([]);
   const [loading1, setLoading1] = useState(false);
    
+const [openInvoiceDrawer, setopenInvoiceDrawer] = useState(false);
+const [OrderIdDrawer,setOrderIdDrawer] = useState(false);
+
   useEffect(() => {
     const fetchData1 = async () => {
         try {
@@ -51,12 +56,6 @@ function InvoiceCard(props) {
     function handleRowData(item) {
         setrowDatas(item)
     }
-
-    const handleInfiniteScroll = () => {
-        setPageNo(pageNo + 1);
-        // props.getOrderData(props.userId,pageNo);
-         //fetchData(); // Fetch more data when scrolling
-      };
 
       const exportPDFAnnexure = () => {
         const doc = new jsPDF();
@@ -157,6 +156,7 @@ function InvoiceCard(props) {
     
         doc.save('OpenInvoice.pdf');
       };
+
       return (
         <>
 
@@ -206,11 +206,21 @@ function InvoiceCard(props) {
                           <>
                               <div>
                               <div className="flex rounded border-l-2 border-green-500 bg-[#eef2f9] mt-1 h-8 items-center p-1 ">
-                                      <div className=" text-xs font-poppins flex items-center   w-[9.1rem] ">
+                                      <div className="text-xs underline cursor-pointer text-[#1890ff] font-poppins flex items-center   w-[9.1rem] "
+                                       onClick={() => {
+                                        handleRowData(item);
+                                        setopenInvoiceDrawer(true);
+                                    }}
+                                      >
                                       {item.invoiceId}                                                                            
                                       </div>
                                       <div className=" flex bg-[#eef2f9] w-[10.7rem] ">
-                                 <div class=" text-xs font-poppins flex items-center">
+                                 <div class=" text-xs underline cursor-pointer text-[#1890ff] font-poppins flex items-center"
+                                 onClick={() => {
+                                  handleRowData(item);
+                                  setOrderIdDrawer(true);
+                              }}
+                                 >
                                  {item.newOrderNo}  
                                       </div>
                               </div>
@@ -251,6 +261,16 @@ function InvoiceCard(props) {
                 </MainForBroker >
             </div>
            
+           <InvoiceOrderDrawer 
+           rowDatas={rowDatas}
+           openInvoiceDrawer={openInvoiceDrawer} 
+           setopenInvoiceDrawer={setopenInvoiceDrawer}
+           />
+           <OrderIDrawer
+                rowDatas={rowDatas}
+           OrderIdDrawer={OrderIdDrawer}
+           setOrderIdDrawer={setOrderIdDrawer}
+           />
         </>
     );
 };

@@ -858,3 +858,29 @@ export const getSupplierOrdrItemList = (orderId,userId) => (dispatch) => {
       });
     });
 };
+
+export const getAllShipper = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_SHIPPER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/all/shipper/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_SHIPPER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_SHIPPER_FAILURE,
+        payload: err,
+      });
+    });
+};
