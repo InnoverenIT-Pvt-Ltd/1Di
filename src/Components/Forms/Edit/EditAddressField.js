@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import axios from "axios";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 import { FlexContainer } from "../../UI/Layout";
 import { ActionIcon } from "../../Utils";
 import { Spacer } from "../../UI/Elements";
@@ -46,7 +46,7 @@ class EditAddressField extends Component {
     } = this.props;
     this.setState({ isSubmitting: true });
     axios
-      .put(`${base_url}/address/${addressId}`, address, {
+      .put(`${hrWeb}/address/${addressId}`, address, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

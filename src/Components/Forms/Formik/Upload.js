@@ -2,7 +2,7 @@ import React from "react";
 import { message } from "antd";
 import { PlusOutlined} from '@ant-design/icons';
 import { StyledUpload, StyledModal } from "../../UI/Antd";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 import axios from "axios";
 const token = sessionStorage.getItem("token");
 
@@ -35,7 +35,7 @@ class Upload extends React.Component {
     console.log(formData);
     ////debugger;
     axios
-      .post(`${base_url}/image`, formData, {
+      .post(`${hrWeb}/image`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`

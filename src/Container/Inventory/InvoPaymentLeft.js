@@ -14,7 +14,7 @@ import { handleInventoryStripeModal,codInventoryOrder,repeatPayOrder} from "./In
 import axios from 'axios';
 import PaymentInventoryModal from "./PaymentInventoryModal";
 import PayChecktInventoryModal from "./PayChecktInventoryModal";
-import { base_url2 } from "../../Config/Auth";
+import { hrErp } from "../../Config/Auth";
 import InventoryOrdersuccess from "./InventoryOrdersuccess";
 
 const InvoPaymentLeft = ({ props,userId,repeatDeliveryInfo,addingRepeatDeliveryInfo, invencartItem,stripeNo, repeatPayOrder,addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
@@ -353,7 +353,7 @@ const InvoPaymentLeft = ({ props,userId,repeatDeliveryInfo,addingRepeatDeliveryI
     // } {
     {
       try {
-        const response = await axios.post(`${base_url2}/payment/protal/prosess`, { paymentNo: check, quotationId:invencartItem.orderPhoneId,type:"Cheque",
+        const response = await axios.post(`${hrErp}/payment/protal/prosess`, { paymentNo: check, quotationId:invencartItem.orderPhoneId,type:"Cheque",
            amount:invencartItem.cartSummary.grandTotal
         },
           { headers: {

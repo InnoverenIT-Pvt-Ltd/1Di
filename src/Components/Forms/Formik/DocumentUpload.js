@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'antd';
 import { StyledUpload, StyledModal } from '../../UI/Antd';
-import { base_url } from '../../../Config/Auth';
+import { hrWeb } from '../../../Config/Auth';
 import axios from 'axios';
 const token = sessionStorage.getItem('token');
 
@@ -16,7 +16,7 @@ class DocumentUpload extends React.Component {
     console.log(this.props)
     let formData = new FormData();
     formData.append('file', file);
-    axios.post(`${base_url}/upload/document`, formData, {
+    axios.post(`${hrWeb}/upload/document`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': `Bearer ${token}`

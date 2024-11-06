@@ -18,7 +18,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ProcureQuotationItemViewDrawer from '../OrderProgress/ProcureQuotationItemViewDrawer';
-import { base_url2 } from '../../Config/Auth';
+import { hrErp } from '../../Config/Auth';
 
 const { Search } = Input;
 
@@ -291,7 +291,7 @@ function ProcureQuotationCard(props) {
                                          </div> */}
                                           <div class="w-6">
                                           <a
-              href={`${base_url2}/customer/pdf/${item.quotationId}`}
+              href={`${hrErp}/customer/pdf/${item.quotationId}`}
             target="_blank"
             >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>

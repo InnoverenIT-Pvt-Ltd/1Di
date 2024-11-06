@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "antd/lib/avatar";
 import { ProgressiveImage } from "../../Utils";
-import { base_url,base_url2 } from "../../../Config/Auth";
+import { hrWeb,hrErp } from "../../../Config/Auth";
 import ProfilePreview from "../../../Assests/Images/ProfilePreview.png";
 const Image = ({
   imageId,
@@ -30,7 +30,7 @@ const Image = ({
             <ProgressiveImage
             class="w-36 h-28"
              // preview={ProfilePreview}
-              image={`${base_url2}/image/${imageId}`}
+              image={`${hrErp}/image/${imageId}`}
               //width={imgWidth || "9rem"}
               //height={imgHeight || "7rem"}
               // borderRadius={imgRadius}

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from 'react-intl';
 import { Button} from "antd";
-import { base_url2 } from "../../Config/Auth";
+import { hrErp } from "../../Config/Auth";
 import axios from 'axios';
 import dayjs from "dayjs";
 
@@ -30,7 +30,7 @@ const [response, setResponse] = useState(null);
    const receiveInd = true;
 
     try {
-      const result = await axios.put(`${base_url2}/phoneOrder/receiveOrder/${props.rowDatas.orderId}/${item.productId}/${receiveInd}`,{
+      const result = await axios.put(`${hrErp}/phoneOrder/receiveOrder/${props.rowDatas.orderId}/${item.productId}/${receiveInd}`,{
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -48,7 +48,7 @@ const [response, setResponse] = useState(null);
 
   const CancelItemRequest = async (item) => {
     try {
-      const respoCancel = await axios.post(`${base_url2}/phoneOrder/cancelOrder/${item.itemId}`,{},
+      const respoCancel = await axios.post(`${hrErp}/phoneOrder/cancelOrder/${item.itemId}`,{},
        { headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

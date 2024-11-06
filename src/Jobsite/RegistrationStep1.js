@@ -11,7 +11,7 @@ import {
   EyeInvisibleOutlined,
   CheckCircleTwoTone,
 } from "@ant-design/icons";
-import { base_url } from "../Config/Auth";
+import { hrWeb } from "../Config/Auth";
 import axios from "axios";
 
 const { Option } = Select;
@@ -28,7 +28,7 @@ function RegistrationStep1 (props) {
 
 const fetchClientIdList = async () => {
   try {
-    const response = await axios.get(`${base_url}/customerType/web`,{
+    const response = await axios.get(`${hrWeb}/customerType/web`,{
       // headers: {
       //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       // },

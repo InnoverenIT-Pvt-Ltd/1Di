@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AsyncSelect from "react-select/lib/Async";
 import axios from "axios";
 import { get } from "lodash";
-import { base_url, login_url } from "../../../Config/Auth";
+import { hrWeb, login_url } from "../../../Config/Auth";
 import { ValidationError, StyledLabel, StyledAsync } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 import { connect } from "react-redux";
@@ -15,7 +15,7 @@ class OrderClearbit extends Component {
   //   if (!name) {
   //     return Promise.resolve([]);
   //   }
-  //   const url = `${base_url}/candidateName/${name}`;
+  //   const url = `${hrWeb}/candidateName/${name}`;
   //   return axios
   //     .get(url, {})
   //     .then((res) => {
@@ -35,7 +35,7 @@ class OrderClearbit extends Component {
     if (!fullName) {
       return Promise.resolve([]);
     }
-    const url = `${base_url}/candidateName/${fullName}`;
+    const url = `${hrWeb}/candidateName/${fullName}`;
     return axios
       .get(url, {
         headers: {

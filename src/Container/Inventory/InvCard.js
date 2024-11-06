@@ -14,7 +14,7 @@ import { createBrowserHistory } from "history";
 import { RollbackOutlined } from "@ant-design/icons";
 import FeaturedMaterialCard from "./FeaturedMaterialCard";
 import axios from 'axios';
-import {base_url2} from "../../Config/Auth"
+import {hrErp} from "../../Config/Auth"
 import { Footer } from "../Customer/Footer";
 const history = createBrowserHistory();
 
@@ -77,7 +77,7 @@ const handlePostRequest = async () => {
     // };
 
     try {
-      const response = await axios.post(`${base_url2}/quotation/toShipping/clicks`,{},
+      const response = await axios.post(`${hrErp}/quotation/toShipping/clicks`,{},
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",

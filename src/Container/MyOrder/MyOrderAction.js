@@ -1,6 +1,6 @@
 import * as types from "./MyOrderActionType";
 import axios from "axios";
-import { base_url, base_url2 } from "../../Config/Auth";
+import { hrWeb, hrErp } from "../../Config/Auth";
 import { message } from "antd"
 import Swal from 'sweetalert2'
 
@@ -38,7 +38,7 @@ export const addOrderForm = (customer,) => (dispatch, getState) => {
   });
 
   axios
-    .post(`${base_url2}/phoneOrder`, customer, {
+    .post(`${hrErp}/phoneOrder`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -69,12 +69,12 @@ export const getPhoneDetails = (orderPhoneId,pageNo) => (dispatch) => {
     type: types.GET_PHONE_DETAILS_REQUEST,
   });
   axios
-    .get(`${base_url2}/phone/phoneDetail/${orderPhoneId}/${pageNo}`, {
+    .get(`${hrErp}/phone/phoneDetail/${orderPhoneId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
-    // .get(`${base_url}/requirement/all-requirement-detailss/${customerId}`)
+    // .get(`${hrWeb}/requirement/all-requirement-detailss/${customerId}`)
     .then((res) => {
       dispatch({
         type: types.GET_PHONE_DETAILS_SUCCESS,
@@ -94,13 +94,13 @@ export const getOrderData = (userId,pageNo) => (dispatch) => {
     type: types.GET_ORDER_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/repair/contact/${userId}/${pageNo}`, 
+    .get(`${hrErp}/phoneOrder/repair/contact/${userId}/${pageNo}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
-    // .get(`${base_url}/requirement/all-requirement-detailss/${customerId}`) 
+    // .get(`${hrWeb}/requirement/all-requirement-detailss/${customerId}`) 
     .then((res) => {
       dispatch({
         type: types.GET_ORDER_DATA_SUCCESS,
@@ -122,7 +122,7 @@ export const addPhoneDetails = (customer) => (dispatch, getState) => {
   });
 
   axios
-    .post(`${base_url2}/excel/import/phone-details`, customer, {
+    .post(`${hrErp}/excel/import/phone-details`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -153,7 +153,7 @@ export const handlePhoneListOrderNoteModal = (modalProps) => (dispatch) => {
 }
 export const addFeedbackNote = (feedback, phoneId) => (dispatch) => {
   axios
-    .post(`${base_url2}/feedback`, feedback,{
+    .post(`${hrErp}/feedback`, feedback,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -172,7 +172,7 @@ export const getNotesInOrder = (phoneId) => (dispatch) => {
     type: types.GET_NOTES_LIST_IN_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/phone/feedback/phone/${phoneId}`, {
+    .get(`${hrErp}/phone/feedback/phone/${phoneId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -198,7 +198,7 @@ export const confirmButtonClick = (customer, orderId, userId) => (dispatch, getS
   });
 
   axios
-    .put(`${base_url2}/phoneOrder/updateConfirmBotton/${orderId}`, customer, {
+    .put(`${hrErp}/phoneOrder/updateConfirmBotton/${orderId}`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -245,7 +245,7 @@ export const addPickUpAddress = (customer, orderId, userId) => (dispatch, getSta
   });
 
   axios
-    .put(`${base_url2}/phoneOrder/deliveryAddress/${orderId}`, customer, {
+    .put(`${hrErp}/phoneOrder/deliveryAddress/${orderId}`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -282,7 +282,7 @@ export const getStatusOfOrder = (orderPhoneId) => (dispatch) => {
     type: types.GET_STATUS_OF_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/orderStatus/${orderPhoneId}`, {
+    .get(`${hrErp}/phoneOrder/orderStatus/${orderPhoneId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -312,7 +312,7 @@ export const postFeedbackOrder = (data,orderId) => (dispatch) => {
     type: types.POST_FEEDBACK_REQUEST,
   });
   axios
-    .post(`${base_url2}/feedback`, data, {
+    .post(`${hrErp}/feedback`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -338,7 +338,7 @@ export const getFeedbackOrder = (orderId) => (dispatch) => {
   });
 
   axios
-    .get(`${base_url2}/phoneOrder/feedback/order/${orderId}`, {
+    .get(`${hrErp}/phoneOrder/feedback/order/${orderId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -370,7 +370,7 @@ export const getOrderCount = (userId,type) => (dispatch) => {
     type: types.GET_ORDER_COUNT_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/customerOrder/count/${userId}/${type}`, {
+    .get(`${hrErp}/phoneOrder/customerOrder/count/${userId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -394,7 +394,7 @@ export const getCompleteOrders = (userId,pageNo,type) => (dispatch) => {
     type: types.GET_COMPLETED_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/contact/completeOrders/${userId}/${pageNo}/${type}`, {
+    .get(`${hrErp}/phoneOrder/contact/completeOrders/${userId}/${pageNo}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -418,7 +418,7 @@ export const getInCompleteOrders = (userId,pageNo,type) => (dispatch) => {
     type: types.GET_INCOMPLETED_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/InCompleteContactOrders/${userId}/${pageNo}/${type} `, {
+    .get(`${hrErp}/phoneOrder/InCompleteContactOrders/${userId}/${pageNo}/${type} `, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -442,7 +442,7 @@ export const getCancelOrders = (userId,pageNo,type) => (dispatch) => {
     type: types.GET_CANCEL_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/ContactCancelOrders/${userId}/${pageNo}/${type} `, {
+    .get(`${hrErp}/phoneOrder/ContactCancelOrders/${userId}/${pageNo}/${type} `, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -466,7 +466,7 @@ export const getTotalOrders = (userId,pageNo,type) => (dispatch) => {
     type: types.GET_TOTAL_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/ContactTotalOrders/${userId}/${pageNo},/${type} `, {
+    .get(`${hrErp}/phoneOrder/ContactTotalOrders/${userId}/${pageNo},/${type} `, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -496,7 +496,7 @@ export const getTaskByPhoneId = (phoneId) => (dispatch) => {
     type: types.GET_TASK_BY_PHONEID_REQUEST,
   });
   axios
-    .get(`${base_url2}/itemTask/itemTaskDetail/${phoneId}`, {
+    .get(`${hrErp}/itemTask/itemTaskDetail/${phoneId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -529,7 +529,7 @@ export const getProcureOrderData = (userId,pageNo,type) => (dispatch) => {
     type: types.GET_PROCURE_ORDER_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/orders/${userId}/${pageNo}/${type}`, 
+    .get(`${hrErp}/phoneOrder/orders/${userId}/${pageNo}/${type}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -566,7 +566,7 @@ export const getProcureQuotation = (userId,pageNo,type) => (dispatch) => {
     type: types.GET_PROCURE_QUOTATION_REQUEST,
   });
   axios
-    .get(`${base_url2}/quotation/order/user/${userId}/${pageNo}/${type}`, 
+    .get(`${hrErp}/quotation/order/user/${userId}/${pageNo}/${type}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -591,7 +591,7 @@ export const getProcureOrderDetails = (orderPhoneId) => (dispatch) => {
     type: types.GET_PROCURE_ORDER_DETAILS_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/procure/order/${orderPhoneId}`, 
+    .get(`${hrErp}/phoneOrder/procure/order/${orderPhoneId}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -616,7 +616,7 @@ export const getProcureStatusItem = (orderId) => (dispatch) => {
     type: types.GET_PROCURE_STATUS_ITEM_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/orders/status/${orderId}`, 
+    .get(`${hrErp}/phoneOrder/orders/status/${orderId}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -641,7 +641,7 @@ export const getOrderSupplierList = (orderPhoneId) => (dispatch) => {
     type: types.GET_ORDER_SUPPLIER_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/procure/order/${orderPhoneId}`, 
+    .get(`${hrErp}/phoneOrder/procure/order/${orderPhoneId}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -666,7 +666,7 @@ export const getOdrSupplierItems = (orderPhoneId) => (dispatch) => {
     type: types.GET_ODR_SUPPLIER_ITEMS_REQUEST,
   });
   axios
-    .get(`${base_url2}/suplr/itms/${orderPhoneId}`, 
+    .get(`${hrErp}/suplr/itms/${orderPhoneId}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -690,7 +690,7 @@ export const getOdrSupplier = (userId,pageNo,type) => (dispatch) => {
     type: types.GET_ODR_SUPPLIER_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/suppliersOrders/${userId}/${pageNo}/${type}`, 
+    .get(`${hrErp}/phoneOrder/suppliersOrders/${userId}/${pageNo}/${type}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -714,7 +714,7 @@ export const getTopSell = (type) => (dispatch) => {
     type: types.GET_TOP_SELL_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/org/getTop-sellingProduct/${type}`, 
+    .get(`${hrErp}/phoneOrder/org/getTop-sellingProduct/${type}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -738,7 +738,7 @@ export const getLeastSell = (type) => (dispatch) => {
     type: types.GET_LEAST_SELL_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/org/getLeast-sellingProduct/${type}`, 
+    .get(`${hrErp}/phoneOrder/org/getLeast-sellingProduct/${type}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -763,7 +763,7 @@ export const repeatOrder = (orderId,data) => (dispatch, getState) => {
     type: types.REPEAT_ORDER_REQUEST,
   });
   axios
-    .put(`${base_url2}/phoneOrder/repeatOrder/${orderId}`,data,  {
+    .put(`${hrErp}/phoneOrder/repeatOrder/${orderId}`,data,  {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -788,7 +788,7 @@ export const updateOrdrSuplrItems = (data,orderId) => (dispatch) => {
   dispatch({ type: types.UPDATE_ORDR_SUPLR_ITEMS_REQUEST });
 
   axios
-    .put(`${base_url2}/phoneOrder/order/customer/shipping`, data, {
+    .put(`${hrErp}/phoneOrder/order/customer/shipping`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -814,7 +814,7 @@ export const getOrdrSuppierDetails = (orderId) => (dispatch) => {
     type: types.GET_ORDR_SUPLR_DETAILS_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/suppliersOrderItems/${orderId}`, 
+    .get(`${hrErp}/phoneOrder/suppliersOrderItems/${orderId}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -839,7 +839,7 @@ export const getSupplierOrdrItemList = (orderId,userId) => (dispatch) => {
     type: types.GET_SUPPLIER_ORDR_ITEM_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/suppliersOrderIteams/${orderId}/${userId}`, 
+    .get(`${hrErp}/phoneOrder/suppliersOrderIteams/${orderId}/${userId}`, 
       {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -864,7 +864,7 @@ export const getAllShipper = (orgId) => (dispatch) => {
     type: types.GET_ALL_SHIPPER_REQUEST,
   });
   axios
-    .get(`${base_url2}/shipper/all/shipper/${orgId}`, {
+    .get(`${hrErp}/shipper/all/shipper/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

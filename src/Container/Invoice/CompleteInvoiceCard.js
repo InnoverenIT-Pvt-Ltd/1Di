@@ -7,7 +7,7 @@ import { Input, } from "antd";
 import { MainForBroker } from '../../Components/UI/Layout';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { FormattedMessage } from 'react-intl';
-import { base_url2 } from "../../Config/Auth";
+import { hrErp } from "../../Config/Auth";
 import axios from 'axios';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
@@ -35,7 +35,7 @@ function CompleteInvoiceCard(props) {
   useEffect(() => {
     const fetchData1 = async () => {
         try {
-          const response = await axios.get(`${base_url2}/invoice/clearInvoice/${props.userId}`,{
+          const response = await axios.get(`${hrErp}/invoice/clearInvoice/${props.userId}`,{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
@@ -139,7 +139,7 @@ function CompleteInvoiceCard(props) {
 
                     <div class="w-6">
                     <a
-              href={`${base_url2}/customer/pdf/${item.orderId}`}
+              href={`${hrErp}/customer/pdf/${item.orderId}`}
             target="_blank"
             >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>

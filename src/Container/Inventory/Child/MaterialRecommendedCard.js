@@ -2,7 +2,7 @@ import React, { useEffect,useState,useRef,useCallback } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import axios from 'axios';
-import { base_url,base_url2 } from '../../../Config/Auth';
+import { hrWeb,hrErp } from '../../../Config/Auth';
 import styled from "styled-components";
 import Tooltip from '@mui/material/Tooltip';
 import { Button } from "antd";
@@ -145,7 +145,7 @@ function MaterialRecommendedCard(props) {
                                               {item.imageId ? (
                                                     <div class="object-cover object-center  flex items-center">
                                                      <img
-                                                              src={`${base_url}/image/${item.imageId}`} 
+                                                              src={`${hrWeb}/image/${item.imageId}`} 
                                                               style={{ height: "12.5rem", width: "13rem" }}
                                                           />
                                                          </div>  

@@ -1,5 +1,5 @@
 import * as types from "./CustomerActionTypes";
-import { base_url,base_url2 } from "../../Config/Auth";
+import { hrWeb,hrErp } from "../../Config/Auth";
 import axios from "axios";
 import { createBrowserHistory } from "history";
 import { message } from "antd";
@@ -10,7 +10,7 @@ export const getCancelOrder = (orderId,data) => (dispatch) => {
     type: types.GET_CANCEL_ORDER_REQUEST,
   });
   axios
-    .put(`${base_url2}/cart/cartProductLink}`, data,{
+    .put(`${hrErp}/cart/cartProductLink}`, data,{
     })
     .then((res) => {
       console.log(res);
@@ -33,7 +33,7 @@ export const addPlaceOrder = (data,cartId) => (dispatch) => {
   dispatch({ type: types.ADD_PLACE_ORDER_REQUEST });
 
   axios
-    .post(`${base_url2}/cart/cartProductLink/{cartId}} `, data, {
+    .post(`${hrErp}/cart/cartProductLink/{cartId}} `, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -61,7 +61,7 @@ export const addDeliveryInfo = (data,cartId,cb) => (dispatch) => {
     type: types.ADD_DELIVERY_INFO_REQUEST,
   });
   axios
-    .post(`${base_url2}/checkout/cart/attachshippingAddress/${cartId}`, data)
+    .post(`${hrErp}/checkout/cart/attachshippingAddress/${cartId}`, data)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -85,7 +85,7 @@ export const addTrackOrder = (data, cb) => (dispatch) => {
   dispatch({
     type: types.TRACK_ORDER_STATUS_REQUEST,
   });
-  axios.post(`${base_url2}/order/trackOrder`, data)
+  axios.post(`${hrErp}/order/trackOrder`, data)
     .then((res) => {
       
       console.log(res);
@@ -115,7 +115,7 @@ export const getOrderStatus = (orderId) => (dispatch) => {
     type: types.GET_ORDER_STATUS_REQUEST,
   });
   axios
-    .get(`${base_url2}/order/trackOrder/${orderId}`, {
+    .get(`${hrErp}/order/trackOrder/${orderId}`, {
     })
     .then((res) => {
       console.log(res);
@@ -138,8 +138,8 @@ export const getCustomerProductList = (pageNo) => (dispatch) => {
     type: types.GET_CUSTOMER_LIST_REQUEST,
   });
   axios
-    // .get(`${base_url2}/product/publishProduct `, 
-      .get(`${base_url2}/product/AllproductWAZ/pagewise/${pageNo}`, 
+    // .get(`${hrErp}/product/publishProduct `, 
+      .get(`${hrErp}/product/AllproductWAZ/pagewise/${pageNo}`, 
     //   {
     //   headers: {
     //     Authorization: "Bearer " + sessionStorage.getItem("token") || "", 
@@ -167,7 +167,7 @@ export const getCountryName = () => (dispatch) => {
     type: types.GET_COUNTRY_NAME_REQUEST,
   });
   axios
-    .get(`${base_url2}/countries/website?url=talent.tekorero.com`, {
+    .get(`${hrErp}/countries/website?url=talent.tekorero.com`, {
     })
     .then((res) => {
       console.log(res);
@@ -190,7 +190,7 @@ export const inputCustomerProductDataSearch = (name) => (dispatch) => {
     type: types.INPUT_CUSTOMER_PRODUCT_SEARCH_DATA_REQUSET,
   });
   axios
-    // .get(`${base_url2}/CUSTOMER/PRODUCT_details/${name}`, {
+    // .get(`${hrErp}/CUSTOMER/PRODUCT_details/${name}`, {
     //   headers: {
     //     Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     //   },
@@ -218,7 +218,7 @@ export const LinkProductInfo = (data) => (dispatch) => {
   dispatch({ type: types.LINK_PRODUCT_INFO_REQUEST });
 
   axios
-    .post(`${base_url2}/cart/cartProductLink `, data, {
+    .post(`${hrErp}/cart/cartProductLink `, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -245,7 +245,7 @@ export const getCartItems =(cartId)=>(dispatch)=>{
     type: types.GET_CART_ITEMS_REQUEST,
   });
   axios
-    .get(`${base_url2}/cart/cartProductLink/${cartId}`, {
+    .get(`${hrErp}/cart/cartProductLink/${cartId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -273,7 +273,7 @@ export const getShopImage = () => (dispatch) => {
     type: types.GET_PRODUCT_BY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/organization/image`)
+    .get(`${hrErp}/organization/image`)
     .then((res) => {
       dispatch({
         type: types.GET_SHOP_IMAGE_SUCCESS,
@@ -296,7 +296,7 @@ export const getProductById = (id)=>(dispatch)=>{
     type:types.GET_PRODUCT_BY_ID_REQUEST,
   });
   axios
-  .get(`${base_url2}/product/${id}`)
+  .get(`${hrErp}/product/${id}`)
   .then((res) => {
     dispatch({
       type: types.GET_PRODUCT_BY_ID_SUCCESS,
@@ -317,7 +317,7 @@ export const getCategories = () => (dispatch) => {
     type: types.GET_CATEGORIES_REQUEST,
   });
   axios
-    .get(`${base_url2}/product/allProductCatagory`)
+    .get(`${hrErp}/product/allProductCatagory`)
     .then((res) => {
       dispatch({
         type: types.GET_CATEGORIES_SUCCESS,
@@ -338,7 +338,7 @@ export const addContact = (data) => (dispatch) => {
   dispatch({ type: types.ADD_CONTACT_DETAILS_REQUEST });
 
   axios
-    .post(`${base_url2}/leads/website?url=talent.tekorero.com`, data, {
+    .post(`${hrErp}/leads/website?url=talent.tekorero.com`, data, {
     })
 
     .then((res) => {
@@ -363,7 +363,7 @@ export const getSources = () => (dispatch) => {
     type: types.GET_SOURCE_REQUEST,
   });
   axios
-  .get(`${base_url2}/sector/website?url=talent.tekorero.com`, {
+  .get(`${hrErp}/sector/website?url=talent.tekorero.com`, {
     headers: {
       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     },
@@ -404,7 +404,7 @@ export const getPaymentId = (data, cb) => dispatch => {
   });
 
   axios
-    .post(`${base_url}/Stripe/makePayment`, data, {})
+    .post(`${hrWeb}/Stripe/makePayment`, data, {})
     .then(res => {
    
       dispatch({
@@ -428,7 +428,7 @@ export const getProductByCategoryId = (brandId) => (dispatch) => {
     type: types.GET_PRODUCT_BY_CATEGORY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplies/supplies/brand/${brandId}`)
+    .get(`${hrErp}/supplies/supplies/brand/${brandId}`)
     .then((res) => {
       dispatch({
         type: types.GET_PRODUCT_BY_CATEGORY_ID_SUCCESS,
@@ -449,7 +449,7 @@ export const getSuppliesCList = (pageNo) => (dispatch) => {
     type: types.GET_SUPPLIES_LIST_C_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplies/all-supplies/${pageNo}`)
+    .get(`${hrErp}/supplies/all-supplies/${pageNo}`)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -471,7 +471,7 @@ export const getAllInventorySupplierItemCs =()=>(dispatch)=>{
     type: types.GET_ALL_INVENTORY_SUPPLIER_ITEMS_C_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/all-published/inventorysuppliers`)
+    .get(`${hrErp}/supplier/all-published/inventorysuppliers`)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -494,7 +494,7 @@ export const getAllSupplierItemCs =()=>(dispatch)=>{
     type: types.GET_ALL_SUPPLIER_ITEMS_C_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/all-published/suppliers`)
+    .get(`${hrErp}/supplier/all-published/suppliers`)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -517,7 +517,7 @@ export const getWitoutPrice =(productId)=>(dispatch)=>{
     type: types.GET_WITHOUT_PRICE_REQUEST,
   });
   axios
-    .get(`${base_url2}/product/WOPR/bothSuppliesAndProduct/${productId}`)
+    .get(`${hrErp}/product/WOPR/bothSuppliesAndProduct/${productId}`)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -547,8 +547,8 @@ export const searchInvestorName = (name) => (dispatch) => {
     type: types.GET_INVESTOR_SEARCH_REQUEST,
   });
   axios
-    // .get(`${base_url2}/supplies/suppliesName/${name}`,
-    .get(`${base_url2}/supplies/search/${name}`,
+    // .get(`${hrErp}/supplies/suppliesName/${name}`,
+    .get(`${hrErp}/supplies/search/${name}`,
 
        {
       // headers: {

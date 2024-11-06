@@ -10,7 +10,7 @@ import { Button, Card } from "antd";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LogoNew from "../../images/Logo_new.png";
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 class SuccessTemplate extends React.Component {
   render() {
     console.log(this.props.candidateMessage)

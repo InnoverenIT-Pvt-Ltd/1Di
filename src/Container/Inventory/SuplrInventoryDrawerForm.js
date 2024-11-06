@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 // import { addProcureDetails, getBrand, getModel } from "../../../../../Account/AccountAction";
 import {addSupplrInventory,getAllProductCatagory,getBrand, getModel,getAllProductList,getLocationList,getSaleCurrency} from "./InventoryAction";
 // import {getSaleCurrency} from "../../../../../../Auth/AuthAction";
-import { base_url2 } from "../../Config/Auth";
+import { hrErp } from "../../Config/Auth";
 import LazySelect from "../../Components/Forms/Formik/LazySelect";
 import { Field } from "formik";
 

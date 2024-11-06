@@ -6,7 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {getProcureOrderDetails,  repeatOrder} from "../MyOrder/MyOrderAction";
 import {  Button } from "antd";
 import dayjs from "dayjs";
-import { base_url2 } from "../../Config/Auth";
+import { hrErp } from "../../Config/Auth";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -31,7 +31,7 @@ const [errorC, setErrorC] = useState(null);
 
 const CancelItemRequest = async (item) => {
   try {
-    const respoCancel = await axios.post(`${base_url2}/phoneOrder/cancelOrder/${item.itemId}`,{},
+    const respoCancel = await axios.post(`${hrErp}/phoneOrder/cancelOrder/${item.itemId}`,{},
      { headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -50,7 +50,7 @@ const [error, setError] = useState(null);
 
   const fetchQuotationItems = async () => {
     try {
-      const response = await axios.get(`${base_url2}/quotation/procure/order/${props.rowDatas.quotationId}`,{
+      const response = await axios.get(`${hrErp}/quotation/procure/order/${props.rowDatas.quotationId}`,{
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

@@ -18,7 +18,7 @@ import styled from 'styled-components';
 import Carousel from "react-elastic-carousel";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ProductCardListbyCategory from '../Container/Customer/ProductCardListbyCategory';
-import { base_url } from '../Config/Auth';
+import { hrWeb } from '../Config/Auth';
 import CategoriesListCard from '../Container/Inventory/Child/CategoriesListCard';
 import MainSearchedData from './MainSearchedData';
 import { Footer } from '../Container/Customer/Footer';
@@ -249,7 +249,7 @@ class CustomerMainApp extends Component {
                                   <div class="object-cover object-center  flex items-center">
                                     <div>
                                   <img
-                                            src={`${base_url}/image/${item.imageId}`} alt=""
+                                            src={`${hrWeb}/image/${item.imageId}`} alt=""
                                             style={{ height: "7rem", width: "7rem" }}
                                         />
                                            <h3>{item.newProductNo} </h3> 

@@ -7,7 +7,7 @@ import InvoPaymentRight from './InvoPaymentRight'
 import { getInventoryCartItems,} from "./InventoryAction";
 import {Input} from "antd";
 import axios from 'axios';
-import { base_url,base_url2 } from '../../Config/Auth'; 
+import { hrWeb,hrErp } from '../../Config/Auth'; 
 
 function InvoPayment (props) {
 
@@ -23,7 +23,7 @@ function InvoPayment (props) {
     const check = checkNo.trim();
     if (check !== "") {
       try {
-        const response = await axios.put(`${base_url2}/payment/protal/prosess`, { paymentNo: check, orderPhoneId:props.invencartItem.orderPhoneId },
+        const response = await axios.put(`${hrErp}/payment/protal/prosess`, { paymentNo: check, orderPhoneId:props.invencartItem.orderPhoneId },
           { headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         }},

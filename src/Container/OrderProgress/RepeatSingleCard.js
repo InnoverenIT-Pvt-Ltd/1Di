@@ -7,7 +7,7 @@ import {
   PlusOutlined,
 } from '@ant-design/icons';
 import "../Customer/Customer.scss";
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 import {updateCartItemDate,handleProductDetails} from "../Inventory/InventoryAction";
 import InveProductsDetailsDrawer from '../Inventory/InveProductsDetailsDrawer';
 
@@ -48,7 +48,7 @@ console.log(props.item.productInfo)
         {props.item.productInfo.imageId ? (
         <img 
         className="h-24"
-        src={`${base_url}/image/${props.item.productInfo.imageId}`} 
+        src={`${hrWeb}/image/${props.item.productInfo.imageId}`} 
        alt="images" 
         /> 
     ) : (

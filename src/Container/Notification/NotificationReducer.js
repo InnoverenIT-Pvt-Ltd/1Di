@@ -18,7 +18,11 @@ const initialState = {
 
   fetchingFutureNotifications: false,
   fetchingFutureNotificationsError: false,
-  futureNotifications: []
+  futureNotifications: [],
+
+  fetchingNotificationsCount: false,
+  fetchingNotificationsCountError: false,
+  NotificationsCount:{},
 };
 export const notificationReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -54,8 +58,51 @@ export const notificationReducer = (state = initialState, action) => {
         fetchingPresentNotificationsError: true
       };
 
-
+      case types.UPDATE_NOTIFICATION_BY_ID_REQUEST:
+        return { ...state, updatingNotification: true };
+      case types.UPDATE_NOTIFICATION_BY_ID_SUCCESS:
+        return {
+          ...state,
+          updatingNotification: false,
+          pastNotifications: state.pastNotifications.map(item => {
+            //////debugger;
+            if (item.notificationId === action.payload.notificationId) {
+              return (item = action.payload);
+            } else {
+              return item;
+            }
+          }),
+          presentNotifications: state.presentNotifications.map(item => {
+            if (item.notificationId === action.payload.notificationId) {
+              return (item = action.payload);
+            } else {
+              return item;
+            }
+          })
+        };
+      case types.UPDATE_NOTIFICATION_BY_ID_FAILURE:
+        return {
+          ...state,
+          updatingNotification: false,
+          updatingNotificationError: false
+        };
     
+
+        case types.GET_NOTIFICATIONS_COUNT_REQUEST:
+          return { ...state, fetchingNotificationsCount: true };
+        case types.GET_NOTIFICATIONS_COUNT_SUCCESS:
+          return {
+            ...state,
+            fetchingNotificationsCount: false,
+            NotificationsCount: action.payload
+          };
+        case types.GET_NOTIFICATIONS_COUNT_FAILURE:
+          return {
+            ...state,
+            fetchingNotificationsCount: false,
+            fetchingNotificationsCountError: true
+          };
+
     default:
       return state;
   }
