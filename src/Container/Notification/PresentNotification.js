@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import moment from "moment";
 import {
-  getPresentNotifications,
+  getPresentNotifications,updateNotifcation
 } from "../Notification/NotificationAction";
 import { List, Button, Spin } from "antd";
 
@@ -28,19 +28,19 @@ class PresentNotification extends Component {
   componentDidMount = () => {
     const { user, getPresentNotifications } = this.props;
     console.log("]______++++++++++", user);
-    if (user && user.candidateId) {
+    if (user && user.userId) {
       console.log("]______++++++++++");
-      getPresentNotifications(user.candidateId);
-      setTimeout(getPresentNotifications(user.candidateId), 30000);
+      getPresentNotifications(user.userId);
+      setTimeout(getPresentNotifications(user.userId), 30000);
     }
   };
   componentWillReceiveProps(nextProps) {
     const { user, getPresentNotifications } = nextProps;
     console.log("getPresentNotifications]______++++++++++");
-    if (user.candidateId !== this.props.user.candidateId) {
+    if (user.userId !== this.props.user.userId) {
       console.log("]______++++++++++");
-      getPresentNotifications(user.candidateId);
-      setTimeout(getPresentNotifications(user.candidateId), 30000);
+      getPresentNotifications(user.userId);
+      setTimeout(getPresentNotifications(user.userId), 30000);
     }
   }
   handleCallback(status, data) {
@@ -59,8 +59,7 @@ class PresentNotification extends Component {
   }
   handleClick = item => {
     const Id = item.notificationId;
-    // alert("item.notificationId");
-   // this.props.updateNotifcation(Id, item,this.handleCallback);
+   this.props.updateNotifcation(Id, item,this.handleCallback);
   };
 
   render() {
@@ -139,7 +138,7 @@ class PresentNotification extends Component {
 const mapStateToProps = ({ auth, notification }) => ({
   user: auth.userDetails,
   //userId: auth.userDetails.userId,
-  candidateId:auth.userDetails.candidateId,
+  userId:auth.userDetails.userId,
   fetchingPresentNotifications: notification.fetchingPresentNotifications,
   presentNotifications: notification.presentNotifications
 });
@@ -147,7 +146,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       getPresentNotifications,
-      //updateNotifcation
+      updateNotifcation
     },
     dispatch
   );

@@ -1,4 +1,4 @@
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 import axios from "axios";
 
 /**
@@ -6,7 +6,7 @@ import axios from "axios";
  */
 export const addNote = (note, cb) => (dispatch) => {
   axios
-    .post(`${base_url}/notes`, note)
+    .post(`${hrWeb}/notes`, note)
     .then((res) => {
       console.log(res);
       cb && cb();

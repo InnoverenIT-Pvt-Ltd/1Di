@@ -3,7 +3,7 @@ import React, { useEffect,useState,useRef,useCallback } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import axios from 'axios';
-import {base_url, base_url2 } from '../../../Config/Auth';
+import {hrWeb, hrErp } from '../../../Config/Auth';
 // import { CardElement } from './MaterialsItemCard'; // Import the styled CardElement
 import styled from "styled-components";
 import Tooltip from '@mui/material/Tooltip';
@@ -34,7 +34,7 @@ const startDate=new Date().toISOString();;
             try {
                 setLoading(true);
 
-                const response = await axios.get(`${base_url2}/phoneOrder/org/getTop-sellingProduct/${type}/${limit}?endDate=2024-08-13T11:31:59.319Z&startDate=2024-08-01T00:00:00.000Z`,{
+                const response = await axios.get(`${hrErp}/phoneOrder/org/getTop-sellingProduct/${type}/${limit}?endDate=2024-08-13T11:31:59.319Z&startDate=2024-08-01T00:00:00.000Z`,{
                     headers: {
                         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
                       },
@@ -111,7 +111,7 @@ const startDate=new Date().toISOString();;
                                              {item.imageId ? (
                                                    <div class="object-cover object-center  flex items-center">
                                                     <img
-                                                             src={`${base_url}/image/${item.imageId}`} 
+                                                             src={`${hrWeb}/image/${item.imageId}`} 
                                                              style={{ height: "12.5rem", width: "13rem" }}
                                                          />
                                                         </div>  

@@ -1,5 +1,5 @@
 import * as types from "./JobActionType";
-import { base_url } from "../Config/Auth";
+import { hrWeb } from "../Config/Auth";
 import axios from "axios";
 import { message } from "antd";
 import { createBrowserHistory } from "history";
@@ -13,7 +13,7 @@ export const getSectors = () => (dispatch) => {
     type: types.GET_SECTORS_REQUEST,
   });
   axios
-    .get(`${base_url}/sector/website?url=talent.tekorero.com`,)
+    .get(`${hrWeb}/sector/website?url=talent.tekorero.com`,)
 
     .then((res) => {
       console.log(res);
@@ -36,7 +36,7 @@ export const addCandidate = (data, cb) => (dispatch) => {
     type: types.ADD_CANDIDATE_REQUEST,
   });
   axios
-    .post(`${base_url}/candidate/website?url=talent.tekorero.com`, data)
+    .post(`${hrWeb}/candidate/website?url=talent.tekorero.com`, data)
     .then((res) => {
       dispatch({
         type: types.ADD_CANDIDATE_SUCCESS,
@@ -66,7 +66,7 @@ export const getLibrarys = () => (dispatch) => {
     type: types.GET_LIBRARYS_REQUEST,
   });
   axios
-    .get(`${base_url}/candidate/defination/website?url=talent.tekorero.com`)
+    .get(`${hrWeb}/candidate/defination/website?url=talent.tekorero.com`)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -88,7 +88,7 @@ export const getIdProofs = () => (dispatch) => {
     type: types.GET_PROOFS_REQUEST,
   });
   axios
-    .get(`${base_url}/idProofType/all-list/website?url=talent.tekorero.com`,)
+    .get(`${hrWeb}/idProofType/all-list/website?url=talent.tekorero.com`,)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -109,7 +109,7 @@ export const getDesignations = () => (dispatch) => {
     type: types.GET_DESIGNATIONS_REQUEST,
   });
   axios               
-    .get(`${base_url}/designation/website?url=talent.tekorero.com`,)
+    .get(`${hrWeb}/designation/website?url=talent.tekorero.com`,)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -130,7 +130,7 @@ export const getDepartments = () => (dispatch) => {
     type: types.GET_DEPARTMENTS_REQUEST,
   });
   axios
-    .get(`${base_url}/department/website?url=talent.tekorero.com`,)
+    .get(`${hrWeb}/department/website?url=talent.tekorero.com`,)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -151,7 +151,7 @@ export const getRoles = () => (dispatch) => {
     type: types.GET_ROLES_REQUEST,
   });
   axios
-    .get(`${base_url}/roleType/website?url=talent.tekorero.com`,)
+    .get(`${hrWeb}/roleType/website?url=talent.tekorero.com`,)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -173,7 +173,7 @@ export const getCurrency = () => (dispatch) => {
     type: types.GET_CURRENCY_REQUEST,
   });
   axios
-    .get(`${base_url}/currencies/website?url=talent.tekorero.com`)
+    .get(`${hrWeb}/currencies/website?url=talent.tekorero.com`)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -195,7 +195,7 @@ export const getCountries = () => (dispatch) => {
     type: types.GET_COUNTRIES_REQUEST,
   });
   axios
-    .get(`${base_url}/countries/website?url=talent.tekorero.com`)
+    .get(`${hrWeb}/countries/website?url=talent.tekorero.com`)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -218,7 +218,7 @@ export const addPartner = (data, cb) => (dispatch) => {
   });
 
   axios
-    .post(`${base_url}/partner/website?url=talent.tekorero.com`, data)
+    .post(`${hrWeb}/partner/website?url=talent.tekorero.com`, data)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -243,7 +243,7 @@ export const AddEmail = (data,cb) => (dispatch) => {
     type: types.ADD_EMAIL_REQUEST,
   });
   axios
-    .post(`${base_url}/candidate/verify/email/website?url=talent.tekorero.com`, data)
+    .post(`${hrWeb}/candidate/verify/email/website?url=talent.tekorero.com`, data)
     .then((res) => {
       dispatch({
         type: types.ADD_EMAIL_SUCCESS,
@@ -277,7 +277,7 @@ export const getJobCardDetails = (candidateId) => (dispatch) => {
     type: types.GET_JOB_CARD_REQUEST,
   });
   axios
-    .get(`${base_url}/candidate/suggested/recruitment/${candidateId}?url=talent.tekorero.com`,)
+    .get(`${hrWeb}/candidate/suggested/recruitment/${candidateId}?url=talent.tekorero.com`,)
 
     .then((res) => {
       console.log(res);
@@ -307,7 +307,7 @@ export const saveCandidateProcess = (data, cb) => (dispatch) => {
     type: types.ADD_CANDIDATE_PROCESS_REQUEST,
   });
   axios
-    .post(`${base_url}/candidate/save-add/process/website?url=talent.tekorero.com`, data)
+    .post(`${hrWeb}/candidate/save-add/process/website?url=talent.tekorero.com`, data)
     .then((res) => {
       dispatch({
         type: types.ADD_CANDIDATE_PROCESS_SUCCESS,
@@ -330,7 +330,7 @@ export const addCustDetails =(data,cb)=>(dispatch)=>{
   dispatch({
     type:types.ADD_CUSTOMER_DETAILS_REQUEST,
   });
-  axios.post(`${base_url}/aaddf`,data)
+  axios.post(`${hrWeb}/aaddf`,data)
   .then((res)=>{
     dispatch({
       type:types.ADD_CUSTOMER_DETAILS_SUCCESS,
@@ -352,7 +352,7 @@ export const getRolesName = () => (dispatch) => {
     type: types.GET_ROLES_NAME_REQUEST,
   });
   axios
-     .get(`${base_url}/roleType/website?url=talent.tekorero.com`, {
+     .get(`${hrWeb}/roleType/website?url=talent.tekorero.com`, {
     
   })
     .then((res) => {
@@ -378,7 +378,7 @@ export const addApply = (data,) => (dispatch, getState) => {
     type: types.ADD_APPLY_REQUEST,
   });
   axios
-    .post(`${base_url}/candidate/verify/email/website?url=talent.tekorero.com`, data, {
+    .post(`${hrWeb}/candidate/verify/email/website?url=talent.tekorero.com`, data, {
       // headers: {
       //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       // },

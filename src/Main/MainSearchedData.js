@@ -2,7 +2,7 @@ import React, { useEffect,useState, useRef,lazy } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from "styled-components";
-import { base_url } from '../Config/Auth';
+import { hrWeb } from '../Config/Auth';
 import { RollbackOutlined } from "@ant-design/icons";
 import {handleCatagoryDetails} from "../Container/Customer/CustomerAction";
 import { Tooltip } from 'antd';
@@ -48,7 +48,7 @@ console.log(investorSerachedDataCount)
                                               {item.imageId ? (
                                                     <div class=" flex items-center">
                                                      <img
-                                                              src={`${base_url}/image/${item.imageId}`} 
+                                                              src={`${hrWeb}/image/${item.imageId}`} 
                                                               style={{ height: "6.5rem", width: "7rem" }}
                                                           />
                                                          </div>  

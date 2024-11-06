@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { List, Avatar, Spin, Button } from "antd";
 import dayjs from "dayjs";
 import moment from "moment";
-import { getPastNotifications } from "../Notification/NotificationAction";
+import { getPastNotifications,updateNotifcation } from "../Notification/NotificationAction";
 
 class PastNotification extends Component {
   constructor(props) {
@@ -26,19 +26,19 @@ class PastNotification extends Component {
   componentDidMount() {
     const { user, getPastNotifications } = this.props;
     console.log("]______++++++++++", user);
-    if (user && user.candidateId) {
+    if (user && user.userId) {
       console.log("]______++++++++++");
-      getPastNotifications(user.candidateId);
-      setTimeout(getPastNotifications(user.candidateId), 30000);
+      getPastNotifications(user.userId);
+      setTimeout(getPastNotifications(user.userId), 30000);
     }
   }
   componentWillReceiveProps(nextProps) {
     const { user, getPastNotifications } = nextProps;
     console.log("getPastNotifications]______++++++++++");
-    if (user.candidateId !== this.props.user.candidateId) {
+    if (user.userId !== this.props.user.userId) {
       console.log("]______++++++++++");
-      getPastNotifications(user.candidateId);
-      setTimeout(getPastNotifications(user.candidateId), 30000);
+      getPastNotifications(user.userId);
+      setTimeout(getPastNotifications(user.userId), 30000);
     }
   }
   handleCallback(status, data) {
@@ -57,8 +57,7 @@ class PastNotification extends Component {
   }
   handleClick = item => {
     const Id = item.notificationId;
-    // alert("item.notificationId");
-   // this.props.updateNotifcation(Id, item, this.handleCallback);
+   this.props.updateNotifcation(Id, item, this.handleCallback);
   };
   render() {
     console.log(this.props.pastNotifications);
@@ -141,8 +140,7 @@ class PastNotification extends Component {
 }
 const mapStateToProps = ({ auth, notification }) => ({
   user: auth.userDetails,
-  //userId: auth.userDetails.userId,
-  candidateId:auth.userDetails.candidateId,
+  userId:auth.userDetails.userId,
   fetchingPastNotifications: notification.fetchingPastNotifications,
   pastNotifications: notification.pastNotifications
 });
@@ -150,7 +148,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       getPastNotifications,
-      //updateNotifcation
+      updateNotifcation
     },
     dispatch
   );

@@ -21,7 +21,7 @@ import Carousel from "react-elastic-carousel";
 import "./Inventory.scss";
 import Appy from "../../Assests/Images/apple.jpg";
 import mang from "../../Assests/Images/mango.jpg";
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 import KoreroLogo from "../../Assests/Images/apple.jpg";
 import CartTable from "./CartTable";
 import { Footer } from "../Customer/Footer";
@@ -69,7 +69,7 @@ console.log(props.productsByproductId)
         </div>
       </div>
       <div class=" flex justify-end w-[40%]">
-      <img  src={`${base_url}/image/${props.productsByproductId.imageId}`}  className="w-[14rem] h-[14rem]" />
+      <img  src={`${hrWeb}/image/${props.productsByproductId.imageId}`}  className="w-[14rem] h-[14rem]" />
       </div> 
     </div>
     <div className="flex w-wk justify-evenly mt-3 ">

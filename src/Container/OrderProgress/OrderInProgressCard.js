@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url2 } from '../../Config/Auth';
+import { hrErp } from '../../Config/Auth';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
@@ -351,7 +351,7 @@ function OrderInProgressCard(props) {
                                             </div> */}
                                                 <div class="w-6   ml-gap ">
                                                 <a
-              href={`${base_url2}/customer/pdf/${item.orderId}`}
+              href={`${hrErp}/customer/pdf/${item.orderId}`}
             target="_blank"
             >
             <PictureAsPdfIcon className="!text-icon text-[#f2dddd]"/>

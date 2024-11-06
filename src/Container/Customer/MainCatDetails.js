@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
  import { getSuppliesBySuppliestId } from "../Inventory/InventoryAction";
 import styled from "styled-components";
 import { Select } from "../../Components/UI/Elements";
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 import MainTable from "./MainTable";
 import { Footer } from "./Footer";
 import { CurrencySymbol } from "../../Components/Common";
@@ -68,7 +68,7 @@ console.log(props.suppliesByproductId)
       
       </div>
       <div class=" flex justify-end">
-      <img  src={`${base_url}/image/${props.suppliesByproductId.imageId}`}  className="w-[20rem]" />
+      <img  src={`${hrWeb}/image/${props.suppliesByproductId.imageId}`}  className="w-[20rem]" />
      
       </div>
    

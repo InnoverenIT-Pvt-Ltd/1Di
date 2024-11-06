@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { CustomerHeader } from "../../../Components/Utils";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 import MainHeaderLeft from "./MainHeaderLeft";
 import MainHeaderRight from "./MainHeaderRight";
 import CustomerContentHeaderActionCenter from "./CustomerContentHeaderActionCenter";

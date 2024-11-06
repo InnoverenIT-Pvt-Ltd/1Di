@@ -2,7 +2,7 @@ import * as types from "./CoursesActionTypes";
 import axios from "axios";
 import moment from "moment";
 import { message } from "antd"; 
-import { base_url, assessment_url} from "../../Config/Auth";
+import { hrWeb, assessment_url} from "../../Config/Auth";
 
 
 

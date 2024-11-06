@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import Carousel from "react-elastic-carousel";
 import styled from "styled-components";
 import Tooltip from '@mui/material/Tooltip';
-import { base_url } from '../../Config/Auth';
+import { hrWeb } from '../../Config/Auth';
 import { InfoCircleTwoTone,  
     MinusOutlined,
     PlusOutlined } from "@ant-design/icons";
@@ -70,7 +70,7 @@ function OuterAllSuppliesCard (props) {
                                                         <div class="object-cover object-center  flex items-center">
                                                           <div>
                                                       <img
-                                                                  src={`${base_url}/image/${item.imageId}`} alt=""
+                                                                  src={`${hrWeb}/image/${item.imageId}`} alt=""
                                                                   style={{ height: "7rem", width: "7rem" }}
                                                               />
                                                                <h3>{item.newProductNo} </h3>  

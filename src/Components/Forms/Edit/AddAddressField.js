@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { FormattedMessage } from "react-intl";
 import axios from "axios";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 import { FlexContainer } from "../../UI/Layout";
 import { ActionIcon } from "../../Utils";
 import { Spacer } from "../../UI/Elements";
@@ -36,7 +36,7 @@ class AddAddressField extends Component {
     } = this.props;
     this.setState({ isSubmitting: true });
     axios
-      .post(`${base_url}/address/employee/${employeeId}`, address, {
+      .post(`${hrWeb}/address/employee/${employeeId}`, address, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

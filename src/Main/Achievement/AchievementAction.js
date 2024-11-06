@@ -1,7 +1,7 @@
 import * as types from "./AchievementActionTypes";
 import axios from "axios";
 import moment from "moment";
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 
 
 export const setAchievementViewType = (viewType) => (dispatch) =>
@@ -30,7 +30,7 @@ export const setAchievementViewType = (viewType) => (dispatch) =>
       type: types.GET_DATE_WISE_ACHIEVEMENT_REQUEST,
     });
     axios
-      .get(`${base_url}/hour/candidate/all/hour-list/${candidateId}/website?endDate=${endDate}&startDate=${startDate}&url=talent.tekorero.com`, {
+      .get(`${hrWeb}/hour/candidate/all/hour-list/${candidateId}/website?endDate=${endDate}&startDate=${startDate}&url=talent.tekorero.com`, {
       //  headers: {
       //     Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       //   },

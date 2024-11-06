@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "antd/lib/avatar";
 import { ProgressiveImage } from "../../Utils";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 import {Tooltip } from "antd";
 import ProfilePreview from "../../../images/ProfilePreview.png";
 const MultiAvatar = ({
@@ -30,7 +30,7 @@ const MultiAvatar = ({
           <div style={{  }}>
             <ProgressiveImage
               preview={ProfilePreview}
-              image={`${base_url}/image/${imageId}`}
+              image={`${hrWeb}/image/${imageId}`}
               width={imgWidth || "3.4375em"}
               height={imgHeight || "3.4375em"}
               // borderRadius={imgRadius}

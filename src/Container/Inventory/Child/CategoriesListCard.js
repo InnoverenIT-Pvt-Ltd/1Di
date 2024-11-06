@@ -17,7 +17,7 @@ import { InfoCircleTwoTone,  DeleteOutlined,
   PlusOutlined } from "@ant-design/icons";
 import moment from "moment";
 import Carousel from "react-elastic-carousel";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Visibility } from "@mui/icons-material";
 
@@ -80,7 +80,7 @@ function CategoriesListCard (props) {
                           {item.imageId ? (
                             <div className=" flex items-center sm:h-16 w-16 flex-shrink-0 overflow-hidden rounded-md  md:h-20 max-w-screen-md ">
                             <div   className=" flex items-center h-16 w-16   hover:shadow-lg">
-                            <img  src={`${base_url}/image/${item.imageId}`} alt=""
+                            <img  src={`${hrWeb}/image/${item.imageId}`} alt=""
                                             />
                             </div>
                             </div>

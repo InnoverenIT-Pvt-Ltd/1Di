@@ -1,5 +1,5 @@
 import * as types from "./InventoryActionType";
-import { base_url, base_url2 } from "../../Config/Auth";
+import { hrWeb, hrErp } from "../../Config/Auth";
 import axios from "axios";
 import moment from "moment";
 import Swal from 'sweetalert2';
@@ -12,8 +12,8 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
       type: types.GET_PROFESSIONALDUCTS_REQUEST,
     });
     axios
-      .get(`${base_url2}/product/productList/pagewise/${pageNo}/${currencyId}`,
-      // .get(`${base_url2}/product/productList/pagewise/${pageNo}`,
+      .get(`${hrErp}/product/productList/pagewise/${pageNo}/${currencyId}`,
+      // .get(`${hrErp}/product/productList/pagewise/${pageNo}`,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -39,7 +39,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
       type: types.GET_ALL_PRODUCT_CATEGORY_REQUEST,
     });
     axios
-      .get(`${base_url2}/product/allProductCatagory`, {
+      .get(`${hrErp}/product/allProductCatagory`, {
         // headers: {
         //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         // },
@@ -65,8 +65,8 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
       type: types.GET_ALL_SUPPLIES_CATEGORY_REQUEST,
     });
     axios
-      // .get(`${base_url2}/supplies/allSuppliesCatagory`, {
-        .get(`${base_url2}/supplies/allSuppliesBrand`, {
+      // .get(`${hrErp}/supplies/allSuppliesCatagory`, {
+        .get(`${hrErp}/supplies/allSuppliesBrand`, {
         // headers: {
         //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         // },
@@ -97,7 +97,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
     export const uploadInventoryDoc = (data) => (dispatch) => {
     dispatch({ type: types.UPLOAD_UPLOAD_INVENTORY_REQUEST });
     axios
-      .post(`${base_url2}/excel/inventoryProduct`, data, {
+      .post(`${hrErp}/excel/inventoryProduct`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -126,7 +126,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
  const userId=getState().auth.userDetails.userId;
     dispatch({ type: types.LINK_INVENTORY_ITEM_REQUEST });
     axios
-      .post(`${base_url2}/quotation/protal/procure/order`, data, {
+      .post(`${hrErp}/quotation/protal/procure/order`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -163,7 +163,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
       type: types.GET_INVENTORY_CART_ITEMS_REQUEST,
     });
     axios
-      .get(`${base_url2}/quotation/protal/procure/getCart/${userId}`, {
+      .get(`${hrErp}/quotation/protal/procure/getCart/${userId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -193,7 +193,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
       type: types.GET_STRIPE_IND_REQUEST,
     });
     axios
-      .get(`${base_url}/paymentMode/activated`, {
+      .get(`${hrWeb}/paymentMode/activated`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -220,7 +220,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
       type: types.ADD_INVENTORY_DELIVERY_INFO_REQUEST,
     });
     axios
-      .post(`${base_url2}/quotation/protal/procure/address/${quotationId}`, data,{
+      .post(`${hrErp}/quotation/protal/procure/address/${quotationId}`, data,{
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -255,7 +255,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
     });
   
     axios
-      .post(`${base_url}/stripe/makePayment`, data, { headers: {
+      .post(`${hrWeb}/stripe/makePayment`, data, { headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },})
       .then(res => {
@@ -280,7 +280,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
         type: types.MAKE_INVENTORY_PAYMENT_REQUEST,
     })
    
-     axios.post(`${base_url2}/api/v1/stripe/confirmPayment`,data ,{
+     axios.post(`${hrErp}/api/v1/stripe/confirmPayment`,data ,{
      headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -318,7 +318,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_INVENTORY_CART_ITEMS_COUNT_REQUEST,
           });
           axios
-            .get(`${base_url2}/quotation/protal/procure/getCartCount/${userId}`, {
+            .get(`${hrErp}/quotation/protal/procure/getCartCount/${userId}`, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -344,7 +344,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           dispatch({ type: types.UPDATE_CART_PLUS_REQUEST });
         
           axios
-            .put(`${base_url2}/quotation/protal/procure/cartUnitEdit`, data, {
+            .put(`${hrErp}/quotation/protal/procure/cartUnitEdit`, data, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -373,7 +373,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.DELETE_CART_ITEM_REQUEST,
           });
           axios
-            .delete(`${base_url2}/quotation/protal/procure/cartUnitDelete/${cartItemId}`,{
+            .delete(`${hrErp}/quotation/protal/procure/cartUnitDelete/${cartItemId}`,{
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -415,7 +415,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           dispatch({ type: types.ADD_COD_INVENTORY_REQUEST });
         
           axios
-            .post(`${base_url2}/payment/protal/prosess `, data, {
+            .post(`${hrErp}/payment/protal/prosess `, data, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -447,7 +447,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_ALL_INVENTORY_SUPPLIER_ITEMS_REQUEST,
           });
           axios
-            .get(`${base_url2}/supplier/all/published/inventorysuppliers/${orgId}`, {
+            .get(`${hrErp}/supplier/all/published/inventorysuppliers/${orgId}`, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -474,7 +474,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_ALL_SUPPLIER_ITEMS_REQUEST,
           });
           axios
-            .get(`${base_url2}/supplier/all/published/suppliers/${orgId}`, {
+            .get(`${hrErp}/supplier/all/published/suppliers/${orgId}`, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -501,7 +501,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_SUPPLIES_LIST_REQUEST,
           });
           axios
-            .get(`${base_url2}/supplies/publishSupplies/${pageNo}`, {
+            .get(`${hrErp}/supplies/publishSupplies/${pageNo}`, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -527,7 +527,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_SUPLR_INVENTORY_LIST_REQUEST,
           });
           axios   
-            .get(`${base_url2}/supplier/inventory/supplier/portal/${userId}/${pageNo}`, {
+            .get(`${hrErp}/supplier/inventory/supplier/portal/${userId}/${pageNo}`, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -553,7 +553,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           dispatch({ type: types.UPDATE_CART_ITEM_DATE_REQUEST });
         
           axios
-            .put(`${base_url2}/quotation/portal/procure/saveDeliveryDate`, data, {
+            .put(`${hrErp}/quotation/portal/procure/saveDeliveryDate`, data, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -587,7 +587,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           });
         
           axios
-            .post(`${base_url2}/supplier/inventory/supplier`, customer, {
+            .post(`${hrErp}/supplier/inventory/supplier`, customer, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -618,7 +618,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
               type: types.GET_BRAND_REQUEST,
           });
           axios
-              .get(`${base_url2}/product/brandName/${category}`, 
+              .get(`${hrErp}/product/brandName/${category}`, 
               {
                   headers: {
                       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -645,7 +645,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
               type: types.GET_MODEL_REQUEST,
           });
           axios
-              .get(`${base_url2}/product/modelName/${category}/${brand}`,
+              .get(`${hrErp}/product/modelName/${category}/${brand}`,
                {
                   headers: {
                       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -672,7 +672,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_ALL_PRODUCT_LIST_REQUEST,
           });
           axios
-            .get(`${base_url2}/product/attributeName/${category}/${brand}/${model}`, 
+            .get(`${hrErp}/product/attributeName/${category}/${brand}/${model}`, 
             {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -699,7 +699,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_LOCATION_LIST_REQUEST,
           });
           axios
-            .get(`${base_url}/locationDetails/getLocationDetailsList/${orgId}`, {
+            .get(`${hrWeb}/locationDetails/getLocationDetailsList/${orgId}`, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -725,7 +725,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_SALE_CURRENCY_REQUEST,
           });
           axios
-            .get(`${base_url}/currencies/sales`, {
+            .get(`${hrWeb}/currencies/sales`, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -765,7 +765,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_PRODUCTS_BY_PRODUCTID_REQUEST,
           });
           axios
-            .get(`${base_url2}/product/bothSuppliesAndProduct/${productId}`, {
+            .get(`${hrErp}/product/bothSuppliesAndProduct/${productId}`, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -790,7 +790,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_SUPPLIES_BY_PRODUCTID_REQUEST,
           });
           axios
-            .get(`${base_url2}/supplies/bothSuppliesAndProduct/${productId}`,)
+            .get(`${hrErp}/supplies/bothSuppliesAndProduct/${productId}`,)
             .then((res) => {
               console.log(res);
               dispatch({
@@ -811,7 +811,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_FEATURED_MATERIALS_REQUEST,
           });
           axios
-            .get(`${base_url2}/supplies/featuredSupplies/${pageNo}`,
+            .get(`${hrErp}/supplies/featuredSupplies/${pageNo}`,
               {
                 headers: {
                   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -838,7 +838,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.GET_MATERIAL_RECOMMEND_REQUEST,
           });
           axios
-            .get(`${base_url2}/supplies/recomendededSupplies/${pageNo}`, {
+            .get(`${hrErp}/supplies/recomendededSupplies/${pageNo}`, {
               // headers: {
               //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               // },
@@ -863,7 +863,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           dispatch({ type: types.GENERATE_QUOTATION_REQUEST });
         
           axios
-            .put(`${base_url2}/quotation/protal/procure/address/${quotationId}`,data, {
+            .put(`${hrErp}/quotation/protal/procure/address/${quotationId}`,data, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -892,7 +892,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             type: types.ADD_REPEAT_DELIVERY_INFO_REQUEST,
           });
           axios
-            .post(`${base_url2}/phoneOrder/repeatOrder/address/${orderId}`, data,{
+            .post(`${hrErp}/phoneOrder/repeatOrder/address/${orderId}`, data,{
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -919,7 +919,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           dispatch({ type: types.REPEAT_PAYMENT_REQUEST });
         
           axios
-            .post(`${base_url2}/payment/repeatOrder/prosess`, data, {
+            .post(`${hrErp}/payment/repeatOrder/prosess`, data, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },

@@ -11,7 +11,7 @@ import "../Inventory.scss";
 import {getSuppliesList,LinkInventoryItem,handleSuppliesDetails} from "../InventoryAction";
 import {  MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { base_url,base_url2 } from "../../../Config/Auth";
+import { hrWeb,hrErp } from "../../../Config/Auth";
 import axios from 'axios';
 import InveSuppliesDetailsDrawer from "./InveSuppliesDetailsDrawer";
 import { CurrencySymbol } from "../../../Components/Common";
@@ -77,7 +77,7 @@ useEffect(() => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${base_url2}/supplies/publish/count`);
+        const response = await axios.get(`${hrErp}/supplies/publish/count`);
         setData(response.data);
         setLoading(false);
       } catch (error) {
@@ -246,7 +246,7 @@ useEffect(() => {
                                               {item.imageId ? (
                                                     <div class="object-cover object-center  flex items-center">
                                                      <img
-                                                              src={`${base_url}/image/${item.imageId}`} 
+                                                              src={`${hrWeb}/image/${item.imageId}`} 
                                                               style={{ height: "6.5rem", width: "13rem" }}
                                                           />
                                                          </div>  
