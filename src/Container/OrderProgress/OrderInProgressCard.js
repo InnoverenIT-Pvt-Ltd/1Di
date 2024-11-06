@@ -19,6 +19,10 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { hrErp } from '../../Config/Auth';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import CategoryIcon from '@mui/icons-material/Category';
 
 const ProcureItemViewDrawer =lazy(()=>import("./ProcureItemViewDrawer"));
 const ProcureStatusShowDrawer =lazy(()=>import("./ProcureStatusShowDrawer"));
@@ -150,20 +154,23 @@ function OrderInProgressCard(props) {
             </div>
             <div className='mt-2'>
             <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[9.9rem] font-bold font-poppins"> <FormattedMessage
+            <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[9.9rem] text-[#00A2E8] font-bold font-poppins"> <DynamicFeedIcon className='!text-base '/> <FormattedMessage
                                    id="app."
                                   defaultMessage="Order ID"
                                  /></div>
-        <div className="w-[13.5rem] font-bold font-poppins"><FormattedMessage
+        <div className="w-[13.5rem] font-bold font-poppins">
+        <DateRangeIcon className='!text-base text-[#e4eb2f]'/> <FormattedMessage
                                    id="app.date"
                                   defaultMessage="Date"
                                  /></div>
-        <div className="w-[20.2rem] font-bold font-poppins "><FormattedMessage
+        <div className="w-[29.2rem] font-bold font-poppins ">
+            <LocalShippingIcon className=' !text-base text-[#e4eb2f]'/><FormattedMessage
                                    id="app.delivery"
                                   defaultMessage="delivery"
                                  /></div>
-        <div className=" w-[7.7rem] font-bold font-poppins"><FormattedMessage
+        <div className=" w-[7.7rem] font-bold font-poppins">
+        <CategoryIcon className=" !text-base text-[#e4eb2f]"/><FormattedMessage
                                    id="app.items"
                                   defaultMessage="Items"
                                  /></div>
@@ -212,8 +219,8 @@ function OrderInProgressCard(props) {
                                 <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                              
                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8  md:w-[9.1rem] ">                                          
-                                            <div class=" text-xs  font-poppins">
+                                        <div className=" flex justify-center border-l-2 border-green-500 bg-[#eef2f9] h-8  md:w-[9.1rem] ">                                          
+                                            <div class=" flex items-center text-xs  font-poppins">
                                                 {item.newOrderNo}
                                                 &nbsp;
                                                 {result ? <span
@@ -223,25 +230,25 @@ function OrderInProgressCard(props) {
                                             </div>
                                             
                                         </div>
-                                        <div className=" flex bg-[#eef2f9] h-8 md:w-[10.7rem] ">
+                                        <div className=" flex ml-gap bg-[#eef2f9] h-8 md:w-[11.12rem] ">
                                    <div class=" text-xs  font-poppins flex items-center">
                                           
                                    {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
                                         </div>
                                 </div>
                                 </div>
-                                <div class="flex bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex h-8 md:w-[22rem] ">
-                               <div class=" text-xs  font-poppins flex items-center">                                       
+                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                <div className=" flex bg-[#eef2f9]  ml-gap h-8  md:w-[32rem] ">
+                               <div class="  text-xs  font-poppins flex items-center">                                       
                                             {LocAdd}
                                         </div>
                                 </div>
                                 
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex h-8 bg-[#eef2f9]  md:w-[3.2rem] ">                                         
+                                        <div className=" flex h-8 bg-[#eef2f9] justify-center ml-gap md:w-[3.2rem] ">                                         
                                             <div
-                                                class=" text-xs   font-poppins cursor-pointer text-orange-700 font-semibold"
+                                                class=" text-xs  flex items-center  font-poppins cursor-pointer text-orange-700 font-semibold"
                                                
                                                 onClick={() => {
                                                     handleRowData(item);
@@ -251,10 +258,10 @@ function OrderInProgressCard(props) {
                                                 {item.itemCount}
                                             </div>
                                         </div>
-                                        <div className=" flex h-8 bg-[#eef2f9]  md:w-[8.1rem] ">
+                                        <div className=" flex h-8 bg-[#eef2f9] ml-gap md:w-[8.1rem] ">
                                              {/* Order Number */}                                      
                                             <div
-                                                class=" text-base  font-poppins"
+                                                class= " flex items-center text-base  font-poppins"
                                             // onClick={() => {
                                             //     props.handleOrderedPhoneModal(true);
                                             //     props.getPhoneDetails(item.orderId);
@@ -269,7 +276,7 @@ function OrderInProgressCard(props) {
                                         </div>
                                   
 
-                                        <div className=" bg-[#eef2f9] h-8  md:w-24 ">
+                                        <div className=" bg-[#eef2f9] h-8 ml-gap md:w-24 ">
                                         <Link to="/repeatOrderInfo">
                                         <Button
                                                 type='primary'
@@ -317,7 +324,7 @@ function OrderInProgressCard(props) {
                                         </div>
                                    
                                       
-                                            <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white  md:w-5 h-5 cursor-pointer">
+                                            <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="  md:w-5  cursor-pointer bg-[#eef2f9] h-8 ml-gap ">
                                             <Tooltip title={<FormattedMessage
                                                                 id="app.status"
                                                                 defaultMessage="Status"
@@ -342,12 +349,12 @@ function OrderInProgressCard(props) {
                                                 />
 
                                             </div> */}
-                                                <div class="w-6">
+                                                <div class="w-6   ml-gap ">
                                                 <a
               href={`${hrErp}/customer/pdf/${item.orderId}`}
             target="_blank"
             >
-            <PictureAsPdfIcon className="!text-icon text-[red]"/>
+            <PictureAsPdfIcon className="!text-icon text-[#f2dddd]"/>
                            </a>
           </div>
                                      

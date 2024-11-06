@@ -1,9 +1,8 @@
 import React, { useEffect, useState,} from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import NoteAltIcon from '@mui/icons-material/NoteAlt';
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { Tooltip, Input,Button} from "antd";
+
+import { Input,Button} from "antd";
 import { withRouter,useHistory  } from "react-router-dom";
 import styled from 'styled-components';
 import { MainForBroker } from '../../Components/UI/Layout';
@@ -14,6 +13,10 @@ import { codInventoryOrder } from '../Inventory/InventoryAction';
 import dayjs from "dayjs";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { FormattedMessage } from 'react-intl';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import CategoryIcon from '@mui/icons-material/Category';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -155,20 +158,20 @@ function ProcureQuotationCard(props) {
             <div className='mt-1'>
                 <MainForBroker className='!h-[91vh]'>
                 <div className=" flex rounded w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[15.9rem] font-bold font-poppins"> <FormattedMessage
+        <div className="text-[#00A2E8] w-[9.9rem] font-bold font-poppins"> < LightbulbIcon className='!text-base '/> <FormattedMessage
                                    id="app."
                                   defaultMessage="Quotation ID"
                                  /></div>
-        <div className=" w-[17rem] font-bold font-poppins"><FormattedMessage
+        <div className=" w-[13.5rem] font-bold font-poppins"><DateRangeIcon className='!text-base text-[#e4eb2f]'/><FormattedMessage
                                    id="app.created"
                                   defaultMessage="Created"
                                  /></div>
-        <div className="w-[12rem] font-bold font-poppins "><FormattedMessage
+        <div className="w-[32rem] font-bold font-poppins "><LocalShippingIcon className=' !text-base text-[#e4eb2f]'/><FormattedMessage
                                    id="app.delivery"
                                   defaultMessage="delivery"
                                  /></div>
                    
-        <div className=" w-[7.7rem] font-bold font-poppins"><FormattedMessage
+        <div className=" w-[7.7rem] font-bold font-poppins">  <CategoryIcon className=" !text-base text-[#e4eb2f]"/> <FormattedMessage
                                    id="app.items"
                                   defaultMessage="Items"
                                  /></div>
@@ -196,11 +199,11 @@ function ProcureQuotationCard(props) {
                      return (
                          <>
                            <div>
-                             <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 border border-white ">
+                             <div className="flex rounded justify-between  mt-1 bg-white  items-center p-1 border border-white ">
                             
 
-                                     <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8 w-[9.1rem] ">                                          
-                                         <div class=" text-xs  font-poppins">
+                                     <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8  justify-center w-[9.1rem] ">                                          
+                                         <div class=" flex items-center text-xs  font-poppins">
                                             
                                              {item.newOrderNo}   {result ? <span
                                                  // className="blink" 
@@ -208,13 +211,13 @@ function ProcureQuotationCard(props) {
                                              >New</span> : null}
                                          </div>
                                      </div>
-                                     <div className=" flex bg-[#eef2f9] h-8 w-[7.12rem] ">
+                                     <div className=" flex  justify-center bg-[#eef2f9] h-8 w-[12.12rem]  ml-gap">
                  
-                                      <div class=" text-xs  font-poppins">                     
+                                      <div class=" flex items-center text-xs  font-poppins">                     
                                         {`  ${dayjs(item.deliveryFromDate).format("DD-MM-YYYY")}`}
                                         </div>
                                      </div>
-                                      <div className=" flex bg-[#eef2f9] h-8 w-[6.2rem] ">
+                                      <div className="  justify-center ml-gap flex bg-[#eef2f9] h-8 w-[34rem] ">
                                      <div class=" text-xs  font-poppins flex items-center">
                                                  
                                                      {country1}
@@ -224,11 +227,11 @@ function ProcureQuotationCard(props) {
 
                                          </div>
                                          
-                                     <div className=" flex  bg-[#eef2f9] h-8 w-[3.2rem] ">                                       
+                                     <div className=" flex ml-gap bg-[#eef2f9] h-8 w-[8.2rem] ">                                       
                                              {/* <SmartphoneIcon /> */}
                                       
                                          <div
-                                             class=" text-xs font-poppins cursor-pointer text-[#3597b0] font-semibold"
+                                             class="flex items-center text-xs font-poppins cursor-pointer text-[#3597b0] font-semibold"
                                             
                                              onClick={() => {
                                                  handleRowData(item);
@@ -240,8 +243,8 @@ function ProcureQuotationCard(props) {
                                      </div>
                                      
                                
-                                     <div class="flex justify-end  items-center">
-                                     <div className=" bg-[#eef2f9] h-8  w-32 ">
+                                     <div class="flex justify-end  items-center ">
+                                     <div className=" bg-[#eef2f9] h-8  w-32 ml-gap ">
                                      {/* <Link to={`shopName/invopayment`}> */}
                                          <Button type="primary" onClick={() => {
                                                         handleConvert(item);
@@ -289,7 +292,7 @@ function ProcureQuotationCard(props) {
                                              />
 
                                          </div> */}
-                                          <div class="w-6">
+                                          <div class="w-6 bg-[#eef2f9] h-8   ml-gap">
                                           <a
               href={`${hrErp}/customer/pdf/${item.quotationId}`}
             target="_blank"

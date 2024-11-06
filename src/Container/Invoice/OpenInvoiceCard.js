@@ -6,6 +6,11 @@ import { Input, } from "antd";
 import dayjs from "dayjs";
 import { MainForBroker } from '../../Components/UI/Layout';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import EventRepeatIcon from '@mui/icons-material/EventRepeat';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { FormattedMessage } from 'react-intl';
 import { hrErp } from "../../Config/Auth";
 import axios from 'axios';
@@ -163,28 +168,28 @@ const [OrderIdDrawer,setOrderIdDrawer] = useState(false);
 <div className='mt-2'>
                 <MainForBroker className='!h-[72vh]'>
                 <div className=" flex rounded  w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[9.9rem] font-bold font-poppins"> <FormattedMessage
+        <div className=" w-[9.9rem] text-[#00A2E8] font-bold font-poppins"> <ReceiptIcon className=" !text-base "/><FormattedMessage
                                    id="app.invoice"
                                   defaultMessage="Invoice ID"
                                  /></div>
-                                     <div className=" w-[9.9rem] font-bold font-poppins"> <FormattedMessage
+                                     <div className=" w-[9.9rem] font-bold font-poppins"> <DynamicFeedIcon className=" !text-base text-[#e4eb2f]"/><FormattedMessage
                                    id="app.orderid"
                                   defaultMessage="Order ID"
                                  /></div>
-        <div className=" w-[12.5rem] font-bold font-poppins"><FormattedMessage
+        <div className=" w-[12.5rem] font-bold font-poppins"><DateRangeIcon className=" !text-base text-[#e4eb2f]"/><FormattedMessage
                                    id="app.date"
                                   defaultMessage="Date"
                                  /></div>
-        <div className="  w-[10.2rem] font-bold font-poppins "><FormattedMessage
+        <div className="  w-[10.2rem] font-bold font-poppins "><CurrencyExchangeIcon className=" !text-base text-[#e4eb2f]"/><FormattedMessage
                                    id="app.amount"
                                   defaultMessage="Amount"
                                  /></div>
                                  
-        <div className=" w-[7.7rem] font-bold font-poppins"><FormattedMessage
+        <div className=" w-[7.7rem] font-bold font-poppins"><EventRepeatIcon  className=" !text-base text-[#e4eb2f]"/><FormattedMessage
                                    id="app.status"
                                   defaultMessage="Status"
                                  /></div>
-        <div className="  w-[13.2rem] font-bold font-poppins "><FormattedMessage
+        <div className="  w-[13.2rem] font-bold font-poppins "><CurrencyExchangeIcon className=" !text-base text-[#e4eb2f]"/><FormattedMessage
                                    id="app.payment"
                                   defaultMessage="Payment"
                                  /></div>
@@ -205,8 +210,8 @@ const [OrderIdDrawer,setOrderIdDrawer] = useState(false);
                       return (
                           <>
                               <div>
-                              <div className="flex rounded border-l-2 border-green-500 bg-[#eef2f9] mt-1 h-8 items-center p-1 ">
-                                      <div className="text-xs underline cursor-pointer text-[#1890ff] font-poppins flex items-center   w-[9.1rem] "
+                              <div  className="flex rounded justify-between  bg-white mt-1 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                                      <div className="text-xs underline cursor-pointer border-l-2 border-green-500 bg-[#eef2f9] h-8 text-[#1890ff] font-poppins flex items-center   w-[9.1rem] "
                                        onClick={() => {
                                         handleRowData(item);
                                         setopenInvoiceDrawer(true);
@@ -214,7 +219,7 @@ const [OrderIdDrawer,setOrderIdDrawer] = useState(false);
                                       >
                                       {item.invoiceId}                                                                            
                                       </div>
-                                      <div className=" flex bg-[#eef2f9] w-[10.7rem] ">
+                                      <div className=" flex bg-[#eef2f9] w-[10.7rem] h-8  ml-gap">
                                  <div class=" text-xs underline cursor-pointer text-[#1890ff] font-poppins flex items-center"
                                  onClick={() => {
                                   handleRowData(item);
@@ -224,23 +229,23 @@ const [OrderIdDrawer,setOrderIdDrawer] = useState(false);
                                  {item.newOrderNo}  
                                       </div>
                               </div>
-                              <div className=" text-xs font-poppins flex items-center  bg-[#eef2f9] w-[11.2rem] ">
+                              <div className=" text-xs font-poppins flex items-center ml-gap h-8 bg-[#eef2f9] w-[11.2rem] ">
                              <div class=" text-xs font-poppins flex items-center"> 
                              {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`} 
                                       </div>
 
                           </div>
-                          <div className=" text-xs font-poppins flex items-center bg-[#eef2f9]  w-[11.12rem] ">
+                          <div className=" text-xs font-poppins flex items-center bg-[#eef2f9] h-8 ml-gap w-[11.12rem] ">
                               CA$ {Number(item.totalValue).toFixed(2)} 
                     </div>
-                              <div className=" text-xs font-poppins flex items-center bg-[#eef2f9] w-[5.12rem] ">
+                              <div className=" text-xs font-poppins flex items-center ml-gap h-8 bg-[#eef2f9] w-[5.12rem] ">
                               {item.paidInd ? "Paid" :"Unpaid"} 
                     </div>
-                    <div className=" text-xs font-poppins flex items-center bg-[#eef2f9]  w-[5.12rem] ">
+                    <div className=" text-xs font-poppins flex items-center bg-[#eef2f9] h-8  ml-gap w-[5.12rem] ">
                                           {/* {item.paym}    */}
                     </div>
 
-                    <div class="w-6">
+                    <div class="w-6 ml-gap bg-[#eef2f9] h-8">
                     <a
               href={`${hrErp}/customer/pdf/${item.orderId}`}
             target="_blank"
