@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { Button, Icon, Switch,message } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";

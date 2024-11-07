@@ -16,7 +16,7 @@ import {
 //   makePayment,
 } from "../CoursesAction";
 import "../courses.scss";
-// import { base_url } from "../../../../../Config/Auth";
+// import { hrWeb } from "../../../../../Config/Auth";
 import { createBrowserHistory } from "history";
 const history = createBrowserHistory();
 

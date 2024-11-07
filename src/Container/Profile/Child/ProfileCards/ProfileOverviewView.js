@@ -5,7 +5,7 @@ import { Button } from "antd";
 // import { handleMapModal } from "../../ProfileAction";
 
 import axios from "axios";
-import { base_url } from "../../../../Config/Auth";
+import { hrWeb } from "../../../../Config/Auth";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import FormikPlacesAutoComplete from "../../../../Components/Forms/Formik/FormikPlacesAutoComplete";
 import { StyledModal } from "../../../../Components/UI/Antd";
@@ -39,7 +39,7 @@ class ProfileOverviewView extends Component {
 
   addAddress = (address) => {
     axios
-      .post(`${base_url}/address`, address, {
+      .post(`${hrWeb}/address`, address, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon, message } from "antd";
 import { StyledUpload, StyledModal } from "../../UI/Antd";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 import axios from "axios";
 import { ProgressiveImage } from "../../Utils";
 const token = sessionStorage.getItem("token");
@@ -29,7 +29,7 @@ class EditUpload extends React.Component {
     let formData = new FormData();
     formData.append("image", file);
     axios
-      .post(`${base_url}/image`, formData, {
+      .post(`${hrWeb}/image`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`
@@ -78,7 +78,7 @@ class EditUpload extends React.Component {
             </span>
             <ProgressiveImage
               // preview={ProfilePreview}
-              image={`${base_url}/image/${imageId}`}
+              image={`${hrWeb}/image/${imageId}`}
               width={imgWidth || "2.8125em"}
               height={imgHeight || "2.8125em"}
               borderRadius={"50%"}

@@ -1,5 +1,5 @@
 import * as types from "./TaskActionTypes";
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 import axios from "axios";
 import { message } from "antd";
 import { createBrowserHistory } from "history";
@@ -10,7 +10,7 @@ export const getTaskByCandidateId=(candidateId)=>(dispatch)=>
   dispatch({
     type:types.GET_TASK_BY_CANDIDATE_ID_REQUEST,
   });  
-  axios.get(`${base_url}/task/candidate/web/${candidateId}?url=talent.tekorero.com`)
+  axios.get(`${hrWeb}/task/candidate/web/${candidateId}?url=talent.tekorero.com`)
   .then((res)=>{
     dispatch({
         type:types.GET_TASK_BY_CANDIDATE_ID_SUCCESS,
@@ -47,7 +47,7 @@ export const updateTaskStatus = (data,candidateId,taskId) => (dispatch) => {
     type: types.UPDATE_TASK_STATUS_REQUEST,
   });
   axios
-    .put(`${base_url}/task/candidate/web/status/${candidateId}/${taskId}?url=talent.tekorero.com`,data,{})
+    .put(`${hrWeb}/task/candidate/web/status/${candidateId}/${taskId}?url=talent.tekorero.com`,data,{})
     .then((res) => {
       dispatch({
         type: types.UPDATE_TASK_STATUS_SUCCESS,
@@ -66,7 +66,7 @@ export const addTaskHour = (data, cb) => (dispatch) => {
     type: types.ADD_TASK_HOUR_REQUEST,
   });
   axios
-    .post(`${base_url}/hour/save/website?url=talent.tekorero.com`, data)
+    .post(`${hrWeb}/hour/save/website?url=talent.tekorero.com`, data)
     .then((res) => {
       console.log(res);
 
@@ -88,7 +88,7 @@ export const addTaskHour = (data, cb) => (dispatch) => {
 export const addNote = (note, cb) => (dispatch) => {
   dispatch({ type: types.ADD_OPPORTUNITY_NOTES_REQUEST });
   axios
-    .post(`${base_url}/task/comment/save/website?url=talent.tekorero.com`, note, {
+    .post(`${hrWeb}/task/comment/save/website?url=talent.tekorero.com`, note, {
       // headers: {
       //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       // },
@@ -116,7 +116,7 @@ export const getNotesListByOpportunityId = (taskId) => (dispatch) => {
     type: types.GET_NOTES_LIST_BY_OPPORTUNITY_ID_REQUEST,
   });
   axios
-    .get(`${base_url}/task/task-comment/all/list/website/${taskId}?url=talent.tekorero.com`, {
+    .get(`${hrWeb}/task/task-comment/all/list/website/${taskId}?url=talent.tekorero.com`, {
       // headers: {
       //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       // },
@@ -142,7 +142,7 @@ export const getTaskName = (candidateId,taskId) => (dispatch) => {
     type: types.GET_TASK_NAME_REQUEST,
   });
   axios
-    .get(`${base_url}/hour/candidate/${candidateId}/${taskId}/website?url=talent.tekorero.com`, {
+    .get(`${hrWeb}/hour/candidate/${candidateId}/${taskId}/website?url=talent.tekorero.com`, {
      
     })
     .then((res) => {

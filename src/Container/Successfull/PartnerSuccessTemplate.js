@@ -9,7 +9,7 @@ import { Button, Card } from "antd";
  import LogoNew from "../../images/Logo_new.png";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 class PartnerSuccessTemplate extends React.Component {
   render() {
     console.log(this.props.partnerMessage)

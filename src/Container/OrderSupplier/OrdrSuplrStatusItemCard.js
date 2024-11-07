@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from "react-infinite-scroll-component";
-import {updateOrdrSuplrItems} from "../MyOrder/MyOrderAction";
-import { Tooltip,Button,Input,Popconfirm } from "antd";
+import {updateOrdrSuplrItems,getAllShipper} from "../MyOrder/MyOrderAction";
+import { Tooltip,Button,Input,Popconfirm,Select } from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import moment from "moment";
 import dayjs from "dayjs";
+
+const { Option } = Select;
 
 function OrdrSuplrStatusItemCard (props) {
   
@@ -15,12 +17,15 @@ function OrdrSuplrStatusItemCard (props) {
     const [editsuppliesId, setEditsuppliesId] = useState(null);
     const [data, setData] = useState([]);
     const [date, setDate] = useState('');
+    const [selectedShipper,setselectedShipper]=useState("");
 
     useEffect(() => {
-        setData(props.statusItems.orderItemInfo || []);
-    }, [props.statusItems.orderItemInfo]);
+        setData(props.statuSupplierItems.orderItemInfo || []);
+    }, [props.statuSupplierItems.orderItemInfo]);
 
-
+useEffect(()=>{
+props.getAllShipper(props.orgId)
+},[]);
 
 const [RowData, setRowData] = useState("");
 
@@ -35,15 +40,19 @@ const handleInputChange = (value, key, dataIndex) => {
     setData(updatedData);
 };
 
+const handleSelectChange = (value) => {
+    setselectedShipper(value)
+}
+
   const handleDateChange = (e, item) => {
     const selectedDate = new Date(e.target.value);
     const deliveryDate = new Date(item.deliveryDate);
-
-    if (selectedDate >= deliveryDate) {
-        setDate(e.target.value);
-    } else {   
-        alert('Shipping date cannot be earlier than delivery date');
-    }
+    setDate(e.target.value);
+    // if (selectedDate >= deliveryDate) {
+    //     setDate(e.target.value);
+    // } else {   
+    //     alert('Shipping date cannot be earlier than delivery date');
+    // }
 };
 
 
@@ -60,8 +69,9 @@ const handleInputChange = (value, key, dataIndex) => {
     const updatedItem = {
         productId:item.productId,
         orderId:props.rowDatas.orderId,
-        shipBy: item.shipBy, 
-        shippingDate: new Date(date).toISOString()
+        shipBy: selectedShipper, 
+        shippingDate: new Date(date).toISOString(),
+        trackId:item.trackId
     };
       
  console.log("resd",updatedItem);  
@@ -106,8 +116,8 @@ const handleInputChange = (value, key, dataIndex) => {
                                         defaultMessage="Shipping "
                                     /></div>
                                     <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app.awb"
-                                        defaultMessage="AWB"
+                                        id="app.trackid"
+                                        defaultMessage="Track Id"
                                     /></div>
                                    
                                    <div className=" md:w-[5rem]"><FormattedMessage
@@ -131,42 +141,42 @@ const handleInputChange = (value, key, dataIndex) => {
                                                     <div key={item.itemId}
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium border-l-2 border-green-500 bg-[#eef2f9] h-8 md:w-[8rem] max-sm:flex-row max-sm:justify-between  ">
+                                                            <div className=" flex font-medium border-l-2 border-green-500 bg-[#eef2f9]  md:w-[8rem] max-sm:flex-row max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.productFullName}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex font-medium bg-[#eef2f9] h-8 md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9]  md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.category}
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex font-medium bg-[#eef2f9] h-8 md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.attribute}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium bg-[#eef2f9] h-8 md:w-[9rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9]  md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.itemId}
+                                                                    {item.newProductId}
                                                                 </div>
                                                             </div>
                                                             </div>
-                                                            <div className=" flex font-medium bg-[#eef2f9] h-8 md:w-[2rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9]  md:w-[2rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.unit}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium bg-[#eef2f9] h-8 md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                 {item.deliveryDate? `${moment(item.deliveryDate).format("YYYY/MM/DD")}`
                                                                 :
                                                                 null}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium bg-[#eef2f9] h-8 md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                  {editsuppliesId === item.itemId ? (
                                                                 <input
@@ -186,18 +196,36 @@ const handleInputChange = (value, key, dataIndex) => {
                                                             </div>
                                                             <div className=" flex font-medium bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                {/* {moment(item.shippingDate).format("YYYY/MM/DD")}  */}
+                                                                {editsuppliesId === item.itemId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.trackId}
+                       onChange={(e) => handleInputChange(e.target.value, item.itemId, 'trackId')}
+                     />  
+                    ) : (
+                      <div className="font-normal text-sm  font-poppins">
+                        <div> {item.trackId}</div>
+                      </div>
+                    )}
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                 {editsuppliesId === item.itemId ? (
-                       <Input
-                       style={{ width: "3rem" }}
-                       value={item.shipBy}
-                       onChange={(e) => handleInputChange(e.target.value, item.itemId, 'shipBy')}
-                     />
-                       
+                       <Select
+                       placeholder="Shipper"
+                       style={{ width: "5rem" }}
+                       value={selectedShipper}
+                       onChange={(value) => handleSelectChange(value)}>
+                         <Option disabled>
+                            Select Shipper
+                        </Option>
+                       {props.allShipperList.map((s) => (
+                        <Option value={s.shipperId}>
+                            {s.shipperName}
+                        </Option>
+                    ))}
+                </Select>
                     ) : (
                       <div className="font-normal text-sm  font-poppins">
                         <div> {item.shipBy}</div>
@@ -224,12 +252,12 @@ const handleInputChange = (value, key, dataIndex) => {
                       </>
                       
                     ) : (
-                      <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
-                        tooltipTitle="Edit"
-                        iconType="edit"
+                      <Button 
+                         type="primary"
                         onClick={() => handleEditClick(item.itemId)}
-                      />
+                      >
+                          To pack
+                          </Button>
                     )}
     </div>
                                                         </div>
@@ -251,10 +279,10 @@ const handleInputChange = (value, key, dataIndex) => {
         </>
     );
 }
-const mapStateToProps = ({ myorder}) => ({
-    // phonListNoteModal: myorder.phonListNoteModal,
+const mapStateToProps = ({ myorder,auth}) => ({
+    allShipperList: myorder.allShipperList,
     // orderProcureDetails:myorder.orderProcureDetails,
-    // openFeedbackpHnOrDrawer:myorder.openFeedbackpHnOrDrawer,
+    orgId: auth.userDetails.organizationId,
     updatingOrdrSuplrItems:myorder.updatingOrdrSuplrItems
 });
 
@@ -262,7 +290,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             updateOrdrSuplrItems,
-            // handlePhoneListOrderNoteModal,
+            getAllShipper,
             // handleFeedbackPhoneOrderDrawer,
 
         },

@@ -1,9 +1,8 @@
 import React, { useEffect, useState,} from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import NoteAltIcon from '@mui/icons-material/NoteAlt';
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { Tooltip, Input,Button} from "antd";
+
+import { Input,Button} from "antd";
 import { withRouter,useHistory  } from "react-router-dom";
 import styled from 'styled-components';
 import { MainForBroker } from '../../Components/UI/Layout';
@@ -14,11 +13,15 @@ import { codInventoryOrder } from '../Inventory/InventoryAction';
 import dayjs from "dayjs";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { FormattedMessage } from 'react-intl';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import CategoryIcon from '@mui/icons-material/Category';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ProcureQuotationItemViewDrawer from '../OrderProgress/ProcureQuotationItemViewDrawer';
-import { base_url2 } from '../../Config/Auth';
+import { hrErp } from '../../Config/Auth';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -152,7 +155,7 @@ function ProcureQuotationCard(props) {
             type: "Cod",
             orderProcess:"checkout"
         });
-        history.push(`/shopName/invOrdersuccess`);
+        history.push(/shopName/invOrdersuccess);
       }
     
       return (
@@ -160,28 +163,20 @@ function ProcureQuotationCard(props) {
             <div className='mt-1'>
                 <MainForBroker className='!h-[91vh]'>
                 <div className=" flex rounded w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[15.9rem] font-bold font-poppins">
-        <LightbulbIcon />
-           <FormattedMessage
+        <div className="text-[#00A2E8] w-[9.9rem] font-bold font-poppins"> < LightbulbIcon className='!text-base '/> <FormattedMessage
                                    id="app."
                                   defaultMessage="Quotation ID"
                                  /></div>
-        <div className=" w-[17rem] font-bold font-poppins">
-        <DateRangeIcon className="!text-icon "/>
-          <FormattedMessage
+        <div className=" w-[13.5rem] font-bold font-poppins"><DateRangeIcon className='!text-base text-[#e4eb2f]'/><FormattedMessage
                                    id="app.created"
                                   defaultMessage="Created"
                                  /></div>
-        <div className="w-[12rem] font-bold font-poppins ">
-        < DeliveryDiningIcon />
-          <FormattedMessage
+        <div className="w-[32rem] font-bold font-poppins "><LocalShippingIcon className=' !text-base text-[#e4eb2f]'/><FormattedMessage
                                    id="app.delivery"
                                   defaultMessage="delivery"
                                  /></div>
                    
-        <div className=" w-[7.7rem] font-bold font-poppins">
-        <CategoryIcon />
-          <FormattedMessage
+        <div className=" w-[7.7rem] font-bold font-poppins">  <CategoryIcon className=" !text-base text-[#e4eb2f]"/> <FormattedMessage
                                    id="app.items"
                                   defaultMessage="Items"
                                  /></div>
@@ -199,21 +194,21 @@ function ProcureQuotationCard(props) {
       //  loader={props.fetchingRequirementTabData}
     >
                     {props.orderProcureQuoatation.map((item) => {
-                     const LocAdd = `${item.loadingAddress && item.loadingAddress[0].city || ""}`;
-                     const LocAdd1 = `${item.unloadingAddress && item.unloadingAddress[0].city || ""}`;
-                     const country = `${item.loadingAddress && item.loadingAddress[0].countryAlpha2Code || ""}`
-                     const country1 = `${item.unloadingAddress && item.unloadingAddress[0].countryAlpha2Code || ""}`
+                     const LocAdd = ${item.loadingAddress && item.loadingAddress[0].city || ""};
+                     const LocAdd1 = ${item.unloadingAddress && item.unloadingAddress[0].city || ""};
+                     const country = ${item.loadingAddress && item.loadingAddress[0].countryAlpha2Code || ""}
+                     const country1 = ${item.unloadingAddress && item.unloadingAddress[0].countryAlpha2Code || ""}
                      const currentdate = dayjs().format("YYYY/MM/DD");
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
                      const result = currentdate === date
                      return (
                          <>
                            <div>
-                             <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 border border-white ">
+                             <div className="flex rounded justify-between  mt-1 bg-white  items-center p-1 border border-white ">
                             
 
-                                     <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8 w-[9.1rem] ">                                          
-                                         <div class=" text-xs  font-poppins">
+                                     <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8  justify-center w-[9.1rem] ">                                          
+                                         <div class=" flex items-center text-xs  font-poppins">
                                             
                                              {item.newOrderNo}   {result ? <span
                                                  // className="blink" 
@@ -221,13 +216,13 @@ function ProcureQuotationCard(props) {
                                              >New</span> : null}
                                          </div>
                                      </div>
-                                     <div className=" flex bg-[#eef2f9] h-8 w-[7.12rem] ">
+                                     <div className=" flex  justify-center bg-[#eef2f9] h-8 w-[12.12rem]  ml-gap">
                  
-                                      <div class=" text-xs  font-poppins">                     
+                                      <div class=" flex items-center text-xs  font-poppins">                     
                                         {`  ${dayjs(item.deliveryFromDate).format("DD-MM-YYYY")}`}
                                         </div>
                                      </div>
-                                      <div className=" flex bg-[#eef2f9] h-8 w-[6.2rem] ">
+                                      <div className="  justify-center ml-gap flex bg-[#eef2f9] h-8 w-[34rem] ">
                                      <div class=" text-xs  font-poppins flex items-center">
                                                  
                                                      {country1}
@@ -237,11 +232,11 @@ function ProcureQuotationCard(props) {
 
                                          </div>
                                          
-                                     <div className=" flex  bg-[#eef2f9] h-8 w-[3.2rem] ">                                       
+                                     <div className=" flex ml-gap bg-[#eef2f9] h-8 w-[8.2rem] ">                                       
                                              {/* <SmartphoneIcon /> */}
                                       
                                          <div
-                                             class=" text-xs font-poppins cursor-pointer text-[#3597b0] font-semibold"
+                                             class="flex items-center text-xs font-poppins cursor-pointer text-[#3597b0] font-semibold"
                                             
                                              onClick={() => {
                                                  handleRowData(item);
@@ -253,9 +248,9 @@ function ProcureQuotationCard(props) {
                                      </div>
                                      
                                
-                                     <div class="flex justify-end  items-center">
-                                     <div className=" bg-[#eef2f9] h-8  w-32 ">
-                                     {/* <Link to={`shopName/invopayment`}> */}
+                                     <div class="flex justify-end  items-center ">
+                                     <div className=" bg-[#eef2f9] h-8  w-32 ml-gap ">
+                                     {/* <Link to={shopName/invopayment}> */}
                                          <Button type="primary" onClick={() => {
                                                         handleConvert(item);
                                                         // handleRowData(item);
@@ -302,9 +297,9 @@ function ProcureQuotationCard(props) {
                                              />
 
                                          </div> */}
-                                          <div class="w-6">
+                                          <div class="w-6 bg-[#eef2f9] h-8   ml-gap">
                                           <a
-              href={`${base_url2}/customer/pdf/${item.quotationId}`}
+              href={${hrErp}/customer/pdf/${item.quotationId}}
             target="_blank"
             >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
@@ -355,28 +350,3 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProcureQuotationCard));
-
-const CatgryName = styled.div`
-  font-size: 1rem;
-  color: black;
-    font-weight: 600;
-    white-space: nowrap;
-    @media only screen and (max-width: 600px) {
-      width: 99%;
-      font-size: 0.8rem;
-  // text-overflow: ellipsis;
-    white-space: nowrap;
-    // overflow: hidden;
-    }
-`;
-const SubCatgryName = styled.div`
-  font-size: 1rem;
-  color: black;
-    font-weight: 600;
-    white-space: nowrap;
-    @media only screen and (max-width: 600px) {
-      width: 85%;
-      font-size: 0.8rem;
-    white-space: nowrap;
-    }
-`;

@@ -9,7 +9,7 @@ import InventoryCheckoutForm from "./InventoryCheckoutForm";
 import { BundleLoader } from "../../Components/Placeholder";
 
 //pk
-const stripePromise = loadStripe("pk_test_51Pg4N4F9t5MfjsIZrPxRRnon7ENfinC1pcSx6aRw0prlk3qODgIAgXcRXel0NaoI38idFEUDI21QcrL0eNh8Sndf00t7yiYS6E");
+// const stripePromise = loadStripe("pk_test_51Pg4N4F9t5MfjsIZrPxRRnon7ENfinC1pcSx6aRw0prlk3qODgIAgXcRXel0NaoI38idFEUDI21QcrL0eNh8Sndf00t7yiYS6E");
                                   
 
 function InventoryCheckout(props) {
@@ -28,13 +28,11 @@ const amountToFiexed =mutlipro.toFixed(2)
     props.addInventoryPaymentId(data);
   }, []);
 
-  // if (props.addingInventoryPaymentId){
-  //   return <BundleLoader/>
-  // }
+
+  const stripePromise = loadStripe(props.keyMode)
    const options={clientSecret:props.paymentInventoryDetails.clientSecret}
   // const options = {clientSecret:'sk_test_tR3PYbcVNZZ796tH88S4VQ2u'}
-  // const options1 = {clientSecret:'sk_test_51LRswhSFbuOpicuJ3F8q6G1nrPfecPZqWyoP2ZPEAkXjiwmaSXymkqg2j3SsMK0nMOOURK7UvRWeRvYp21KMjy7200Cd0l13lU'}
-  
+
   console.log("clt",options);
 
     return (
@@ -56,8 +54,8 @@ const amountToFiexed =mutlipro.toFixed(2)
 const mapStateToProps = ({ inventory, auth }) => ({
   addingInventoryPaymentId: inventory.addingInventoryPaymentId,
   // contactId:inventory.productInfo.contactId,
-  // shopName:inventory.shopName,
-  // deliveryInfo:inventory.deliveryInfo,
+ userId: auth.userDetails.userId,
+  keyMode: auth.userDetails.keyMode,
   paymentInventoryDetails:inventory.paymentInventoryDetails
 });
 

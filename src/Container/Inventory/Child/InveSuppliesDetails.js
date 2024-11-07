@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { Select } from "../../../Components/UI/Elements";
 import "../Inventory.scss";
 import CartTable from "../CartTable";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 import { CurrencySymbol } from "../../../Components/Common";
 import { Footer } from "../../Customer/Footer";
 
@@ -53,7 +53,7 @@ console.log(props.productsByproductId)
         </div>
       </div>
       <div class=" flex justify-end w-[40%]">
-      <img  src={`${base_url}/image/${props.productsByproductId.imageId}`}  className="w-[14rem] h-[14rem]" />
+      <img  src={`${hrWeb}/image/${props.productsByproductId.imageId}`}  className="w-[14rem] h-[14rem]" />
       </div> 
     </div>
     <div className="flex w-wk justify-evenly mt-3 ">

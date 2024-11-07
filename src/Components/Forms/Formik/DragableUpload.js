@@ -2,7 +2,7 @@ import React from "react";
 import { Icon, message, Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { StyledUpload, StyledModal } from "../../UI/Antd";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 import axios from "axios";
 const { Dragger } = Upload;
 const token = sessionStorage.getItem("token");
@@ -27,7 +27,7 @@ class DragableUpload extends React.Component {
     let formData = new FormData();
     formData.append("file", file);
     axios
-      .post(`${base_url}/excel/import`, formData, {
+      .post(`${hrWeb}/excel/import`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`

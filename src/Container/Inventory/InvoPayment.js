@@ -8,7 +8,7 @@ import { getInventoryCartItems,getStripeInd} from "./InventoryAction";
 import {Button, Input} from "antd";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { base_url,base_url2 } from '../../Config/Auth'; 
+import { hrWeb,hrErp } from '../../Config/Auth'; 
 import InvSingleCard1 from './InvSingleCard1';
 import { createBrowserHistory } from "history";
 import { RollbackOutlined } from "@ant-design/icons";
@@ -47,7 +47,7 @@ function InvoPayment (props) {
     const promo = promocode.trim();
     if (promo !== "") {
       try {
-        const response = await axios.put(`${base_url2}/quotation/portal/order/validatePromo`, { promoCode: promo, orderPhoneId:props.invencartItem.orderPhoneId },
+        const response = await axios.put(`${hrErp}/quotation/portal/order/validatePromo`, { promoCode: promo, orderPhoneId:props.invencartItem.orderPhoneId },
           { headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         }},
@@ -73,7 +73,7 @@ function InvoPayment (props) {
     const promo = promocode.trim();
     if (promo !== "") {
       try {
-        const response = await axios.put(`${base_url2}/quotation/protal/order/applyPromo`, {promoCodeId: promoCodeId, promoCode: promo, orderPhoneId:props.invencartItem.orderPhoneId },
+        const response = await axios.put(`${hrErp}/quotation/protal/order/applyPromo`, {promoCodeId: promoCodeId, promoCode: promo, orderPhoneId:props.invencartItem.orderPhoneId },
           { headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         }},

@@ -1,7 +1,7 @@
 import * as types from "./PlannerActionTypes";
 import axios from "axios";
 import moment from "moment";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 
 
 export const setPlannerViewType = (viewType) => (dispatch) =>
@@ -88,7 +88,7 @@ export const handleChooserModal = (modalForm) => (dispatch) => {
 // //   });
 
 // //   axios
-// //     .get(`${base_url}/partner/ShareUsers`, {
+// //     .get(`${hrWeb}/partner/ShareUsers`, {
 // //       headers: {
 // //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
 // //       },
@@ -114,7 +114,7 @@ export const handleChooserModal = (modalForm) => (dispatch) => {
 // export const getPlannerPermissionsList = () => (dispath) => {
 //   dispath({ type: types.GET_PERMISSIONS_LIST_REQUEST });
 //   axios
-//     .get(`${base_url}/permission/type?type=${"planner"}`, {
+//     .get(`${hrWeb}/permission/type?type=${"planner"}`, {
 //       headers: {
 //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
 //       },
@@ -143,7 +143,7 @@ export const handleChooserModal = (modalForm) => (dispatch) => {
 //   });
 
 //   axios
-//     .post(`${base_url}/permission/details`, data, {
+//     .post(`${hrWeb}/permission/details`, data, {
 //       headers: {
 //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
 //       },
@@ -174,7 +174,7 @@ export const getCandidateProject = (candidateId) => (dispatch) => {
     type: types.GET_CANDIDATE_PROJECT_REQUEST,
   });
   axios
-  .get(`${base_url}/recriutment/web/project-name/${candidateId}?url=talent.tekorero.com`, {
+  .get(`${hrWeb}/recriutment/web/project-name/${candidateId}?url=talent.tekorero.com`, {
     // headers: {
     //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     // },
@@ -203,7 +203,7 @@ export const addHour = (opportunity,candidateId, cb) => (dispatch, getState) => 
     type: types.ADD_PLANNER_HOUR_REQUEST,
   });
   axios
-    .post(`${base_url}/hour/save/website?url=talent.tekorero.com`, opportunity, {
+    .post(`${hrWeb}/hour/save/website?url=talent.tekorero.com`, opportunity, {
       // headers: {
       //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       // },
@@ -234,7 +234,7 @@ export const getDateWiseList = (userId,endDate,startDate,) => (dispatch) => {
     type: types.GET_DATE_WISE_REPORT_REQUEST,
   });
   axios
-    .get(`${base_url}/todo/planner/${userId}?endDate=${endDate}&startDate=${startDate}`, {
+    .get(`${hrWeb}/todo/planner/${userId}?endDate=${endDate}&startDate=${startDate}`, {
      headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -259,7 +259,7 @@ export const getTaskList = (hourId) => (dispatch) => {
     type: types.GET_TASK_LIST_REQUEST,
   });
   axios
-    .get(`${base_url}/hour/candidate/task/${hourId}/website?url=talent.tekorero.com`, {
+    .get(`${hrWeb}/hour/candidate/task/${hourId}/website?url=talent.tekorero.com`, {
     //  headers: {
     //     Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     //   },
@@ -284,7 +284,7 @@ export const getCandidateCustomer = (candidateId) => (dispatch) => {
     type: types.GET_CANDIDATE_CUSTOMER_REQUEST,
   });
   axios
-  .get(`${base_url}/recriutment/web/project-name/customer/${candidateId}?url=talent.tekorero.com`, {
+  .get(`${hrWeb}/recriutment/web/project-name/customer/${candidateId}?url=talent.tekorero.com`, {
     // headers: {
     //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     // },
@@ -313,7 +313,7 @@ export const addLeaves = (opportunity, cb) => (dispatch, getState) => {
     type: types.ADD_PLANNER_LEAVES_REQUEST,
   });
   axios
-    .post(`${base_url}/employee/leave/website?url=talent.tekorero.com`, opportunity, {
+    .post(`${hrWeb}/employee/leave/website?url=talent.tekorero.com`, opportunity, {
       // headers: {
       //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       // },
@@ -342,7 +342,7 @@ export const getCandidateTask = (candidateId) => (dispatch) => {
     type: types.GET_CANDIDATE_TASK_REQUEST,
   });
   axios
-  .get(`${base_url}/task/candidate/web/${candidateId}?url=talent.tekorero.com`, {
+  .get(`${hrWeb}/task/candidate/web/${candidateId}?url=talent.tekorero.com`, {
     // headers: {
     //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     // },
@@ -376,7 +376,7 @@ export const getHourListByUserId = (userId,endDate,startDate) => (dispatch) => {
     type: types.GET_HOUR_LIST_BY_USER_ID_REQUEST,
   });
   axios
-    .get(`${base_url}/todo/planner/${userId}?endDate=${endDate}&startDate=${startDate}`, {
+    .get(`${hrWeb}/todo/planner/${userId}?endDate=${endDate}&startDate=${startDate}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -400,7 +400,7 @@ export const getHourListByUserId = (userId,endDate,startDate) => (dispatch) => {
 export const getDepartmentList = (orgId) => (dispath) => {
   dispath({ type: types.GET_DEPARTMENT_LIST_REQUEST });
   axios
-    .get(`${base_url}/department/accesss/${orgId}`, {
+    .get(`${hrWeb}/department/accesss/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -426,7 +426,7 @@ export const getDepartmentRoleData = (departmentId) => (dispatch) => {
     type: types.GET_DEPARTMENT_ROLE_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/roleType/department/${departmentId}`, {
+    .get(`${hrWeb}/roleType/department/${departmentId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -451,7 +451,7 @@ export const getUserbyIDs = (departmentId,roletypetypeId) => (dispatch) => {
     type: types.GET_USER_BY_IDS_REQUEST,
   });
   axios
-    .get(`${base_url}/employee/active/user/${departmentId}/${roletypetypeId}`, {
+    .get(`${hrWeb}/employee/active/user/${departmentId}/${roletypetypeId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

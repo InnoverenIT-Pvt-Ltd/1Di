@@ -7,7 +7,7 @@ import { RollbackOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import Tooltip from '@mui/material/Tooltip';
 import { InfoCircleTwoTone } from '@ant-design/icons';
-import { base_url } from '../../Config/Auth';
+import { hrWeb } from '../../Config/Auth';
 
 function AfteLoginBrand (props) {
 
@@ -56,7 +56,7 @@ function AfteLoginBrand (props) {
                                               {item.imageId ? (
                                                     <div class=" flex items-center">
                                                      <img
-                                                              src={`${base_url}/image/${item.imageId}`} 
+                                                              src={`${hrWeb}/image/${item.imageId}`} 
                                                               style={{ height: "6.5rem", width: "7rem" }}
                                                           />
                                                          </div>  

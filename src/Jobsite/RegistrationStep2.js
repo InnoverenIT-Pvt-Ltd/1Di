@@ -7,7 +7,7 @@ import { Spacer } from "../Components/UI/Elements";
 // import {getCountry} from  "../Containers/Auth/AuthAction";
 import { InputComponent } from "../Components/Forms/Formik/InputComponent";
 import {getCountries} from "./JobAction";
-import { base_url } from "../Config/Auth";
+import { hrWeb } from "../Config/Auth";
 import axios from "axios";
 import RegisterAddressFieldArray from "../Components/Forms/Formik/RegisterAddressFieldArray";
 import {
@@ -38,7 +38,7 @@ const dialCode = props.countries.map((item)=> ({
 
 const fetchClientIdList = async () => {
   try {
-    const response = await axios.get(`${base_url}/customerType/web`,{
+    const response = await axios.get(`${hrWeb}/customerType/web`,{
       // headers: {
       //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       // },

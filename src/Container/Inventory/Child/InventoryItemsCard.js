@@ -10,7 +10,7 @@ import {getProducts,getAllProductCatagory,LinkInventoryItem,updateCartPlus} from
 import { InfoCircleTwoTone, MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import Carousel from "react-elastic-carousel";
-import { base_url } from "../../../Config/Auth";
+import { hrWeb } from "../../../Config/Auth";
 
 const { Option } = Select;
 
@@ -170,7 +170,7 @@ console.log("hiiO",props.invencartItem.orderPhoneId, "QNN-",units)
                                   <div class="object-cover object-center  flex items-center">
                                     <div>
                                 <img
-                                            src={`${base_url}/image/${item.imageId}`} alt=""
+                                            src={`${hrWeb}/image/${item.imageId}`} alt=""
                                             style={{ height: "7rem", width: "7rem" }}
                                         />
                                          <h3>{item.newProductNo} </h3>  

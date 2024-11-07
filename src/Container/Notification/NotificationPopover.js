@@ -1,55 +1,62 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Badge, Icon, Tooltip, Popover } from "antd";
 // import { StyledPopover } from "../../Components/UI/Antd";
 import NotificationTab from "../Notification/NotificationTab";
 import {
   BellOutlined
-  
 } from '@ant-design/icons';
+import { getNotificationsCount } from "../Notification/NotificationAction";
 
-class NotificationPopover extends Component {
-  constructor(props) {
-    super(props);
+const NotificationPopover = ({ userId,NotificationsCount, getNotificationsCount }) => {
+  const [visible, setVisible] = useState(false);
 
-    this.state = {
-      visible: false
-    };
-    this.handleVisibleChange = this.handleVisibleChange.bind(this);
-  }
-
-  handleVisibleChange = visible => {
-    this.setState({ visible });
+  const handleVisibleChange = (visible) => {
+    setVisible(visible);
   };
-  render() {
+
+  useEffect(() => {
+    getNotificationsCount(userId);
+  }, [getNotificationsCount, userId]);
+
     return (
       <Tooltip title="Notifications">
-        <Popover
-          content={
-            <div>
-              <NotificationTab />
-            </div>
-          }
-          trigger="click"
-          placement="bottomRight"
-          visible={this.state.visible}
-          onVisibleChange={this.handleVisibleChange}
-        >
-          {/* <Badge
-            count={this.props.notificationCount}
+         <Popover
+        content={
+          <div>
+            <NotificationTab />
+          </div>
+        }
+        trigger="click"
+        placement="bottomRight"
+        visible={visible}
+        onVisibleChange={handleVisibleChange}
+      >
+          <Badge
+            count={NotificationsCount.notification}
             style={{ fontSize: 8, boxSizing: 8 }}
-          > */}
+          >
             <BellOutlined  type="bell" style={{ fontSize: "1.375em" }} />
-          {/* </Badge> */}
+       </Badge> 
         </Popover>
       </Tooltip>
     );
-  }
+  
 }
-const mapStateToProps = ({ notification }) => ({
-//   notificationCount:
-//     notification.presentNotifications &&
-//     notification.presentNotifications.length
+const mapStateToProps = ({ auth, notification }) => ({
+  userId:auth.userDetails.userId,
+  NotificationsCount: notification.NotificationsCount
 });
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      getNotificationsCount,
+    },
+    dispatch
+  );
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NotificationPopover);
 
-export default connect(mapStateToProps)(NotificationPopover);

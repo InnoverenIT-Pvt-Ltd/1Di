@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, lazy } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -18,11 +17,12 @@ import { Link } from 'react-router-dom';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url2 } from '../../Config/Auth';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import CategoryIcon from '@mui/icons-material/Category';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import ViewListIcon from '@mui/icons-material/ViewList';
+import { hrErp } from '../../Config/Auth';
+
 
 const ProcureItemViewDrawer =lazy(()=>import("./ProcureItemViewDrawer"));
 const ProcureStatusShowDrawer =lazy(()=>import("./ProcureStatusShowDrawer"));
@@ -154,29 +154,23 @@ function OrderInProgressCard(props) {
             </div>
             <div className='mt-2'>
             <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[9.9rem] font-bold font-poppins"> 
-        <ViewListIcon />
-            <FormattedMessage
+            <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[9.9rem] text-[#00A2E8] font-bold font-poppins"> <DynamicFeedIcon className='!text-base '/> <FormattedMessage
                                    id="app."
                                   defaultMessage="Order ID"
                                  /></div>
-        <div className="w-[10.5rem] font-bold font-poppins">
-            
-        <DateRangeIcon className="!text-icon "/>
-            <FormattedMessage
+        <div className="w-[13.5rem] font-bold font-poppins">
+        <DateRangeIcon className='!text-base text-[#e4eb2f]'/> <FormattedMessage
                                    id="app.date"
                                   defaultMessage="Date"
                                  /></div>
-        <div className="w-[31.1rem] font-bold font-poppins ">
-        < DeliveryDiningIcon />
-            <FormattedMessage
+        <div className="w-[29.2rem] font-bold font-poppins ">
+            <LocalShippingIcon className=' !text-base text-[#e4eb2f]'/><FormattedMessage
                                    id="app.delivery"
                                   defaultMessage="delivery"
                                  /></div>
-        <div className=" w-[8.7rem] font-bold font-poppins">
-        <CategoryIcon />
-            <FormattedMessage
+        <div className=" w-[7.7rem] font-bold font-poppins">
+        <CategoryIcon className=" !text-base text-[#e4eb2f]"/><FormattedMessage
                                    id="app.items"
                                   defaultMessage="Items"
                                  /></div>
@@ -224,9 +218,9 @@ function OrderInProgressCard(props) {
                             <div>
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                              
-                             <div class="flex  max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8  md:w-[10.1rem] ">                                          
-                                            <div class=" text-xs flex items-center font-poppins font-semibold">
+                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div className=" flex justify-center border-l-2 border-green-500 bg-[#eef2f9] h-8  md:w-[9.1rem] ">                                          
+                                            <div class=" flex items-center text-xs  font-poppins">
                                                 {item.newOrderNo}
                                                 &nbsp;
                                                 {result ? <span
@@ -236,25 +230,25 @@ function OrderInProgressCard(props) {
                                             </div>
                                             
                                         </div>
-                                        <div className=" flex bg-[#eef2f9] ml-gap h-8 md:w-[8rem] ">
-                                   <div class=" text-xs  font-poppins flex ml-gap items-center">
+                                        <div className=" flex ml-gap bg-[#eef2f9] h-8 md:w-[11.12rem] ">
+                                   <div class=" text-xs  font-poppins flex items-center">
                                           
-                                   {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
+                                   {${dayjs(item.creationDate).format("DD-MM-YYYY")}}
                                         </div>
                                 </div>
                                 </div>
-                                <div class="flex bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex h-8 md:w-[32rem] ">
-                               <div class=" text-xs  font-poppins flex items-center">                                       
+                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                <div className=" flex bg-[#eef2f9]  ml-gap h-8  md:w-[32rem] ">
+                               <div class="  text-xs  font-poppins flex items-center">                                       
                                             {LocAdd}
                                         </div>
                                 </div>
                                 
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex items-center h-8 bg-[#eef2f9]  md:w-[6.2rem] ">                                         
+                                        <div className=" flex h-8 bg-[#eef2f9] justify-center ml-gap md:w-[3.2rem] ">                                         
                                             <div
-                                                class=" text-xs flex items-center ml-gap  font-poppins cursor-pointer text-orange-700 font-semibold"
+                                                class=" text-xs  flex items-center  font-poppins cursor-pointer text-orange-700 font-semibold"
                                                
                                                 onClick={() => {
                                                     handleRowData(item);
@@ -264,10 +258,10 @@ function OrderInProgressCard(props) {
                                                 {item.itemCount}
                                             </div>
                                         </div>
-                                        <div className=" flex h-8 ml-gap bg-[#eef2f9]  md:w-[7.1rem] ">
+                                        <div className=" flex h-8 bg-[#eef2f9] ml-gap md:w-[8.1rem] ">
                                              {/* Order Number */}                                      
                                             <div
-                                                class=" text-base  font-poppins"
+                                                class= " flex items-center text-base  font-poppins"
                                             // onClick={() => {
                                             //     props.handleOrderedPhoneModal(true);
                                             //     props.getPhoneDetails(item.orderId);
@@ -282,7 +276,7 @@ function OrderInProgressCard(props) {
                                         </div>
                                   
 
-                                        <div className=" bg-[#eef2f9] h-8 ml-gap md:w-26 ">
+                                        <div className=" bg-[#eef2f9] h-8 ml-gap md:w-24 ">
                                         <Link to="/repeatOrderInfo">
                                         <Button
                                                 type='primary'
@@ -330,7 +324,7 @@ function OrderInProgressCard(props) {
                                         </div>
                                    
                                       
-                                            <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="flex  rounded ml-gap bg-[#eef2f9]  md:w-5 h-5 cursor-pointer">
+                                            <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="  md:w-5  cursor-pointer bg-[#eef2f9] h-8 ml-gap ">
                                             <Tooltip title={<FormattedMessage
                                                                 id="app.status"
                                                                 defaultMessage="Status"
@@ -355,12 +349,12 @@ function OrderInProgressCard(props) {
                                                 />
 
                                             </div> */}
-                                                <div class="flex w-6 bg-[#eef2f9]">
+                                                <div class="w-6   ml-gap ">
                                                 <a
-              href={`${base_url2}/customer/pdf/${item.orderId}`}
+              href={${hrErp}/customer/pdf/${item.orderId}}
             target="_blank"
             >
-            <PictureAsPdfIcon className="!text-icon text-[red]"/>
+            <PictureAsPdfIcon className="!text-icon text-[#f2dddd]"/>
                            </a>
           </div>
                                      
@@ -415,27 +409,3 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderInProgressCard);
-const CatgryName = styled.div`
-  font-size: 1rem;
-  color: black;
-    font-weight: 600;
-    white-space: nowrap;
-    @media only screen and (max-width: 600px) {
-      width: 99%;
-      font-size: 0.8rem;
-  // text-overflow: ellipsis;
-    white-space: nowrap;
-    // overflow: hidden;
-    }
-`;
-const SubCatgryName = styled.div`
-  font-size: 1rem;
-  color: black;
-    font-weight: 600;
-    white-space: nowrap;
-    @media only screen and (max-width: 600px) {
-      width: 85%;
-      font-size: 0.8rem;
-    white-space: nowrap;
-    }
-`;

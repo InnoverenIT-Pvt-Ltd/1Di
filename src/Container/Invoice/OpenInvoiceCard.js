@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState,} from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -6,8 +5,13 @@ import { Input, } from "antd";
 import dayjs from "dayjs";
 import { MainForBroker } from '../../Components/UI/Layout';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import EventRepeatIcon from '@mui/icons-material/EventRepeat';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { FormattedMessage } from 'react-intl';
-import { base_url2 } from "../../Config/Auth";
+import { hrErp } from "../../Config/Auth";
 import axios from 'axios';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
@@ -15,10 +19,9 @@ import "jspdf-autotable";
 import UpdateIcon from '@mui/icons-material/Update';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ViewListIcon from '@mui/icons-material/ViewList';
-import DateRangeIcon from '@mui/icons-material/DateRange';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-
-
+import InvoiceOrderDrawer from './InvoiceOrderDrawer';
+import OrderIDrawer from './OrderIDrawer';
 
 const { Search } = Input;
 
@@ -35,10 +38,13 @@ function InvoiceCard(props) {
   const [data1, setData1] = useState([]);
   const [loading1, setLoading1] = useState(false);
    
+const [openInvoiceDrawer, setopenInvoiceDrawer] = useState(false);
+const [OrderIdDrawer,setOrderIdDrawer] = useState(false);
+
   useEffect(() => {
     const fetchData1 = async () => {
         try {
-          const response = await axios.get(`${base_url2}/invoice/unPaidInvoice/${props.userId}`,{
+          const response = await axios.get(${hrErp}/invoice/unPaidInvoice/${props.userId},{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
@@ -58,12 +64,6 @@ function InvoiceCard(props) {
     function handleRowData(item) {
         setrowDatas(item)
     }
-
-    const handleInfiniteScroll = () => {
-        setPageNo(pageNo + 1);
-        // props.getOrderData(props.userId,pageNo);
-         //fetchData(); // Fetch more data when scrolling
-      };
 
       const exportPDFAnnexure = () => {
         const doc = new jsPDF();
@@ -164,6 +164,7 @@ function InvoiceCard(props) {
     
         doc.save('OpenInvoice.pdf');
       };
+
       return (
         <>
 
@@ -222,34 +223,44 @@ function InvoiceCard(props) {
                       return (
                           <>
                               <div>
-                              <div className="flex rounded border-l-2 border-green-500 bg-[#eef2f9] mt-1 h-8 items-center p-1 ml-gap ">
-                                      <div className=" text-xs font-poppins flex items-center ml-gap   w-[15.1rem] ">
+                              <div  className="flex rounded justify-between  bg-white mt-1 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                                      <div className="text-xs underline cursor-pointer border-l-2 border-green-500 bg-[#eef2f9] h-8 text-[#1890ff] font-poppins flex items-center   w-[9.1rem] "
+                                       onClick={() => {
+                                        handleRowData(item);
+                                        setopenInvoiceDrawer(true);
+                                    }}
+                                      >
                                       {item.invoiceId}                                                                            
                                       </div>
-                                      <div className=" flex bg-[#eef2f9] w-[10.7rem]  ml-gap">
-                                 <div class=" text-xs font-poppins flex items-center">
+                                      <div className=" flex bg-[#eef2f9] w-[10.7rem] h-8  ml-gap">
+                                 <div class=" text-xs underline cursor-pointer text-[#1890ff] font-poppins flex items-center"
+                                 onClick={() => {
+                                  handleRowData(item);
+                                  setOrderIdDrawer(true);
+                              }}
+                                 >
                                  {item.newOrderNo}  
                                       </div>
                               </div>
-                              <div className=" text-xs font-poppins flex items-center ml-gap  bg-[#eef2f9] w-[13.2rem] ">
+                              <div className=" text-xs font-poppins flex items-center ml-gap h-8 bg-[#eef2f9] w-[11.2rem] ">
                              <div class=" text-xs font-poppins flex items-center"> 
-                             {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`} 
+                             {${dayjs(item.creationDate).format("DD-MM-YYYY")}} 
                                       </div>
 
                           </div>
-                          <div className=" text-xs font-poppins flex items-center ml-gap bg-[#eef2f9]  w-[13.12rem] ">
+                          <div className=" text-xs font-poppins flex items-center bg-[#eef2f9] h-8 ml-gap w-[11.12rem] ">
                               CA$ {Number(item.totalValue).toFixed(2)} 
                     </div>
-                              <div className=" text-xs font-poppins flex items-center ml-gap bg-[#eef2f9] w-[6.12rem] ">
+                              <div className=" text-xs font-poppins flex items-center ml-gap h-8 bg-[#eef2f9] w-[5.12rem] ">
                               {item.paidInd ? "Paid" :"Unpaid"} 
                     </div>
-                    <div className=" text-xs font-poppins flex items-center bg-[#eef2f9] ml-gap  w-[5.12rem] ">
+                    <div className=" text-xs font-poppins flex items-center bg-[#eef2f9] h-8  ml-gap w-[5.12rem] ">
                                           {/* {item.paym}    */}
                     </div>
 
-                    <div class="w-6 ml-gap justify-end">
+                    <div class="w-6 ml-gap bg-[#eef2f9] h-8">
                     <a
-              href={`${base_url2}/customer/pdf/${item.orderId}`}
+              href={${hrErp}/customer/pdf/${item.orderId}}
             target="_blank"
             >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
@@ -268,6 +279,16 @@ function InvoiceCard(props) {
                 </MainForBroker >
             </div>
            
+           <InvoiceOrderDrawer 
+           rowDatas={rowDatas}
+           openInvoiceDrawer={openInvoiceDrawer} 
+           setopenInvoiceDrawer={setopenInvoiceDrawer}
+           />
+           <OrderIDrawer
+                rowDatas={rowDatas}
+           OrderIdDrawer={OrderIdDrawer}
+           setOrderIdDrawer={setOrderIdDrawer}
+           />
         </>
     );
 };

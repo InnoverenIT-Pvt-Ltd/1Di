@@ -1,5 +1,5 @@
 import * as types from "./AuthTypes.js";
-import { base_url, login_url, base_url2 } from "../../Config/Auth";
+import { hrWeb, login_url, hrErp } from "../../Config/Auth";
 import axios from "axios";
 import { message, notification } from "antd";
 import Swal from 'sweetalert2';
@@ -122,7 +122,7 @@ export const generateOtpByEmail = (data, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.GENERATE_OTP_BY_EMAIL_REQUEST });
   axios
-    .post(`${base_url}/otp/generateOTP`, data)
+    .post(`${hrWeb}/otp/generateOTP`, data)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -146,7 +146,7 @@ export const validateOtp = (data) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.VALIDATE_OTP_BY_EMAIL_REQUEST });
   axios
-    .post(`${base_url}/otp/validateOtp`, data)
+    .post(`${hrWeb}/otp/validateOtp`, data)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -167,7 +167,7 @@ export const getUserDetails = (token) => (dispatch) => {
     type: types.GET_USER_DETAILS_REQUEST,
   });
   axios
-    .get(`${base_url}/employee/profile`, {
+    .get(`${hrWeb}/employee/profile`, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -212,7 +212,7 @@ export const getachivement = (candidateId, endDate, startDate) => (dispatch) => 
     type: types.GET_ACHIVEMENT_REQUEST,
   });
   axios
-    .get(`${base_url}/hour/candidate/total/complete-unit/${candidateId}/website?endDate=${endDate}&startDate=${startDate}&url=talent.tekorero.com`, {
+    .get(`${hrWeb}/hour/candidate/total/complete-unit/${candidateId}/website?endDate=${endDate}&startDate=${startDate}&url=talent.tekorero.com`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -251,8 +251,8 @@ export const addContact = (data,currentUrl) => (dispatch) => {
   dispatch({ type: types.ADD_CONTACT_DETAILS_REQUEST });
 
   axios
-    // .post(`${base_url}/leads/website?url=talent.tekorero.com`, data)
-    .post(`${base_url}/leads/website/b2c-b2b/all/register?url=${currentUrl}`, data) 
+    // .post(`${hrWeb}/leads/website?url=talent.tekorero.com`, data)
+    .post(`${hrWeb}/leads/website/b2c-b2b/all/register?url=${currentUrl}`, data) 
     .then((res) => {
       Swal.fire({
         icon: 'success',
@@ -279,7 +279,7 @@ export const verifyEmailurL = (data) => (dispatch) => {
     type: types.VERIFY_EMAIL_REQUEST,
   });
   axios
-    .post(`${base_url}/otp/user/generateOTP`, data, {
+    .post(`${hrWeb}/otp/user/generateOTP`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -306,7 +306,7 @@ export const validateOtpurL = (data, cb) => (dispatch) => {
     type: types.VALIDATE_OTP_REQUEST,
   });
   axios
-    .post(`${base_url}/api/otp/validateOtp`, data)
+    .post(`${hrWeb}/api/otp/validateOtp`, data)
     .then((res) => {
       dispatch({
         type: types.VALIDATE_OTP_SUCCESS,
@@ -334,7 +334,7 @@ export const forgotUserPassword = (data, cb) => (dispatch) => {
 
   dispatch({ type: types.FORGOT_PASSWORD_REQUEST });
   axios
-    .post(`${base_url}/setPassword`, data, {
+    .post(`${hrWeb}/setPassword`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

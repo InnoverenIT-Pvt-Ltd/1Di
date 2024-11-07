@@ -1,13 +1,13 @@
 import * as types from "./PoActionType";
 import axios from "axios";
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 
 export const getAllPurchaseOrder = () => (dispatch) => {
     dispatch({
         type: types.GET_ALL_PURCHASE_ORDER_REQUEST,
     });
     axios
-        .get(`${base_url}/quotation/AllQuotationSupplierSupplies`, {
+        .get(`${hrWeb}/quotation/AllQuotationSupplierSupplies`, {
         })
         .then((res) => {
             dispatch({
@@ -42,7 +42,7 @@ export const getPoListDetails = (quotationSupplierSuppliesId) => (dispatch) => {
         type: types.GET_PO_LIST_REQUEST,
     });
     axios
-        .get(`${base_url}/quotation/quotationSupplierSupplies/materials/${quotationSupplierSuppliesId}`, {
+        .get(`${hrWeb}/quotation/quotationSupplierSupplies/materials/${quotationSupplierSuppliesId}`, {
         })
         .then((res) => {
             dispatch({
@@ -64,7 +64,7 @@ export const getPoStageDetails = () => (dispatch) => {
         type: types.GET_PO_STAGE_REQUEST,
     });
     axios
-        .get(`${base_url}/orderstage/all-Stages`, {
+        .get(`${hrWeb}/orderstage/all-Stages`, {
         })
         .then((res) => {
             dispatch({
@@ -92,7 +92,7 @@ export const getlocationDetailsForPo = (quotationSupplierSuppliesId) => (dispatc
         type: types.GET_LOCATION_DETAILS_FOR_PO_UPDATE_REQUEST,
     });
     axios
-        .get(`${base_url}/quotation/quotationAnalysisLocation/${quotationSupplierSuppliesId}`)
+        .get(`${hrWeb}/quotation/quotationAnalysisLocation/${quotationSupplierSuppliesId}`)
         .then((res) => {
             console.log(res);
             dispatch({
@@ -114,7 +114,7 @@ export const getPoDetailsList = (quotationSupplierSuppliesId) => (dispatch) => {
         type: types.GET_PO_DETAILS_LIST_REQUEST,
     });
     axios
-        .get(`${base_url}/quotation/poData/${quotationSupplierSuppliesId}`)
+        .get(`${hrWeb}/quotation/poData/${quotationSupplierSuppliesId}`)
         .then((res) => {
             console.log(res);
             dispatch({

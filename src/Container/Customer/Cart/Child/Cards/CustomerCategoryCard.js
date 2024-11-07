@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import {UnorderedListOutlined} from "@ant-design/icons";
-import { base_url } from "../../../../../Config/Auth";
+import { hrWeb } from "../../../../../Config/Auth";
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 
 function CustomerCategoryCard (props) {

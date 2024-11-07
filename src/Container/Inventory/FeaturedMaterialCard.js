@@ -12,7 +12,7 @@ import {getFeaturedMaterials,LinkInventoryItem} from "./InventoryAction";
 import { InfoCircleTwoTone,  MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import Carousel from "react-elastic-carousel";
-import { base_url } from "../../Config/Auth";
+import { hrWeb } from "../../Config/Auth";
 
 const { Option } = Select;
 
@@ -377,7 +377,7 @@ function MaterialsItemCard(props) {
                                               {item.imageId ? (
                                                     <div class="object-cover object-center  flex items-center">
                                                      <img
-                                                              src={`${base_url}/image/${item.imageId}`} 
+                                                              src={`${hrWeb}/image/${item.imageId}`} 
                                                               style={{ height: "6.5rem", width: "13rem" }}
                                                           />
                                                          </div>  

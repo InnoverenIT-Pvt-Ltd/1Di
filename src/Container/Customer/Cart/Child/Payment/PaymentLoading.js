@@ -45,7 +45,7 @@ function PaymentLoading(props) {
                         },
                         handleCallback
         );
-        //  fetch(`${base_url}/Stripe/makepaymentNewCard`, {
+        //  fetch(`${hrWeb}/Stripe/makepaymentNewCard`, {
         //         method: "POST",
         //         headers: { "Content-Type": "application/json" },
         

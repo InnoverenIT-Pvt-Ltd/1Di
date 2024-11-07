@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import { Tooltip,Button } from 'antd';
-import { base_url } from '../../Config/Auth';
+import { hrWeb } from '../../Config/Auth';
 import { RollbackOutlined } from "@ant-design/icons";
 import {  MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import {handleSuppliesDetails,LinkInventoryItem} from "./InventoryAction";
@@ -96,7 +96,7 @@ const handleAddToCart = (suppliesId) => {
                                                   {item.imageId ? (
                                                         <div class="object-cover object-center  flex items-center">
                                                          <img
-                                                                  src={`${base_url}/image/${item.imageId}`} 
+                                                                  src={`${hrWeb}/image/${item.imageId}`} 
                                                                   style={{ height: "12.5rem", width: "13rem" }}
                                                               />
                                                              </div>  

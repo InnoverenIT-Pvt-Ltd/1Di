@@ -27,7 +27,7 @@ function Invoice (props) {
       handleOrderOpenDrawer={handleOrderOpenDrawer}/>
        
        <Suspense fallback={<BundleLoader />}>
-      {activeTable === 'open' &&  <OpenInvoiceCard/>  }
+      {activeTable === 'open' &&  <OpenInvoiceCard/>}
       {activeTable === 'complete' && <CompleteInvoiceCard />}
       {activeTable === 'cancelled' && <CancelledInvoiceCard />}
       {activeTable === 'approved' && <ApprovedInvoiceCard />}
