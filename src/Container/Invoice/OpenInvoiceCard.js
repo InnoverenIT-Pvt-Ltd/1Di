@@ -12,6 +12,13 @@ import axios from 'axios';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import UpdateIcon from '@mui/icons-material/Update';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ViewListIcon from '@mui/icons-material/ViewList';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+
+
 
 const { Search } = Input;
 
@@ -163,32 +170,42 @@ function InvoiceCard(props) {
 <div className='mt-2'>
                 <MainForBroker className='!h-[72vh]'>
                 <div className=" flex rounded  w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[9.9rem] font-bold font-poppins"> <FormattedMessage
+        <div className=" w-[9.9rem] font-bold font-poppins"> 
+        <DescriptionIcon />
+          <FormattedMessage
                                    id="app.invoice"
                                   defaultMessage="Invoice ID"
                                  /></div>
-                                     <div className=" w-[9.9rem] font-bold font-poppins"> <FormattedMessage
+                                     <div className=" w-[9.9rem] ml-gap font-bold font-poppins"> 
+                                     <ViewListIcon />
+                                      <FormattedMessage
                                    id="app.orderid"
                                   defaultMessage="Order ID"
                                  /></div>
-        <div className=" w-[12.5rem] font-bold font-poppins"><FormattedMessage
+        <div className=" w-[12.5rem] font-bold font-poppins ml-gap">
+        <DateRangeIcon />
+          <FormattedMessage
                                    id="app.date"
                                   defaultMessage="Date"
                                  /></div>
-        <div className="  w-[10.2rem] font-bold font-poppins "><FormattedMessage
+        <div className="  w-[10.2rem] font-bold font-poppins ml-gap ">
+        <AttachMoneyIcon  />
+          <FormattedMessage
                                    id="app.amount"
                                   defaultMessage="Amount"
                                  /></div>
                                  
-        <div className=" w-[7.7rem] font-bold font-poppins"><FormattedMessage
+        <div className=" w-[7.7rem] font-bold font-poppins ml-gap">
+        <UpdateIcon className='!text-icon text-[#ff66b3]' />
+          <FormattedMessage
                                    id="app.status"
                                   defaultMessage="Status"
                                  /></div>
-        <div className="  w-[13.2rem] font-bold font-poppins "><FormattedMessage
+        {/* <div className="  w-[13.2rem] font-bold font-poppins ml-gap "><FormattedMessage
                                    id="app.payment"
                                   defaultMessage="Payment"
-                                 /></div>
-        <div className=" w-[1.2rem] font-normal font-poppins"></div>      
+                                 /></div> */}
+        <div className=" w-[1.2rem] font-normal font-poppins ml-gap"></div>      
       </div>
       {/* <InfiniteScroll
       dataLength={drb.length} 
@@ -205,32 +222,32 @@ function InvoiceCard(props) {
                       return (
                           <>
                               <div>
-                              <div className="flex rounded border-l-2 border-green-500 bg-[#eef2f9] mt-1 h-8 items-center p-1 ">
-                                      <div className=" text-xs font-poppins flex items-center   w-[9.1rem] ">
+                              <div className="flex rounded border-l-2 border-green-500 bg-[#eef2f9] mt-1 h-8 items-center p-1 ml-gap ">
+                                      <div className=" text-xs font-poppins flex items-center ml-gap   w-[15.1rem] ">
                                       {item.invoiceId}                                                                            
                                       </div>
-                                      <div className=" flex bg-[#eef2f9] w-[10.7rem] ">
+                                      <div className=" flex bg-[#eef2f9] w-[10.7rem]  ml-gap">
                                  <div class=" text-xs font-poppins flex items-center">
                                  {item.newOrderNo}  
                                       </div>
                               </div>
-                              <div className=" text-xs font-poppins flex items-center  bg-[#eef2f9] w-[11.2rem] ">
+                              <div className=" text-xs font-poppins flex items-center ml-gap  bg-[#eef2f9] w-[13.2rem] ">
                              <div class=" text-xs font-poppins flex items-center"> 
                              {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`} 
                                       </div>
 
                           </div>
-                          <div className=" text-xs font-poppins flex items-center bg-[#eef2f9]  w-[11.12rem] ">
+                          <div className=" text-xs font-poppins flex items-center ml-gap bg-[#eef2f9]  w-[13.12rem] ">
                               CA$ {Number(item.totalValue).toFixed(2)} 
                     </div>
-                              <div className=" text-xs font-poppins flex items-center bg-[#eef2f9] w-[5.12rem] ">
+                              <div className=" text-xs font-poppins flex items-center ml-gap bg-[#eef2f9] w-[6.12rem] ">
                               {item.paidInd ? "Paid" :"Unpaid"} 
                     </div>
-                    <div className=" text-xs font-poppins flex items-center bg-[#eef2f9]  w-[5.12rem] ">
+                    <div className=" text-xs font-poppins flex items-center bg-[#eef2f9] ml-gap  w-[5.12rem] ">
                                           {/* {item.paym}    */}
                     </div>
 
-                    <div class="w-6">
+                    <div class="w-6 ml-gap justify-end">
                     <a
               href={`${base_url2}/customer/pdf/${item.orderId}`}
             target="_blank"

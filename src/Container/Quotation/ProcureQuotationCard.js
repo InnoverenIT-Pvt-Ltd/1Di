@@ -19,6 +19,11 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ProcureQuotationItemViewDrawer from '../OrderProgress/ProcureQuotationItemViewDrawer';
 import { base_url2 } from '../../Config/Auth';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
+import CategoryIcon from '@mui/icons-material/Category';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+
 
 const { Search } = Input;
 
@@ -155,20 +160,28 @@ function ProcureQuotationCard(props) {
             <div className='mt-1'>
                 <MainForBroker className='!h-[91vh]'>
                 <div className=" flex rounded w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[15.9rem] font-bold font-poppins"> <FormattedMessage
+        <div className=" w-[15.9rem] font-bold font-poppins">
+        <LightbulbIcon />
+           <FormattedMessage
                                    id="app."
                                   defaultMessage="Quotation ID"
                                  /></div>
-        <div className=" w-[17rem] font-bold font-poppins"><FormattedMessage
+        <div className=" w-[17rem] font-bold font-poppins">
+        <DateRangeIcon className="!text-icon "/>
+          <FormattedMessage
                                    id="app.created"
                                   defaultMessage="Created"
                                  /></div>
-        <div className="w-[12rem] font-bold font-poppins "><FormattedMessage
+        <div className="w-[12rem] font-bold font-poppins ">
+        < DeliveryDiningIcon />
+          <FormattedMessage
                                    id="app.delivery"
                                   defaultMessage="delivery"
                                  /></div>
                    
-        <div className=" w-[7.7rem] font-bold font-poppins"><FormattedMessage
+        <div className=" w-[7.7rem] font-bold font-poppins">
+        <CategoryIcon />
+          <FormattedMessage
                                    id="app.items"
                                   defaultMessage="Items"
                                  /></div>
