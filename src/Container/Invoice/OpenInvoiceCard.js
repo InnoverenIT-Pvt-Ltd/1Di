@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState,} from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -17,6 +16,10 @@ import axios from 'axios';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import UpdateIcon from '@mui/icons-material/Update';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ViewListIcon from '@mui/icons-material/ViewList';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InvoiceOrderDrawer from './InvoiceOrderDrawer';
 import OrderIDrawer from './OrderIDrawer';
 
@@ -41,7 +44,7 @@ const [OrderIdDrawer,setOrderIdDrawer] = useState(false);
   useEffect(() => {
     const fetchData1 = async () => {
         try {
-          const response = await axios.get(`${hrErp}/invoice/unPaidInvoice/${props.userId}`,{
+          const response = await axios.get(${hrErp}/invoice/unPaidInvoice/${props.userId},{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
@@ -168,32 +171,42 @@ const [OrderIdDrawer,setOrderIdDrawer] = useState(false);
 <div className='mt-2'>
                 <MainForBroker className='!h-[72vh]'>
                 <div className=" flex rounded  w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[9.9rem] text-[#00A2E8] font-bold font-poppins"> <ReceiptIcon className=" !text-base "/><FormattedMessage
+        <div className=" w-[9.9rem] font-bold font-poppins"> 
+        <DescriptionIcon />
+          <FormattedMessage
                                    id="app.invoice"
                                   defaultMessage="Invoice ID"
                                  /></div>
-                                     <div className=" w-[9.9rem] font-bold font-poppins"> <DynamicFeedIcon className=" !text-base text-[#e4eb2f]"/><FormattedMessage
+                                     <div className=" w-[9.9rem] ml-gap font-bold font-poppins"> 
+                                     <ViewListIcon />
+                                      <FormattedMessage
                                    id="app.orderid"
                                   defaultMessage="Order ID"
                                  /></div>
-        <div className=" w-[12.5rem] font-bold font-poppins"><DateRangeIcon className=" !text-base text-[#e4eb2f]"/><FormattedMessage
+        <div className=" w-[12.5rem] font-bold font-poppins ml-gap">
+        <DateRangeIcon />
+          <FormattedMessage
                                    id="app.date"
                                   defaultMessage="Date"
                                  /></div>
-        <div className="  w-[10.2rem] font-bold font-poppins "><CurrencyExchangeIcon className=" !text-base text-[#e4eb2f]"/><FormattedMessage
+        <div className="  w-[10.2rem] font-bold font-poppins ml-gap ">
+        <AttachMoneyIcon  />
+          <FormattedMessage
                                    id="app.amount"
                                   defaultMessage="Amount"
                                  /></div>
                                  
-        <div className=" w-[7.7rem] font-bold font-poppins"><EventRepeatIcon  className=" !text-base text-[#e4eb2f]"/><FormattedMessage
+        <div className=" w-[7.7rem] font-bold font-poppins ml-gap">
+        <UpdateIcon className='!text-icon text-[#ff66b3]' />
+          <FormattedMessage
                                    id="app.status"
                                   defaultMessage="Status"
                                  /></div>
-        <div className="  w-[13.2rem] font-bold font-poppins "><CurrencyExchangeIcon className=" !text-base text-[#e4eb2f]"/><FormattedMessage
+        {/* <div className="  w-[13.2rem] font-bold font-poppins ml-gap "><FormattedMessage
                                    id="app.payment"
                                   defaultMessage="Payment"
-                                 /></div>
-        <div className=" w-[1.2rem] font-normal font-poppins"></div>      
+                                 /></div> */}
+        <div className=" w-[1.2rem] font-normal font-poppins ml-gap"></div>      
       </div>
       {/* <InfiniteScroll
       dataLength={drb.length} 
@@ -231,7 +244,7 @@ const [OrderIdDrawer,setOrderIdDrawer] = useState(false);
                               </div>
                               <div className=" text-xs font-poppins flex items-center ml-gap h-8 bg-[#eef2f9] w-[11.2rem] ">
                              <div class=" text-xs font-poppins flex items-center"> 
-                             {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`} 
+                             {${dayjs(item.creationDate).format("DD-MM-YYYY")}} 
                                       </div>
 
                           </div>
@@ -247,7 +260,7 @@ const [OrderIdDrawer,setOrderIdDrawer] = useState(false);
 
                     <div class="w-6 ml-gap bg-[#eef2f9] h-8">
                     <a
-              href={`${hrErp}/customer/pdf/${item.orderId}`}
+              href={${hrErp}/customer/pdf/${item.orderId}}
             target="_blank"
             >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>

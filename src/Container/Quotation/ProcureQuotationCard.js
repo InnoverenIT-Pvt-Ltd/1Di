@@ -22,6 +22,11 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ProcureQuotationItemViewDrawer from '../OrderProgress/ProcureQuotationItemViewDrawer';
 import { hrErp } from '../../Config/Auth';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
+import CategoryIcon from '@mui/icons-material/Category';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+
 
 const { Search } = Input;
 
@@ -150,7 +155,7 @@ function ProcureQuotationCard(props) {
             type: "Cod",
             orderProcess:"checkout"
         });
-        history.push(`/shopName/invOrdersuccess`);
+        history.push(/shopName/invOrdersuccess);
       }
     
       return (
@@ -189,10 +194,10 @@ function ProcureQuotationCard(props) {
       //  loader={props.fetchingRequirementTabData}
     >
                     {props.orderProcureQuoatation.map((item) => {
-                     const LocAdd = `${item.loadingAddress && item.loadingAddress[0].city || ""}`;
-                     const LocAdd1 = `${item.unloadingAddress && item.unloadingAddress[0].city || ""}`;
-                     const country = `${item.loadingAddress && item.loadingAddress[0].countryAlpha2Code || ""}`
-                     const country1 = `${item.unloadingAddress && item.unloadingAddress[0].countryAlpha2Code || ""}`
+                     const LocAdd = ${item.loadingAddress && item.loadingAddress[0].city || ""};
+                     const LocAdd1 = ${item.unloadingAddress && item.unloadingAddress[0].city || ""};
+                     const country = ${item.loadingAddress && item.loadingAddress[0].countryAlpha2Code || ""}
+                     const country1 = ${item.unloadingAddress && item.unloadingAddress[0].countryAlpha2Code || ""}
                      const currentdate = dayjs().format("YYYY/MM/DD");
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
                      const result = currentdate === date
@@ -245,7 +250,7 @@ function ProcureQuotationCard(props) {
                                
                                      <div class="flex justify-end  items-center ">
                                      <div className=" bg-[#eef2f9] h-8  w-32 ml-gap ">
-                                     {/* <Link to={`shopName/invopayment`}> */}
+                                     {/* <Link to={shopName/invopayment}> */}
                                          <Button type="primary" onClick={() => {
                                                         handleConvert(item);
                                                         // handleRowData(item);
@@ -294,7 +299,7 @@ function ProcureQuotationCard(props) {
                                          </div> */}
                                           <div class="w-6 bg-[#eef2f9] h-8   ml-gap">
                                           <a
-              href={`${hrErp}/customer/pdf/${item.quotationId}`}
+              href={${hrErp}/customer/pdf/${item.quotationId}}
             target="_blank"
             >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
@@ -345,28 +350,3 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProcureQuotationCard));
-
-const CatgryName = styled.div`
-  font-size: 1rem;
-  color: black;
-    font-weight: 600;
-    white-space: nowrap;
-    @media only screen and (max-width: 600px) {
-      width: 99%;
-      font-size: 0.8rem;
-  // text-overflow: ellipsis;
-    white-space: nowrap;
-    // overflow: hidden;
-    }
-`;
-const SubCatgryName = styled.div`
-  font-size: 1rem;
-  color: black;
-    font-weight: 600;
-    white-space: nowrap;
-    @media only screen and (max-width: 600px) {
-      width: 85%;
-      font-size: 0.8rem;
-    white-space: nowrap;
-    }
-`;

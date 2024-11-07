@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, lazy } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -18,11 +17,12 @@ import { Link } from 'react-router-dom';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { hrErp } from '../../Config/Auth';
-import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import DateRangeIcon from '@mui/icons-material/DateRange';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import CategoryIcon from '@mui/icons-material/Category';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import ViewListIcon from '@mui/icons-material/ViewList';
+import { hrErp } from '../../Config/Auth';
+
 
 const ProcureItemViewDrawer =lazy(()=>import("./ProcureItemViewDrawer"));
 const ProcureStatusShowDrawer =lazy(()=>import("./ProcureStatusShowDrawer"));
@@ -215,8 +215,8 @@ function OrderInProgressCard(props) {
                         return (
                             <>
 
-                                <div>
-                                <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                            <div>
+                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                              
                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                         <div className=" flex justify-center border-l-2 border-green-500 bg-[#eef2f9] h-8  md:w-[9.1rem] ">                                          
@@ -224,7 +224,7 @@ function OrderInProgressCard(props) {
                                                 {item.newOrderNo}
                                                 &nbsp;
                                                 {result ? <span
-                                                    class="blink text-red-600 font-semibold" 
+                                                    class="blink text-red-600 font-semibold " 
                                                     // style={{ color: "red", fontWeight: "600" }}
                                                 >New</span> : null}
                                             </div>
@@ -233,7 +233,7 @@ function OrderInProgressCard(props) {
                                         <div className=" flex ml-gap bg-[#eef2f9] h-8 md:w-[11.12rem] ">
                                    <div class=" text-xs  font-poppins flex items-center">
                                           
-                                   {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
+                                   {${dayjs(item.creationDate).format("DD-MM-YYYY")}}
                                         </div>
                                 </div>
                                 </div>
@@ -351,7 +351,7 @@ function OrderInProgressCard(props) {
                                             </div> */}
                                                 <div class="w-6   ml-gap ">
                                                 <a
-              href={`${hrErp}/customer/pdf/${item.orderId}`}
+              href={${hrErp}/customer/pdf/${item.orderId}}
             target="_blank"
             >
             <PictureAsPdfIcon className="!text-icon text-[#f2dddd]"/>
@@ -409,27 +409,3 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderInProgressCard);
-const CatgryName = styled.div`
-  font-size: 1rem;
-  color: black;
-    font-weight: 600;
-    white-space: nowrap;
-    @media only screen and (max-width: 600px) {
-      width: 99%;
-      font-size: 0.8rem;
-  // text-overflow: ellipsis;
-    white-space: nowrap;
-    // overflow: hidden;
-    }
-`;
-const SubCatgryName = styled.div`
-  font-size: 1rem;
-  color: black;
-    font-weight: 600;
-    white-space: nowrap;
-    @media only screen and (max-width: 600px) {
-      width: 85%;
-      font-size: 0.8rem;
-    white-space: nowrap;
-    }
-`;
