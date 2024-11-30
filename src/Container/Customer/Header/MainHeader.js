@@ -3,6 +3,7 @@ import { CustomerHeader } from "../../../Components/Utils";
 import { base_url } from "../../../Config/Auth";
 import MainHeaderLeft from "./MainHeaderLeft";
 import MainHeaderRight from "./MainHeaderRight";
+import CustomerContentHeaderActionCenter from "./CustomerContentHeaderActionCenter";
 
 class MainHeader extends Component {
   render() {
@@ -16,7 +17,7 @@ class MainHeader extends Component {
            
             <MainHeaderLeft/>
           }
-          centerComponent={<p style={{ marginTop: "1em" }}></p>}
+          centerComponent={<CustomerContentHeaderActionCenter/>}
           rightComponent={<MainHeaderRight/>}
         />
       </div>

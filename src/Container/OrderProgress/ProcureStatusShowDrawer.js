@@ -9,7 +9,7 @@ const OrderSupplierStatuShower = lazy(() => import("../OrderSupplier/OrderSuppli
 
 const ProcureStatusShowDrawer = (props) => {
     const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "70%";
+    const drawerWidth = isSmallScreen ? "90%" : "80%";
     return (
         <>
             <StyledDrawer

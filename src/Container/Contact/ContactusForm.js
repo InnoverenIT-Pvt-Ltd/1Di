@@ -17,6 +17,7 @@ import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import ProgressiveImage from "../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../Components/Forms/Autocomplete/ClearbitImage";
 import { MainWrapper } from "../../Components/UI/Elements";
+import { Footer } from "../Customer/Footer";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -148,12 +149,13 @@ function ContactusForm (props) {
                             isRequired
                             name="firstName"
                             // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            // label={
+                            //   <FormattedMessage
+                            //     id="app.firstName"
+                            //     defaultMessage="First Name"
+                            //   />
+                            // }
+                            placeholder="Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -162,7 +164,7 @@ function ContactusForm (props) {
                           />
                         </div>
                       </div>                  
-                      <div class=" flex justify-between max-sm:flex-col">
+                      {/* <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-full">
                           <FastField
                             name="middleName"
@@ -197,7 +199,7 @@ function ContactusForm (props) {
                             inlineLabel
                           />
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 
@@ -205,9 +207,10 @@ function ContactusForm (props) {
                     isRequired
                     name="email"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
+                    placeholder="Email"
+                    // label={
+                    //   <FormattedMessage id="app.email" defaultMessage="Email" />
+                    // }
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -222,23 +225,24 @@ function ContactusForm (props) {
                         selectType="dialCode"
                         component={SearchSelect}
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.phone"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.phone"
+                        //     defaultMessage="Dial Code"
+                        //   />
+                        // }
                         isColumn
                         inlineLabel
                       />
                   
                     </div>
                     <div class=" w-8/12">
-                    <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                    <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex  font-bold ">
                       <FastField
+                      placeholder="Phone number"
                         type="text"
                         name="phoneNumber"
-                        label="Phone No"
+                        // label="Phone No"
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -246,9 +250,27 @@ function ContactusForm (props) {
                       />
                       </div>
                     </div>
+                 
                   </div>
-              
-                  <div class=" mt-3">
+                  <div>
+                    <textarea
+                      name="description"
+                      className=" h-26"
+                     placeholder="Message"
+                    ></textarea>
+                  </div>
+                  <div class="flex  bottom- md:absolute">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={addingContact}
+                >
+                  <FormattedMessage id="app.send" defaultMessage="Send" />
+                  {/*                     
+                    Create */}
+                </Button>
+              </div>
+                  {/* <div class=" mt-3">
                   <Field
                   
                     name="companyName"
@@ -264,8 +286,8 @@ function ContactusForm (props) {
                     // accounts={accounts}
                     inlineLabel
                   />
-                  </div>
-                  <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                  </div> */}
+                  {/* <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                   <Field
                     name="url"
                     type="text"
@@ -275,8 +297,9 @@ function ContactusForm (props) {
                     component={InputComponent}
                     inlineLabel
                   />
-                  </div>
+                  </div> */}
                 </div>
+
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk">
  
                   <div class=" mt-3">
@@ -292,23 +315,20 @@ function ContactusForm (props) {
                   />
                   </div>
                 </div>
+               
+                   
+                   
+               
               </div>
             
-              <div class="flex justify-end  w-wk bottom- md:absolute">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  loading={addingContact}
-                >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/*                     
-                    Create */}
-                </Button>
-              </div>
+              
               </MainWrapper>
             </Form>
+           <Footer/>
             </div>
+            
           )}
+          
         </Formik>
       </>
     );

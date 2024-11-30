@@ -12,10 +12,16 @@ import { Scrollbars } from "react-custom-scrollbars-2";
 import { BundleLoader } from "../../Components/Placeholder";
 import { createBrowserHistory } from "history";
 import { RollbackOutlined } from "@ant-design/icons";
-
+import FeaturedMaterialCard from "./FeaturedMaterialCard";
+import axios from 'axios';
+import {base_url2} from "../../Config/Auth"
+import { Footer } from "../Customer/Footer";
 const history = createBrowserHistory();
 
 function InvCard (props) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(()=>{
 
@@ -59,29 +65,71 @@ function InvCard (props) {
         {
           return <BundleLoader/>
         }
-const invencartItem = {
 
-  cartItems:[
-     
-  ]
-}
+const handlePostRequest = async () => {
+    setLoading(true);
+    setError(null);
+
+    // const url = 'https://example.com/api/endpoint';
+    // const postData = {
+    //   key1: 'value1',
+    //   key2: 'value2'
+    // };
+
+    try {
+      const response = await axios.post(`${base_url2}/quotation/toShipping/clicks`,{},
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      );
+      setData(response.data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
-<RollbackOutlined
-          className="BackButton flex justify-start "
-          style={{}}
+
+    <section className="main-cart-section h-[85vh]">
+    <div className="relative bg-[#1124AA] h-8 text-white w-wk flex flex-col justify-center">
+      <div class="flex">
+    <RollbackOutlined
+          className="BackButton flex justify-start !text-xl "
+          style={{color:"white"}}
           onClick={() => history.back()}
         />
-    <section className="main-cart-section">
-    <div class="text-lg text-black font-bold">Shopping Cart</div>
-        <p className="total-items">
-          You have <span className="text-orange-600 total-items-count">{props.invencartItemCount.productCount}</span> items in shopping cart</p>
-        <div className="cart-items">
-        <Scrollbars style={{ width: "-webkit-fill-available", height: "-webkit-fill-available" }}  renderThumbVertical={({style, ...props}) =>
+    <div class="text-lg w-[100%] flex justify-center text-white font-semibold">Shopping Cart</div>
+   
+        <p className="text-white font-normal flex w-[100%] justify-end pr-3">
+          You have &nbsp; <span className="text-[#eacc0c] total-items-count">{props.invencartItemCount.productCount}</span> &nbsp; items in shopping cart</p> </div>
+          </div>
+          <div class="rounded m-1  h-8 w-wk overflow-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#DFE2F8]">
+          <div className=" flex w-[100%] p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" w-[5rem]"></div>
+        <div className=" w-[20.5rem] font-poppins">Product title</div>
+        <div className="h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className=" flex items-center  justify-center w-[6.9rem] font-poppins">SKU</div>
+        <div className="h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className="flex items-center  justify-center w-[7rem] font-poppins">Available</div>
+        <div className="h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className="flex items-center  justify-center w-[24rem] font-poppins">Price</div> 
+        <div className="h-[1rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className="flex items-center  justify-center w-[9rem] font-poppins">Ship By</div>        
+      </div>
+      </div>
+        <div className=" w-[100%] h-[41vh]">
+      
+        <Scrollbars style={{ width: "-webkit-fill-available", height:"35vh" }}  renderThumbVertical={({style, ...props}) =>
         <div {...props} style={{...style, backgroundColor: 'orange'}}/>
     }
    >
-            <div className="cart-items-container">
+    
+            <div className="w-[100%]">
            {props.invencartItem.cartItems && props.invencartItem.cartItems.length === 0 ? <div class="flex justify-center  text-2xl text-[red]">Your Shopping cart is empty !</div>:
 props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
                   return ( 
@@ -101,6 +149,9 @@ props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
                )})} 
             </div>
             </Scrollbars>
+            
+           
+
         </div>
         
         <div style={{ textAlign: "right" }}>
@@ -108,10 +159,14 @@ props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
           <Link to={props.invencartItem.cartItems && props.invencartItem.cartItems.length > 0 ? `/shopName/invcartInfo` :`/shopName/inventorycart`}>
             <Button type="primary"
               // disabled={props.invencartItem.cartItems && props.invencartItem.cartItems.length === 0 }
-            ><div class="text-white cursor-pointer">Next</div></Button>
+              onClick={handlePostRequest}
+            ><div class="text-white cursor-pointer">To Shipping</div></Button>
           </Link>
   :null}
         </div>
+        <div className=" h-[36vh]"> <FeaturedMaterialCard invencartItem={props.invencartItem}/></div>
+        
+       <Footer/>
       </section>
 
       </>

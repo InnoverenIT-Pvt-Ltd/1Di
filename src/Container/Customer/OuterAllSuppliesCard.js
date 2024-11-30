@@ -45,14 +45,14 @@ function OuterAllSuppliesCard (props) {
     return (
         <>
     
-        <div class="h-80 overflow-auto">
+        <div class="h-48 overflow-auto">
     
         <CardWrapper>
         <Carousel
         pagination={false}
                          breakPoints={breakPoints}
                         style={{ minHeight: "6em", justifyContent:"center" }}
-                          class=" w-2/12  mt-8 ml-margin10"
+                          class=" w-2/12  mt-8 ml-10"
                         >
                       {props.allSupplierItemsC.map((item) => {
                          const currentdate = dayjs().format("YYYY/MM/DD");
@@ -196,7 +196,7 @@ function OuterAllSuppliesCard (props) {
 `;
 const CardElement = styled.div`
 
-  /* border:2px solid red */
+  /* border:2px solid orange */
    padding: 0 10px;
    margin-top: 2.5em;
   display: flex;

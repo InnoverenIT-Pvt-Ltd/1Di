@@ -90,7 +90,7 @@ function OrderSupplierCard(props) {
                                     <div className=" md:w-[2rem]"></div>
                  
                                 </div>
-                                <div class="overflow-y-auto h-[65vh]">
+                                <div class="overflow-y-auto h-[85vh]">
                                     <InfiniteScroll
                                         dataLength={props.odrSupplier.length}
                                         loader={props.fetchingPhoneData ? <div class="flex justify-center">Loading...</div> : null}
@@ -113,7 +113,7 @@ function OrderSupplierCard(props) {
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                              
                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex   md:w-[9.1rem] ">                                          
+                                        <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]  md:w-[9.1rem] ">                                          
                                             <div class=" text-xs  font-poppins">
                                                 {item.newOrderNo}
                                                 &nbsp;
@@ -124,7 +124,7 @@ function OrderSupplierCard(props) {
                                             </div>
                                             
                                         </div>
-                                        <div className=" flex  md:w-[10.7rem] ">
+                                        <div className=" flex bg-[#eef2f9] md:w-[10.7rem] ">
                                    <div class=" text-xs  font-poppins flex items-center">
                                           
                                    {`${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
@@ -132,19 +132,15 @@ function OrderSupplierCard(props) {
 
                                 </div>
                                 </div>
-                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex  md:w-[11.2rem] ">
+                               
+                                <div className=" flex bg-[#eef2f9] md:w-[11.2rem] ">
                                <div class=" text-xs  font-poppins flex items-center">                                                                            
                                             {LocAdd}
                                         </div>
-                                </div>
-                                <div className=" flex  md:w-[7.12rem] ">                  
-                    <div class=" text-xs  font-poppins">           
-                      </div>
-                  </div>
-                  </div>
+                                </div>     
+                 
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex   md:w-[3.2rem] ">
+                                        <div className=" flex bg-[#eef2f9]  md:w-[3.2rem] ">
                                             <div
                                                 class=" text-xs font-poppins cursor-pointer text-[#3597b0] font-semibold"                                          
                                                 onClick={() => {
@@ -156,7 +152,7 @@ function OrderSupplierCard(props) {
                                                 {item.itemCount}
                                             </div>
                                         </div>
-                                        <div className=" flex   md:w-[8.1rem] ">
+                                        <div className=" flexbg-[#eef2f9]   md:w-[8.1rem] ">
                                             {/* <div class=" text-base  font-poppins">
                                                 Order Number
                                             </div> */}
@@ -176,7 +172,7 @@ function OrderSupplierCard(props) {
                                         </div>
                                   
 
-                                        <div className="   md:w-24 ">                                        
+                                        <div className=" bg-[#eef2f9]  md:w-24 ">                                        
                                         </div>                                                               
                                             <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
                                             <Tooltip title={<FormattedMessage

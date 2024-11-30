@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from 'react-intl';
-import dayjs from "dayjs";
 import { Button} from "antd";
 import { base_url2 } from "../../Config/Auth";
 import axios from 'axios';
+import dayjs from "dayjs";
 
 function StatusItemCard (props) {
   
@@ -43,6 +43,24 @@ const [response, setResponse] = useState(null);
     }
   };
 
+  const [CancelItem, setCancelItem] = useState(null);
+  const [errorC, setErrorC] = useState(null);
+
+  const CancelItemRequest = async (item) => {
+    try {
+      const respoCancel = await axios.post(`${base_url2}/phoneOrder/cancelOrder/${item.itemId}`,{},
+       { headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setCancelItem(respoCancel.data);
+      console.log(respoCancel.data);
+    } catch (errorC) {
+      setErrorC(errorC);
+      console.error(errorC);
+    }
+  };
+
     return (
         <>
              <div> 
@@ -50,33 +68,33 @@ const [response, setResponse] = useState(null);
              <div className=' flex justify-end sticky flex-col z-auto'>
              <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
              <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-             <div className=" md:w-[10rem]"><FormattedMessage
+             <div className=" md:w-[11.5rem]"><FormattedMessage
                                         id="app.name"
                                         defaultMessage="Name"
                                     /></div>
-                                     <div className=" md:w-[4.5rem]"><FormattedMessage
+                                     <div className=" md:w-[9.51rem]"><FormattedMessage
                                        id="app."
                                         defaultMessage="Category"
                                     /></div>
-                                        <div className=" md:w-[4.5rem]"><FormattedMessage
+                                        <div className=" md:w-[5.52rem]"><FormattedMessage
                                        id="app."
                                         defaultMessage="Attribute"
                                     /></div>
-                                    <div className=" md:w-[4.5rem]"><FormattedMessage
+                                    <div className=" md:w-[6.5rem]"><FormattedMessage
                                        id="app.itemid"
                                         defaultMessage="Item ID"
                                     /></div>
-                                     <div className=" md:w-[5.1rem]"><FormattedMessage
+                                     <div className=" md:w-[6.1rem]"><FormattedMessage
                                         id="app.units"
                                         defaultMessage="Units"
                                     /></div>
-                                    <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app.loc"
-                                        defaultMessage="Delivery"
+                                    <div className=" md:w-[5.1rem]"><FormattedMessage
+                                        id="app.shipped"
+                                        defaultMessage="Shipped"
                                     /></div>
                                     <div className="md:w-[6.2rem]"><FormattedMessage
-                                        id="app.shippingno"
-                                        defaultMessage="Shipping "
+                                        id="app.trackingid"
+                                        defaultMessage="Tracking ID "
                                     /></div>
         
                                     {/* <div className=" md:w-[6.5rem]"><FormattedMessage
@@ -88,7 +106,7 @@ const [response, setResponse] = useState(null);
                                     <div className=" md:w-8"></div>
                  
                                 </div>
-                               <div class="overflow-y-auto h-[65vh]">
+                                <div class="overflow-y-auto h-[85vh]">
                                     {/* <InfiniteScroll
                                         dataLength={props.orderProcureDetails.length}
                                         loader={props.fetchingProcureOrderDetails ? <div class="flex justify-center">Loading...</div> : null}
@@ -98,46 +116,55 @@ const [response, setResponse] = useState(null);
                                         height={"65vh"}
                                     > */}
                                         {props.statusItems.orderItemInfo && props.statusItems.orderItemInfo.map((item) => {
+                                            const currentdate = dayjs().format("YYYY/MM/DD");
                                             return (
                                                 <div>
                                                     <div
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex   md:w-[6rem] max-sm:flex-row max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex  border-l-2 border-green-500 bg-[#eef2f9]  md:w-[12rem] max-sm:flex-row max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold   font-poppins">
                                                                     {item.productFullName}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
-                                                                    {item.category}
+                                                            <div className=" flex bg-[#eef2f9]   md:w-[10.23rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div title={item.category}
+                                                                 class=" text-xs font-bold text-cardBody font-poppins truncate max-w-[9rem]">
+                                                                    {item.category} 
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex  bg-[#eef2f9]  md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold   font-poppins">
                                                                     {item.attribute}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex   md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
-                                                                    {item.itemId}
+                                                            <div className=" flex bg-[#eef2f9]   md:w-[8rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold   font-poppins">
+                                                                    {item.newProductId}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex bg-[#eef2f9]   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold   font-poppins">
                                                                     {item.unit}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
-                                                                {dayjs(item.deliveryDate).format("YYYY/MM/DD")} 
+                                                            <div className=" flex bg-[#eef2f9]   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold   font-poppins">
+                                                                {item.shippingDate} 
+                                                                </div>
+                                                        
+                                                            </div>
+                                                            
+                                                            <div className=" flex bg-[#eef2f9]   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs font-bold   font-poppins">
+                                                                {item.shippingNo} 
                                                                 </div>
                                                         
                                                             </div>
                                                             </div>
-                                                           
+                                                            {/* {item.shippingDate !== currentdate} */}
                                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">                                                 
                                                             <Button type="primary"
                                                             onClick={() =>
@@ -146,9 +173,17 @@ const [response, setResponse] = useState(null);
                                                 Receive
                                                 </Button>
                                                         </div>
-
+                                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">                                                 
+                                                            <Button type="primary"
+                                                            onClick={() =>
+                                                                CancelItemRequest(item)}
+                                                            >
+                                                Cancel
+                                                </Button>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                    
                                             )
                                         })}
                                     {/* </InfiniteScroll> */}

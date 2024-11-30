@@ -8,25 +8,21 @@ import {addInventoryPaymentId} from "./InventoryAction";
 import InventoryCheckoutForm from "./InventoryCheckoutForm";
 import { BundleLoader } from "../../Components/Placeholder";
 
-//production pk
-// const stripePromise = loadStripe('pk_live_51LAhLPKXR87JGQ2mbvZttPANWPbRh9p8chyzzqWS87BAykmpgunwMyR6cAWim4CmOI8Ph6qyKMUZXOvrsqWQrJG400VZPXiFaV');
-// const stripePromise = loadStripe('pk_test_51MHMyeLUPUCPutTHmfURN9aHilVqsmPDU8gQIt2nndD3iRrOwAobmFh567r34xIjzqSRexw6muNUuPGgYxBOZv1J00WHxEDkln');
-// const stripePromise = loadStripe("pk_test_51LRswhSFbuOpicuJq6ti4dl3PQIJuWGBSkYNfdO7BUNuLNOJxNhJwQBZ0C3mII8vqqZJirp1ZS3JAnsYiobWdTI1009cMzEibq");
+//pk
 const stripePromise = loadStripe("pk_test_51Pg4N4F9t5MfjsIZrPxRRnon7ENfinC1pcSx6aRw0prlk3qODgIAgXcRXel0NaoI38idFEUDI21QcrL0eNh8Sndf00t7yiYS6E");
+                                  
 
 function InventoryCheckout(props) {
-  // const cartData = props.deliveryInfo.storeCart;
-  // const cartSummaryData = cartData && cartData.cartSummary;
-  // const finalSubTotalValue = cartSummaryData && cartSummaryData.subTotal;
-  // const finalgrandTotalValue = cartSummaryData && cartSummaryData.grandTotal;
-  // const multiplyValue=finalgrandTotalValue*100
 
+  const mutlipro = props.invencartItem.cartSummary.grandTotal *100;
+const amountToFiexed =mutlipro.toFixed(2)
+  console.log("mutlipro",amountToFiexed)
   useEffect(() => {
     let data = {
       cartId: props.invencartItem.orderPhoneId ? props.invencartItem.orderPhoneId :null,
       currency: "EUR",
-      // amount:props.invencartItem.cartSummary && props.invencartItem.cartSummary.grandTotal,
-      amount:"100",
+      amount:amountToFiexed,
+      // amount:"100",
     };
 
     props.addInventoryPaymentId(data);
@@ -49,6 +45,7 @@ function InventoryCheckout(props) {
       >
       <InventoryCheckoutForm 
         handleInventoryStripeModal={props.handleInventoryStripeModal}
+        invencartItem={props.invencartItem}
       />
     </Elements>
  } 

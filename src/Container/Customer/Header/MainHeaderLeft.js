@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import KoreroLogo from "../../../Assests/Images/Logo_new.png";
-import NuboxLogo from "../../../Assests/Images/nuboxnew.jpg";
 import { Link } from "react-router-dom";
 
 function MainHeaderLeft (props) {
@@ -14,7 +13,7 @@ function MainHeaderLeft (props) {
       <img 
         //   src={NuboxLogo}
            src={KoreroLogo}
-      style={{ width: "10em" }} alt="img" />
+      style={{ width: "4vw",height:"5vh" }} alt="img" />
       </div>
       </Link>
             {/* <div>

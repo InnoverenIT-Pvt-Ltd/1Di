@@ -4,20 +4,42 @@ import { Formik, Form, Field,FieldArray } from "formik";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Spacer } from "../Components/UI/Elements";
-// import {getCountry} from  "../Containers/Auth/AuthAction";
-import { FormattedMessage } from "react-intl";
 import { InputComponent } from "../Components/Forms/Formik/InputComponent";
 import RegisterAddressFieldArray from "../Components/Forms/Formik/RegisterAddressFieldArray";
-
+import {
+  EyeOutlined,
+  EyeInvisibleOutlined,
+  CheckCircleTwoTone,
+} from "@ant-design/icons";
+import { base_url } from "../Config/Auth";
+import axios from "axios";
 
 const { Option } = Select;
+
 function RegistrationStep1 (props) {
+
+  const [ClientType,setClientType] = useState([])
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(()=>{
-    // props.getCountry();
+    fetchClientIdList();
   },[])
 
-
-
+const fetchClientIdList = async () => {
+  try {
+    const response = await axios.get(`${base_url}/customerType/web`,{
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    });
+    setClientType(response.data);
+    setLoading(false);
+  } catch (error) {
+    setError(error);
+    setLoading(false);
+  }
+};
   return (
     <>
       <Formik
@@ -53,41 +75,61 @@ function RegistrationStep1 (props) {
         }) => (
         
           <Form class="w-wk flex justify-center">
-             <div   className="bg-[#DFDFDF] rounded-2xl p-3 border-solid  flex flex-col justify-center mt-3 w-11/12  " >
-            <div class=" overflow-x-hidden max-h-[36rem]">
-              <div class="p-4 ">
+             <div   className="bg-[#DFDFDF] rounded p-1 border-solid  flex flex-col justify-center mt-1 w-[42rem] " >
+            <div class=" overflow-x-hidden max-h-[35rem]">
+              <div class="p-1">
                 
-                <div className="flex justify-between mt-3">
+                <div className="flex justify-between mt-1">
                  
-                  <div  class="w-4/5 flex flex-wrap  flex-col">
-                  <div class="flex">
-                      <div className=" font-montserrat text-sm  font-semibold w-44">Company Name</div>
+                  <div  class="w-4/5   items-center justify-around ">
+                  <div class="flex flex-row  ">
+                      <div className=" font-poppins text-sm  font-semibold w-44">Company Name</div>
                       <div>
                       <Field
                         placeholder={`Company name`}
                         component={InputComponent}
-                        value={props.companyName}
+                        value={props.name}
                         onChange={props.handleNameStep1}
-                        style={{marginLeft:"-3rem"}}
+                        style={{
+                        height: "1.8rem"                          
+                      }}
                       />
+                                                        <div>
+   {props.fieldErrors.name && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.name?props.fieldErrors.name:null}
+      </div>
+  )} 
+  </div>
                     </div>
                     </div>
-                    <div class="flex">   
-                    <div className="mr-6 font-montserrat text-sm  font-semibold w-[9.4rem]">Registration No</div>
+                    <div class="flex flex-row items-center">   
+                    <div className=" font-poppins text-sm  font-semibold w-44">Registration No</div>
                     <div>
                     <Field
                     
                     isColumn
-                    width={"100%"}
+                    // width={"100%"}
                     component={InputComponent}
                     inlineLabel
                     onChange={props.handleStepBusRegNo}
                     value={props.businessRegistration}
+                    style={{
+                      height: "1.8rem",
+                        // borderRadius: "0.4rem"
+                    }}
                   />
-</div>
+                   <div>
+   {props.fieldErrors.businessRegistration && (
+    <div className="error-message  text-[red] font-semibold text-sm">
+      {!props.businessRegistration?props.fieldErrors.businessRegistration:null}
+      </div>
+  )} 
+  </div>
+                  </div>
                     </div>
-                    <div class="flex">   
-                    <div className="mr-6 font-montserrat text-sm  font-semibold w-[9.4rem]">Phone #</div>
+                    <div class="flex flex-row items-center">   
+                    <div className=" font-poppins text-sm  font-semibold w-44">Phone #</div>
                     <div>
                     <Field
                           // label={props.serviceProviderStep1.phoneNo}
@@ -95,16 +137,70 @@ function RegistrationStep1 (props) {
                       isColumn
                       component={InputComponent}
                       inlineLabel
-                      width={"100%"}
+                      // width={"100%"}
                       value={props.phoneNo}
                       // onKeyPress={handleKeyPress}
                       onChange={props.handleStep1Phone}
+                      style={{
+                        height: "1.8rem",
+                          // borderRadius: "0.4rem"
+                      }}
                     />
+                                         <div>
+   {props.fieldErrors.phoneNo && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.phoneNo?props.fieldErrors.phoneNo:null}
+      </div>
+  )} 
+  </div>
                           </div>
                           </div>
-                  </div>         </div>
+                          <div class="flex flex-row items-center">   
+                    <div className=" font-poppins text-sm  font-semibold w-44">Email</div>
+                    <div>
+                    <Field 
+                      isColumn
+                      component={InputComponent}
+                      inlineLabel 
+                      value={props.billingEmail}
+                      onChange={props.handleStepEmailRegNo}
+                      style={{
+                        height: "1.8rem", 
+                      }}
+                    />
+                     <div>
+   {props.fieldErrors.billingEmail && (
+    <div className="error-message text-[red] font-semibold text-sm">
+      {!props.billingEmail?props.fieldErrors.billingEmail:null}
+      </div>
+  )} 
+  </div>
+                          </div>
+                          </div>
+                          <div class="flex flex-row items-center">
+                             
+                             <div className="font-poppins text-sm  font-semibold w-44"> Sector </div> 
+                                 <div>
+                                 <Select
+                           
+                                       placeholder="Select type"
+                                       inlineLabel
+                                       value={props.clientId}
+                                       onChange={props.handleClientId}
+                                       style={{width:"12.5rem"}}
+                                     >
+                                       {ClientType.map((item) => {
+                                         return <Option value={item.customerTypeId}>{item.name}</Option>;
+                                       })}
+                                     </Select>
+                     </div>
+                                            
+                                           </div>
+                           
+                  </div>       
+                  </div>
                   <div >
-                    <div class="font-semibold text-sm">Billing Address</div>
+                    <div class="font-semibold text-sm mt-2">Billing Address</div>
                   <FieldArray 
                     name="address"              
                     render={(arrayHelpers) => (

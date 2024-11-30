@@ -7,8 +7,8 @@ const MainForBroker = styled.div`
     border: none;
     background:#d3d3d380;
     color: ${props => props.theme.color};
-    margin: 1.2rem;
-    padding: 1.3rem;
+    margin: 0.25rem;
+    padding: 0.25rem;
     width: 100%;
     width: -moz-available;          /* WebKit-based browsers will ignore this. */
     width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */

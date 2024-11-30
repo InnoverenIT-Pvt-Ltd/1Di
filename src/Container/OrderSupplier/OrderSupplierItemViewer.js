@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from "react-infinite-scroll-component";
-import {getOrdrSuppierDetails} from "../MyOrder/MyOrderAction";
+import {getSupplierOrdrItemList} from "../MyOrder/MyOrderAction";
 
 
 function OrderSupplierItemViewer (props) {
@@ -13,7 +13,7 @@ const [hasMore, setHasMore] = useState(true);
 
 
 useEffect(()=>{
-    props.getOrdrSuppierDetails(props.rowDatas.orderId);
+    props.getSupplierOrdrItemList(props.rowDatas.orderId,props.userId);
 },[]);
 
 
@@ -66,26 +66,26 @@ function handleSetRowData(item) {
                                 </div>
                               
                                     <InfiniteScroll
-                                        dataLength={props.ordrSuplrItem.length}
-                                        loader={props.fetchingOrdrSuplrDetails ? <div class="flex justify-center">Loading...</div> : null}
+                                        dataLength={props.supplrOrdrItemsList.length}
+                                        loader={props.fetchingSupplierOrdrItemList ? <div class="flex justify-center">Loading...</div> : null}
                                   
                                         hasMore={hasMore}
      
-                                        height={"65vh"}
+                                        height={"85vh"}
                                     >
-                                        {props.ordrSuplrItem.map((item) => {
+                                        {props.supplrOrdrItemsList.map((item) => {
                                             return (
                                                 <div>
                                                    <div
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium   md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium border-l-2 border-green-500 bg-[#eef2f9] h-8  md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.productFullName}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8  md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.model}
                                                                 </div>
@@ -93,31 +93,31 @@ function handleSetRowData(item) {
                                                             </div>
                                                             </div>
                                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8  md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.brand}
                                                                 </div>
                                                             </div>
                                                             
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.category}
                                                                 </div>
                                                             </div>
                                                             </div>
                                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.attribute} 
                                                                 </div>
                                                             </div>
                                                     
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8 md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.price} 
                                                                 </div>
                                                             </div>     
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium bg-[#eef2f9] h-8 md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.unit} 
                                                                 </div>
@@ -141,15 +141,16 @@ function handleSetRowData(item) {
         </>
     );
 }
-const mapStateToProps = ({ myorder}) => ({
-    ordrSuplrItem:myorder.ordrSuplrItem,
-    fetchingOrdrSuplrDetails:myorder.fetchingOrdrSuplrDetails
+const mapStateToProps = ({ myorder,auth}) => ({
+    supplrOrdrItemsList:myorder.supplrOrdrItemsList,
+    fetchingSupplierOrdrItemList:myorder.fetchingSupplierOrdrItemList,
+    userId: auth.userDetails.userId,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getOrdrSuppierDetails,
+            getSupplierOrdrItemList,
 
         },
         dispatch

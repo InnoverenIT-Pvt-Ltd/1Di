@@ -18,27 +18,27 @@ import { ActionIcon } from "../../Utils";
 import { TextInput } from ".";
 const { Option } = Select;
 const JumpStartWrapper = styled.div`
-  margin: 0.2rem 0.4rem;
-  padding: 0.3rem;
-  border: 0.0625em solid #ddd;
-  // border-radius: 0.3rem;
-  display: flex;
-  justify-content: "space-between";
-  align-items: center;
-  background: ${(props) => props.bgColor || "#fff"};
-  color: #333 !important;
-  cursor: ${(props) => (props.clickable ? "pointer" : "")};
-  -webkit-box-shadow: 0 0.5em 0.375em -0.375em rgb(46, 44, 44);
-  -moz-box-shadow: 0 0.5em 0.375em -0.375em rgb(46, 44, 44);
-  box-shadow: 0 0.5em 0.375em -0.375em rgb(46, 44, 44);
-  flex: 1 1 0;
-  height:6em;
-  transition: 0.3s all;
-  &:hover {
-    -webkit-box-shadow: 0 0.75em 0.375em -0.375em rgb(46, 44, 44);
-    -moz-box-shadow: 0 0.75em 0.375em -0.375em rgb(46, 44, 44);
-    box-shadow: 0 0.75em 0.375em -0.375em rgb(46, 44, 44);
-  }
+  // margin: 0.2rem 0.4rem;
+  // padding: 0.3rem;
+  // border: 0.0625em solid #ddd;
+  // // border-radius: 0.3rem;
+  // display: flex;
+  // justify-content: "space-between";
+  // align-items: center;
+  // background: ${(props) => props.bgColor || "#fff"};
+  // color: #333 !important;
+  // cursor: ${(props) => (props.clickable ? "pointer" : "")};
+  // -webkit-box-shadow: 0 0.5em 0.375em -0.375em rgb(46, 44, 44);
+  // -moz-box-shadow: 0 0.5em 0.375em -0.375em rgb(46, 44, 44);
+  // box-shadow: 0 0.5em 0.375em -0.375em rgb(46, 44, 44);
+  // flex: 1 1 0;
+  // height:6em;
+  // transition: 0.3s all;
+  // &:hover {
+  //   -webkit-box-shadow: 0 0.75em 0.375em -0.375em rgb(46, 44, 44);
+  //   -moz-box-shadow: 0 0.75em 0.375em -0.375em rgb(46, 44, 44);
+  //   box-shadow: 0 0.75em 0.375em -0.375em rgb(46, 44, 44);
+  // }
 `;
 const Progress = styled.span`
   color: ${(props) => (props.amount >= 0 ? "#0d9412" : "rgb(248, 15, 15)")};

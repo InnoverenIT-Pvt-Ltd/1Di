@@ -1,8 +1,7 @@
-import React, {Suspense, lazy, useState,useEffect } from "react";
+import React, {useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../Components/Placeholder";
-import { Button, Rate, Steps } from 'antd';
+import {Steps } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import {getProcureStatusItem} from "../MyOrder/MyOrderAction";
 import moment from 'moment';
@@ -50,7 +49,7 @@ function OrderSupplierStatuShower (props) {
                         </>
                 },
                 {
-                    title: 'Order Pick Up',
+                    title: 'Order Summary',
                     status:  '',
                    // subTitle: <StatusItemCard statusItems={props.statusItems}/>,
                     description: <>

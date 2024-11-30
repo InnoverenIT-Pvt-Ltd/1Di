@@ -10,7 +10,7 @@ import { Button,DatePicker,Tooltip } from "antd";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { FlexContainer } from "../../Components/UI/Layout";
 import DeliveryInfoAddressFieldArray from "../../Components/Forms/Formik/DeliveryInfoAddressFieldArray";
-import {addInventoryDeliveryInfo } from "./InventoryAction";
+import {addInventoryDeliveryInfo,generateQuatation } from "./InventoryAction";
 import { Link, useHistory } from "react-router-dom";
 import moment from 'moment'; 
 import "./Inventory.scss";
@@ -43,7 +43,7 @@ function InventoryDeliveryInfoForm(props) {
 
   const addressSchema = Yup.object().shape({
     address1: Yup.string().required('Address is required'),
-    city: Yup.string().required('City is required'),
+    // city: Yup.string().required('City is required'),
     // pinCode: Yup.string().required('Pin Code is required'),
     // state: Yup.string().required('State is required'), 
   });
@@ -61,6 +61,11 @@ function InventoryDeliveryInfoForm(props) {
       return <BundleLoader/>
     }
 
+
+    function generateQuatationFunction(){
+      history.push("/invQuotationsuccess");
+      props.generateQuatation({orderProcess:"convertToOrder"},props.invencartItem.orderPhoneId);
+    }
 
   return (
     <>
@@ -253,7 +258,7 @@ function InventoryDeliveryInfoForm(props) {
                      </div>
                    
                      <div class="flex">
-                       <Tooltip title="High">
+                       <Tooltip title="Urgent">
                          <Button
                            
                             shape="circle"
@@ -262,51 +267,35 @@ function InventoryDeliveryInfoForm(props) {
                              backgroundColor:"red",
                                  borderRadius: "50%", 
                                  width: "31px", 
-                                 height: "31px"
+                                 height: "31px",
+                                 display:"flex", justifyContent:"center", alignItems:"center"
                            }}
                          >
                           {priority==="High" && (
-                            <CheckCircleOutlineIcon className="!text-white" />
+                            <CheckCircleOutlineIcon className="!text-white text-center text-[1.1rem]" />
                           )}
                          </Button>
                        </Tooltip>
                        &nbsp;
-                       <Tooltip title="Medium">
+                       <Tooltip title="Normal">
                          <Button
                            
                             shape="circle"
-             
-                           onClick={() => handleButtonClick("Medium")}
-                           style={{
-                             backgroundColor:"orange",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px",
-                           }}
-                         >
-                           {priority==="Medium" && (
-                            <CheckCircleOutlineIcon className="!text-white" />
-                          )}
-                          </Button>
-                       </Tooltip>
-                       &nbsp;
-                       <Tooltip title="Low">
-                         <Button
-                           
-                            shape="circle"
-                   
                            onClick={() => handleButtonClick("Low")}
                            style={{
                              backgroundColor:"teal",
                                  borderRadius: "50%", 
                                  width: "31px", 
-                                 height: "31px"
+                                 height: "31px",
+                                 display:"flex", justifyContent:"center", alignItems:"center"
                            }}
-                         > {priority==="Low" && (
-                          <CheckCircleOutlineIcon className="!text-white" />
-                        )}
-                        </Button>
+                         >
+                          {priority==="Low" && (
+                            <CheckCircleOutlineIcon className="!text-white text-center text-[1.1rem]" />
+                          )}
+                         </Button>
                        </Tooltip>
+                       
                      </div>
                  {/* <div>
                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Delivery Date</div>
@@ -339,12 +328,19 @@ function InventoryDeliveryInfoForm(props) {
             </div>
             <Spacer />
             <FlexContainer justifyContent="flex-end">
+            <Button 
+                className="bg-green-500"
+                onClick={() => generateQuatationFunction()}
+                loading={props.generatingQuotation}  
+                >
+                  Generate Quote
+                </Button>
               {/* <Link to="/shopName/invopayment"> */}
                 <Button type="primary"
                 htmlType="submit" 
                 loading={props.addingInventoryDeliveryInfo}
                 >
-                  Next
+                  Check Out
                 </Button>
               {/* </Link> */}
             </FlexContainer>
@@ -359,13 +355,13 @@ const mapStateToProps = ({ inventory,auth }) => ({
   addingInventoryDeliveryInfo: inventory.addingInventoryDeliveryInfo,
   // invencartItem: inventory.invencartItem,
   userId: auth.userDetails.userId,
-  // fetchingInventoryCartItems:inventory.fetchingInventoryCartItems,
+  generatingQuotation:inventory.generatingQuotation,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addInventoryDeliveryInfo,
-      // getInventoryCartItems,
+      generateQuatation
     },
     dispatch
   );

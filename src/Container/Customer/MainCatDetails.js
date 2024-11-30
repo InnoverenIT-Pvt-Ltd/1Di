@@ -1,0 +1,127 @@
+
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+ import { getWitoutPrice } from "../Customer/CustomerAction";
+ import { getSuppliesBySuppliestId } from "../Inventory/InventoryAction";
+import styled from "styled-components";
+import { Select } from "../../Components/UI/Elements";
+import { base_url } from "../../Config/Auth";
+import MainTable from "./MainTable";
+import { Footer } from "./Footer";
+import { CurrencySymbol } from "../../Components/Common";
+
+
+const { Option } = Select;
+
+function MainCatDetails(props) {
+  useEffect(() => {
+    props.getSuppliesBySuppliestId(props.rowDatas.suppliesId);
+  }, []);
+
+//   if (props.fetchingProductsList) {
+//     return <BundleLoader />;PD10985606347262024
+//   }
+const puzzleDescription = `
+  Elephants are the largest existing land animals! They are strong, unique in their built, and caring. Watch these
+  majestic animals travel with their herd in this 3D, immersive puzzle.
+  Each piece is made with great detail and quality craftsmanship doing justice to the vibrant colours that pop out
+  (pun intended!) as you assemble this unique illustration. High-quality pieces that don’t break and are easy to fit.
+  Develop a new hobby, or engage in some brain training as puzzles are known to stimulate the brain, and improve
+  our spatial reasoning, memory, problem-solving abilities and even increase our IQ! Puzzles are also a great way
+  to boost the mood, relieve stress and increase self-confidence!
+  You can do it yourself, with your family and friends or even use it for gifting!
+`;
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 500, itemsToShow: 2 },
+  { width: 768, itemsToShow: 2, itemToScroll: 2 },
+  { width: 1100, itemsToShow: 4, itemToScroll: 4 },
+];
+console.log(props.suppliesByproductId)
+
+
+
+    return (
+    <>
+     <div className="bg-[#F7F8FC] p-8">
+ <div className="flex justify-between items-center w-full">
+      <div >
+        <div className="text-xl font-medium">{props.suppliesByproductId.suppliesName}</div>
+        <div className="text-base font-medium">{props.suppliesByproductId.newSuppliesNo}</div>
+    
+        <div className='flex items-center  w-wk mt-3'>
+        <div className="flex items-center ">
+        <div class="text-sm font-bold text-black w-16">
+       
+         SRP {Number(props.suppliesByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C).toFixed(2)}
+         {/* <CurrencySymbol  currencyType={props.suppliesByproductId.suppliesPrices?.[0].currencyName}/> {props.suppliesByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C} */}
+        </div>
+      </div>
+      {/* <div className="flex items-center justify-center ml-1">
+        <div class="text-sm text-black">
+        WSL  {props.suppliesByproductId ?.suppliesPrices?.[0].suppliesPrice}
+       
+        </div>
+      </div> */}
+        </div>
+      
+      </div>
+      <div class=" flex justify-end">
+      <img  src={`${base_url}/image/${props.suppliesByproductId.imageId}`}  className="w-[20rem]" />
+     
+      </div>
+   
+    </div>
+    <div className="flex w-wk justify-between mt-6 ">
+    <div className="flex flex-col border box-border h-40 w-[27rem]">
+    <div className=" font-medium ml-1">Description </div>
+    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html:props.suppliesByproductId.description? `<p>${props.suppliesByproductId.description}</p>`: "<p></p>" }} />
+    </div>
+    <div className="flex flex-col border box-border h-40 w-[27rem]">
+    <div className=" font-medium ml-1">Description in French </div>
+    <div className=" font-normal ml-1" dangerouslySetInnerHTML={{ __html: props.suppliesByproductId.qrCodeNo ?`<p>${props.suppliesByproductId.qrCodeNo}</p>`: "<p></p>" }} />
+    </div>
+    </div>
+    <div className="cardDs-bottom mt-5 flex ">
+    <MainTable suppliesByproductId={props.suppliesByproductId}/>
+   
+      </div>
+     
+   </div>
+ <Footer/>
+       </>
+      
+      );
+
+
+}
+const mapStateToProps = ({ customer,auth ,inventory}) => ({
+    witoutPrice: customer.witoutPrice,
+  fetchingWitoutPrice:customer.fetchingWitoutPrice,
+  suppliesByproductId: inventory.suppliesByproductId,
+});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      getWitoutPrice,
+      getSuppliesBySuppliestId
+   
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainCatDetails);
+const Desc= styled.div`
+font-size: 1.25rem;
+`;
+
+const DescName= styled.div`
+  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    // color:white;
+`;
+
+

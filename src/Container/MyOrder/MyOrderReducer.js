@@ -119,6 +119,7 @@ const initialState = {
   leastSell: [],
   repeatingOrderSuccess: false,
   repeatingOrderSuccessError: false,
+  repeatOrderlist:{},
 
   updatingOrdrSuplrItems: false,
   updatingOrdrSuplrItemsError: false,
@@ -129,6 +130,10 @@ const initialState = {
   fetchingOrdrSuplrDetails: false,
   fetchingOrdrSuplrDetailsError:false,
   ordrSuplrItem:[],
+
+  fetchingAllShipper: false,
+  fetchingAllShipperError: false,
+  allShipperList: [],
 };
 
 export const myorderReducer = (state = initialState, action) => {
@@ -578,6 +583,7 @@ export const myorderReducer = (state = initialState, action) => {
       return {
         ...state,
         repeatingOrderSuccess: false,
+        repeatOrderlist:action.payload,
         // orderListData: state.orderListData.map((item) => {
         //   if (item.orderId === action.payload.orderId) {
         //     return action.payload;
@@ -633,6 +639,37 @@ export const myorderReducer = (state = initialState, action) => {
         fetchingOrdrSuplrDetailsError: true,
       };
 
+
+      case types.GET_SUPPLIER_ORDR_ITEM_LIST_REQUEST:
+        return { ...state, fetchingSupplierOrdrItemList: true };
+      case types.GET_SUPPLIER_ORDR_ITEM_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingSupplierOrdrItemList: false,
+          supplrOrdrItemsList: action.payload,
+        };
+      case types.GET_SUPPLIER_ORDR_ITEM_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingSupplierOrdrItemList: false,
+          fetchingSupplierOrdrItemListError: true,
+        };
+
+        case types.GET_ALL_SHIPPER_REQUEST:
+          return { ...state, fetchingAllShipper: true };
+        case types.GET_ALL_SHIPPER_SUCCESS:
+          return {
+            ...state,
+            fetchingAllShipper: false,
+            allShipperList: action.payload,
+          };
+        case types.GET_ALL_SHIPPER_FAILURE:
+          return {
+            ...state,
+            fetchingAllShipper: false,
+            fetchingAllShipperError: true,
+          };
+        
     default:
       return state;
   }

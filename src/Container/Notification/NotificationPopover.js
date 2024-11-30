@@ -7,7 +7,6 @@ import {
   BellOutlined
   
 } from '@ant-design/icons';
-
 class NotificationPopover extends Component {
   constructor(props) {
     super(props);

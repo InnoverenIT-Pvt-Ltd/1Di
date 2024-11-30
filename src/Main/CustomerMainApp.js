@@ -19,6 +19,10 @@ import Carousel from "react-elastic-carousel";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ProductCardListbyCategory from '../Container/Customer/ProductCardListbyCategory';
 import { base_url } from '../Config/Auth';
+import CategoriesListCard from '../Container/Inventory/Child/CategoriesListCard';
+import MainSearchedData from './MainSearchedData';
+import { Footer } from '../Container/Customer/Footer';
+import Q2SpecialtyPromotion from './Q2SpecialtyPromotion';
 
 const CustomerMainAppLeft =lazy(()=>import("./CustomerMainAppLeft"));
 const MaterialAllCard =lazy(()=>import("../Container/Customer/MaterialAllCard"));
@@ -50,9 +54,9 @@ class CustomerMainApp extends Component {
     console.log('Component did mount');
    
 };
-    handleActiveClick=(categoryId)=>{
-      this.setState({activeClick:categoryId},()=>{
-        this.props.getProductByCategoryId(categoryId);
+    handleActiveClick=(brand)=>{
+      this.setState({activeClick:brand},()=>{
+        this.props.getProductByCategoryId(brand);
       });  
     };
 
@@ -70,7 +74,7 @@ class CustomerMainApp extends Component {
         if (this.props.categoriesPrds && this.props.categoriesPrds.length > 0) {
           this.setState({
               categoriesPrds: this.props.categoriesPrds,
-              activeClick: this.props.categoriesPrds[0].categoryId // Set default selected category
+              activeClick: this.props.categoriesPrds[0].brand // Set default selected category
           }, () => {
               // Fetch products for the default selected category
               this.props.getProductByCategoryId(this.state.activeClick);
@@ -131,24 +135,65 @@ class CustomerMainApp extends Component {
         
         return (
             <>
+            
  {/* <div style={{ position: "sticky", top: 0, zIndex: 1, boxShadow: "0 0.0625em 0.25em 0.0625em " }}> */}
-<div className='flex flex-col z-0 sticky top-0'>
+   
+<div className='flex flex-col z-10 sticky top-0 overflow-y-hidden'>
  
                 <MainHeader shopImgId={shopImgId}/>
-                <CustomerContentHeader/>
-              
-         <BottomContentHeader categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/>
-         </div>          
-
-         <div class=" flex flex-nowrap w-full mt-6"> 
+                {/* <CustomerContentHeader/> */}
+                {/* <BottomContentHeader categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/> */}
+                {this.props.investorSerachedData.length > 0 ? (
+    <MainSearchedData
+    investorSerachedData={this.props.investorSerachedData}
+    />
+  ) : (  
+  <div>
+                <div class="flex justify-center w-wk">
+                <div className="relative bg-[#1124AA] text-white w-[87.2rem] h-44">
+                <div className="absolute inset-0 h-full w-full clip-path-curve bg-[#1124AA]"></div>
+                <div className="relative z-10 max-w-7xl mx-auto p-2">                 
+                    <div className="text-center flex  flex-col items-start">
+                        <h1 className="text-4xl font-poppins font-bold text-white">Generate your wholesale order.</h1>
+                        <p className="mt-4 text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                       <Link to="/login">
+                        <button className="mt-8 bg-[#1124AA] text-white font-bold py-2 px-4 rounded ">Order Products</button>
+                        </Link>
+                    </div>
+                   
+                </div>
+                </div>
+                </div>
+        <div className="relative   bg-white h-[7rem] w-[33.2rem] -mt-[5.1rem] rounded-[2rem] -ml-4"></div>
+          <div className='flex justify-center'>
+             <div className='w-[90%] flex flex-col justify-center items-center overflow-x-auto p-1 h-[-webkit-fill-available]'>
+             {this.props.productsbyCategoryId.length > 0 ? (
+    <ProductCardListbyCategory
+    productsbyCategoryId={this.props.productsbyCategoryId} 
+    />
+  ) : (  
+                <CategoriesListCard categoriesPrds={this.props.categoriesPrds} handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick} fetchingCategories={this.props.fetchingCategories}/>
+               )}  
+                {/* <div className="relative  custom-shape  bg-white h-[7.1rem] w-[33.21rem] -mt-[5.11rem] rounded-[2.1rem] -ml-8"></div> */}
+                <div className='w-wk flex  mt-4  flex-col '>                
+                   
+                    {/* <div className='flex  justify-center mt-4'>
+                        <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
+                    </div> */}
+                    <div class=" self-center  w-wk "> 
          {/* <div class=" w-1/4">
                       <CustomerMainAppLeft categoriesPrds={this.props.categoriesPrds} 
                       handleActiveClick={this.handleActiveClick} activeClick={this.state.activeClick}
                       
                       />
                     </div> */}
-                    <div class="w-wk max-sm:h-[60vh] overflow-x-auto ">
-                <MainWrapper>
+                    {this.props.productsbyCategoryId.length === 0 && (
+            <div class="w-wk  max-sm:h-[60vh] mt-1 ">
+        
+                                                
+                                                <MaterialAllCard/> 
+                                             {/* <Q2SpecialtyPromotion/> */}
+               
                 {/* <Carousel
                      breakPoints={breakPoints}
                     style={{ minHeight: "6em", justifyContent:"center" }}
@@ -164,15 +209,8 @@ class CustomerMainApp extends Component {
                     style={{ minHeight: "6em", justifyContent:"center" }}
                       // class=" w-2/12  mt-8 ml-margin10"
                     >  */}
-                    <div>
-                    <div>
-                      Products by Category
-                    </div>
-               
-                        <ProductCardListbyCategory productsbyCategoryId={this.props.productsbyCategoryId} activeClick={this.state.activeClick}/>
-                  
-                        </div>
-                     <div>
+                    {/* */}
+                     {/* <div>
                     <div class="overflow-auto">
                      Products
                     </div>
@@ -220,7 +258,7 @@ class CustomerMainApp extends Component {
                                                        
                                                           <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">
                                                             <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
-                                                            {/* <div class="flex-col w-wk flex max-sm:flex items-center mb-[0.7rem]">
+                                                            <div class="flex-col w-wk flex max-sm:flex items-center mb-[0.7rem]">
                                                               Color{" "}
                                                               {item.colourDTO &&
                                                               item.colourDTO.length &&
@@ -251,7 +289,7 @@ class CustomerMainApp extends Component {
                                 defaultValue="No Option"
                                 disabled
                               ></Select>
-                            </div>            */}
+                            </div>           
                                                                   </div>
                                                             <h3 class=" mt-2 h-4 font-bold text-xs ">
                                                               {item.categoryName}
@@ -286,20 +324,20 @@ class CustomerMainApp extends Component {
                                                             </div>
                                                           <div class="mt-px flex  justify-end w-wk m-1">
                                                       
-                                                              {/* <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue "
+                                                              <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue "
                                                                 
                                           
-                                                                // onClick={() =>
-                                                                //   this.handleAddPlusClick(
-                                                                //     item.productId,
-                                                                //     item.merchantDetailsId
-                                                                //   )
-                                                                // }
+                                                                onClick={() =>
+                                                                  this.handleAddPlusClick(
+                                                                    item.productId,
+                                                                    item.merchantDetailsId
+                                                                  )
+                                                                }
                                                               >
                                                                   <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white">
                                                             Add +
                                                               </label>
-                                                              </div> */}
+                                                              </div>
                                                          
                                                             </div>
                                                           </div>
@@ -310,22 +348,30 @@ class CustomerMainApp extends Component {
                                                   </CardWrapper>
                                                
                                                   </InfiniteScroll>
-                                                  </div>
-                                              <div>
-                                                <p class="mt-3"> Materials and Spares </p>
-                                             <MaterialAllCard/> 
-                                              </div>
-                                              <div class="mt-3">
+                                                  </div> */}
+                                                 
+                                            
+                                              {/* <div class="mt-3">
                                                 <p>Products from our Suppliers </p>
                                                 <OuterAllInventoryCard/>
-                                                </div>
+                                                </div> */}
                                                 {/* <div>
                                                 <p>All Supplies </p>
                                                 <OuterAllSuppliesCard/>
                                                 </div> */}
-                                          </MainWrapper>
+                                          
+                                          
 </div>
+ )}
+                    </div>
+                </div>
+              </div> 
+            </div>
+           </div>
+                                           )}  
                                           </div>
+      <Footer/>
+              
                                         </>
                                       );
     }
@@ -341,7 +387,8 @@ const mapStateToProps = ({ customer, auth }) => ({
     categoriesPrds:customer.categoriesPrds,
     fetchingCustomerList:customer.fetchingCustomerList,
     productsbyCategoryId:customer.productsbyCategoryId,
-    fetchingCategories:customer.fetchingCategories
+    fetchingCategories:customer.fetchingCategories,
+    investorSerachedData: customer.investorSerachedData
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -355,9 +402,6 @@ const mapDispatchToProps = (dispatch) =>
         },
         dispatch
     );
-
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerMainApp);
 
 const MainWrapper = styled.div`

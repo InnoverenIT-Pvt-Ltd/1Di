@@ -1,7 +1,6 @@
 import React,{useState} from "react";
 import { CheckCircleFilled } from "@ant-design/icons";
 import { Link,withRouter } from "react-router-dom";
-import { FlexContainer } from "../../Components/UI/Layout";
 import { Button } from "antd";
 import "./OrderTemplate.scss";
 import { connect } from 'react-redux';
@@ -16,15 +15,15 @@ function OrderSuccessfull(props) {
   return (
 <>
 
-<div className="oderContainer">
-    <div className="box center">
+<div className="flex flex-col  items-center justify-center h-[50vh] ">
+    <div >
       <CheckCircleFilled style={{ fontSize: "6.6875em", color: "#3066BE" }} />
       <h1>Your Order is Successfull</h1>
       <h3>
       You will receive a confirmation message shortly. For More Details check
           order status on your whatsapp
       </h3>
-      <FlexContainer justifyContent="center" style={{ width: "100%" }}>
+      <div className=" mt-4 flex justify-center items-center w-[100%]">
         <div >
         <Link to="/shopName/track">
           <Button
@@ -47,7 +46,7 @@ function OrderSuccessfull(props) {
           </Link>
       
       
-      </FlexContainer>
+      </div>
     </div>
   </div>
 

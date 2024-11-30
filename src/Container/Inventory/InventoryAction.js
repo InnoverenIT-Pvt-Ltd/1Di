@@ -40,9 +40,9 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
     });
     axios
       .get(`${base_url2}/product/allProductCatagory`, {
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-        },
+        // headers: {
+        //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        // },
       })
       .then((res) => {
         console.log(res);
@@ -55,6 +55,33 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
         console.log(err.response);
         dispatch({
           type: types.GET_ALL_PRODUCT_CATEGORY_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getAllSuppliesCatagory = () => (dispatch) => {
+    dispatch({
+      type: types.GET_ALL_SUPPLIES_CATEGORY_REQUEST,
+    });
+    axios
+      // .get(`${base_url2}/supplies/allSuppliesCatagory`, {
+        .get(`${base_url2}/supplies/allSuppliesBrand`, {
+        // headers: {
+        //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        // },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ALL_SUPPLIES_CATEGORY_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_ALL_SUPPLIES_CATEGORY_FAILURE,
           payload: err,
         });
       });
@@ -118,7 +145,9 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Added to cart',
+          title: 'Item added to cart',
+          showConfirmButton: false,
+          timer: 2000
         })
       })
       .catch((err) => {
@@ -154,6 +183,33 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
         console.log(err);
         dispatch({
           type: types.GET_INVENTORY_CART_ITEMS_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getStripeInd =()=>(dispatch)=>{
+    dispatch({
+      type: types.GET_STRIPE_IND_REQUEST,
+    });
+    axios
+      .get(`${base_url}/paymentMode/activated`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);    
+        dispatch({
+          type: types.GET_STRIPE_IND_SUCCESS,
+          payload: res.data,
+        });
+       
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_STRIPE_IND_FAILURE,
           payload: err,
         });
       });
@@ -224,7 +280,7 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
         type: types.MAKE_INVENTORY_PAYMENT_REQUEST,
     })
    
-     axios.post(`${base_url}/stripe/confirmPayment`,data ,{
+     axios.post(`${base_url2}/api/v1/stripe/confirmPayment`,data ,{
      headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -697,12 +753,19 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
           });
         };
 
-        export const getProductsById = (id) => (dispatch) => {
+        export const handleSuppliesDetails = (modalProps) => (dispatch) => {
           dispatch({
-            type: types.GET_PRODUCT_BY_ID_REQUEST,
+            type: types.HANDLE_SUPPLIES_DETAILS_DRAWER,
+            payload: modalProps,
+          });
+        };
+
+        export const getProductsByProductId = (productId) => (dispatch) => {
+          dispatch({
+            type: types.GET_PRODUCTS_BY_PRODUCTID_REQUEST,
           });
           axios
-            .get(`${base_url2}/product/${id}`, {
+            .get(`${base_url2}/product/bothSuppliesAndProduct/${productId}`, {
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -710,15 +773,171 @@ export const getProducts = (pageNo,currencyId) => (dispatch) => {
             .then((res) => {
               console.log(res);
               dispatch({
-                type: types.GET_PRODUCT_BY_ID_SUCCESS,
+                type: types.GET_PRODUCTS_BY_PRODUCTID_SUCCESS,
                 payload: res.data,
               });
             })
             .catch((err) => {
               console.log(err.response);
               dispatch({
-                type: types.GET_PRODUCT_BY_ID_FAILURE,
+                type: types.GET_PRODUCTS_BY_PRODUCTID_FAILURE,
                 payload: err,
               });
             });
         };
+        export const getSuppliesBySuppliestId = (productId) => (dispatch) => {
+          dispatch({
+            type: types.GET_SUPPLIES_BY_PRODUCTID_REQUEST,
+          });
+          axios
+            .get(`${base_url2}/supplies/bothSuppliesAndProduct/${productId}`,)
+            .then((res) => {
+              console.log(res);
+              dispatch({
+                type: types.GET_SUPPLIES_BY_PRODUCTID_SUCCESS,
+                payload: res.data,
+              });
+            })
+            .catch((err) => {
+              console.log(err.response);
+              dispatch({
+                type: types.GET_SUPPLIES_BY_PRODUCTID_FAILURE,
+                payload: err,
+              });
+            });
+        };
+        export const getFeaturedMaterials = (pageNo) => (dispatch) => {
+          dispatch({
+            type: types.GET_FEATURED_MATERIALS_REQUEST,
+          });
+          axios
+            .get(`${base_url2}/supplies/featuredSupplies/${pageNo}`,
+              {
+                headers: {
+                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                },
+              })
+            .then((res) => {
+              console.log(res);
+              dispatch({
+                type: types.GET_FEATURED_MATERIALS_SUCCESS,
+                payload: res.data,
+              });
+            })
+            .catch((err) => {
+              console.log(err.response);
+              dispatch({
+                type: types.GET_FEATURED_MATERIALS_FAILURE,
+                payload: err,
+              });
+            });
+        };
+
+        export const getMaterialRecommend = (pageNo) => (dispatch) => {
+          dispatch({
+            type: types.GET_MATERIAL_RECOMMEND_REQUEST,
+          });
+          axios
+            .get(`${base_url2}/supplies/recomendededSupplies/${pageNo}`, {
+              // headers: {
+              //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              // },
+            })
+            .then((res) => {
+              console.log(res);
+              dispatch({
+                type: types.GET_MATERIAL_RECOMMEND_SUCCESS,
+                payload: res.data,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+              dispatch({
+                type: types.GET_MATERIAL_RECOMMEND_FAILURE,
+                payload: err,
+              });
+            });
+        };
+        
+        export const generateQuatation = (data,quotationId,cb) => (dispatch) => {
+          dispatch({ type: types.GENERATE_QUOTATION_REQUEST });
+        
+          axios
+            .put(`${base_url2}/quotation/protal/procure/address/${quotationId}`,data, {
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            })
+        
+            .then((res) => {
+              console.log("resp",res)
+       
+          dispatch({
+                type: types.GENERATE_QUOTATION_SUCCESS,
+                payload: res.data,
+              });
+              cb && cb ("success")
+            })
+            .catch((err) => {
+              console.log("errr",err,err && err.response && err.response.data.error)
+              dispatch({
+                type: types.GENERATE_QUOTATION_FAILURE,
+              });
+              cb && cb ("error",err && err.response && err.response.data.error)
+            });
+        };       
+
+        export const addrepeatDelivery = (data,orderId,cb) => (dispatch) => {
+          dispatch({
+            type: types.ADD_REPEAT_DELIVERY_INFO_REQUEST,
+          });
+          axios
+            .post(`${base_url2}/phoneOrder/repeatOrder/address/${orderId}`, data,{
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            })
+            .then((res) => {
+              console.log(res);
+              dispatch({
+                type: types.ADD_REPEAT_DELIVERY_INFO_SUCCESS,
+                payload: res.data
+              })
+              cb && cb("success")
+            })
+            .catch((err) => {
+              console.log(err);
+              dispatch({
+                type: types.ADD_REPEAT_DELIVERY_INFO_FAILURE,
+                payload: err,
+              })
+              cb&&cb()
+            })
+        }
+        
+        export const repeatPayOrder = (data,cb) => (dispatch) => {
+          dispatch({ type: types.REPEAT_PAYMENT_REQUEST });
+        
+          axios
+            .post(`${base_url2}/payment/repeatOrder/prosess`, data, {
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            })
+        
+            .then((res) => {
+              console.log("resp",res)     
+          dispatch({
+                type: types.REPEAT_PAYMENT_SUCCESS,
+                payload: res.data,
+              });
+              cb && cb ("success")
+            })
+            .catch((err) => {
+              console.log("errr",err,err && err.response && err.response.data.error)
+              dispatch({
+                type: types.REPEAT_PAYMENT_FAILURE,
+              });
+              cb && cb ("error",err && err.response && err.response.data.error)
+            });
+        };       

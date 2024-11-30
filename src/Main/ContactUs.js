@@ -4,6 +4,7 @@ import { Button, Icon, Switch, Tooltip, Select } from "antd";
 import FWLogo from "../../Assets/Images/logo-shopper.PNG";
 import CustomerContentHeader from "../Customer/Header/CustomerContentHeader";
 import ContactInformationForm from "./ContactInformationForm";
+import { Footer } from "../Container/Customer/Footer";
 
 export default function Contact() {
   return (
@@ -28,6 +29,7 @@ export default function Contact() {
           <ContactInformationForm />
         </div>
       </div>
+     <Footer/>
     </>
   );
 }

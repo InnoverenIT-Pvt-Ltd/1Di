@@ -193,7 +193,7 @@ const CardWrapper = styled.div`
   }
 `;
 const CardElement = styled.div`
-  /* border:2px solid red */
+  /* border:2px solid orange */
   padding: 0 20px;
   margin-top: 2.5em;
   /* margin:0px 20px; */

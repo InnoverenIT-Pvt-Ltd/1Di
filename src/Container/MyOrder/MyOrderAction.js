@@ -758,12 +758,12 @@ export const getLeastSell = (type) => (dispatch) => {
     });
 };
 
-export const repeatOrder = (customer) => (dispatch, getState) => {
+export const repeatOrder = (orderId,data) => (dispatch, getState) => {
   dispatch({
     type: types.REPEAT_ORDER_REQUEST,
   });
   axios
-    .post(`${base_url2}/rptord/DummyURl`, customer, {
+    .put(`${base_url2}/phoneOrder/repeatOrder/${orderId}`,data,  {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -829,6 +829,57 @@ export const getOrdrSuppierDetails = (orderId) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.GET_ORDR_SUPLR_DETAILS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSupplierOrdrItemList = (orderId,userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIER_ORDR_ITEM_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/suppliersOrderIteams/${orderId}/${userId}`, 
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SUPPLIER_ORDR_ITEM_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SUPPLIER_ORDR_ITEM_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getAllShipper = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_SHIPPER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/all/shipper/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_SHIPPER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_SHIPPER_FAILURE,
         payload: err,
       });
     });

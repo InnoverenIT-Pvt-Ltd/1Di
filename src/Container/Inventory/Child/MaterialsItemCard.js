@@ -4,13 +4,20 @@ import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import { Select } from "../../../Components/UI/Elements";
 import Tooltip from '@mui/material/Tooltip';
+import { Button } from "antd";
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { BundleLoader } from "../../../Components/Placeholder";
 import "../Inventory.scss";
-import {getSuppliesList,LinkInventoryItem} from "../InventoryAction";
-import { InfoCircleTwoTone,  MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import {getSuppliesList,LinkInventoryItem,handleSuppliesDetails} from "../InventoryAction";
+import {  MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import Carousel from "react-elastic-carousel";
-import { base_url } from "../../../Config/Auth";
+import { base_url,base_url2 } from "../../../Config/Auth";
+import axios from 'axios';
+import InveSuppliesDetailsDrawer from "./InveSuppliesDetailsDrawer";
+import { CurrencySymbol } from "../../../Components/Common";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import MaterialRecommendedCard from './MaterialRecommendedCard';
+import MaterialBestSellerCard from './MaterialBestSellerCard';
 
 const { Option } = Select;
 
@@ -18,30 +25,70 @@ function MaterialsItemCard(props) {
     const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
-    
   const carouselRef = useRef(null);
   const observer = useRef();
+
+  const [error, setError] = useState(null);
+  const [data, setData] = useState({});
+  const [rowDatas, setrowDatas] = useState("");
+
+  const [sortOrder, setSortOrder] = useState('asc'); 
+  const [sortedList, setSortedList] = useState([]);
+
+  const [selectedValue, setSelectedValue] = useState('default');
+
+  const handleChange = (value) => {
+    setSelectedValue(value);
+  };
 
   useEffect(() => {
      props.getSuppliesList(page);    
   }, [page]);
 
-  // useEffect(() => {
-  //   const fetchList = async (pageNumber) => {
-  //     setLoading(true);
-  //     try {
-  //       await props.getSuppliesList(pageNumber);
-  //       setLoading(false);
-  //       if (pageNumber + 1 >= props.purchaseList[0]?.pageCount) {
-  //         setHasMore(false);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching list:", error);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchList(page);
-  // }, [page]);
+useEffect(() => {
+      const sorted = [...props.purchaseList].sort((a, b) => {
+        const nameA = a.categoryName ? a.categoryName.toUpperCase() : "";
+        const nameB = b.categoryName ? b.categoryName.toUpperCase() : "";
+        return sortOrder === "asc" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+      });
+      setSortedList(sorted);
+    }, [props.purchaseList, sortOrder]);
+
+    const handleSortChange = (order) => {
+      setSortOrder(order);
+    };
+
+  const handleLoadMore = () => {
+    const PageMapd = props.purchaseList && props.purchaseList.length &&props.purchaseList[0].pageCount
+    setTimeout(() => {  
+      if  (props.purchaseList)
+      {
+        if (page < PageMapd) {    
+            setPage(page + 1);
+    props.getSuppliesList(page);
+            }
+              if (page === PageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
+        }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/supplies/publish/count`);
+        setData(response.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
   const lastProductElementRef = useCallback(node => {
     if (loading) return;
@@ -57,6 +104,9 @@ function MaterialsItemCard(props) {
 
   const [units, setUnits] = useState({});
 
+  function handleRowData(item) {
+    setrowDatas(item)
+}
   const handleQuantityChange = (event, suppliesId) => {
     const newUnit = parseInt(event.target.value, 10);
     if (!isNaN(newUnit) && newUnit >= 1) {
@@ -99,15 +149,15 @@ function MaterialsItemCard(props) {
         }
       };
 
-  if (props.fetchingPurchaseList) {
-    return <BundleLoader />;
-  }
+  // if (props.fetchingPurchaseList) {
+  //   return <BundleLoader />;
+  // }
 
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 500, itemsToShow: 2 },
     { width: 768, itemsToShow: 4, itemToScroll: 4 },
-    { width: 1100, itemsToShow: 5, itemToScroll: 5 },
+    { width: 1100, itemsToShow: 6, itemToScroll: 6 },
   ];
 
   const handleAddToCart = (suppliesId) => { 
@@ -121,138 +171,194 @@ function MaterialsItemCard(props) {
           
             orderPhoneId:props.invencartItem.orderPhoneId ? props.invencartItem.orderPhoneId :null,
             userId:props.userId,
-            orgId:props.organizationId
+            orgId:props.organizationId,
+            orderSource:"b2b",
             
           }
   
         props.LinkInventoryItem(data);
       }
+
+      if (props.linkingInventoryItem){
+        return <BundleLoader/>
+      }
   return (
     <>
+   
 
-    <div class="h-[24rem] overflow-auto">
+    <div >
 
-    <CardWrapper>
-    <Carousel
-    pagination={false}
-                     breakPoints={breakPoints}
-                    style={{ minHeight: "6em", justifyContent:"center" }}
-                      class=" w-2/12  mt-8 ml-margin10"
-                      onNextEnd={next}
-                      onPrevEnd={previous}
-                    >
-                  {props.purchaseList.map((item,index) => {
+    <div className="flex justify-between items-center">
+   <div  class="font-bold font-poppins text-sm" >
+                      Products 
+                    </div>
+                    <div class="text-sm text-black font-bold font-poppins w-32">Items: {data.count}</div>
+                    <div className='flex items-center'>
+                    <div className='mr-8'>Filter:</div>
+    <Select
+        style={{ width: '9rem' }}
+        defaultValue="default"
+        onChange={handleChange}
+      >
+        <Option value="default">Select</Option>
+        <Option value="recommend">Recommend</Option>
+        <Option value="bestSeller">Best Seller</Option>
+      </Select>
+      </div>
+      <div className='flex items-center'>
+      <div className='mr-12'>Sort by:</div>
+        <SortButton
+            onClick={() => handleSortChange("asc")}
+            active={sortOrder === "asc"}
+          >
+            <FilterAltIcon/> A-Z
+          </SortButton>
+          <SortButton
+            onClick={() => handleSortChange("desc")}
+            active={sortOrder === "desc"}
+          >
+            <FilterAltIcon/> Z-A
+          </SortButton>
+          </div>
+      </div>
+      {selectedValue === 'default' &&
+                     <InfiniteScroll
+      dataLength={sortedList.length} 
+     next={handleLoadMore}
+     hasMore={hasMore}
+     height={"64vh"}
+    style={{width:"-webkit-fill-available"}}
+    loader={props.fetchingPurchaseList?<div class="flex justify-center">Loading...</div>:null}
+    endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
+    >
+       <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
+                  {sortedList.map((item,index) => {
                      const currentdate = dayjs().format("YYYY/MM/DD");
                      const date = dayjs(item.creationDate).format("YYYY/MM/DD");
-                     const isLastElement = index === props.purchaseList.length - 1;
+                     const isLastElement = index === sortedList.length - 1;
                      return (
-                      <CardElement >
-                        <div 
-                        // ref={isLastElement ? lastProductElementRef : null} 
-                        key={item.suppliesId} className="card-element">
-                      <div class=" h-[18rem] flex-col flex bg-stone-100 items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[18rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
-                      <div class="mt-1"> 
-                      <Tooltip title={item.suppliesName} placement="top" arrow>
-                                                   
-                                                   <Header>{item.suppliesName || ""}</Header>
-                                                 </Tooltip>
-                      </div>
-                      <div class="max-sm:mr-0 md:flex  my-2 h-hwk">
+                     
+                   
+                       
+                      <div  key={item.suppliesId} class=" h-[13rem] flex  items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[12.6rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 max-sm:w-48 flex-grow-3 md:flex-grow-0">
+                     
+                      <div class=" flex flex-col max-sm:mr-0 md:flex   h-hwk">
+                                              {item.imageId ? (
                                                     <div class="object-cover object-center  flex items-center">
-                                                      <div>
-                                                  <img
-                                                              src={`${base_url}/image/${item.imageId}`} alt=""
-                                                              style={{ height: "7rem", width: "7rem" }}
+                                                     <img
+                                                              src={`${base_url}/image/${item.imageId}`} 
+                                                              style={{ height: "6.5rem", width: "13rem" }}
                                                           />
-                                                           <h3>{item.newSuppliesNo} </h3>  
-                                                           </div>
-                                                                            </div>  
+                                                         </div>  
+                                                        ) : (
+                           
+                                                        <div className=" text-xs h-[6.5rem] text-center w-[13rem] flex justify-center items-center">Image Not Available</div>
+                                                      
+                                                    )}
+                                                     <div className=" flex justify-around flex-row w-full "> 
+                                                                            <div class=" mr-3 text-xs text-[#1124AA]">
+                                                                            WSL {item.suppliesPrices?.[0].suppliesPrice.toFixed(2)}
+                                                                            {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPrice.toFixed(2)} */}
+                                                                            </div> 
+                                                                 
+                                                    
+                                                                            <div class=" mr-3 text-xs text-[#1124AA]">
+                                                                              SRP {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)}
+                                                                               {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)} */}
+                                                                            </div> 
+                                                                            </div>
+                                                                  <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
+                                                             
+                                                                  {/* <div class=" flex justify-center"> {item.newSuppliesNo}  </div> */}
+                                                                  <div > 
+                                                                  <Tooltip title={item.suppliesName} placement="top" arrow>
+                                                                                              
+                                                                                              <div class="cursor-pointer"
+                                                                                                onClick={() => {
+                                                                                                  props.handleSuppliesDetails(true);
+                                                                                                  handleRowData(item);
+                                                                                                }} 
+                                                                                              >{item.suppliesName || ""}</div>
+                                                                                            </Tooltip>
+                                                                     </div>
+                                                                     
+                                                                  </div>
+                                                                  <div className="flex justify-start w-wk ml-1"> 
+                                                                        <div class=" mt-1 text-xs text-[#1124AA] truncate max-w-[150px] "title={item.categoryName}>
+                                                                              {item.categoryName}
+                                                                            </div>
+                                                                            
+                                                                            <div class=" mt-1 text-xs text-[#1124AA]">
+                                                                              {item.subCategoryName}
+                                                                            </div> 
+                                                                  </div>
+                                                                 
+                                                      
                                                                                                                          
-                                                                            <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">
-                                                                            <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
+                                                                            <div class="mt-1 flex justify-evenly max-sm:flex items-center ">
+                                                                            <div class=" flex  max-sm:w-48  ">
                                                                             <div className="add-minus-quantity">
-          <span
+                                                                          <span >
+                                                                                <MinusOutlined onClick={() => handleDecrement(item.suppliesId)}/>
+                                                                          </span>
+                                                                        
+                                                                          <input 
+                                                                          className=" flex justify-end"
+                                                                          type="number"  
+                                                                          value={units[item.suppliesId] || 1}
+                                                                          onChange={(event) => handleQuantityChange(event, item.suppliesId)}
+                                                                          min="1" 
+                                                                          step="1"  />
+                                                                        
+                                                                          <span
 
-          >
-                 <MinusOutlined onClick={() => handleDecrement(item.suppliesId)}/>
-          </span>
-        
-          <input  type="number"  
-           value={units[item.suppliesId] || 1}
-           onChange={(event) => handleQuantityChange(event, item.suppliesId)}
-          min="1" 
-          step="1"  />
-         
-          <span
+                                                                          >
+                                                                            <PlusOutlined onClick={() => handleIncrement(item.suppliesId)}/>
+                                                                            </span>
 
-          >
-          <PlusOutlined onClick={() => handleIncrement(item.suppliesId)}/>
-          </span>
-
-        </div>
+                                                                          </div>
            
                           
                                              
-                                                                                  </div>
-                                                                            <h3 class=" mt-2 h-4 font-bold text-xs ">
-                                                                              {item.categoryName}
-                                                                            </h3>
-                                                                            <h3 class=" mt-2 h-4 font-bold text-xs ">
-                                                                              {item.subCategoryName}
-                                                                            </h3> 
-                                                                          </div>
-                  
-                                                                          </div>
-                                                                          
-                                                                          <div class="flex justify-between m-2 w-wk max-sm:w-40 items-baseline md: " >
-                                                                              <Desc>{item.description === "null" ? "No Description" : `${item.description}`}</Desc>
-                                                                              {item.description === "<h3></h3>\n" ? null : (
-                                                                                <Tooltip
-                                                                                  style={{ backgroundColor: "red" }}
-                                                                                  title={
-                                                                                    <Desc2>{item.description === "null" ? "No Description" : `${item.description}`}</Desc2>
-                                                                                  }
-                                                                                  placement="top"
-                                                                                  arrow
-                                                                                >
-                                                                                  <span
-                                                                                    style={{
-                                                                                      cursor: "pointer",
-                                                                                    }}
-                                                                                  >
-                                                                                    
-                                                                                    <InfoCircleTwoTone class=" flex items-center"/>
-                                                                                  </span>
-                                                                                </Tooltip>
-                                                                              )}
-                                                                            </div>
-                                                                            <div class="mt-px flex  justify-end w-wk m-1">
-                                         <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue cursor-pointer"
-                                                                                  
-                                                            
-                                                                                  onClick={() =>
+                                                                           </div>
+                                                                           <div className="  cursor-pointer "
+                                                                                 onClick={() =>
                                                                                     handleAddToCart(
                                                                                       item.suppliesId
                                                                     
                                                                                     )
                                                                                   }
                                                                                 >
-                                                                                    <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white cursor-pointer">
-                                                                              Add +
-                                                                                </label>
+                                                                                    <Button type="primary" >
+                                                                                     Add
+                                                                                </Button>
                                                                                 </div>
-                  </div>
+                                                                          </div>
+                  
+                                                                          </div>
+                                                                          
+                                                                          
+                                                                            
+                                                                             
+                  
                                          </div>
-                                         </div>
-                                       </CardElement>
+                                      
+                                      
+                               
                     );
                   })}
-                  </Carousel>
-                  {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
-            </CardWrapper>    
+                  </div>
+                  </InfiniteScroll>
+}
+{selectedValue === 'recommend' && <MaterialRecommendedCard invencartItem={props.invencartItem}/>}
+{selectedValue === 'bestSeller' && <MaterialBestSellerCard invencartItem={props.invencartItem}/>}
   
    </div>
-
+<InveSuppliesDetailsDrawer
+      suppliesDetailsDrawr={props.suppliesDetailsDrawr}
+      handleSuppliesDetails={props.handleSuppliesDetails}
+      rowDatas={rowDatas}
+      />
    </>
   );
 }
@@ -261,25 +367,25 @@ const mapStateToProps = ({ inventory,auth }) => ({
   fetchingPurchaseList:inventory.fetchingPurchaseList,
   userId: auth.userDetails.userId,
   organizationId: auth.userDetails.organizationId,
+  suppliesDetailsDrawr:inventory.suppliesDetailsDrawr,
+linkingInventoryItem: inventory.linkingInventoryItem
+
+
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getSuppliesList,
-      LinkInventoryItem
+      LinkInventoryItem,
+      handleSuppliesDetails
 
     },
     dispatch
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(MaterialsItemCard);
-const MainWrapper = styled.div`
-  /* */
-  margin: 0px 20px;
-  @media only screen and (max-width: 600px) {
-  }
-`;
+
 const CardWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -291,9 +397,9 @@ const CardWrapper = styled.div`
 `;
 const CardElement = styled.div`
 
-  /* border:2px solid red */
-   padding: 0 10px;
-   margin-top: 2.5em;
+  /* border:2px solid orange */
+   padding: 0 4px;
+   margin-top: 0.5rem;
   display: flex;
     justify-content: center;
   /* margin:0px 20px; */
@@ -305,116 +411,19 @@ const CardElement = styled.div`
     width: 100%;
   }
 `;
-const CardDescription1 = styled.div`
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+const SortButton = styled.button`
+  background-color: ${(props) => (props.active ? '#007bff' : '#f8f9fa')};
+  color: ${(props) => (props.active ? '#fff' : '#007bff')};
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
 
+  &:hover {
+    background-color: ${(props) => (props.active ? '#0056b3' : '#e2e6ea')};
   }
-`;
-const CardDescription = styled.div`
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const CardImage = styled.div`
-  margin: auto;
-  width: 5rem;
-  height: 5rem;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const WithOutImage = styled.div`
-  margin: auto;
-  width: 10em;
-  height: 10em;
-  display: flex;
-  align-items: center;
-  flex-direction:column @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-
-const Header = styled.div`
-  text-overflow: ellipsis;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1.3em;
-  font-family: Poppins;
-  font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-text-align:center
-  }
-`;
-const Desc = styled.p`
-  height: 1.5em;
-  overflow: hidden;
-  padding: 1%;
-  text-align: center;
-`;
-const Desc2 = styled.p`
-  height: 60px;
-  overflow: auto;
-  color: white;
-  padding: 3%;
-  text-align: center;
-`;
-
-const Price = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-`;
-const Price1 = styled.div`
-  height: 3.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  display: grid;
-  width: -webkit-fill-available;
-  place-items: baseline;
-  white-space: pre;
-`;
-const Price2 = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  text-decoration-line: line-through;
-`;
-const Size = styled.div`
-  height: 2.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  display: grid;
-  width: -webkit-fill-available;
-  place-items: baseline;
-  white-space: pre;
 `;
 
 

@@ -5,6 +5,8 @@ import { bindActionCreators } from "redux";
 import { Formik, Form, Field } from "formik";
 import { MainWrapper } from "../Components/UI/Layout";
 import { StyledSteps } from "../Components/UI/Antd";
+import BusinessIcon from '@mui/icons-material/Business';
+import PolicyIcon from '@mui/icons-material/Policy';
 import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import { FlexContainer } from "../Components/UI/Layout";
 import RegistrationStep1 from "./RegistrationStep1";
@@ -12,7 +14,72 @@ import RegistrationStep2 from "./RegistrationStep2";
 import {
     addContact 
   } from "../Container/Auth/AuthAction";
+import RegistrationStep3 from "./RegistrationStep3";
+import Swal from "sweetalert2";
+
 const Step = StyledSteps.Step;
+
+const validationRules = {
+    name: {
+      required: true,
+      message: 'Please enter your company name *',
+    },
+    billingEmail: {
+      required: true,
+      message: 'Please enter your email *',
+    },
+    phoneNo: {
+        required: true,
+        message: 'Please enter your phone no *',
+      },
+      businessRegistration: {
+        required: true,
+        message: 'Please enter your registration *',
+      },
+  };
+  const initialErrors = {
+    name: '',
+    billingEmail: '',
+    phoneNo:"",
+    businessRegistration:"",
+  };
+
+  const validationRules2 = {
+    firstName: {
+        required: true,
+        message: 'Please enter your first name *',
+      },
+      lastName: {
+        required: true,
+        message: 'Please enter your last name *',
+      },
+      password: {
+        required: true,
+        message: 'Please enter your password *',
+      },
+      confirmPassword:{
+        required: true,
+        message: 'Confirm Password',
+    },
+      email: {
+        required: true,
+        message: 'Please enter your email *',
+      },
+      phoneNumber: {
+        required: true,
+        message: 'Please enter your phone no *',
+      },
+  };
+  const initialErrors2 = {
+    firstName:'',
+    lastName:'',
+    password:'',
+    email:'',
+    confirmPassword:'',
+    phoneNumber:'',
+  };
+
+
 
 class RegistrationStepper extends Component {
     constructor(props) {
@@ -22,6 +89,7 @@ class RegistrationStepper extends Component {
             thirdPageData: {},
             name:"",
             phoneNo:"",
+            billingEmail:"",
             address:[],
             email: "",
             phoneNumber: "",
@@ -30,12 +98,50 @@ class RegistrationStepper extends Component {
             lastName:"",
             countryDialCode:"",
             businessRegistration:"",
+            extension:"",
+            priPolInd:"",
+            password:"",
+            type:'password',
+            show:Boolean(),
+            type2:'password',
+            show2:Boolean(),
+            confirmPassword:"",
+            clientId:"",
+            fieldErrors: { ...initialErrors },
+            fieldErrors2: { ...initialErrors2 },
+            confirmPasWrdError:null,
         };
     }
-    // handleSubmit = (data) => {
-    //     this.setState({ thirdPageData: data });
-    //     this.handleComplete();
-    // };
+
+    handlePassword = (e) => {
+        this.setState({
+            password: e.target.value
+        });
+    };
+    handleClientId = (clId) => {
+        this.setState({
+            clientId:clId
+        });
+    }
+    handleConfirmPassword = (e) => {
+        if (this.state.password!==e.target.value) {
+            this.setState({confirmPasWrdError:'Password does not match'});
+          } else {
+            this.setState({confirmPasWrdError:null});
+          }
+        this.setState({
+            confirmPassword: e.target.value
+        });
+    };
+handlePWClick=()=>{
+        this.setState({type:this.state.type === "text" ? "password" : "text"});
+        this.setState({show:!this.state.show});
+      }
+      handleConPwClick=()=>{
+        this.setState({type2:this.state.type2 === "text" ? "password" : "text"});
+        this.setState({show2:!this.state.show2});
+      }
+
 
     handleNameStep1 = (e) => {
         this.setState({
@@ -86,22 +192,119 @@ class RegistrationStepper extends Component {
             businessRegistration: e.target.value
         });
     }
-    next = () => {
+    handleStepEmailRegNo = (e) => {
+        this.setState({
+            billingEmail: e.target.value
+        });
+    }
+    handleStepextension = (e) => {
+        this.setState({
+            extension: e.target.value
+        });
+    }
+    handleSteppriPolInd = (newValue) => {
+        this.setState({ priPolInd: newValue });
+      };
+  
+    validate = () => {
+        const { name, billingEmail ,phoneNo,businessRegistration } = this.state;
+        const fieldErrors = { ...initialErrors };
+       
+        if (validationRules.name.required && !name) {
+          fieldErrors.name = validationRules.name.message;
+        }
+        if (validationRules.billingEmail.required && !billingEmail) {
+          fieldErrors.billingEmail = validationRules.billingEmail.message;
+        }
+        if (validationRules.phoneNo.required && !phoneNo) {
+            fieldErrors.phoneNo = validationRules.phoneNo.message;
+          }
+          if (validationRules.businessRegistration.required && !businessRegistration) {
+            fieldErrors.businessRegistration = validationRules.businessRegistration.message;
+          }
+        this.setState({ fieldErrors });
+        return Object.values(fieldErrors).every((error) => !error);
+      };
+
+      validate2 = () => {
+        const { firstName,lastName,password,confirmPassword,email,phoneNumber } = this.state;
+        const fieldErrors2 = { ...initialErrors2 };
+        if (validationRules2.firstName.required && !firstName) {
+            fieldErrors2.firstName = validationRules2.firstName.message;
+          }
+          if (validationRules2.lastName.required && !lastName) {
+            fieldErrors2.lastName = validationRules2.lastName.message;
+          }
+          if (validationRules2.password.required && !password) {
+            fieldErrors2.password = validationRules2.password.message;
+          }
+          if (validationRules2.confirmPassword.required && !confirmPassword) {
+            fieldErrors2.confirmPassword = validationRules2.confirmPassword.message;
+          }
+          if (validationRules2.email.required && !email) {
+            fieldErrors2.email = validationRules2.email.message;
+          }
+          if (validationRules2.phoneNumber.required && !phoneNumber) {
+            fieldErrors2.phoneNumber = validationRules2.phoneNumber.message;
+          }
+
+        this.setState({ fieldErrors2 });
+        return Object.values(fieldErrors2).every((error) => !error);
+      };
+
+      next = () => {
         const current = this.state.current + 1;
-        this.setState({ current });
+        if (current === 1 && !this.validate()) {
+            return;
+        }
+        if (current === 2 && !this.validate2()) {
+            return;
+        }
+        this.setState({current});
     };
 
     prev = () => {
         const current = this.state.current - 1;
         this.setState({ current });
     };
+
+    callback = (status) => {
+        if (status === "success") {
+        Swal.fire({
+            text: "Thanks for reaching out us.we revert you soon!!!",
+            icon: "success",  
+          });
+        // this.props.history.push("/orderinprogree");
+        }
+        else if(status === 'Something went wrong !!!'){
+               Swal.fire({
+            text:"Something went wrong !!!",
+            icon: "error",  
+        });
+          }
+          else if (status === " please provide mailId !!!"){
+            Swal.fire({
+                text:"Please provide mailId !!!",
+                icon: "error",  
+            });
+          }
+          else {
+               Swal.fire({
+            text:"Something went wrong !!!",
+            icon: "error",  
+        });
+          } 
+      };
+
     handleComplete = () => {
-    
+        const currentUrl = window.location.href.split('/').slice(0, 3).join('/')
 let data={
     name:this.state.name,
     phoneNo: this.state.phoneNo,
+    billingEmail:this.state.billingEmail,
+    extension:this.state.extension,
     address:this.state.address,
-
+    priPolInd:this.state.priPolInd,
     email:this.state.email,
     phoneNumber:this.state.phoneNumber,
     firstName:this.state.firstName,
@@ -109,9 +312,14 @@ let data={
     lastName:this.state.lastName,
     countryDialCode:this.state.countryDialCode,
     businessRegistration:this.state.businessRegistration,
-    source:"SORG26873064191202024"
+    source:"SORG26873064191202024",
+    password:this.state.password,
+    b2bInd:true,
+    dCategory:"CAG84215788796212024",
+    clientId:this.state.clientId,
+
 }
-        this.props.addContact(data);
+        this.props.addContact(data,currentUrl,this.callback);
     };
 
     render() {
@@ -119,33 +327,58 @@ let data={
             {
                 title: "First",
                 content:<RegistrationStep1
+                fieldErrors={this.state.fieldErrors}
                 handleNameStep1={this.handleNameStep1}             
                 name={this.state.name} 
                 handleStep1Phone={this.handleStep1Phone}
+                handleStepEmailRegNo={this.handleStepEmailRegNo}
                 phoneNo={this.state.phoneNo}
+                billingEmail={this.state.billingEmail}
                 handleAddressStep1={this.handleAddressStep1}
                 address={this.state.address}
-
+                clientId={this.state.clientId}
+                handleClientId={this.handleClientId}
+                businessRegistration={this.state.businessRegistration}
+                handleStepBusRegNo={this.handleStepBusRegNo}
                 />
             },
             {
                 title: "Second",
                 content: <RegistrationStep2
+                fieldErrors2={this.state.fieldErrors2}
                 handleStepEmail={this.handleStepEmail}
                 handleStepFirstName={this.handleStepFirstName}
                 handleStepLastName={this.handleStepLastName}
                 handleMoBoStep2={this.handleMoBoStep2}
                 handleDialCodeStep2={this.handleDialCodeStep2}
-                handleStepBusRegNo={this.handleStepBusRegNo}
+             
+                handleStepextension={this.handleStepextension}
                 firstName={this.state.firstName}
+                extension={this.state.extension}
                 email={this.state.email}
                 lastName={this.state.lastName}
                 countryDialCode={this.state.countryDialCode}
-                mobileNo={this.state.mobileNo} 
-                businessRegistration={this.state.businessRegistration}
+                phoneNumber={this.state.phoneNumber} 
+                handlePassword={this.handlePassword}
+                password={this.state.password}
+                handlePWClick={this.handlePWClick}
+                type={this.state.type}
+                show={this.state.show}
+                handleConPwClick={this.handleConPwClick}
+                type2={this.state.type2}
+                show2={this.state.show2}
+                confirmPassword={this.state.confirmPassword}
+                confirmPasWrdError={this.state.confirmPasWrdError}
+                handleConfirmPassword={this.handleConfirmPassword}
                 />,
             },
-            
+            {
+                title: "Third",
+                content: <RegistrationStep3
+                priPolInd={this.state.priPolInd}
+                handleSteppriPolInd={this.handleSteppriPolInd}
+                />,
+            },
 
         ];
         const { current } = this.state;
@@ -153,18 +386,21 @@ let data={
             <>
                 <StyledSteps current={current}>
                     <Step
-                        title={<UserOutlined style={{ fontSize: "1.37em" }} />}
+                        title={<BusinessIcon style={{ fontSize: "1.37em" }} />}
                         description="Company Info"
                     />
                     <Step
                         title={<UserOutlined style={{ fontSize: "1.37em" }} />}
                         description="Contact Details"
                     />
-
+                  <Step
+                        title={< PolicyIcon style={{ fontSize: "1.37em" }} />}
+                        description="Privacy Policy"
+                    />
 
                 </StyledSteps>
                 <div
-                    style={{ minHeight: "40vh" }}
+                    style={{ minHeight: "35vh" }}
                 >{steps[current].content}</div>
                 <FlexContainer justifyContent="flex-end">
                     <div className="steps-action">
@@ -175,8 +411,8 @@ let data={
                                         <Button
                                             type="primary"
                                             onClick={() => this.next()}
-                                            style={{ marginTop: "45px" }}
-                                        // disabled={this.props.serachedData === null}
+                                            // disabled={!this.validate}
+                                        
                                         >
                                             Next
                                         </Button>
@@ -195,10 +431,10 @@ let data={
                             {current === steps.length - 1 && (
                                 <>
                                     <div 
-                                    className="py-1 px-8 shadow-2xl border-solid flex justify-end rounded-[2rem] ml-2   bg-[#586CB3]" style={{ boxShadow: "0.01rem 0.01rem 0.12rem 0.01rem" }}
+                                    className="py-1 px-8 mt-3 shadow-2xl border-solid flex justify-end rounded-[2rem] ml-2   bg-[#586CB3]" style={{ boxShadow: "0.01rem 0.01rem 0.12rem 0.01rem" }}
                                         type="primary"
                                         loading={this.props.addingContact}
-                                        onClick={() => this.handleComplete()
+                                        onClick={this.state.priPolInd ? () => this.handleComplete() : null
                                             // <>
                                             // {this.state.checked ? this.handleComplete():null}
                                             // </> 

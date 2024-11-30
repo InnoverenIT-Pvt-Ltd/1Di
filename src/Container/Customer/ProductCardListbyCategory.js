@@ -3,11 +3,11 @@ import React, { useRef } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Carousel from "react-elastic-carousel";
+import { RollbackOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import Tooltip from '@mui/material/Tooltip';
 import { InfoCircleTwoTone } from '@ant-design/icons';
 import { base_url } from '../../Config/Auth';
-
 
 function ProductCardListbyCategory (props) {
 
@@ -28,144 +28,130 @@ function ProductCardListbyCategory (props) {
           { width: 768, itemsToShow: 3, itemToScroll: 3 },
           { width: 1100, itemsToShow: 4, itemToScroll: 4 },
       ];
-    
+    console.log(props.productsbyCategoryId)
       return (
         <>
-    
-        <div class="h-[22rem] overflow-auto">
-    
-        <CardWrapper>
-        <Carousel
-        pagination={false}
-                         breakPoints={breakPoints}
-                        style={{ minHeight: "6em", justifyContent:"center" }}
-                          class=" w-2/12  mt-8 ml-margin10"
-                        >
-                      {props.productsbyCategoryId.filter((dc) => props.activeClick === dc.category).map((item) => {
-                        //  const currentdate = dayjs().format("YYYY/MM/DD");
-                        //  const date = dayjs(item.creationDate).format("YYYY/MM/DD");
-                        return (
-                          <CardElement >
-        
-        <div class=" h-h27 flex-col flex bg-stone-100 items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-80 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
-        <div class="mt-1">
-                                  <Tooltip title={item.productFullName} placement="top" arrow>
-                                 
-                                                              <Header>{item.productFullName || ""}</Header>
-                                                            </Tooltip>
-                                                            </div>
-                                                            <div class="max-sm:mr-0 md:flex  my-2 h-hwk">
-                                  <div class="object-cover object-center  flex items-center">
-                                    <div>
-                                <img
-                                            src={`${base_url}/image/${item.imageId}`} alt=""
-                                            style={{ height: "7rem", width: "7rem" }}
-                                        />
-                                         <h3>{item.newProductNo} </h3>  
-                                         </div>
-                                                          </div>  
-                                                                                                       
-                                                          <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">
-                                                          <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
-                                                          {/* <div class="flex-col w-wk flex max-sm:flex items-center mb-[0.7rem]">
-                                                            Color{" "}
-                                                          {item.colourDTO &&
-                                                            item.colourDTO.length &&
-                                                            item.colourDTO[0].colour ? (
-                                                              <Select placeholder="Select"
-                                                              onChange={this.handleColor}>
-                                                                {item.colourDTO &&
-                                                                  item.colourDTO.length &&
-                                                                  item.colourDTO.map((item) => {
-                                                                    return (
-                                                                      <Option value={item.colour}
-                                                                      >
-                                                                        {item.colour}{" "}
-                                                                      </Option>
-                                                                    );
-                                                                  })}
-                                                              </Select>
-                                                            ) : ( 
-                                                              <Select
-                                                                defaultValue="No Option"
-                                                                disabled
-                                                              ></Select>
-                                                             )} 
-                                                          </div>
-                                                          <div class="flex-col w-wk flex max-sm:flex items-center mb-[0.7rem]">
-                        Size
-                        <Select
-                              defaultValue="No Option"
-                              disabled
-                            ></Select>
-                          </div>            */}
-                                                                </div>
-                                                          <h3 class=" mt-2 h-4 font-bold text-xs ">
-                                                            {item.categoryName}
-                                                          </h3>
-                                                          <h3 class=" mt-2 h-4 font-bold text-xs ">
-                                                            {item.subCategoryName}
-                                                          </h3> 
-                                                        </div>
-
-                                                        </div>
-                                                        
-                                                        <div class="flex justify-between m-2 w-wk max-sm:w-40 items-baseline md: " >
-                                                            <Desc
-                                                              dangerouslySetInnerHTML={{
-                                                                __html: item.description,
-                                                              }}
-                                                            ></Desc>
-                                                            {item.description === "<h3></h3>\n" ? null : (
-                                                              <Tooltip
-                                                                style={{ backgroundColor: "red" }}
-                                                                title={
-                                                                  <Desc2
-                                                                    dangerouslySetInnerHTML={{
-                                                                      __html: item.description,
-                                                                    }}
-                                                                  ></Desc2>
-                                                                }
-                                                                placement="top"
-                                                                arrow
-                                                              >
-                                                                <span
-                                                                  style={{
-                                                                    cursor: "pointer",
-                                                                  }}
-                                                                >
-                                                   
-                                                                  <InfoCircleTwoTone class=" flex items-center"/>
-                                                                </span>
-                                                              </Tooltip>
-                                                            )}
-                                                          </div>
-                                                        <div class="mt-px flex  justify-end w-wk m-1">
-                                                      
-                                                            {/* <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue "
-                                                              
-                                        
-                                                              // onClick={() =>
-                                                              //   this.handleAddPlusClick(
-                                                              //     item.productId,
-                                                              //     item.merchantDetailsId
-                                                              //   )
-                                                              // }
-                                                            >
-                                                                <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white">
-                                                          Add +
-                                                            </label>
-                                                            </div> */}
-                                                      
-                                                          </div>
-                                                        </div>
-                         </CardElement>
-                        );
-                      })}
-                      </Carousel>
-                </CardWrapper>    
+    <div className='flex w-wk'><a href='/'>
+    <Tooltip title="Back">
+        <RollbackOutlined
+          className="BackButton"       
+        />
+      </Tooltip>
+      </a></div>
+        <div class="  items-center h-[22rem]  rounded overflow-auto">
       
-       </div>
+      <CardWrapper>
+    
+                        {props.productsbyCategoryId.map((item) => {
+                          return (
+                            <CardElement >
+      
+                              <div 
+                              //onClick={() => props.handleActiveClick(item.categoryId)} 
+              style={{
+                color:props.activeClick === item.brand && "Blue",
+                cursor:"pointer"
+              }} class=" flex flex-col items-center max-sm:mr-0 md:flex w-[12.6vw]   h-hwk border">
+                               <div class=" flex flex-col items-center max-sm:mr-0 md:flex w-[12.6vw]   h-hwk border">
+                                              {item.imageId ? (
+                                                    <div class=" flex items-center">
+                                                     <img
+                                                              src={`${base_url}/image/${item.imageId}`} 
+                                                              style={{ height: "6.5rem", width: "7rem" }}
+                                                          />
+                                                         </div>  
+                                                        ) : (
+                           
+                                                        <div className="flex items-center text-xs h-[6.5rem]  w-[7rem] ">Image Not Available</div>
+                                                      
+                                                    )}
+                                                      <div className=" flex justify-end flex-row w-full "> 
+                                                                        {/* <div class=" mt-1 text-xs text-[#1124AA] ">
+                                                                            WSL -  {item.discounts?.[0]?.allowedDiscount}
+                                                                            </div> */}
+                                                                            <div class="  flex  p-1 text-xs text-[#1124AA]">
+                                                                            SRP {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)}
+                                                                            {/* <CurrencySymbol  currencyType={item.suppliesPrices?.[0].currencyName}/> {item.suppliesPrices?.[0].suppliesPriceB2C.toFixed(2)} */}
+                                                                             {/* {item.suppliesPrice}  */}
+                                                                            </div> 
+                                                                  </div>
+                                                            <div class=" flex w-wk p-1 flex-col  text-xs text-[#1124AA] justify-evenly cursor-pointer "> 
+                                                             
+                                                                  {/* <div> {item.newSuppliesNo}  </div> */}
+                                                                  <div > 
+                                                                  <Tooltip title={item.suppliesName} placement="top" arrow>
+                                                                                              
+                                                                                              <div 
+            //                                                                                    onClick={() => {
+            //   props.handleCatagoryDetails(true);
+            //   handleRowData(item);
+            // }} 
+            >
+              {item.suppliesName || ""}</div>
+                                                                                            </Tooltip>
+                                                                     </div>
+                                                                     
+                                                                  </div>
+                                                                  <div className=" flex flex-row justify-around "> 
+                                                                        <div class="  text-xs text-[#1124AA] truncate max-w-[100px]">
+                                                                              {item.categoryName}
+                                                                            </div>
+                                                                            <div class=" text-xs text-[#1124AA]">
+                                                                              {item.subCategoryName}
+                                                                            </div> 
+                                                                  </div>
+                                                              
+                                                                
+                                                                                                                         
+                                                                            <div class="w-40 mt-1 flex  justify-between max-sm:flex items-center">
+                                                                            {/* <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
+                                                                            <div className="add-minus-quantity">
+                                                                          <span
+
+                                                                          >
+                                                                                <MinusOutlined onClick={() => handleDecrement(item.suppliesId)}/>
+                                                                          </span>
+                                                                        
+                                                                          <input  type="number"  
+                                                                          value={units[item.suppliesId] || 1}
+                                                                          onChange={(event) => handleQuantityChange(event, item.suppliesId)}
+                                                                          min="1" 
+                                                                          step="1"  />
+                                                                        
+                                                                          <span
+
+                                                                          >
+                                                                            <PlusOutlined onClick={() => handleIncrement(item.suppliesId)}/>
+                                                                            </span>
+
+                                                                          </div>
+           
+                          
+                                             
+                                                                           </div>
+                                                                           <div className="  cursor-pointer ml-2"
+                                                                                 onClick={() =>
+                                                                                    handleAddToCart(
+                                                                                      item.suppliesId
+                                                                    
+                                                                                    )
+                                                                                  }
+                                                                                >
+                                                                                    <Button type="primary" >
+                                                                                     Add
+                                                                                </Button>
+                                                                                </div> */}
+                                                                          </div>
+                  
+                                                                          </div>
+                              </div>
+                            </CardElement>
+                          );
+                        })}
+                       
+                      </CardWrapper>
+        
+         </div>
        </>
   );
 }
@@ -193,6 +179,7 @@ const CardWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  justify-content: center;
   @media only screen and (max-width: 600px) {
     justify-content: center;
     flex-direction: column;
@@ -200,7 +187,7 @@ const CardWrapper = styled.div`
 `;
 const CardElement = styled.div`
 
-  /* border:2px solid red */
+  /* border:2px solid orange */
    padding: 0 10px;
    margin-top: 2.5em;
   display: flex;

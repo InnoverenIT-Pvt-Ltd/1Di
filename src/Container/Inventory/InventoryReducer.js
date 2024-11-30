@@ -16,6 +16,14 @@ const initialState = {
     fetchingAllProductsCategoryError: false,
     allproductsCategory:[],
 
+    fetchingAllSuppliesCategory: false, 
+    fetchingAllSuppliesCategoryError: false,
+    allSuppliesCategory:[],
+
+    fetchingStrpieInd: false,
+    fetchingStrpieIndError: false,
+    stripeNo:{},
+
     uploadInvodrwr:false,
 
     uploadingInventoryDocs: false,
@@ -100,10 +108,32 @@ const initialState = {
 
   productDetailsDrawr:false,
 
-  fetchingProductsById: false,
-  fetchingProductsByIdError: false,
-  productsById: {},
+  suppliesDetailsDrawr:false,
+
+  fetchingProductsByProductId: false,
+  fetchingProductsByProductIdError: false,
+  productsByproductId: {},
+
+  fetchingFeaturedMaterials: true, fetchingFeaturedMaterialsError: false,
+  featuredMaterials:[],
   
+  fetchingMaterialRecommendeds: false,
+  fetchingMaterialRecommendedsError:false,
+  materialRecommendeds:[],
+
+  generatingQuotation: false,
+  generatedQuotation:{},
+  generatingQuotationError:false,
+
+  fetchingSuppliesByProductId: false,
+  fetchingSuppliesByProductIdError:false,
+  suppliesByproductId:{},
+
+  addingRepeatDeliveryInfo: false, addingRepeatDeliveryInfoError: false,
+  repeatDeliveryInfo:{},
+
+  repeatingPayOrder: false, payRepeatOrder: {},
+  repeatingPayOrderError: false, 
 };
 
   export const inventoryReducer = (state = initialState, action) => {
@@ -123,6 +153,14 @@ const initialState = {
               return { ...state, fetchingAllProductsCategory: false, allproductsCategory: action.payload };
             case types.GET_ALL_PRODUCT_CATEGORY_FAILURE:
               return { ...state, fetchingAllProductsCategory: false, fetchingAllProductsCategoryError: true };
+
+              case types.GET_ALL_SUPPLIES_CATEGORY_REQUEST:
+                return { ...state, fetchingAllSuppliesCategory: true, fetchingAllSuppliesCategoryError: false };
+              case types.GET_ALL_SUPPLIES_CATEGORY_SUCCESS:
+                return { ...state, fetchingAllSuppliesCategory: false, allSuppliesCategory: action.payload };
+              case types.GET_ALL_SUPPLIES_CATEGORY_FAILURE:
+                return { ...state, fetchingAllSuppliesCategory: false, 
+                  fetchingAllSuppliesCategoryError: true };
         
               case types.HANDLE_UPLOAD_INVENTORY_DRAWER:
                 return { ...state, uploadInvodrwr: action.payload };
@@ -176,6 +214,21 @@ const initialState = {
                         fetchingInventoryCartItems: false,
                         fetchingInventoryCartItemsError: true,
                       };
+
+                      case types.GET_STRIPE_IND_REQUEST:
+                        return { ...state, fetchingStrpieInd: true };
+                      case types.GET_STRIPE_IND_SUCCESS:
+                        return {
+                          ...state,
+                          fetchingStrpieInd: false,
+                          stripeNo: action.payload,
+                        };
+                      case types.GET_STRIPE_IND_FAILURE:
+                        return {
+                          ...state,
+                          fetchingStrpieInd: false,
+                          fetchingStrpieIndError: true,
+                        };
   
 
                     case types.ADD_INVENTORY_DELIVERY_INFO_REQUEST:
@@ -325,7 +378,9 @@ const initialState = {
                                         return {
                                             ...state,
                                             fetchingPurchaseList: false,
-                                            purchaseList: action.payload,
+                                            // purchaseList: action.payload,
+                                            purchaseList: [...state.purchaseList, ...action.payload],
+                                           
                                         };
                                     case types.GET_SUPPLIES_LIST_FAILURE:
                                         return {
@@ -446,24 +501,98 @@ const initialState = {
         case types.HANDLE_PRODUCTS_DETAILS_DRAWER:
             return { ...state, productDetailsDrawr: action.payload };
 
-            case types.GET_PRODUCT_BY_ID_REQUEST:
+            case types.HANDLE_SUPPLIES_DETAILS_DRAWER:
+              return { ...state, suppliesDetailsDrawr: action.payload };
+
+            case types.GET_PRODUCTS_BY_PRODUCTID_REQUEST:
               return {
                 ...state,
-                fetchingProductsById: true,
-                fetchingProductsByIdError: false,
+                fetchingProductsByProductId: true,
+                fetchingProductsByProductIdError: false,
               };
-            case types.GET_PRODUCT_BY_ID_SUCCESS:
+            case types.GET_PRODUCTS_BY_PRODUCTID_SUCCESS:
               return {
                 ...state,
-                fetchingProductsById: false,
-                productsById: action.payload,
+                fetchingProductsByProductId: false,
+                productsByproductId: action.payload,
               };
-            case types.GET_PRODUCT_BY_ID_FAILURE:
+            case types.GET_PRODUCTS_BY_PRODUCTID_FAILURE:
               return {
                 ...state,
-                fetchingProductsById: false,
-                fetchingProductsByIdError: true,
+                fetchingProductsByProductId: false,
+                fetchingProductsByProductIdError: true,
               };
+
+              case types.GET_SUPPLIES_BY_PRODUCTID_REQUEST:
+              return {
+                ...state,
+                fetchingSuppliesByProductId: true,
+                fetchingSuppliesByProductIdError: false,
+              };
+           
+              case types.GET_SUPPLIES_BY_PRODUCTID_SUCCESS:
+              return {
+                ...state,
+                fetchingSuppliesByProductId: false,
+                suppliesByproductId: action.payload,
+              };
+            case types.GET_SUPPLIES_BY_PRODUCTID_FAILURE:
+              return {
+                ...state,
+                fetchingSuppliesByProductId: false,
+                fetchingSuppliesByProductIdError: true,
+              };
+
+              case types.GET_FEATURED_MATERIALS_REQUEST:
+                return { ...state, fetchingFeaturedMaterials: true, fetchingFeaturedMaterialsError: false };
+              case types.GET_FEATURED_MATERIALS_SUCCESS:
+                return { ...state, fetchingFeaturedMaterials: false,
+                  featuredMaterials: [...state.featuredMaterials, ...action.payload],
+                };
+              case types.GET_FEATURED_MATERIALS_FAILURE:
+                return { ...state, fetchingFeaturedMaterials: false, fetchingFeaturedMaterialsError: true };
+
+
+                case types.GET_MATERIAL_RECOMMEND_REQUEST:
+                  return { ...state, fetchingMaterialRecommendeds: true };
+              case types.GET_MATERIAL_RECOMMEND_SUCCESS:
+                  return {
+                      ...state,
+                      fetchingMaterialRecommendeds: false,
+                      materialRecommendeds: [...state.materialRecommendeds, ...action.payload],
+                     
+                  };
+              case types.GET_MATERIAL_RECOMMEND_FAILURE:
+                  return {
+                      ...state,
+                      fetchingMaterialRecommendeds: false,
+                      fetchingMaterialRecommendedsError: true,
+                  };
+
+                  case types.GENERATE_QUOTATION_REQUEST:
+                    return { ...state, generatingQuotation: true };
+                  case types.GENERATE_QUOTATION_SUCCESS:
+                    return { ...state, generatingQuotation: false, generatedQuotation: action.payload };
+                  case types.GENERATE_QUOTATION_FAILURE:
+                    return { ...state, generatingQuotation: false, generatingQuotationError: true };
+
+
+                    case types.ADD_REPEAT_DELIVERY_INFO_REQUEST:
+                      return { ...state, addingRepeatDeliveryInfo: true };
+                    case types.ADD_REPEAT_DELIVERY_INFO_SUCCESS:
+                      return { ...state, addingRepeatDeliveryInfo: false,
+                                        repeatDeliveryInfo:action.payload,
+                       };
+                    case types.ADD_REPEAT_DELIVERY_INFO_FAILURE:
+                      return { ...state, addingRepeatDeliveryInfo: false, addingRepeatDeliveryInfoError: true };
+
+
+                      case types.REPEAT_PAYMENT_REQUEST:
+                        return { ...state, repeatingPayOrder: true };
+                      case types.REPEAT_PAYMENT_SUCCESS:
+                        return { ...state, repeatingPayOrder: false, payRepeatOrder: action.payload };
+                      case types.REPEAT_PAYMENT_FAILURE:
+                        return { ...state, repeatingPayOrder: false, repeatingPayOrderError: true };
 
 
                           default:

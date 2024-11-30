@@ -57,23 +57,21 @@ import InventoryDeliveryInfo from "../Container/Inventory/InventoryDeliveryInfo"
 import InvoPayment from "../Container/Inventory/InvoPayment";
 import InventoryPaymentLoading from "../Container/Inventory/InventoryPaymentLoading";
 import InventoryOrdersuccess from "../Container/Inventory/InventoryOrdersuccess";
+import InventoryQuoatationSuccess from "../Container/Inventory/InventoryQuoatationSuccess";
 import { MenuFoldOutlined, MenuUnfoldOutlined, CloseOutlined } from '@ant-design/icons';
+import Showmessage from "../Container/Inventory/Showmessage";
+import RepeatDeliveryInfo from "../Container/OrderProgress/RepeatDeliveryInfo";
+
 const OrderSupplier =lazy(()=>import("../Container/OrderSupplier/OrderSupplier"));
-
-const NotificationPopover = lazy(() =>
-  import("../Container/Notification/NotificationPopover"));
+const NotificationPopover = lazy(() =>import("../Container/Notification/NotificationPopover"));
 const Inventory = lazy(() => import('../Container/Inventory/Inventory'));
-
 const { Option } = Select;
-
 const { Header, Sider, Content } = Layout;
 const Courses = lazy(() => import('../Container/Courses/Courses'))
-
 const Planner = lazy(() => import("../Container/Auth/Planner/Planner"));
 const Quotation = lazy(()=>import("../Container/Quotation/Quotation"));
-const SupplierInventory =lazy(()=>import("../Container/Inventory/SupplierInventory"))
-
-
+const SupplierInventory =lazy(()=>import("../Container/Inventory/SupplierInventory"));
+const PaymentPage =lazy(()=>import("../Container/PaymentPage/PaymentPage"));
 
 function MainApp(props) {
   const [visible, setVisible] = useState(false);
@@ -131,7 +129,7 @@ function MainApp(props) {
 
   const [collapsed, setCollapsed] = useState(false);
   const [theme, setTheme] = useState("light");
-  const [click, setClick] = useState("dashboard");
+  const [click, setClick] = useState("inventory");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const myDate = date => `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getYear()}`;
   function toggle() {
@@ -201,11 +199,11 @@ function MainApp(props) {
 
       {/* </Sider> */}
       {/* <LayoutWrapper style={{ backgroundColor: "white", width: "75rem" }}> */}
-       <div className="p-0 min-h-screen bg-white fixed w-[75rem] max-sm:w-wk"
+       <div className=" min-h-screen bg-white fixed w-[80vw] max-sm:w-wk"
        >
-        <NavbarWrapper style={{ padding: 0, height: 50,}}>
+        <NavbarWrapper style={{  height: 30, width:"100%"}}>
           {/* <Header> */}
-          <div className="flex items-center max-sm:flex-row-reverse p-1">
+          <div className="flex items-center  max-sm:flex-row-reverse p-1">
           <Link to="/dashboard">
           <div class="ml-2" >
             {/* <MultiAvatar
@@ -219,7 +217,7 @@ function MainApp(props) {
               className="big-logo"
                src={KoreroLogo}
               // src={NuboxLogo}
-              style={{ width: 100 }}
+              style={{width: "3vw",height:"3vh"  }}
               alt="Tekorero logo"
             />
           </div>
@@ -243,7 +241,7 @@ function MainApp(props) {
                 }}
                 onClick={() => { handleClick("dashboard"); }}
               >
-                <label class=" font-bold font-poppins text-base cursor-pointer"> Refurbish</label>
+                {/* <label class=" font-bold font-poppins text-base cursor-pointer"> Refurbish</label> */}
               </span>
             </Link> }
             </>
@@ -260,30 +258,12 @@ function MainApp(props) {
                 }}
                 onClick={() => { handleClick("inventory") }}
               >
-                <label class="font-poppins font-bold text-base cursor-pointer">  <FormattedMessage
-                                   id="app.inventory"
-                                  defaultMessage="Inventory"
-                                 /></label>
+                <label class="font-poppins font-bold text-base cursor-pointer">Shop NOW</label>
               </span>
             </Link>}
             </>
             :null}
-            {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
-            <Link to="/orderinprogree" className="dheight">
-              <span
-                style={{
-                  paddingLeft: "1em",
-                  color: click == "orderinprogree" ? "#8dc1f1" : "black"
-                }}
-                onClick={() => { handleClick("orderinprogree") }}
-              >
-                <label class="font-poppins font-bold text-base cursor-pointer"><FormattedMessage
-                                   id="app.procure"
-                                  defaultMessage="Procure"
-                                 /></label>
-              </span>
-            </Link>:null}
-            {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
+             {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
             <Link to="/quotation" className="dheight">
               <span
                 style={{
@@ -298,6 +278,36 @@ function MainApp(props) {
                                  /></label>
               </span>
             </Link>:null}
+            {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
+            <Link to="/orderinprogree" className="dheight">
+              <span
+                style={{
+                  paddingLeft: "1em",
+                  color: click == "orderinprogree" ? "#8dc1f1" : "black"
+                }}
+                onClick={() => { handleClick("orderinprogree") }}
+              >
+                <label class="font-poppins font-bold text-base cursor-pointer">Orders</label>
+              </span>
+            </Link>:null}
+              <Link to="/invoice" className="dheight">
+              <span
+                style={{
+                  paddingLeft: "1em",
+                  color: click == "invoice" ? "#8dc1f1" : "black"
+                }}
+                onClick={() => { handleClick("invoice") }}
+              >
+                <label class="font-poppins font-bold text-base cursor-pointer"> <FormattedMessage
+                                   id="app.invoice"
+                                  defaultMessage="Invoice"
+                                 /></label>
+              </span>
+            </Link>
+           
+            
+          
+           
             {/* <Link to="/completedorder">
               <span
                 style={{
@@ -328,6 +338,7 @@ function MainApp(props) {
               </span>
             </Link>
             :null} 
+             
             {props.employee_type==="Supplier" ?  
             <Link to="/supplierInventory" className="dheight">
               <span
@@ -344,21 +355,21 @@ function MainApp(props) {
               </span>
             </Link>
             :null} 
-            <Link to="/invoice" className="dheight">
+           
+            {/* {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
+            <Link to="/paymentPage" className="dheight">
               <span
                 style={{
                   paddingLeft: "1em",
-                  color: click == "invoice" ? "#8dc1f1" : "black"
+                  color: click == "paymentPage" ? "#8dc1f1" : "black"
                 }}
-                onClick={() => { handleClick("invoice") }}
+                onClick={() => { handleClick("paymentPage") }}
               >
-                <label class="font-poppins font-bold text-base cursor-pointer"> <FormattedMessage
-                                   id="app.invoice"
-                                  defaultMessage="Invoice"
-                                 /></label>
+                <label class="font-poppins text-base cursor-pointer"> 
+                              Pay
+                               </label>
               </span>
-            </Link>
-            
+            </Link>:null} */}
             {props.employee_type==="Customer" || props.employee_type==="external" || props.employee_type==="Distributor" ? 
             <Link to="/planner" className="dheight">
               <span
@@ -368,13 +379,13 @@ function MainApp(props) {
                 }}
                 onClick={() => { handleClick("planner") }}
               >
-                <label class="font-poppins font-bold text-base cursor-pointer"> <FormattedMessage
+                {/* <label class="font-poppins font-bold text-base cursor-pointer"> <FormattedMessage
                                    id="app.appointments"
                                   defaultMessage="Appointments"
-                                 /></label>
+                                 /></label> */}
               </span>
             </Link>:null}
-
+           
             {/* <Link to="/report">
               <span
                 style={{
@@ -411,6 +422,24 @@ function MainApp(props) {
      
 
           <div class="flex items-center"  >
+          <div className="flex">
+            <div className="mr-2">           
+            <Link to="/faq">
+            <label class=" font-bold font-poppins text-base cursor-pointer">FAQ</label>
+           </Link>        
+            </div> 
+            <div className="mr-2">
+              
+                <Link to="/refund">
+                <label class=" font-bold font-poppins text-base cursor-pointer">Refund policy</label>
+            </Link>
+            </div>
+            <div className="mr-2">
+                <a href="/contactus" target="blank">
+                <label class=" font-bold font-poppins text-base cursor-pointer">Contact us</label>
+                </a>
+                </div>
+                </div>   
           <a href="#" style={{ height: 45 }}>
             <FlexContainer
               alignItems="center"
@@ -462,15 +491,20 @@ function MainApp(props) {
                   <Route exact path="/completedorder" component={CompletedOrder} />
                   <Route exact path="/invoice" component={Invoice} />
                   <Route exact path="/changepassword" component={CustomerChangePassword} />
+                  <Route exact path="/paymentPage" component={PaymentPage} />
                   {/* <Route exact path="/report" component={} /> */}
+                  <Route exact path="/repeatOrderInfo" component={RepeatDeliveryInfo} />
                   <Route exact path="/:shopName/invcartInfo" component={InventoryDeliveryInfo} />
                   <Route exact path="/:shopName/inventorycart" component={InventoryCart} />
                   <Route exact path="/:shopName/invopayment" component={InvoPayment} />
                   <Route exact path="/profile"  component={Profile} />
+                  <Route exact path="/invQuotationsuccess" component={InventoryQuoatationSuccess}/>
                   <Route exact path="/:shopName/invOrdersuccess" component={InventoryOrdersuccess}/>
-                  <Route exact path="/:shopName/invenloading/:stripePaymentId/:paymentId" component={InventoryPaymentLoading}/>
+                  <Route exact path="/:shopName/chequeOrdersuccess" component={Showmessage}/>
+                  <Route exact path="/:shopName/invenloading/:stripePaymentId/:paymentId/:amount" component={InventoryPaymentLoading}/>
                   <Route exact path="/planner"  component={Planner} />
-                  <Route exact pat="/supplierInventory" component={SupplierInventory}/>
+                  <Route exact pat="/supplierInventory" component={SupplierInventory}/>               
+
                 </Switch>
                 <AchievementDrawerModal
                   clickData={props.clickData}

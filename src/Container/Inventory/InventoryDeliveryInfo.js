@@ -1,51 +1,93 @@
 import { Button } from 'antd'
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FlexContainer, MainWrapper } from '../../Components/UI/Layout'
 import InventoryDeliveryInfoForm from './InventoryDeliveryInfoForm';
 import { createBrowserHistory } from "history";
 import { RollbackOutlined } from "@ant-design/icons";
-import {getInventoryCartItems} from "./InventoryAction";
+import {getInventoryCartItems,deleteCartItem} from "./InventoryAction";
+import { Footer } from '../Customer/Footer';
+import InvSingleCard from './InvSingleCard';
+import InvSingleCard1 from './InvSingleCard1';
 
 const history = createBrowserHistory();
 
 function InventoryDeliveryInfo (props) {
+  const [qn, setqn] = useState({});
 
     useEffect(() => {
         props.getInventoryCartItems(props.userId);
       }, []);
-
+      function handleInc(data) {
+        setqn({ ...data, quantity: data.quantity + 1 });
+      }
+      function handleDec(data) {
+        setqn({ ...data, quantity: data.quantity - 1 });
+      }
+      function handlebackdelete(item) {
+        const cartItemId = item.cartItemId;
+        props.deleteCartItem(cartItemId);
+      }
+      function handleRemoveCart(data) {
+        setqn({ ...data });
+      }
         return (
             <>
+            <div class="bg-[#F7F8FC]">
+            <div className="relative bg-[#1124AA] h-8 text-white w-wk flex flex-col justify-center">
+            <div class="flex w-wk items-center">
             <RollbackOutlined
-          className="BackButton flex justify-start "
-          style={{}}
+          className="!text-[24px] BackButton  flex justify-start "
+          style={{color:"white"}}
           onClick={() => history.back()}
-        />
-                <FlexContainer style={{justifyContent: "center"}}>
-                <div class="text-lg text-black font-bold"> Shipping Information</div> 
-                <h2>QuotationId : {props.invencartItem.orderPhoneId}</h2>
-                </FlexContainer>
-                <FlexContainer 
-                style={{justifyContent: "center"}}
-                // marginTop="-44px"
-                >
-                    <MainWrapper 
-                        background= "#FFFFFF"
-                        boxShadow= "4px 4px 4px rgba(163, 171, 185, 0.5)"
-                        borderRadius= "20px"
-                        width= "65%"
-                        border="none"
-                    >
-                
+        /> 
+          <div class=" flex text-sm text-white w-[100%] justify-center font-semibold"> Shipping Information</div> 
+          <div className=" flex justify-end w-[100%] text-white text-sm text-[16px] font-normal pr-3"> Quotation ID &nbsp;<span class="text-bold text-sm text-[#eacc0c]">{props.invencartItem.newQuotationId}</span></div>
+          </div>
+      
+              </div>
+                     
+               <div class="flex justify-center items-center mt-1">
+                    <div class="w-wk bg-white shadow-2xl rounded-lg border p-1 h-[87vh] flex justify-between"   >
+                  <div className='w-[40%]'>
                         <InventoryDeliveryInfoForm 
                          invencartItem={props.invencartItem}
                          fetchingInventoryCartItems={props.fetchingInventoryCartItems}
                         />
-                    </MainWrapper>
-                    
-                </FlexContainer>
+                        </div>
+                        <div className=" w-[55%] h-[83vh] border box-border overflow-x-auto">
+      
+     
+  
+          <div className="w-[100%]">
+         {props.invencartItem.cartItems && props.invencartItem.cartItems.length === 0 ? <div class="flex justify-center  text-2xl text-[red]">Your Shopping cart is empty !</div>:
+props.invencartItem.cartItems && props.invencartItem.cartItems.map((item) => {
+                return ( 
+               <InvSingleCard1 
+               key={item.cartItemId}
+               invencartItem={props.invencartItem}
+               item={item}
+               handleDec={handleDec}
+               handleInc={handleInc}
+               handleRemoveCart={handleRemoveCart}
+               handlebackdelete={handlebackdelete}
+               setqn={setqn}
+               qn={qn}
+               updatingPlusCart={props.updatingPlusCart}
+                />
+
+             )})} 
+          </div>
+          
+          
+         
+
+      </div>
+                    </div>
+                    </div>   
+                    <Footer/>
+                    </div> 
             </>
         )
 }
@@ -60,6 +102,7 @@ const mapStateToProps = ({ inventory, auth }) => ({
     bindActionCreators(
        {
         getInventoryCartItems,
+        deleteCartItem
             
        },
         dispatch

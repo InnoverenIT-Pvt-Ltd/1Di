@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getProductsById } from "./InventoryAction";
+import { getProductsByProductId } from "./InventoryAction";
 import { Link } from "react-router-dom";
 import { MultiAvatar, Spacer } from "../../Components/UI/Elements";
 import { Scrollbars } from 'react-custom-scrollbars-2';
@@ -12,18 +12,29 @@ import { Select } from "../../Components/UI/Elements";
 import Tooltip from '@mui/material/Tooltip';
 import { BundleLoader } from "../../Components/Placeholder";
 import { Button } from "antd";
+import {
+  DeleteOutlined,
+  MinusOutlined,
+  PlusOutlined,
+} from '@ant-design/icons';
 import Carousel from "react-elastic-carousel";
 import "./Inventory.scss";
 import Appy from "../../Assests/Images/apple.jpg";
 import mang from "../../Assests/Images/mango.jpg";
 import { base_url } from "../../Config/Auth";
+import KoreroLogo from "../../Assests/Images/apple.jpg";
+import CartTable from "./CartTable";
+import { Footer } from "../Customer/Footer";
 
 const { Option } = Select;
 
 function InveProductsDetails(props) {
   useEffect(() => {
-    props.getProductsById(props.item.productInfo.productId);
-  }, []);
+    if (props.productId) {
+      console.log('Fetching product details for:', props.productId);
+      props.getProductsByProductId(props.productId);
+    }
+  }, [props.productId]);
 
 //   if (props.fetchingProductsList) {
 //     return <BundleLoader />;PD10985606347262024
@@ -35,70 +46,66 @@ const breakPoints = [
   { width: 768, itemsToShow: 2, itemToScroll: 2 },
   { width: 1100, itemsToShow: 4, itemToScroll: 4 },
 ];
+console.log(props.productsByproductId)
   return (
     
-    <div>
- <div className="cardDs">
-      <div className="cardDs-left">
-        <img src={`${base_url}/image/${props.productsById.imageId}`} className="main-image" />
+    <div className="bg-[#F7F8FC] p-8">
+ <div className="flex justify-between items-center w-full">
+      <div className="w-[60%]">
+      <div className="text-xl font-medium">{props.productsByproductId.suppliesName}</div>
+      <div className="text-base font-medium">{props.productsByproductId.newSuppliesNo}</div>
+        <div className='flex items-center justify-evenly  mt-3'>
+      
+      <div className="flex items-center justify-center ">
+        <div class="text-sm font-bold text-black">
+        WSL- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/>  {Number(props.productsByproductId ?.suppliesPrices?.[0].suppliesPrice).toFixed(2)} 
+        </div>
       </div>
-      <div className="cardDs-right">
-        <h2>{props.productsById.productFullName}</h2>
-        <p><strong>Price:</strong>{props.productsById.price}</p>
-        <p><strong>Category:</strong>{props.productsById.categoryName}</p>
-        <p><strong>Attribute:</strong> {props.productsById.attributeName}</p>
-        <p><strong>Description:</strong> {props.productsById.description}</p>
+      <div className="flex items-center justify-center ml-1">
+        <div class="text-sm font-bold text-black w-16">
+        SRP- <CurrencySymbol  currencyType={props.productsByproductId.suppliesPrices?.[0].currencyName}/> {Number(props.productsByproductId ?.suppliesPrices?.[0]?.suppliesPriceB2C).toFixed(2)}
+        </div>
       </div>
-      {/* <div className="cardDs-bottom">
- 
-
-         <Carousel showThumbs={false}>
-          {carouselImages.map((img, index) => (
-            <div key={index}>
-              <img src={img} alt={`carousel-${index}`} />
-            </div>
-          ))}
-        </Carousel> 
-      </div> */}
+        </div>
+      </div>
+      <div class=" flex justify-end w-[40%]">
+      <img  src={`${base_url}/image/${props.productsByproductId.imageId}`}  className="w-[14rem] h-[14rem]" />
+      </div> 
     </div>
-    
-    <div className="cardDs-bottom">
-    <div class="border-[0.5rem] rounded overflow-auto">
-      <Carousel
-    // ref={carouselRef}
-    pagination={false}
-    breakPoints={breakPoints}
-    style={{ minHeight: "6em", justifyContent: "center" }}
-    class="w-2/12 mt-8 ml-margin10"
-                   >
-                     <img src={Appy} class="h-52 w-[50%]"/> 
-                     <img src={mang} class="h-52 w-[50%]"/>
-                     <img src={Appy} class="h-52 w-[50%]"/>
-                     <img src={mang} class="h-52 w-[50%]"/>
-                   </Carousel>
-                   </div>
-        {/* <Carousel showThumbs={false}>
-          {carouselImages.map((img, index) => (
-            <div key={index}>
-              <img src={img} alt={`carousel-${index}`} />
-            </div>
-          ))}
-        </Carousel> */}
+    <div className="flex w-wk justify-evenly mt-3 ">
+    <div className="flex flex-col border box-border h-40 w-[40%]">
+    <div className=" font-bold ml-1 mt-1 font-poppins ">Description </div>
+    <div className=" font-normal ml-1 font-poppins" dangerouslySetInnerHTML={{ __html: props.productsByproductId.description ?`<p>${props.productsByproductId.description}</p>`:"<p></p>" }} />
+    </div>
+    <div className="flex flex-col border box-border h-40 w-[40%]">
+    <div className=" font-bold ml-1 mt-1 font-poppins">Description in French </div>
+   <div className=" font-normal ml-1 font-poppins"
+  dangerouslySetInnerHTML={{
+    __html: props.productsByproductId.qrCodeNo
+      ? `<p>${props.productsByproductId.qrCodeNo}</p>`
+      : "<p></p>",
+  }}
+/>
+    </div>
+    </div>
+    <div className="cardDs-bottom mt-5  flex ">
+      <CartTable productsByproductId={props.productsByproductId}/>
       </div>
-   
+      <Footer/>
    </div>
+  
   
   );
 }
 const mapStateToProps = ({ inventory,auth }) => ({
-    productsById: inventory.productsById,
-  fetchingProductsById:inventory.fetchingProductsById,
+    productsByproductId: inventory.productsByproductId,
+  fetchingProductsByProductId:inventory.fetchingProductsByProductId,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getProductsById,
+      getProductsByProductId,
    
     },
     dispatch

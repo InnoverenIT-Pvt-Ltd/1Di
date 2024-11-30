@@ -10,11 +10,13 @@ import "../Customer/Customer.scss";
 import { base_url } from "../../Config/Auth";
 import {updateCartItemDate,handleProductDetails} from "./InventoryAction";
 import InveProductsDetailsDrawer from './InveProductsDetailsDrawer';
+import FeaturedMaterialCard from './FeaturedMaterialCard';
 
  function InvSingleCard (props){
 
   const [date, setDate] = useState('');
-
+  const [rowDatas, setrowDatas] = useState("");
+ 
   useEffect(() => {
     
     // const today = new Date().toISOString().split('T')[0];
@@ -23,7 +25,9 @@ import InveProductsDetailsDrawer from './InveProductsDetailsDrawer';
     tomorrow.setDate(tomorrow.getDate() + 1);
     setDate(tomorrow.toISOString().split('T')[0]);
   }, []);
-
+  function handleRowData(item) {
+    setrowDatas(item)
+}
   const handleDateChange = (e,item) => {
     const selectedDate = e.target.value;
 
@@ -45,58 +49,62 @@ import InveProductsDetailsDrawer from './InveProductsDetailsDrawer';
     }
     props.updateCartItemDate(data);
   };
-
+console.log(props.item.productInfo)
     return(
       <>
-        <div className="items-info">
-        <div className=" sm:h-28 w-28 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-        <div   className=" h-32 w-32 -mt-5 -ml-2 object-cover object-center">
+        <div className="w-wk h-11 bg-white mt-1 flex rounded p-1 ">
+        <div className=" h-11 w-11 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+        <div   className="flex items-center  h-11 w-11 ">
+        {props.item.productInfo.imageId ? (
         <img 
         src={`${base_url}/image/${props.item.productInfo.imageId}`} 
        alt="images" 
-style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
+     style={{ height: "2.75rem", width: "2.85rem"}}
        
         /> 
-                   
-</div>
-      </div>
+      ) : ( 
+       <div className=" text-[0.45rem] text-center  flex ">Image Not Available</div>
+                                                      
+       )}           
+ </div>
+     </div> 
        
-        <div className="title">
-          <div class="text-blue-600 text-base font-bold"
+        <div className=" flex items-center  justify-center flex-col text-ellipsis overflow-hidden">
+          <div class="text-blue-600 text-xs font-bold cursor-pointer font-poppins text-ellipsis overflow-hidden w-[22.5rem] ml-3"
              onClick={() => {
               props.handleProductDetails(true);
+              handleRowData(props.item);
             }} 
             >
             {props.item.productInfo.productFullName}
 
           </div>
-          <div className="">
-        <div class="text-sm text-black">
-        Category -  {props.item.productInfo.category}
-        </div>
-      </div>
-      <div className="">
-        <div class="text-sm text-black">
-        Attribute -  {props.item.productInfo.attribute}
-        </div>
-      </div>
-      <div className="">
-        <div class="text-sm text-black">
-        {props.item.productInfo.newProductId}
-        </div>
-      </div>
-     
-        </div>
         
-        <div className="price">
-        <div class="text-sm text-black">
-         USD {props.item.itemSummary.discount}
         </div>
-      </div>
-      <div className="price2">
-        <div class="text-sm text-black">
-        USD 
-        {props.item.itemSummary.unitPrice}
+        <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div>
+        <div className="flex items-center justify-center ">
+        <div class="text-xs text-black w-[6.6rem] flex justify-center">
+        {/* {props.item.productInfo.newProductId} */}
+
+        {props.item.productInfo.articleNo}
+        </div>
+      </div>    
+      <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
+      <div className=' flex items-center  justify-center '>
+        <div className='w-[7.1rem] flex items-center  justify-center'>
+        {props.item.productInfo.avalabilityDate}
+        </div>
+        </div>
+      <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
+      <div className='flex items-center justify-center w-[24rem] '>
+        {/* <div className="flex items-center justify-center">
+        <div class="text-xs text-black w-16">
+        {Number(props.item.itemSummary.discount).toFixed(2)} 
+        </div>
+      </div> */}
+      <div className="flex items-center justify-center w-16">
+        <div class="text-xs text-black">  
+        {Number(props.item.itemSummary.unitPrice).toFixed(2)}
         </div>
       </div>
         <div className="add-minus-quantity">
@@ -124,14 +132,18 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
           </span>
 
         </div>
-        <div className="subPrice">
-          <div class="text-sm text-black">
-          USD  
-          {props.item.itemSummary.totalPrice} 
+        <div className="flex items-center justify-center">
+          <div class="text-xs text-black  w-16">
+            
+          {Number(props.item.itemSummary.totalPrice).toFixed(2)}  
           </div>
 
         </div>
-        <div className="datefield">
+        </div>
+        <div className="md:h-[1.75rem] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
+        <div className=' flex items-center  justify-end w-[11rem]'>
+          
+        <div className="flex items-center justify-center text-xs">
         <input
           type="date"
           value={date}
@@ -140,9 +152,10 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
           min={new Date().toISOString().split('T')[0]}
         />
       </div>
-
-        <div className="remove-item">
-        <DeleteOutlined
+     
+        <div className="flex items-center justify-end">
+        <DeleteOutlined 
+        className='text-[red] ml-2 !text-[1.1rem]'
           onClick={() => {
             props.setqn(props.item)
             props.handlebackdelete(props.item)
@@ -150,18 +163,25 @@ style={{ height: "10rem", width: "10rem", borderRadius: "20px" }}
 
    
         </div>
+        </div>
+        {/* <FeaturedMaterialCard/> */}
       </div>
-
+      
       <InveProductsDetailsDrawer
-      item={props.item}
+      //  setqn={props.setqn}
+      //  qn={props.qn}
+      // item={props.item}
+      // handleDec={props.handleDec}
+      // handleInc={props.handleInc}
       productDetailsDrawr={props.productDetailsDrawr}
       handleProductDetails={props.handleProductDetails}
+      rowDatas={rowDatas}
       />
 </>
     )
 }
 const mapStateToProps = ({ inventory }) => ({
-  productDetailsDrawr:inventory.productDetailsDrawr
+  productDetailsDrawr:inventory.productDetailsDrawr,
 });
 
 const mapDispatchToProps = (dispatch) =>
